@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-intro-changelog" xreflabel="Master Changelog">
+  <?dbhtml filename="changelog.html"?>
+
+  <title>Master Changelog</title>
+
+  <para>This is version &version; of the Cross-Compiled Linux From Scratch book, dated
+  &releasedate;. If this book is more than six months old, a newer and better
+  version is probably already available. To find out, please check one of the
+  mirrors via <ulink url="&clfs-wiki;"/>.</para>
+
+  <para>Below is a list of detailed changes made since the previous release of
+   the book.</para>
+
+  <itemizedlist>
+    <title>Changelog Entries:</title>
+
+<!-- Changelog template
+
+    <listitem>
+      <para>Date</para>
+      <itemizedlist>
+        <listitem>
+          <para>[name] - New changelog entry.</para>
+        </listitem>
+        <listitem>
+          <para>[name] - Previous changelog entry.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+-->
+
+    <listitem>
+      <para>November 5, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to Inetutils 1.5.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added command to man instructions to comment out
+          MANPATH /usr/local/man (in addition to /usr/man).</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Bash 3.2 with some unofficial upstream fixes. Thank you Chet Ramey.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>October 14, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated the udev rules tarball to 1.1-09062006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated the vim fixes patch to -14.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added patch to fix build issues with
+          Bash 3.2.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Udev to 102.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Man-Pages to 2.41.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Readline to 5.2.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Bash to 3.2.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - New patch for util-linux, replaces GCC 4 fixes.
+          The new patch fixes the same issues, and removes the use of
+          syscalls. Syscalls were removed from unistd.h during sanitation.
+          </para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Texinfo to 4.8a.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added a patch to Util-Linux to fix build issues
+          due to changes in the kernel.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated M4 to 1.4.7</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Linux 2.6.18 and
+          Linux-Headers-2.6.18-09302006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Bootscripts to 1.1-pre1. Adding in the
+          boot logging feature.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Removed TeX installation commands from Texinfo
+          instructions.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>October 5, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[manuel] - Changed book license to the Open Publication
+          License v1.0.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>August 31, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added a Host System Requirements page.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Vim Patch -12, which contains upstream
+          fixes. This patch will be upgraded weekly, no further changelog
+          entries needed.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Add patch to fix gzexe. Used Matts change from LFS,
+          that utilizes Robert's fix. More details at
+          http://wiki.linuxfromscratch.org/lfs/ticket/1876.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added a patch to fix Inetutils. Telnet on 64 bit
+          systems will fail, it will attempt to connect to 255.255.255.255
+          instead of the ip address entered. This was due to a change in glibc's
+          handling of inet_addr, was long now is u_int32_t. Bug found by
+          Vladimir Vainer.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Linux to 2.6.17.13 and Linux Headers to 2.6.17.13-09092006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Replaced the Perl -fPIC patch with a sed.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Removed the keymap settings from the kernel
+          pages.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added Shadow patch to fix useradd.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>August 30, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to Coreutils Uname Patch -2, which supports all architectures.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Vim Patch -10, which contains upstream
+          fixes.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Udev 098 and udev-cross-lfs to
+          1.1-08272006 rules.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Findutils 4.2.28.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to M4 1.4.6.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Autoconf 2.60.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Man-Pages 2.39.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Procps 3.2.7.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Coreutils 0.97.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Shadow 4.0.18.1.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Gettext 0.15.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Cross-LFS Bootscripts 0.4.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Linux-2.6.17.11 and Linux-Headers to
+          2.6.17.11-08232006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added the Perl fPIC patch which makes perl build
+          a shared DynaLoader.a.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Removed mention of package users hint from
+          "Package Management" page.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>August 8, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Moved man-pages to the beginning of the build.
+          (fixes ticket #82).</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>August 7, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Fixed a problem where when bash is cross-compiled
+          it cannot test for the presence of named pipes.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Fixed symlink issue in bootscripts. New package
+          CLFS-bootscropts 0.3.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 22, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated the perl cross-compile patch to -2 to
+          support x86.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added x86 to the book.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 21, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added TZDIR="${CLFS}/usr/share/zoneinfo" to the
+          tzselect command. This makes sure that the tzselect command looks in
+          zoneinfo dir that was just installed by glibc instead of the host.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 20, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added groff to cross-tools to satisfy a dependency
+          when cross-compiling it later in the final system.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Udev-096.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to linux-2.6.17.6 and
+          linux-headers-2.6.17.6-07202006.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 16, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added a sed to fix updatedb due to the new
+          location of find.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Removed unneeded chown and chmod commands from
+          the linux-headers installation.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 10, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to linux-headers-2.6.17.4-07112006.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 10, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to linux-headers-2.6.17.4-07092006.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 9, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to linux-2.6.17.4 and
+          linux-headers-2.6.17.4-07072006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Udev rules to 07062006, Fixed cdrom
+          permissions and groups. </para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Fixes a possible issue with bootscripts if the
+          /usr partition is not mounted during startup. Moved find to /bin
+          and moved some kbd utilities to /bin.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 2, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated passwd and group file creation
+                to only create minimal users and groups and
+                include information on other users/groups.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Cross-LFS Bootscripts. Added check for
+	  for /etc/sysconfig/createfiles.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 28, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to linux-headers-2.6.17.1-06272006.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 24, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to Binutils-2.17.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 22, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated Vim 7.0 fixes patch to -5.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to linux-headers-2.6.17.1-06212006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Vim 7.0 fixes patch to -4.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added mktemp to the Linux dependency list. New
+                dependency as of 2.6.17.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 21, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to linux-2.6.17.1 and linux-headers-2.6.17.1-06202006-1.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 19, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to man-1.6d.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added an iconv_fix patch to glibc which fixes an
+                issue that has shown up primarily in samba.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to linux-2.6.17 and
+                linux-headers-2.6.17-06192006.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 18, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added the glibc crosscompile_timezone-fix to glibc
+          which installs timezone info when cross-compiling.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 16, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added information about cross-compiling perl.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 15, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to Binutils-2.16.94.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 11, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated the list of installed programs for several packages.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Fixed the module-init-tools install in the presence of existing files.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Linux-Headers-2.6.16.20-06092006.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to Shadow-4.0.16.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>June 6, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Added information about cross-compiling vim.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>May 29, 2006</para>
+      <itemizedlist>
+	<listitem>
+          <para>[jciccone] - Updated to linux-2.6.16.20, linux-headers-2.6.16.20-06052006, and Bison-2.3.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Added a patch to fix a missing declaration of R_OK in util-linux.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated to e2fsprogs-1.39, man-pages-2.33, and linux-headers-2.6.16.19-06042006.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>May 29, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated to linux-headers-05292006, udev-093, and binutils-2.16.93.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>May 24, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Created the clfs-2.0 branch. Resetting all Changelogs.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+  </itemizedlist>
+
+  <para>Branch Synced from cross-lfs-1.0 on May 24th, 2006</para>
+
+</sect1>

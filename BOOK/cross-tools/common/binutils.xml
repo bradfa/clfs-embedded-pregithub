@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-binutils" role="wrap">
+  <?dbhtml filename="binutils.html"?>
+
+  <title>Cross Binutils-&binutils-version;</title>
+
+  <indexterm zone="ch-cross-tools-binutils">
+    <primary sortas="a-Binutils">Binutils</primary>
+    <secondary>cross tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>The Binutils package contains a linker, an assembler, and other
+    tools for handling object files.</para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of Cross Binutils</title>
+
+    <para os="da">It is important that Binutils be the first package compiled
+    because both Glibc and GCC perform various tests on the available
+    linker and assembler to determine which of their own features to
+    enable.</para>
+
+
+    <para os="p1">To make sure that the proper syntax is used for a couple of
+    tools, apply the following patch:</para>
+
+<screen os="p2"><userinput>patch -Np1 -i ../&binutils-posix-patch;</userinput></screen>
+
+    <para os="a">The Binutils documentation recommends building Binutils outside of the
+    source directory in a dedicated build directory:</para>
+
+<screen os="b"><userinput>mkdir -v ../binutils-build
+cd ../binutils-build</userinput></screen>
+
+    <para os="c">Prepare Binutils for compilation:</para>
+
+<screen os="bc"><userinput>../binutils-&binutils-version;/configure --prefix=${CLFS}/cross-tools \
+   --host=${CLFS_HOST} --target=${CLFS_TARGET} --with-sysroot=${CLFS} \
+   --disable-nls --enable-shared --disable-multilib</userinput></screen>
+
+    <variablelist os="bd">
+      <title>The meaning of the configure options:</title>
+
+      <varlistentry os="bd1">
+        <term><parameter>--prefix=${CLFS}/cross-tools</parameter></term>
+        <listitem>
+          <para>This tells the configure script to prepare to install the
+          package in the <filename class="directory">${CLFS}/cross-tools</filename>
+          directory.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="bd2">
+        <term><parameter>--host=${CLFS_HOST}</parameter></term>
+        <listitem>
+          <para>When used with --target, this creates a cross-architecture
+          executable that creates files for ${CLFS_TARGET} but runs on
+          ${CLFS_HOST}.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="bd3">
+        <term><parameter>--target=${CLFS_TARGET}</parameter></term>
+        <listitem>
+          <para>When used with --host, this creates a cross-architecture
+          executable that creates files for ${CLFS_TARGET} but runs on
+          ${CLFS_HOST}.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="bd4">
+        <term><parameter>--with-sysroot=${CLFS}</parameter></term>
+        <listitem>
+          <para>This tells configure that ${CLFS} is going to be the root
+          of our system. It will now use the specified sysroot, ${CLFS}, as
+          a prefix of the default search paths.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="bd5">
+        <term><parameter>--disable-nls</parameter></term>
+        <listitem>
+          <para>This disables internationalization as i18n is not needed for the
+          cross-compile tools.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="bd6">
+        <term><parameter>--enable-shared</parameter></term>
+        <listitem>
+          <para>Enable the creation of the shared libraries.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="bd7">
+        <term><parameter>--disable-multilib</parameter></term>
+        <listitem>
+          <para>This option disables the building of a multilib
+          capable binutils.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para os="be">Compile the package:</para>
+
+<screen os="bf"><userinput>make configure-host
+make</userinput></screen>
+
+    <variablelist os="bg">
+      <title>The meaning of the make options:</title>
+
+      <varlistentry os="bg1">
+        <term><parameter>configure-host</parameter></term>
+        <listitem>
+          <para>This checks the host environment and makes sure all the
+          necessary tools are available to compile Binutils.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para os="bh">Install the package:</para>
+
+<screen os="bi"><userinput>make install</userinput></screen>
+
+    <para os="bj">Copy the <filename class="headerfile">libiberty.h</filename> file to
+    <filename class="directory">${CLFS}/usr/include</filename> directory:</para>
+
+<screen os="bk"><userinput>cp -v ../binutils-&binutils-version;/include/libiberty.h ${CLFS}/usr/include</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-binutils" role="content">
+    <title>Contents of Binutils</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+      <segtitle>Installed libraries</segtitle>
+
+      <seglistitem>
+        <seg>addr2line, ar, as, c++filt, gprof, ld, nm, objcopy, objdump,
+        ranlib, readelf, size, strings, and strip</seg>
+        <seg>libiberty.a, libbfd.[a,so], and libopcodes.[a,so]</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="addr2line">
+        <term><command>addr2line</command></term>
+        <listitem>
+          <para>Translates program addresses to file names and line numbers;
+          given an address and the name of an executable, it uses the debugging
+          information in the executable to determine which source file and line
+          number are associated with the address</para>
+          <indexterm zone="ch-system-binutils addr2line">
+            <primary sortas="b-addr2line">addr2line</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ar">
+        <term><command>ar</command></term>
+        <listitem>
+          <para>Creates, modifies, and extracts from archives</para>
+          <indexterm zone="ch-system-binutils ar">
+            <primary sortas="b-ar">ar</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="as">
+        <term><command>as</command></term>
+        <listitem>
+          <para>An assembler that assembles the output of <command>gcc</command>
+          into object files</para>
+          <indexterm zone="ch-system-binutils as">
+            <primary sortas="b-as">as</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="c-filt">
+        <term><command>c++filt</command></term>
+        <listitem>
+          <para>Used by the linker to de-mangle C++ and Java symbols and to keep
+          overloaded functions from clashing</para>
+          <indexterm zone="ch-system-binutils c-filt">
+            <primary sortas="b-c++filt">c++filt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gprof">
+        <term><command>gprof</command></term>
+        <listitem>
+          <para>Displays call graph profile data</para>
+          <indexterm zone="ch-system-binutils gprof">
+            <primary sortas="b-gprof">gprof</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ld">
+        <term><command>ld</command></term>
+        <listitem>
+          <para>A linker that combines a number of object and archive files
+          into a single file, relocating their data and tying up symbol
+          references</para>
+          <indexterm zone="ch-system-binutils ld">
+            <primary sortas="b-ld">ld</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="nm">
+        <term><command>nm</command></term>
+        <listitem>
+          <para>Lists the symbols occurring in a given object file</para>
+          <indexterm zone="ch-system-binutils nm">
+            <primary sortas="b-nm">nm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="objdump">
+        <term><command>objdump</command></term>
+        <listitem>
+          <para>Displays information about the given object file, with options
+          controlling the particular information to display; the information
+          shown is useful to programmers who are working on the compilation
+          tools</para>
+          <indexterm zone="ch-system-binutils objdump">
+            <primary sortas="b-objdump">objdump</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ranlib">
+        <term><command>ranlib</command></term>
+        <listitem>
+          <para>Generates an index of the contents of an archive and stores it
+          in the archive; the index lists all of the symbols defined by archive
+          members that are relocatable object files</para>
+          <indexterm zone="ch-system-binutils ranlib">
+            <primary sortas="b-ranlib">ranlib</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="readelf">
+        <term><command>readelf</command></term>
+        <listitem>
+          <para>Displays information about ELF type binaries</para>
+          <indexterm zone="ch-system-binutils readelf">
+            <primary sortas="b-readelf">readelf</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="size">
+        <term><command>size</command></term>
+        <listitem>
+          <para>Lists the section sizes and the total size for the given
+          object files</para>
+          <indexterm zone="ch-system-binutils size">
+            <primary sortas="b-size">size</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="strings">
+        <term><command>strings</command></term>
+        <listitem>
+          <para>Outputs, for each given file, the sequences of printable
+          characters that are of at least the specified length (defaulting to
+          four); for object files, it prints, by default, only the strings from
+          the initializing and loading sections while for other types of files,
+          it scans the entire file</para>
+          <indexterm zone="ch-system-binutils strings">
+            <primary sortas="b-strings">strings</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="strip">
+        <term><command>strip</command></term>
+        <listitem>
+          <para>Discards symbols from object files</para>
+          <indexterm zone="ch-system-binutils strip">
+            <primary sortas="b-strip">strip</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libiberty">
+        <term><filename class="libraryfile">libiberty</filename></term>
+        <listitem>
+          <para>Contains routines used by various GNU programs, including
+          <command>getopt</command>, <command>obstack</command>,
+          <command>strerror</command>, <command>strtol</command>, and
+          <command>strtoul</command></para>
+          <indexterm zone="ch-system-binutils libiberty">
+            <primary sortas="c-libiberty">libiberty</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libbfd">
+        <term><filename class="libraryfile">libbfd</filename></term>
+        <listitem>
+          <para>The Binary File Descriptor library</para>
+          <indexterm zone="ch-system-binutils libbfd">
+            <primary sortas="c-libbfd">libbfd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libopcodes">
+        <term><filename class="libraryfile">libopcodes</filename></term>
+        <listitem>
+          <para>A library for dealing with opcodes&mdash;the <quote>readable
+          text</quote> versions of instructions for the processor;
+          it is used for building utilities like
+          <command>objdump</command>.</para>
+          <indexterm zone="ch-system-binutils libopcodes">
+            <primary sortas="c-libopcodes">libopcodes</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

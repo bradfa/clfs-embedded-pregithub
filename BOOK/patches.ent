@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!ENTITY patches-root "http://svn.cross-lfs.org/svn/repos/cross-lfs/trunk/patches/">
+<!ENTITY patches-3.0-root "http://svn.cross-lfs.org/svn/repos/cross-lfs/branches/clfs-3.0/patches/">
+
+<!-- Start of Common Patches -->
+
+<!ENTITY binutils-posix-patch "binutils-&binutils-version;-posix-1.patch">
+<!ENTITY binutils-posix-patch-md5 "7e42a8edc0c59246bbc58c428256113c">
+<!ENTITY binutils-posix-patch-size "4.9 KB">
+
+<!ENTITY gcc-cross_search-patch "gcc-&gcc-version;-cross_search_paths-1.patch">
+<!ENTITY gcc-cross_search-patch-md5 "541fe39d228ddaa0d8396a35ec3a0ada">
+<!ENTITY gcc-cross_search-patch-size "2 KB">
+
+<!ENTITY gcc-PR20425-patch "gcc-&gcc-version;-PR20425-1.patch">
+<!ENTITY gcc-PR20425-patch-md5 "95535bda8e4d37d30251db0b121b5374">
+<!ENTITY gcc-PR20425-patch-size "36 KB">
+
+<!ENTITY gcc-posix-patch "gcc-&gcc-version;-posix-1.patch">
+<!ENTITY gcc-posix-patch-md5 "0d88068740a0e00780891f2cb905b808">
+<!ENTITY gcc-posix-patch-size "9 KB">

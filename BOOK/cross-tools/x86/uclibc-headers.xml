@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-uclibc-headers" role="wrap">
+  <?dbhtml filename="uclibc-headers.html"?>
+
+  <title>uClibc-&uclibc-version; Headers</title>
+
+  <indexterm zone="ch-cross-tools-uclibc-headers">
+    <primary sortas="a-uClibc">uClibc</primary>
+    <secondary>cross tools, headers</secondary>
+  </indexterm>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@role='package'])"/>
+
+  <sect2 role="installation">
+    <title>Installation of uClibc Headers</title>
+
+    <para os="a">By default uClibc symlinks all its headers from the source, we
+    will change this behavious with the following sed:</para>
+ 	
+<screen os="b"><userinput>cp Makefile Makefile.orig
+sed -e 's/$(LN) -fs/cp/g' Makefile.orig > Makefile
+for file in `find libc/sysdeps/linux -name Makefile`; do
+        cp $file $file.orig
+        sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' $file.orig > $file
+done</userinput></screen>
+
+    <para os="c">Now we will ask uClibc to create a default configuration:</para>
+
+<screen os="d"><userinput>make defconfig</userinput></screen>
+
+   <para os="e">Create the Headers:</para>
+
+<screen os="f"><userinput>make KERNEL_SOURCE=${CLFS}/usr TARGET_ARCH=i386 headers</userinput></screen>
+
+   <para os="g">We will remove the files that were copied over from our Linux Headers, these
+   files were copied into the source directory of uClibc:</para>
+
+<screen os="h"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+
+   <para os="i">Install the Headers:</para>
+
+<screen os="j"><userinput>cp -a include/* ${CLFS}/usr/include</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content" id="contents-uclibc-headers">
+    <title/>
+
+    <para>Details on this package are located in <xref
+    linkend="contents-uclibc" role="."/></para>
+
+  </sect2>
+
+</sect1>

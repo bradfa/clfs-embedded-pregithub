@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bootable-chowning">
+  <?dbhtml filename="chowning.html"?>
+
+  <title>Changing the Ownership Of The CLFS System</title>
+
+  <para>Throughout the book, every package has been compiled and installed as
+  the <systemitem class="username">lfs</systemitem> user. The final system
+  should be owned by <systemitem class="username">root</systemitem>.</para>
+
+  <important>
+
+    <para>The commands in the remainder of this book must be performed while
+    logged in as <systemitem class="username">root</systemitem>. Check that
+    ${CLFS} is still set:</para>
+
+    <screen><userinput>echo ${CLFS}</userinput></screen>
+
+  </important>
+
+  <para>Make <systemitem class="username">root</systemitem> the owner of the
+  entire CLFS system.</para>
+
+<screen><userinput>chown -Rv root:root ${CLFS}</userinput></screen>
+
+  <para>The following files are not the be owned by
+  <systemitem class="username">root</systemitem>.</para>
+
+<screen><userinput>chgrp -v utmp ${CLFS}/var/run/utmp ${CLFS}/var/log/lastlog</userinput></screen>
+
+  <para>The following device nodes need to be created for the system to
+  boot.</para>
+
+<screen><userinput>mknod -m 0666 ${CLFS}/dev/null c 1 3
+mknod -m 0600 ${CLFS}/dev/console c 5 1</userinput></screen>
+
+  <para>If you did not create the following rules in <xref linkend="ch-scripts-udev-rules"/>. You
+  need to create them now.</para>
+
+<screen><userinput>mknod -m 0666 ${CLFS}/lib/udev/devices/null c 1 3
+mknod -m 0600 ${CLFS}/lib/udev/devices/console c 5 1</userinput></screen>
+
+</sect1>

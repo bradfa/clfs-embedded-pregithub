@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-uclibc" role="wrap">
+  <?dbhtml filename="uclibc.html"?>
+
+  <title>uClibc-&uclibc-version;</title>
+
+  <indexterm zone="ch-cross-tools-uclibc">
+    <primary sortas="a-uClibc">uClibc</primary>
+    <secondary>cross tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>The uClibc package contains the main C library. This library provides
+    the basic routines for allocating memory, searching directories, opening and
+    closing files, reading and writing files, string handling, pattern matching,
+    arithmetic, and so on.</para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of uClibc</title>
+
+    <para os="a">Since we are cross-compiling, we need to make sure when we
+    configuration for our architecture we get the correct information. The
+    following sed makes sure we are using the proper settings for our
+    architecture: (This is a place holder for the other architectures</para>
+
+<screen os="b"><userinput>cp extra/Configs/Config.in extra/Configs/Config.in.orig
+sed -e "s:default TARGET_i386:default TARGET_i386:" \
+   extra/Configs/Config.in.orig > extra/Configs/Config.in</userinput></screen>
+
+    <para os="c">Create default configuration:</para>
+
+<screen os="d"><userinput>make defconfig</userinput></screen>
+
+   <para os="e">We will need to edit the configuration file, to make sure everything gets
+   compiled and put into it's proper locations:</para>
+
+<screen os="f"><userinput>cp .config .config.orig
+sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
+    -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
+    -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
+    -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \
+    -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
+    .config.orig > .config</userinput></screen>
+
+    <para os="g">Compile the package:</para>
+
+<screen os="h"><userinput>make TARGET_ARCH=i386</userinput></screen>
+
+   <para os="i">We will remove the files that were copied over from our Linux Headers, these
+   files were copied into the source directory of uClibc:</para>
+
+<screen os="j"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+
+    <para os="k">Install the package:</para>
+
+<screen os="l"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-uclibc" role="content">
+    <title>Contents of uClibc</title>
+
+    <segmentedlist>
+      <segtitle>Installed uClibc</segtitle>
+
+      <seglistitem>
+        <seg>To Be Written</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+<!--      <varlistentry id="uclibc">
+        <term><filename
+        class="headerfile">/usr/include/{asm,linux}/*.h</filename></term>
+        <listitem>
+          <para>The Linux API headers</para>
+          <indexterm zone="ch-system-linux-headers linux-headers">
+            <primary
+            sortas="e-/usr/include/{asm,linux}/*.h">/usr/include/{asm,linux}/*.h</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+-->
+    </variablelist>
+
+  </sect2>
+</sect1>

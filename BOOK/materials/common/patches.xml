@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-materials-patches-common">
+  <?dbhtml filename="patches.html"?>
+
+  <title>Needed Patches</title>
+
+  <para>In addition to the packages, several patches are also required.
+  These patches correct any mistakes in the packages that should be
+  fixed by the maintainer. The patches also make small modifications to
+  make the packages easier to work with. The following patches will be
+  needed to build a CLFS system:</para>
+
+  <variablelist role="materials">
+
+    <varlistentry>
+      <term>Binutils Posix Patch - <token>&binutils-posix-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&binutils-posix-patch;"/></para>
+        <para>MD5 sum: <literal>&binutils-posix-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GCC Cross Search Paths Patch - <token>&gcc-cross_search-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&gcc-cross_search-patch;"/></para>
+        <para>MD5 sum: <literal>&gcc-cross_search-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GCC PR20425 Patch - <token>&gcc-PR20425-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&gcc-PR20425-patch;"/></para>
+        <para>MD5 sum: <literal>&gcc-PR20425-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GCC Posix Patch - <token>&gcc-posix-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&gcc-posix-patch;"/></para>
+        <para>MD5 sum: <literal>&gcc-posix-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+
+  <para os="a">Total size of these patches: about <returnvalue/></para>
+
+  <para>In addition to the above required patches, there exist a number of
+  optional patches created by the CLFS community. These optional patches
+  solve minor problems or enable functionality that is not enabled by
+  default. Feel free to peruse the patches database located at
+  <ulink url="&lfs-root;patches/"/> and acquire any additional
+  patches to suit the system needs.</para>
+
+</sect1>
