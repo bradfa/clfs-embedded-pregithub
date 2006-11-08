@@ -168,7 +168,7 @@ make</userinput></screen>
           given an address and the name of an executable, it uses the debugging
           information in the executable to determine which source file and line
           number are associated with the address</para>
-          <indexterm zone="ch-system-binutils addr2line">
+          <indexterm zone="ch-cross-tools-binutils addr2line">
             <primary sortas="b-addr2line">addr2line</primary>
           </indexterm>
         </listitem>
@@ -178,7 +178,7 @@ make</userinput></screen>
         <term><command>ar</command></term>
         <listitem>
           <para>Creates, modifies, and extracts from archives</para>
-          <indexterm zone="ch-system-binutils ar">
+          <indexterm zone="ch-cross-tools-binutils ar">
             <primary sortas="b-ar">ar</primary>
           </indexterm>
         </listitem>
@@ -189,7 +189,7 @@ make</userinput></screen>
         <listitem>
           <para>An assembler that assembles the output of <command>gcc</command>
           into object files</para>
-          <indexterm zone="ch-system-binutils as">
+          <indexterm zone="ch-cross-tools-binutils as">
             <primary sortas="b-as">as</primary>
           </indexterm>
         </listitem>
@@ -200,7 +200,7 @@ make</userinput></screen>
         <listitem>
           <para>Used by the linker to de-mangle C++ and Java symbols and to keep
           overloaded functions from clashing</para>
-          <indexterm zone="ch-system-binutils c-filt">
+          <indexterm zone="ch-cross-tools-binutils c-filt">
             <primary sortas="b-c++filt">c++filt</primary>
           </indexterm>
         </listitem>
@@ -210,7 +210,7 @@ make</userinput></screen>
         <term><command>gprof</command></term>
         <listitem>
           <para>Displays call graph profile data</para>
-          <indexterm zone="ch-system-binutils gprof">
+          <indexterm zone="ch-cross-tools-binutils gprof">
             <primary sortas="b-gprof">gprof</primary>
           </indexterm>
         </listitem>
@@ -222,7 +222,7 @@ make</userinput></screen>
           <para>A linker that combines a number of object and archive files
           into a single file, relocating their data and tying up symbol
           references</para>
-          <indexterm zone="ch-system-binutils ld">
+          <indexterm zone="ch-cross-tools-binutils ld">
             <primary sortas="b-ld">ld</primary>
           </indexterm>
         </listitem>
@@ -232,7 +232,7 @@ make</userinput></screen>
         <term><command>nm</command></term>
         <listitem>
           <para>Lists the symbols occurring in a given object file</para>
-          <indexterm zone="ch-system-binutils nm">
+          <indexterm zone="ch-cross-tools-binutils nm">
             <primary sortas="b-nm">nm</primary>
           </indexterm>
         </listitem>
@@ -245,7 +245,7 @@ make</userinput></screen>
           controlling the particular information to display; the information
           shown is useful to programmers who are working on the compilation
           tools</para>
-          <indexterm zone="ch-system-binutils objdump">
+          <indexterm zone="ch-cross-tools-binutils objdump">
             <primary sortas="b-objdump">objdump</primary>
           </indexterm>
         </listitem>
@@ -257,7 +257,7 @@ make</userinput></screen>
           <para>Generates an index of the contents of an archive and stores it
           in the archive; the index lists all of the symbols defined by archive
           members that are relocatable object files</para>
-          <indexterm zone="ch-system-binutils ranlib">
+          <indexterm zone="ch-cross-tools-binutils ranlib">
             <primary sortas="b-ranlib">ranlib</primary>
           </indexterm>
         </listitem>
@@ -267,7 +267,7 @@ make</userinput></screen>
         <term><command>readelf</command></term>
         <listitem>
           <para>Displays information about ELF type binaries</para>
-          <indexterm zone="ch-system-binutils readelf">
+          <indexterm zone="ch-cross-tools-binutils readelf">
             <primary sortas="b-readelf">readelf</primary>
           </indexterm>
         </listitem>
@@ -278,7 +278,7 @@ make</userinput></screen>
         <listitem>
           <para>Lists the section sizes and the total size for the given
           object files</para>
-          <indexterm zone="ch-system-binutils size">
+          <indexterm zone="ch-cross-tools-binutils size">
             <primary sortas="b-size">size</primary>
           </indexterm>
         </listitem>
@@ -292,7 +292,7 @@ make</userinput></screen>
           four); for object files, it prints, by default, only the strings from
           the initializing and loading sections while for other types of files,
           it scans the entire file</para>
-          <indexterm zone="ch-system-binutils strings">
+          <indexterm zone="ch-cross-tools-binutils strings">
             <primary sortas="b-strings">strings</primary>
           </indexterm>
         </listitem>
@@ -302,7 +302,7 @@ make</userinput></screen>
         <term><command>strip</command></term>
         <listitem>
           <para>Discards symbols from object files</para>
-          <indexterm zone="ch-system-binutils strip">
+          <indexterm zone="ch-cross-tools-binutils strip">
             <primary sortas="b-strip">strip</primary>
           </indexterm>
         </listitem>
@@ -315,7 +315,7 @@ make</userinput></screen>
           <command>getopt</command>, <command>obstack</command>,
           <command>strerror</command>, <command>strtol</command>, and
           <command>strtoul</command></para>
-          <indexterm zone="ch-system-binutils libiberty">
+          <indexterm zone="ch-cross-tools-binutils libiberty">
             <primary sortas="c-libiberty">libiberty</primary>
           </indexterm>
         </listitem>
@@ -325,7 +325,7 @@ make</userinput></screen>
         <term><filename class="libraryfile">libbfd</filename></term>
         <listitem>
           <para>The Binary File Descriptor library</para>
-          <indexterm zone="ch-system-binutils libbfd">
+          <indexterm zone="ch-cross-tools-binutils libbfd">
             <primary sortas="c-libbfd">libbfd</primary>
           </indexterm>
         </listitem>
@@ -338,7 +338,7 @@ make</userinput></screen>
           text</quote> versions of instructions for the processor;
           it is used for building utilities like
           <command>objdump</command>.</para>
-          <indexterm zone="ch-system-binutils libopcodes">
+          <indexterm zone="ch-cross-tools-binutils libopcodes">
             <primary sortas="c-libopcodes">libopcodes</primary>
           </indexterm>
         </listitem>
