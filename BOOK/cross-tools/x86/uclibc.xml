@@ -37,14 +37,20 @@
 sed -e "s:default TARGET_i386:default TARGET_i386:" \
    extra/Configs/Config.in.orig > extra/Configs/Config.in</userinput></screen>
 
-    <para os="c">Create default configuration:</para>
+    <note os="c">
+      <para>Below we are just telling uClibc to use the default configuration of
+      uClibc. For those for more adventureous, you can use make menuconfig, and
+      do a more custom build of your uClibc.</para>
+    </note>
 
-<screen os="d"><userinput>make defconfig</userinput></screen>
+    <para os="d">Create default configuration:</para>
 
-   <para os="e">We will need to edit the configuration file, to make sure everything gets
+<screen os="e"><userinput>make defconfig</userinput></screen>
+
+   <para os="f">We will need to edit the configuration file, to make sure everything gets
    compiled and put into it's proper locations:</para>
 
-<screen os="f"><userinput>cp .config .config.orig
+<screen os="g"><userinput>cp .config .config.orig
 sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
     -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
@@ -52,18 +58,18 @@ sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
     .config.orig > .config</userinput></screen>
 
-    <para os="g">Compile the package:</para>
+    <para os="h">Compile the package:</para>
 
-<screen os="h"><userinput>make TARGET_ARCH=i386</userinput></screen>
+<screen os="i"><userinput>make TARGET_ARCH=i386</userinput></screen>
 
-   <para os="i">We will remove the files that were copied over from our Linux Headers, these
+   <para os="j">We will remove the files that were copied over from our Linux Headers, these
    files were copied into the source directory of uClibc:</para>
 
-<screen os="j"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+<screen os="k"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
 
-    <para os="k">Install the package:</para>
+    <para os="l">Install the package:</para>
 
-<screen os="l"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="m"><userinput>make PREFIX=${CLFS} install</userinput></screen>
 
   </sect2>
 
