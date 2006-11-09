@@ -10,10 +10,10 @@
 <!ENTITY binutils-md5 "e26e2e06b6e4bf3acf1dc8688a94c0d1">
 <!ENTITY binutils-home "http://sources.redhat.com/binutils/">
 
-<!ENTITY clfs-bootscripts-version "1.1-pre1">
-<!ENTITY clfs-bootscripts-size "28 KB">
+<!ENTITY clfs-bootscripts-version "1.1-pre3">
+<!ENTITY clfs-bootscripts-size "24 KB">
 <!ENTITY clfs-bootscripts-url "&packages-root;bootscripts-cross-lfs-&clfs-bootscripts-version;.tar.bz2">
-<!ENTITY clfs-bootscripts-md5 "8b3f03ee50ce339c858406e52e649f74">
+<!ENTITY clfs-bootscripts-md5 "7afd4502d3b587e3fd447bb9db8a6156">
 <!ENTITY clfs-bootscripts-home " ">
 
 <!ENTITY gcc-version "4.1.1">
@@ -24,32 +24,32 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.18">
-<!ENTITY linux-size "40,884 KB">
+<!ENTITY linux-version "2.6.18.2">
+<!ENTITY linux-size "40,876 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "296a6d150d260144639c3664d127d174">
+<!ENTITY linux-md5 "a93293f01307c47589ebdcafea311c66">
 <!ENTITY linux-home "http://www.kernel.org/">
 
-<!ENTITY linux-headers-version "&linux-version;-09302006">
-<!ENTITY linux-headers-size "1,572 KB">
+<!ENTITY linux-headers-version "&linux-version;-11052006">
+<!ENTITY linux-headers-size "1,568 KB">
 <!ENTITY linux-headers-url "&packages-root;linux-headers-&linux-headers-version;.tar.bz2">
-<!ENTITY linux-headers-md5 "0dbaa9a456bf4f669e40fe9c2f65ff86">
+<!ENTITY linux-headers-md5 "1fa1d57d6ca3b7c8d54e525565a95844">
 <!ENTITY linux-headers-home "http://headers.cross-lfs.org/">
 
 <!ENTITY uclibc-version "0.9.28">
 <!ENTITY uclibc-size "1,724 KB">
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
 <!ENTITY uclibc-md5 "1ada58d919a82561061e4741fb6abd29">
-<!ENTITY uclibc-home "http://uclibc.org//">
+<!ENTITY uclibc-home "http://uclibc.org/">
 
-<!ENTITY udev-version "102">
+<!ENTITY udev-version "103">
 <!ENTITY udev-size "196 KB">
 <!ENTITY udev-url "&kernel;linux/utils/kernel/hotplug/udev-&udev-version;.tar.bz2">
-<!ENTITY udev-md5 "734e4ef5d5aa28b226f9dfa0f47c1806">
+<!ENTITY udev-md5 "7360ce47b5ec3f9fa71f18071ecb8b97">
 <!ENTITY udev-home "http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev.html">
 
-<!ENTITY udev-cross-lfs-version "1.1-09062006">
+<!ENTITY udev-cross-lfs-version "1.1-pre2">
 <!ENTITY udev-cross-lfs-size "12 KB">
 <!ENTITY udev-cross-lfs-url "&packages-root;udev-cross-lfs-&udev-cross-lfs-version;.tar.bz2">
-<!ENTITY udev-cross-lfs-md5 "b14319759e8bb215f99cbc3ca99c10d8">
+<!ENTITY udev-cross-lfs-md5 "af9d9e03038481fbf79ea3ac33f116f9">
 <!ENTITY udev-cross-lfs-home " ">
