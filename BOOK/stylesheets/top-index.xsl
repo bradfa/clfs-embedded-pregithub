@@ -102,7 +102,7 @@ hr {
       </div>
       <div class="toc">
         <h3>
-          <xsl:text>32 Bit Builds (Under Development)</xsl:text>
+          <xsl:text>Embedded Architecture (Under Development)</xsl:text>
         </h3>
         <ul>
           <li>
@@ -113,9 +113,6 @@ hr {
             </h4>
           </li>
         </ul>
-        <h3>
-          <xsl:text>64 Bit Builds</xsl:text>
-        </h3>
       </div>
     </div>
   </xsl:template>
