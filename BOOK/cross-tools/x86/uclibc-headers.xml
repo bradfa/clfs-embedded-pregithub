@@ -46,6 +46,13 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='f'])"/>
 
+<screen os="d1"><userinput>cp .config .config.orig
+sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
+    -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
+    -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \
+    -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
+    .config.orig > .config</userinput></screen>
+
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='h'])"/>
@@ -54,12 +61,9 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='i'])"/>
 
-   <para os="g">Create the Headers:</para>
+   <para os="d2">Create the Headers:</para>
 
-<screen os="h"><userinput>make KERNEL_SOURCE=${CLFS}/usr TARGET_ARCH=i386 headers</userinput></screen>
-
-   <para os="i">We will remove the files that were copied over from our Linux Headers, these
-   files were copied into the source directory of uClibc:</para>
+<screen os="d3"><userinput>make TARGET_ARCH=i386 headers</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
@@ -69,7 +73,11 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='m'])"/>
 
-<screen os="l"><userinput>cp -a include/* ${CLFS}/usr/include</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='n'])"/>
+
+<screen os="d5"><userinput>cp -a include/* ${CLFS}/usr/include</userinput></screen>
 
   </sect2>
 

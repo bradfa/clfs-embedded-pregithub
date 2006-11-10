@@ -73,8 +73,9 @@ echo "UCLIBC_HAS_FULL_RPC=y" >> .config</userinput></screen>
 
 <screen os="k"><userinput>make TARGET_ARCH=i386</userinput></screen>
 
-   <para os="l">We will remove the files that were copied over from our Linux Headers, these
-   files were copied into the source directory of uClibc:</para>
+   <para os="l">We will remove the files that were copied over from our Linux Headers during
+   the building of uClibc. These files were copied into the include directory of the source
+   directory of uClibc:</para>
 
 <screen os="m"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
 
