@@ -8,7 +8,7 @@
 <!ENTITY binutils-posix-patch-md5 "7e42a8edc0c59246bbc58c428256113c">
 <!ENTITY binutils-posix-patch-size "4.9 KB">
 
-<!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fiexes-1.patch">
+<!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
 <!ENTITY busybox-fixes-patch-md5 "6770300fc410a1f8996ba54c870dca8f">
 <!ENTITY busybox-fixes-patch-size "4 KB">
 
