@@ -38,22 +38,27 @@
 
 <screen os="b"><userinput>make defconfig</userinput></screen>
 
-   <para os="c">We will need to edit the configuration file, to make sure everything gets
+    <note os="c">
+      <para>Below we are just telling Busybox to use the default configuration of
+      uClibc. For those for more adventureous, you can use make menuconfig, and
+      do a more custom build of your Busybox.</para>
+    </note>
+
+   <para os="d">We will need to edit the configuration file, to make sure everything gets
    compiled and put into it's proper locations:</para>
 
-<screen os="d"><userinput>cp .config .config.orig
+<screen os="e"><userinput>cp .config .config.orig
 sed -e "s:# USING_CROSS_COMPILER.*:USING_CROSS_COMPILER=y:" \
     -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     .config.orig > .config</userinput></screen>
 
-    <para os="e">Compile the package:</para>
+    <para os="f">Compile the package:</para>
 
-<screen os="f"><userinput>make CROSS="${CLFS_TARGET}-" PREFIX="${CLFS}" busybox</userinput></screen>
+<screen os="g"><userinput>make CROSS="${CLFS_TARGET}-" PREFIX="${CLFS}" busybox</userinput></screen>
 
-    <para os="g">Install the package:</para>
+    <para os="h">Install the package:</para>
 
-<screen os="h"><userinput>make PREFIX="${CLFS}" install</userinput></screen>
-
+<screen os="i"><userinput>make PREFIX="${CLFS}" install</userinput></screen>
 
   </sect2>
 
