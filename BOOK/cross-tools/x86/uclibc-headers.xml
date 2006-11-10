@@ -22,28 +22,37 @@
   <sect2 role="installation">
     <title>Installation of uClibc Headers</title>
 
-    <para os="a">Since we are cross-compiling, we need to make sure when we
-    configuration for our architecture we get the correct information. The
-    following sed makes sure we are using the proper settings for our
-    architecture: (This is a place holder for the other architectures</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='a'])"/>
 
-<screen os="b"><userinput>cp extra/Configs/Config.in extra/Configs/Config.in.orig
-sed -e "s:default TARGET_i386:default TARGET_i386:" \
-   extra/Configs/Config.in.orig > extra/Configs/Config.in</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='b'])"/>
 
-    <para os="c">By default uClibc symlinks all its headers from the source, we
-    will change this behavious with the following sed:</para>
- 	
-<screen os="d"><userinput>cp Makefile Makefile.orig
-sed -e 's/$(LN) -fs/cp/g' Makefile.orig > Makefile
-for file in `find libc/sysdeps/linux -name Makefile`; do
-        cp $file $file.orig
-        sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' $file.orig > $file
-done</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
 
-    <para os="e">Now we will ask uClibc to create a default configuration:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
 
-<screen os="f"><userinput>make defconfig</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='e'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='f'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='h'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='i'])"/>
 
    <para os="g">Create the Headers:</para>
 
@@ -52,9 +61,13 @@ done</userinput></screen>
    <para os="i">We will remove the files that were copied over from our Linux Headers, these
    files were copied into the source directory of uClibc:</para>
 
-<screen os="j"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='l'])"/>
 
-   <para os="k">Install the Headers:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='m'])"/>
 
 <screen os="l"><userinput>cp -a include/* ${CLFS}/usr/include</userinput></screen>
 

@@ -58,18 +58,29 @@ sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
     .config.orig > .config</userinput></screen>
 
-    <para os="h">Compile the package:</para>
+    <para os="h">We will need to make sure that some settings in uClibc are set so we
+    can utilize all the features of BusyBox:</para>
 
-<screen os="i"><userinput>make TARGET_ARCH=i386</userinput></screen>
+<screen os="i"><userinput>UCLIBC_OPTIONS="DO_C99_MATH UCLIBC_HAS_RPC UCLIBC_HAS_CTYPE_CHECKED UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS
+                UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_FTW UCLIBC_HAS_IPV6"
+for config in $UCLIBC_OPTIONS; do
+        cp .config .config.orig
+        sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
+done
+echo "UCLIBC_HAS_FULL_RPC=y" >> .config</userinput></screen>
 
-   <para os="j">We will remove the files that were copied over from our Linux Headers, these
+    <para os="j">Compile the package:</para>
+
+<screen os="k"><userinput>make TARGET_ARCH=i386</userinput></screen>
+
+   <para os="l">We will remove the files that were copied over from our Linux Headers, these
    files were copied into the source directory of uClibc:</para>
 
-<screen os="k"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+<screen os="m"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
 
-    <para os="l">Install the package:</para>
+    <para os="n">Install the package:</para>
 
-<screen os="m"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="o"><userinput>make PREFIX=${CLFS} install</userinput></screen>
 
   </sect2>
 

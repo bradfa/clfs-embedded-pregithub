@@ -9,6 +9,10 @@
 <!ENTITY binutils-posix-patch-md5 "7e42a8edc0c59246bbc58c428256113c">
 <!ENTITY binutils-posix-patch-size "4.9 KB">
 
+<!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fiexes-1.patch">
+<!ENTITY busybox-fixes-patch-md5 "6770300fc410a1f8996ba54c870dca8f">
+<!ENTITY busybox-fixes-patch-size "4 KB">
+
 <!ENTITY gcc-cross_search-patch "gcc-&gcc-version;-cross_search_paths-1.patch">
 <!ENTITY gcc-cross_search-patch-md5 "541fe39d228ddaa0d8396a35ec3a0ada">
 <!ENTITY gcc-cross_search-patch-size "2 KB">
