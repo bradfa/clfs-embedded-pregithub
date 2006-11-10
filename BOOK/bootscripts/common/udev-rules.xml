@@ -25,9 +25,9 @@
   <sect2 role="installation">
     <title>Installation of Udev-Rules</title>
 
-    <para os="a">Install the package:</para>
+<para os="a">Install the package:</para>
 
-<screen os="b"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen os="b"><userinput>make DESTDIR=${CLFS}</userinput></screen>
 
   </sect2>
 
@@ -90,17 +90,6 @@
           <para>Creates basic system devices and permissions.</para>
           <indexterm zone="ch-scripts-udev-rules z50-udev.rules">
             <primary sortas="d-50-udev.rules">50-udev.rules</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="z55-sound.rules">
-        <term><command>55-sound.rules</command></term>
-        <listitem>
-          <para>Gives proper permissions to audio device and restores sound
-          volumes.</para>
-          <indexterm zone="ch-scripts-udev-rules z55-sound.rules">
-            <primary sortas="d-55-sound.rules">55-sound.rules</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -181,3 +170,4 @@
   </sect2>
 
 </sect1>
+
