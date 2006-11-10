@@ -37,6 +37,15 @@
 -->
 
     <listitem>
+      <para>November 9, 2006</para>
+      <itemizedlist>
+        <listitem>
+          <para>[Chris] - Removed unnecessary creation of /etc/mtab.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 5, 2006</para>
       <itemizedlist>
         <listitem>

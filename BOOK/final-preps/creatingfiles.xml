@@ -34,14 +34,6 @@
     <primary sortas="e-/var/log/wtmp">/var/log/wtmp</primary>
   </indexterm>
 
-  <para>A proper Linux system maintains a list of the mounted file systems in
-  the file <filename>/etc/mtab</filename>.  Normally, this file would be
-  created when we mount a new file system. Since we will not be mounting any
-  file systems inside our chroot environment, create an empty file for
-  utilities that expect the presence of <filename>/etc/mtab</filename>:</para>
-
-<screen><userinput>touch ${CLFS}/etc/mtab</userinput></screen>
-
   <para>In order for user <systemitem class="username">root</systemitem> to be
   able to login and for the name <quote>root</quote> to be recognized, there
   must be relevant entries in the <filename>/etc/passwd</filename> and
