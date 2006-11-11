@@ -18,11 +18,15 @@
       <firstname>Ryan</firstname>
       <surname>Oliver</surname>
     </author>
+    <author>
+      <firstname>Maarten</firstname>
+      <surname>Lankhorst</surname>
+    </author>
   </authorgroup>
 
   <copyright id="copyright">
     <year>2005&ndash;2006</year>
-    <holder>Jim Gifford &amp; Ryan Oliver</holder>
+    <holder>Jim Gifford &amp; Ryan Oliver &amp; Maarten Lankhorst</holder>
   </copyright>
 
   <bibliosource>

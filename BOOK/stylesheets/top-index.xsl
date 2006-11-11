@@ -112,6 +112,13 @@ hr {
               </a>
             </h4>
           </li>
+          <li>
+            <h4>
+              <a href="mips">
+                <xsl:text>mips</xsl:text>
+              </a>
+            </h4>
+          </li>
         </ul>
       </div>
     </div>
@@ -141,6 +148,11 @@ hr {
         <xsl:value-of select="author[2]/firstname"/>
         <xsl:text> </xsl:text>
         <xsl:value-of select="author[2]/surname"/>
+      </h3>
+      <h3 class="author">
+        <xsl:value-of select="author[3]/firstname"/>
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="author[3]/surname"/>
       </h3>
     </div>
   </xsl:template>

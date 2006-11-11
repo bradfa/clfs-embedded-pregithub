@@ -16,6 +16,7 @@
 <!ENTITY version "SVN-&major-version;.&minor-version;.&extra-version;-&year;&month;&day;">
 
 <!ENTITY version-x86 "&version;-x86">
+<!ENTITY version-mips "&version;-mips">
 
 <!ENTITY lfs-root "http://www.linuxfromscratch.org/">
 <!ENTITY clfs-root "http://cross-lfs.org/">

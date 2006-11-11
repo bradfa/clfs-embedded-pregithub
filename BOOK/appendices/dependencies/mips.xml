@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<appendix id="appendixc-mips" xreflabel="Appendix C">
+  <?dbhtml dir="appendixc"?>
+  <?dbhtml filename="mips-dependencies.html"?>
+
+  <title>MIPS Dependencies</title>
+
+  <para>This page contains dependency information for packages specific to MIPS.</para>
+
+</appendix>

@@ -70,7 +70,7 @@
       <varlistentry os="af1">
         <term><parameter>--enable-languages=c,c++</parameter></term>
         <listitem>
-          <para>This option ensures that only the C compiler is built.</para>
+          <para>This option ensures that only the C compiler is built. If the C++ compiler is not needed, use --enable-languages=c</para>
         </listitem>
       </varlistentry>
 
