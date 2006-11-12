@@ -62,15 +62,15 @@ sed -e "s:default TARGET_i386:default TARGET_mips:" \
   href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='j'])"/>
 
-<screen os="k"><userinput>make TARGET_ARCH=mips</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='k'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='l'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='m'])"/>
+<screen os="m"><userinput>make TARGET_ARCH=mips</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
@@ -79,6 +79,14 @@ sed -e "s:default TARGET_i386:default TARGET_mips:" \
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='o'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='p'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='q'])"/>
 
   </sect2>
 

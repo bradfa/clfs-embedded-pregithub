@@ -37,20 +37,31 @@
 sed -e "s:default TARGET_i386:default TARGET_i386:" \
    extra/Configs/Config.in.orig > extra/Configs/Config.in</userinput></screen>
 
-    <note os="c">
+    <para os="c">By default uClibc symlinks the headers to the source directory.
+    This is not acceptable in our build scenario. So sed the Makefiles to copy them
+    instead.</para>
+
+<screen os="d"><userinput>cp Makefile Makefile.orig
+sed -e 's/$(LN) -fs/cp/g' Makefile.orig > Makefile
+for file in `find libc/sysdeps/linux -name Makefile`; do
+        cp $file $file.orig
+        sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' $file.orig > $file
+done</userinput></screen>
+
+    <note os="e">
       <para>Below we are just telling uClibc to use the default configuration of
       uClibc. For those for more adventureous, you can use make menuconfig, and
       do a more custom build of your uClibc.</para>
     </note>
 
-    <para os="d">Create default configuration:</para>
+    <para os="f">Create default configuration:</para>
 
-<screen os="e"><userinput>make defconfig</userinput></screen>
+<screen os="g"><userinput>make defconfig</userinput></screen>
 
-   <para os="f">We will need to edit the configuration file, to make sure everything gets
+   <para os="h">We will need to edit the configuration file, to make sure everything gets
    compiled and put into it's proper locations:</para>
 
-<screen os="g"><userinput>cp .config .config.orig
+<screen os="i"><userinput>cp .config .config.orig
 sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
     -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
@@ -58,10 +69,10 @@ sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
     .config.orig > .config</userinput></screen>
 
-    <para os="h">We will need to make sure that some settings in uClibc are set so we
+    <para os="j">We will need to make sure that some settings in uClibc are set so we
     can utilize all the features of BusyBox:</para>
 
-<screen os="i"><userinput>UCLIBC_OPTIONS="DO_C99_MATH UCLIBC_HAS_RPC UCLIBC_HAS_CTYPE_CHECKED UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS
+<screen os="k"><userinput>UCLIBC_OPTIONS="DO_C99_MATH UCLIBC_HAS_RPC UCLIBC_HAS_CTYPE_CHECKED UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS
                 UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_FTW UCLIBC_HAS_IPV6"
 for config in $UCLIBC_OPTIONS; do
         cp .config .config.orig
@@ -69,19 +80,19 @@ for config in $UCLIBC_OPTIONS; do
 done
 echo "UCLIBC_HAS_FULL_RPC=y" >> .config</userinput></screen>
 
-    <para os="j">Compile the package:</para>
+    <para os="l">Compile the package:</para>
 
-<screen os="k"><userinput>make TARGET_ARCH=i386</userinput></screen>
+<screen os="m"><userinput>make TARGET_ARCH=i386</userinput></screen>
 
-   <para os="l">We will remove the files that were copied over from our Linux Headers during
+   <para os="n">We will remove the files that were copied over from our Linux Headers during
    the building of uClibc. These files were copied into the include directory of the source
    directory of uClibc:</para>
 
-<screen os="m"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+<screen os="o"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
 
-    <para os="n">Install the package:</para>
+    <para os="p">Install the package:</para>
 
-<screen os="o"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="q"><userinput>make PREFIX=${CLFS} install</userinput></screen>
 
   </sect2>
 

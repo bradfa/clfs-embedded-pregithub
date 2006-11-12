@@ -47,16 +47,24 @@
   xpointer="xpointer(//*[@os='f'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc-headers.xml"
-  xpointer="xpointer(//*[@os='d1'])"/>
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='g'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='h'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc-headers.xml"
+  xpointer="xpointer(//*[@os='d1'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
-  xpointer="xpointer(//*[@os='i'])"/>
+  xpointer="xpointer(//*[@os='j'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='k'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc-headers.xml"
@@ -66,15 +74,15 @@
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
-  xpointer="xpointer(//*[@os='l'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
-  xpointer="xpointer(//*[@os='m'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
   xpointer="xpointer(//*[@os='n'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='o'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='p'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc-headers.xml"

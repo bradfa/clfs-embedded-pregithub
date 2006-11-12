@@ -46,6 +46,14 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='f'])"/>
 
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='g'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='h'])"/>
+
 <screen os="d1"><userinput>cp .config .config.orig
 sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
     -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
@@ -55,11 +63,11 @@ sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
-  xpointer="xpointer(//*[@os='h'])"/>
+  xpointer="xpointer(//*[@os='j'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
-  xpointer="xpointer(//*[@os='i'])"/>
+  xpointer="xpointer(//*[@os='k'])"/>
 
    <para os="d2">Create the Headers:</para>
 
@@ -67,15 +75,15 @@ sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
-  xpointer="xpointer(//*[@os='l'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
-  xpointer="xpointer(//*[@os='m'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
   xpointer="xpointer(//*[@os='n'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='o'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="uclibc.xml"
+  xpointer="xpointer(//*[@os='p'])"/>
 
 <screen os="d5"><userinput>cp -a include/* ${CLFS}/usr/include</userinput></screen>
 
