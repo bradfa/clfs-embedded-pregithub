@@ -12,28 +12,29 @@
 
   <bridgehead renderas="sect4">Setting Host and Target</bridgehead>
 
-  <para os="a">During the building of the cross-compile tools you will need to
-  set a few variables that will be dependent on your particular needs.
-  The first variable will be the triplet of the <envar>HOST</envar> machine.
-  You will need to set the <envar>CHOST</envar> triplet to match your
-  particular needs. To set this information you can issue the following
-  command:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='a'])"/>
 
-<screen os="b"><userinput>export CLFS_HOST="$(echo $MACHTYPE | sed "s/$(echo $MACHTYPE | cut -d- -f2)/cross/")"</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='b'])"/>
 
-  <para os="c">Now you will need to set the target triplet for the target
-  architecture. You can do this by running the same command as above, just
-  running it on the target machine. If you can't run the command on the
-  target machine, you can use the table at the bottom of this page. Set
-  the command using the method listed below:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>export CLFS_TARGET="{target tripplet}"</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
 
-  <para os="e">Now we will add these to <filename>~/.bashrc</filename>, just in
-  case you have to exit and restart building later:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="f"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='f'])"/>
 
   <table os="g">
     <title>Processor Type and  Target Triplets</title>

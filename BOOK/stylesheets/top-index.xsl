@@ -115,7 +115,7 @@ hr {
           <li>
             <h4>
               <a href="mips">
-                <xsl:text>mips</xsl:text>
+                <xsl:text>MIPS</xsl:text>
               </a>
             </h4>
           </li>

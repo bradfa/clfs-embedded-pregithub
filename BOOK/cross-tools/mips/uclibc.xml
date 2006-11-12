@@ -15,105 +15,80 @@
     <secondary>cross tools</secondary>
   </indexterm>
 
-  <sect2 role="package">
-    <title/>
-
-    <para>The uClibc package contains the main C library. This library provides
-    the basic routines for allocating memory, searching directories, opening and
-    closing files, reading and writing files, string handling, pattern matching,
-    arithmetic, and so on.</para>
-
-    <para>THIS IS JUST A PLACEHOLDER, YOU *WILL* NEED TO DO 'make menuconfig' SELECT MIPS ARCHITECTURE AND THE SPECIFIC MIPS YOU ARE USING!</para>
-
-  </sect2>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@role='package'])"/>
 
   <sect2 role="installation">
     <title>Installation of uClibc</title>
 
-    <para os="a">Since we are cross-compiling, we need to make sure when we
-    configuration for our architecture we get the correct information. The
-    following sed makes sure we are using the proper settings for our
-    architecture: (This is a place holder for the other architectures). Make sure you select the MIPS architecture and the correct processor/endianness.</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='a'])"/>
 
-<screen os="b"><userinput>make menuconfig</userinput></screen>
+<screen os="b"><userinput>cp extra/Configs/Config.in extra/Configs/Config.in.orig
+sed -e "s:default TARGET_i386:default TARGET_mips:" \
+   extra/Configs/Config.in.orig > extra/Configs/Config.in</userinput></screen>
 
-    <note os="c">
-      <para>Below we are just telling uClibc to use the default configuration of
-      uClibc. For those for more adventureous, you can use make menuconfig, and
-      do a more custom build of your uClibc.</para>
-    </note>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
 
-    <para os="d">Create default configuration:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
 
-<screen os="e"><userinput>make defconfig</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='e'])"/>
 
-   <para os="f">We will need to edit the configuration file, to make sure everything gets
-   compiled and put into it's proper locations:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='f'])"/>
 
-<screen os="g"><userinput>cp .config .config.orig
-sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
-    -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
-    -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
-    -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \
-    -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
-    .config.orig > .config</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='g'])"/>
 
-    <para os="h">We will need to make sure that some settings in uClibc are set so we
-    can utilize all the features of BusyBox:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='h'])"/>
 
-<screen os="i"><userinput>UCLIBC_OPTIONS="DO_C99_MATH UCLIBC_HAS_RPC UCLIBC_HAS_CTYPE_CHECKED UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS
-                UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_FTW UCLIBC_HAS_IPV6"
-for config in $UCLIBC_OPTIONS; do
-        cp .config .config.orig
-        sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
-done
-echo "UCLIBC_HAS_FULL_RPC=y" >> .config</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='i'])"/>
 
-    <para os="j">Compile the package:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='j'])"/>
 
-<screen os="k"><userinput>make</userinput></screen>
+<screen os="k"><userinput>make TARGET_ARCH=mips</userinput></screen>
 
-   <para os="l">We will remove the files that were copied over from our Linux Headers during
-   the building of uClibc. These files were copied into the include directory of the source
-   directory of uClibc:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='l'])"/>
 
-<screen os="m"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='m'])"/>
 
-    <para os="n">Install the package:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='n'])"/>
 
-<screen os="o"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='o'])"/>
+
+  </sect2>
+
+  <sect2 role="content" id="contents-uclibc">
+    <title/>
+
+    <para>Details on this package are located in <xref
+    linkend="contents-uclibc" role="."/></para>
 
   </sect2>
 
-  <sect2 id="contents-uclibc" role="content">
-    <title>Contents of uClibc</title>
-
-    <segmentedlist>
-      <segtitle>Installed uClibc</segtitle>
-
-      <seglistitem>
-        <seg>To Be Written</seg>
-      </seglistitem>
-    </segmentedlist>
-<!--
-    <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
-      <?dbfo list-presentation="list"?>
-      <?dbhtml list-presentation="table"?>
-
-     <varlistentry id="uclibc">
-        <term><filename
-        class="headerfile">/usr/include/{asm,linux}/*.h</filename></term>
-        <listitem>
-          <para>The Linux API headers</para>
-          <indexterm zone="ch-system-linux-headers linux-headers">
-            <primary
-            sortas="e-/usr/include/{asm,linux}/*.h">/usr/include/{asm,linux}/*.h</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-    </variablelist>
--->
-
-  </sect2>
 </sect1>
+

@@ -46,12 +46,9 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='f'])"/>
 
-<screen os="d1"><userinput>cp .config .config.orig
-sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
-    -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
-    -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \
-    -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
-    .config.orig > .config</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc-headers.xml"
+  xpointer="xpointer(//*[@os='d1'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
@@ -61,7 +58,9 @@ sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='i'])"/>
 
-   <para os="d2">Create the Headers:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc-headers.xml"
+  xpointer="xpointer(//*[@os='d2'])"/>
 
 <screen os="d3"><userinput>make TARGET_ARCH=mips headers</userinput></screen>
 
@@ -77,7 +76,9 @@ sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='n'])"/>
 
-<screen os="d5"><userinput>cp -a include/* ${CLFS}/usr/include</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc-headers.xml"
+  xpointer="xpointer(//*[@os='d5'])"/>
 
   </sect2>
 
