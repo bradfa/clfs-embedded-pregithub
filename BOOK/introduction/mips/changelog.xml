@@ -6,7 +6,7 @@
 ]>
 
 <sect1 id="ch-intro-changelog-mips">
-  <title>Changelog for X86</title>
+  <title>Changelog for MIPS</title>
   <?dbhtml filename="changelog-mips.html"?>
 
   <para>Below is a list of changes specifics for this architecture made
