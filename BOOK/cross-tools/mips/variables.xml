@@ -53,6 +53,7 @@ echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinp
         <row>
           <entry>Processor</entry>
           <entry>Target Triplet</entry>
+          <entry>MIPS Level</entry>
         </row>
       </thead>
       <tbody>
