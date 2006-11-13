@@ -28,15 +28,6 @@
   <sect2 role="installation">
     <title>Installation of uClibc</title>
 
-    <para os="a">Since we are cross-compiling, we need to make sure when we
-    configuration for our architecture we get the correct information. The
-    following sed makes sure we are using the proper settings for our
-    architecture: (This is a place holder for the other architectures</para>
-
-<screen os="b"><userinput>cp extra/Configs/Config.in extra/Configs/Config.in.orig
-sed -e "s:default TARGET_i386:default TARGET_i386:" \
-   extra/Configs/Config.in.orig > extra/Configs/Config.in</userinput></screen>
-
     <para os="c">By default uClibc symlinks the headers to the source directory.
     This is not acceptable in our build scenario. So sed the Makefiles to copy them
     instead.</para>

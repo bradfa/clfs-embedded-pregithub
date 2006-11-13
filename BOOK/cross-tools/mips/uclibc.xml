@@ -22,9 +22,10 @@
   <sect2 role="installation">
     <title>Installation of uClibc</title>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='a'])"/>
+    <para os="a">Since we are cross-compiling, we need to make sure when we
+    configuration for our architecture we get the correct information. The
+    following sed makes sure we are using the proper settings for our
+    architecture:</para>
 
 <screen os="b"><userinput>cp extra/Configs/Config.in extra/Configs/Config.in.orig
 sed -e "s:default TARGET_i386:default TARGET_mips:" \
