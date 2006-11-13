@@ -29,8 +29,8 @@
     <title>Installation of uClibc</title>
 
     <para os="c">By default uClibc symlinks the headers to the source directory.
-    This is not acceptable in our build scenario. So sed the Makefiles to copy them
-    instead.</para>
+    This is not acceptable in our build scenario, so we modify the Makefiles
+    so that the headers will be copied instead:</para>
 
 <screen os="d"><userinput>cp Makefile Makefile.orig
 sed -e 's/$(LN) -fs/cp/g' Makefile.orig > Makefile
@@ -40,17 +40,17 @@ for file in `find libc/sysdeps/linux -name Makefile`; do
 done</userinput></screen>
 
     <note os="e">
-      <para>Below we are just telling uClibc to use the default configuration of
-      uClibc. For those for more adventureous, you can use make menuconfig, and
-      do a more custom build of your uClibc.</para>
+      <para>Below we are just telling uClibc to use its default configuration.
+      For those for more adventureous, you can use make menuconfig, and
+      do a more custom build for your uClibc installation.</para>
     </note>
 
-    <para os="f">Create default configuration:</para>
+    <para os="f">Create the default configuration:</para>
 
 <screen os="g"><userinput>make defconfig</userinput></screen>
 
    <para os="h">We will need to edit the configuration file, to make sure everything gets
-   compiled and put into it's proper locations:</para>
+   compiled and put into its proper location:</para>
 
 <screen os="i"><userinput>cp .config .config.orig
 sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
@@ -75,9 +75,9 @@ echo "UCLIBC_HAS_FULL_RPC=y" >> .config</userinput></screen>
 
 <screen os="m"><userinput>make TARGET_ARCH=i386</userinput></screen>
 
-   <para os="n">We will remove the files that were copied over from our Linux Headers during
-   the building of uClibc. These files were copied into the include directory of the source
-   directory of uClibc:</para>
+   <para os="n">The uClibc build system creates symlinks in its
+   <filename class="directory">include</filename> directory pointing to
+   ${CLFS}/usr/include. We will need to remove these symlinks from the source dir:</para>
 
 <screen os="o"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
 
