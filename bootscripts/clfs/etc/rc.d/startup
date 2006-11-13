@@ -15,6 +15,25 @@ echo -n "Mounting sysfs: "
 mount -t sysfs none /sys
 check_status
 
+echo -n "Mounting dev: ""
+mount -n -t tmpfs -o mode=0755 udev /dev
+check_status
+echo -n "Copying static devices to dev: "
+cp --preserve=all --recursive --remove-destination /lib/udev/devices/* /dev
+check_status
+chmod 1777 /dev/shm
+echo "" > /sys/kernel/uevent_helper
+echo -n "Starting udev daemon: "
+/sbin/udevd --daemon
+check_status
+mkdir -p /dev/.udev/queue
+echo -n "Populating dev: "
+/sbin/udevtrigger
+check_status
+echo -n "Waiting for udev to finish: "
+/sbin/udevsettle
+check_status
+
 echo -n "Setting system clock: "
 hwclock --hctosys --utc
 check_status
