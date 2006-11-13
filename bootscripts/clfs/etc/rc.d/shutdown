@@ -1,0 +1,37 @@
+#!/bin/ash
+
+# System Shutdown Script
+#
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+echo
+echo "System is going down for reboot or halt now."
+echo
+
+. /etc/rc.d/init.d/functions
+
+echo "Starting local stop scripts."
+
+for i in /etc/rc.d/stop/*
+do
+	if [ -x $i ]; then
+		$i stop
+	fi
+done
+
+echo -n "Syncing hardware clock to system clock:"
+hwclock --systohc --utc
+check_status
+
+echo -n "Disabling swap space: "
+swapoff -a
+check_status
+
+echo -n "Syncing all filesystems: "
+sync
+check_status
+
+echo -n "Unmounting all filesystems: "
+umount -a -r
+check_status

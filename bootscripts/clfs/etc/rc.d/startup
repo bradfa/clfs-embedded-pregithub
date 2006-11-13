@@ -1,0 +1,92 @@
+#!/bin/ash
+
+# System Startup Script
+# 
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+. /etc/rc.d/init.d/functions
+
+echo -n "Mounting proc: "
+mount /proc
+check_status
+
+echo -n "Mounting sysfs: "
+mount -t sysfs none /sys
+check_status
+
+echo -n "Setting system clock: "
+hwclock --hctosys --utc
+check_status
+
+echo "Starting fsck for root filesystem."
+fsck -T -C /
+if [ "$?" -gt 2 ]; then
+	echo "WARNING: Errors found while checking root filesystem."
+	echo "You can login as root now, the system will reboot after logout."
+	sulogin
+	reboot
+elif [ "$?" = "2" ]; then
+	echo "NOTICE: System needs to be rebooted now."
+	sleep 1
+	reboot
+else
+	echo -n "Checking root filesystem: "
+	check_status
+fi
+
+echo -n "Remounting root rw: "
+mount -o remount,rw /
+check_status
+
+echo -n "Mounting devpts: "
+mount /dev/pts
+check_status
+
+echo "Starting fsck for local filesystems."
+fsck -A -C -R -T -t nonfs,nosmbfs
+if [ "$?" -gt 2 ]; then
+	echo "WARNING: Errors found while checking filesystems."
+	echo "You can login as root now, the system will reboot after logout."
+	sulogin
+	reboot
+elif [ "$?" = "2" ]; then
+	echo "NOTICE: System needs to be rebooted now."
+	sleep 1
+	reboot
+else
+	echo -n "Checking local filesystems: "
+	check_status
+fi
+
+echo -n "Enabling swap space: "
+swapon -a
+check_status
+
+echo -n "Setting hostname: "
+hostname -F /etc/HOSTNAME
+check_status
+
+echo -n "Cleaning up system: "
+> /var/run/utmp
+touch /var/log/wtmp
+touch /var/log/messages
+chmod 0664 /var/run/utmp
+chmod 0664 /var/log/wtmp
+chmod 0660 /var/log/messages
+rm -rf /tmp/*
+rm -f /var/run/*.pid
+check_status
+
+echo -n "Setting up interface lo: "
+ifconfig lo up 127.0.0.1
+check_status
+
+echo "Running local start scripts."
+
+for i in /etc/rc.d/start/*
+do
+	if [ -x $i ]; then
+		$i start
+	fi
+done

@@ -1,0 +1,55 @@
+#!/bin/ash
+#
+# DropBear SSH
+
+. /etc/rc.d/init.d/functions
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+DSSKEY=/etc/ssh/dss_host_key
+RSAKEY=/etc/ssh/rsa_host_key
+
+case "$1" in
+start)
+	if [ ! -r "$DSSKEY" ]; then
+		echo -n "Generating DSS host key: "
+		dropbearkey -t dss -f "$DSSKEY" &> /dev/null
+		check_status
+	fi
+	if [ ! -r "$RSAKEY" ]; then
+		echo -n "Generating RSA host key: "
+		dropbearkey -t rsa -f "$RSAKEY" &> /dev/null
+		check_status
+	fi
+	if [ -r /var/run/dropbear.pid ]; then
+		echo "Service sshd already running."
+	else
+		echo -n "Starting SSH server: "
+		dropbear
+		check_status
+	fi
+	;;
+stop)
+	if [ -r /var/run/dropbear.pid ]; then
+		echo -n "Stopping SSH server: "
+		kill `cat /var/run/dropbear.pid`
+		check_status
+	else
+		echo "Service sshd not running."
+	fi
+	;;
+restart)
+	$0 stop
+	$0 start
+	;;
+status)
+	if [ -r /var/run/dropbear.pid ]; then
+		echo "Service sshd running (PID `cat /var/run/dropbear.pid`)."
+	else
+		echo "Service sshd not running."
+	fi
+	;;
+*)
+	echo "Usage: $0 {start|stop|restart|status}"
+	exit 1
+esac
