@@ -28,19 +28,27 @@
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='d'])"/>
 
+  <para os="d1">Now you will need to set the MIPS LEVEL. This determines how your
+uClibc is built. There are currently 5 MIPS ISA Levels. To keep things simple
+we are only using 2. For more information, go to
+<ulink url="http://www.linux-mips.org/wiki/Instruction_Set_Architecture"/></para>
+
+<screen os="d2"><userinput>export CLFS_MIPS_LEVEL="{mips level}"</userinput></screen>
+
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='e'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='f'])"/>
+<screen os="f"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="g">
     <title>Processor Type and  Target Triplets</title>
     <tgroup cols="2" align="center">
       <colspec colname="Processor"/>
       <colspec colname="Triplet"/>
+      <colspec colname="MIPS Level"/>
       <thead>
         <row>
           <entry>Processor</entry>
@@ -51,18 +59,22 @@
         <row>
           <entry>MIPS 32 bits Little Endian</entry>
           <entry>mipsel-unknown-linux-uclibc</entry>
+          <entry>1</entry>
         </row>
         <row>
           <entry>MIPS 32 bits Big Endian</entry>
           <entry>mips-unknown-linux-uclibc</entry>
+          <entry>1</entry>
         </row>
         <row>
           <entry>MIPS 64 bits Little Endian</entry>
           <entry>mips64el-unknown-linux-uclibc</entry>
+          <entry>3</entry>
         </row>
         <row>
           <entry>MIPS 64 bits Big Endian</entry>
           <entry>mips64-unknown-linux-uclibc</entry>
+          <entry>3</entry>
         </row>
       </tbody>
     </tgroup>
