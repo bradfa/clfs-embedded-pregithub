@@ -8,7 +8,7 @@
 <sect1 id="ch-scripts-hostname">
   <?dbhtml filename="hostname.html"?>
 
-  <title>Configuring the localnet Script</title>
+  <title>Setting Hostname</title>
 
   <indexterm zone="ch-scripts-hostname">
     <primary sortas="d-localnet">localnet</primary>

@@ -8,10 +8,10 @@
 <sect1 id="ch-scripts-inittab">
   <?dbhtml filename="inittab.html"?>
 
-  <title>inittab</title>
+  <title>Creating /etc/inittab</title>
 
   <indexterm zone="ch-scripts-inittab">
-    <primary sortas="a-mde">inittab</primary>
+    <primary sortas="a-inittab">inittab</primary>
   </indexterm>
 
   <sect2 role="package">

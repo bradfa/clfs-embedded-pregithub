@@ -8,10 +8,10 @@
 <sect1 id="ch-scripts-mdev">
   <?dbhtml filename="mdev.html"?>
 
-  <title>mdev.conf</title>
+  <title>Configure mdev</title>
 
   <indexterm zone="ch-scripts-mdev">
-    <primary sortas="a-mde">mdev</primary>
+    <primary sortas="a-mdev">mdev</primary>
   </indexterm>
 
   <sect2 role="package">
