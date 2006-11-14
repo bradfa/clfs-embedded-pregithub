@@ -36,7 +36,7 @@
       <para>Nathan Coulson - Bootscripts.</para>
     </listitem>
     <listitem>
-      <para>Matt Darcy - x86, X86_64, and Sparc builds.</para>
+      <para>Matt Darcy - x86, x86_64, and Sparc builds.</para>
     </listitem>
     <listitem>
       <para>Manuel Canales Esparcia - Book XML.</para>
@@ -51,7 +51,7 @@
       <para>Justin Knierim - Website Architect.</para>
     </listitem>
     <listitem>
-      <para>Ken Moffat - PowerPC and X86_64 builds. Developer of Pure 64 Hint.</para>
+      <para>Ken Moffat - PowerPC and x86_64 builds. Developer of Pure 64 Hint.</para>
     </listitem>
     <listitem>
       <para>Alexander E. Patrakov - Udev/Hotplug Integration</para>
