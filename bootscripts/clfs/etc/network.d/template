@@ -2,18 +2,18 @@
 # Change settings and rename to interface.devname, i.e. interface.eth0
 
 # network device name
-INTERFACE="eth0"
+INTERFACE=eth0
 
 # set to "yes" to use DHCP instead of the settings below
-DHCP="no"
+DHCP=no
 
 # interface settings
 
 # IP address
-IPADDRESS="192.168.2.72"
+IPADDRESS=192.168.2.72
 
 # netmask
-NETMASK="255.255.255.0"
+NETMASK=255.255.255.0
 
 # broadcast address
-BROADCAST="192.168.2.255"
+BROADCAST=192.168.2.255
