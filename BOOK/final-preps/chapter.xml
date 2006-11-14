@@ -16,6 +16,5 @@
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="settingenviron.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="creatingdirs.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="creatingfiles.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="abouttestsuites.xml"/>
 
 </chapter>
