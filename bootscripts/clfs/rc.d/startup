@@ -7,6 +7,12 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
 . /etc/rc.d/init.d/functions
 
+/bin/mount -t proc proc /proc
+/bin/mount -t sysfs none /sys
+/bin/mount -o remount,rw /
+/bin/mount -t tmpfs -o mode=0755 /dev
+/sbin/mdev -s
+
 echo -n "Setting system clock: "
 hwclock --hctosys --utc
 check_status
