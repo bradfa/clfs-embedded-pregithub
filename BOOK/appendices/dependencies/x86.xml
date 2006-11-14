@@ -7,10 +7,10 @@
 
 <appendix id="appendixc-arm" xreflabel="Appendix C">
   <?dbhtml dir="appendixc"?>
-  <?dbhtml filename="arm-dependencies.html"?>
+  <?dbhtml filename="x86-dependencies.html"?>
 
-  <title>X86 Dependencies</title>
+  <title>x86 Dependencies</title>
 
-  <para>This page contains dependency information for packages specific to X86.</para>
+  <para>This page contains dependency information for packages specific to x86.</para>
 
 </appendix>
