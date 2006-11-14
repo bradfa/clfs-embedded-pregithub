@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-beyond-introduction">
+  <?dbhtml filename="introduction.html"?>
+
+  <title>Introduction</title>
+
+  <para os="a">Now that we have our base system built, we need to add some
+  functionality to our build.</para>
+
+</sect1>

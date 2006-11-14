@@ -54,6 +54,15 @@
   <part id="part5">
     <?dbhtml filename="part5.html"?>
 
+    <title>Beyond CLFS</title>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs3/mips-chapter.xml"/>
+
+  </part>
+
+  <part id="part6">
+    <?dbhtml filename="part6.html"?>
+
     <title>Appendices</title>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="appendices/acronymlist.xml"/>
