@@ -5,7 +5,7 @@
   %general-entities;
 ]>
 
-<appendix id="appendixc-arm" xreflabel="Appendix C">
+<appendix id="appendixc-x86" xreflabel="Appendix C">
   <?dbhtml dir="appendixc"?>
   <?dbhtml filename="x86-dependencies.html"?>
 
