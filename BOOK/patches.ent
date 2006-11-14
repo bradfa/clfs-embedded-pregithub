@@ -8,6 +8,10 @@
 <!ENTITY binutils-posix-patch-md5 "7e42a8edc0c59246bbc58c428256113c">
 <!ENTITY binutils-posix-patch-size "4.9 KB">
 
+<!ENTITY binutils-uclibc-patch "binutils-&binutils-version;-uclibc-1.patch">
+<!ENTITY binutils-uclibc-patch-md5 "02206a199a78b14de01be6a38eb45de4">
+<!ENTITY binutils-uclibc-patch-size "12 KB">
+
 <!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
 <!ENTITY busybox-fixes-patch-md5 "6770300fc410a1f8996ba54c870dca8f">
 <!ENTITY busybox-fixes-patch-size "4 KB">
@@ -23,3 +27,8 @@
 <!ENTITY gcc-posix-patch "gcc-&gcc-version;-posix-1.patch">
 <!ENTITY gcc-posix-patch-md5 "0d88068740a0e00780891f2cb905b808">
 <!ENTITY gcc-posix-patch-size "9 KB">
+
+<!ENTITY gcc-uclibc-patch "gcc-&gcc-version;-uclibc-1.patch">
+<!ENTITY gcc-uclibc-patch-md5 "63a7a8f1990bb333dc5513b9489845d4">
+<!ENTITY gcc-uclibc-patch-size "144 KB">
+

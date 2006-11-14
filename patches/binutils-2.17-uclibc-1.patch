@@ -1,0 +1,264 @@
+Submitted By: Jim Gifford (patches at jg555 dot com)
+Date: 2006-11-13
+Initial Package Version: 2.17
+Origin: uClibc and Buildroot
+Upstream Status: uClibc Specific
+Description: Makes Binutils uClibc Friendly
+
+diff -Naur binutils-2.17.orig/bfd/configure binutils-2.17/bfd/configure
+--- binutils-2.17.orig/bfd/configure	2006-06-23 11:17:03.000000000 -0700
++++ binutils-2.17/bfd/configure	2006-11-13 20:58:00.353290460 -0800
+@@ -3576,7 +3576,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+diff -Naur binutils-2.17.orig/bfd/elf32-mips.c binutils-2.17/bfd/elf32-mips.c
+--- binutils-2.17.orig/bfd/elf32-mips.c	2006-03-22 01:28:13.000000000 -0800
++++ binutils-2.17/bfd/elf32-mips.c	2006-11-13 20:56:15.528689446 -0800
+@@ -1617,7 +1617,9 @@
+ 
+ /* The SVR4 MIPS ABI says that this should be 0x10000, and Linux uses
+    page sizes of up to that limit, so we need to respect it.  */
+-#define ELF_MAXPAGESIZE			0x10000
++/*#define ELF_MAXPAGESIZE			0x10000*/
++/* Use 4K to shrink the elf header.  NOT for general use! */
++#define ELF_MAXPAGESIZE			0x1000
+ #define elf32_bed			elf32_tradbed
+ 
+ /* Include the target file again for this target.  */
+diff -Naur binutils-2.17.orig/bfd/elfn32-mips.c binutils-2.17/bfd/elfn32-mips.c
+--- binutils-2.17.orig/bfd/elfn32-mips.c	2005-11-23 06:04:17.000000000 -0800
++++ binutils-2.17/bfd/elfn32-mips.c	2006-11-13 20:56:15.528689446 -0800
+@@ -2402,7 +2402,9 @@
+ 
+ /* The SVR4 MIPS ABI says that this should be 0x10000, and Linux uses
+    page sizes of up to that limit, so we need to respect it.  */
+-#define ELF_MAXPAGESIZE			0x10000
++/*#define ELF_MAXPAGESIZE			0x10000*/
++/* Use 4K to shrink the elf header.  NOT for general use! */
++#define ELF_MAXPAGESIZE			0x1000
+ #define elf32_bed			elf32_tradbed
+ 
+ /* Include the target file again for this target.  */
+diff -Naur binutils-2.17.orig/bfd/opncls.c binutils-2.17/bfd/opncls.c
+--- binutils-2.17.orig/bfd/opncls.c	2006-03-16 04:20:16.000000000 -0800
++++ binutils-2.17/bfd/opncls.c	2006-11-13 20:58:19.424670543 -0800
+@@ -158,6 +158,13 @@
+ {
+   bfd *nbfd;
+   const bfd_target *target_vec;
++  struct stat s;
++
++  if (stat (filename, &s) == 0)
++    if (S_ISDIR(s.st_mode)) {
++      bfd_set_error (bfd_error_file_not_recognized);
++      return NULL;
++    }
+ 
+   nbfd = _bfd_new_bfd ();
+   if (nbfd == NULL)
+diff -Naur binutils-2.17.orig/binutils/configure binutils-2.17/binutils/configure
+--- binutils-2.17.orig/binutils/configure	2006-04-06 14:49:29.000000000 -0700
++++ binutils-2.17/binutils/configure	2006-11-13 20:58:00.357290330 -0800
+@@ -3411,7 +3411,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+diff -Naur binutils-2.17.orig/configure binutils-2.17/configure
+--- binutils-2.17.orig/configure	2006-04-06 14:49:25.000000000 -0700
++++ binutils-2.17/configure	2006-11-13 20:58:00.361290200 -0800
+@@ -1276,7 +1276,7 @@
+   am33_2.0-*-linux*)
+     noconfigdirs="$noconfigdirs ${libgcj} target-newlib target-libgloss"
+     ;;
+-  sh-*-linux*)
++  sh*-*-linux*)
+     noconfigdirs="$noconfigdirs ${libgcj} target-newlib target-libgloss"
+     ;;    
+   sh*-*-pe|mips*-*-pe|*arm-wince-pe)
+@@ -1305,7 +1305,7 @@
+   arm-*-elf* | strongarm-*-elf* | xscale-*-elf* | arm*-*-eabi* )
+     noconfigdirs="$noconfigdirs target-libffi target-qthreads"
+     ;;
+-  arm*-*-linux-gnueabi)
++  arm*-*-linux-gnueabi | arm*-*-linux-uclibcgnueabi)
+     noconfigdirs="$noconfigdirs target-libffi target-qthreads"
+     noconfigdirs="$noconfigdirs target-libjava target-libobjc"
+     ;;
+@@ -1584,7 +1584,7 @@
+   romp-*-*)
+     noconfigdirs="$noconfigdirs bfd binutils ld gas opcodes target-libgloss ${libgcj}"
+     ;;
+-  sh-*-* | sh64-*-*)
++  sh*-*-* | sh64-*-*)
+     case "${host}" in
+       i[3456789]86-*-vsta) ;; # don't add gprof back in
+       i[3456789]86-*-go32*) ;; # don't add gprof back in
+diff -Naur binutils-2.17.orig/configure.in binutils-2.17/configure.in
+--- binutils-2.17.orig/configure.in	2006-06-23 11:19:53.000000000 -0700
++++ binutils-2.17/configure.in	2006-11-13 20:58:00.361290200 -0800
+@@ -468,7 +468,7 @@
+   am33_2.0-*-linux*)
+     noconfigdirs="$noconfigdirs ${libgcj} target-newlib target-libgloss"
+     ;;
+-  sh-*-linux*)
++  sh*-*-linux*)
+     noconfigdirs="$noconfigdirs ${libgcj} target-newlib target-libgloss"
+     ;;    
+   sh*-*-pe|mips*-*-pe|*arm-wince-pe)
+@@ -497,7 +497,7 @@
+   arm-*-elf* | strongarm-*-elf* | xscale-*-elf* | arm*-*-eabi* )
+     noconfigdirs="$noconfigdirs target-libffi target-qthreads"
+     ;;
+-  arm*-*-linux-gnueabi)
++  arm*-*-linux-gnueabi | arm*-*-linux-uclibcgnueabi)
+     noconfigdirs="$noconfigdirs target-libffi target-qthreads"
+     noconfigdirs="$noconfigdirs target-libjava target-libobjc"
+     ;;
+@@ -776,7 +776,7 @@
+   romp-*-*)
+     noconfigdirs="$noconfigdirs bfd binutils ld gas opcodes target-libgloss ${libgcj}"
+     ;;
+-  sh-*-* | sh64-*-*)
++  sh*-*-* | sh64-*-*)
+     case "${host}" in
+       i[[3456789]]86-*-vsta) ;; # don't add gprof back in
+       i[[3456789]]86-*-go32*) ;; # don't add gprof back in
+diff -Naur binutils-2.17.orig/gas/configure binutils-2.17/gas/configure
+--- binutils-2.17.orig/gas/configure	2006-04-06 14:49:31.000000000 -0700
++++ binutils-2.17/gas/configure	2006-11-13 20:58:00.365290070 -0800
+@@ -3411,7 +3411,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+diff -Naur binutils-2.17.orig/gprof/configure binutils-2.17/gprof/configure
+--- binutils-2.17.orig/gprof/configure	2006-04-06 14:49:33.000000000 -0700
++++ binutils-2.17/gprof/configure	2006-11-13 20:58:00.369289940 -0800
+@@ -3414,6 +3414,11 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
++linux-uclibc*)
++  lt_cv_deplibs_check_method=pass_all
++  lt_cv_file_magic_test_file=`echo /lib/libuClibc-*.so`
++  ;;
++
+ netbsd* | knetbsd*-gnu)
+   if echo __ELF__ | $CC -E - | grep __ELF__ > /dev/null; then
+     lt_cv_deplibs_check_method='match_pattern /lib[^/\.]+\.so\.[0-9]+\.[0-9]+$'
+diff -Naur binutils-2.17.orig/ld/Makefile.am binutils-2.17/ld/Makefile.am
+--- binutils-2.17.orig/ld/Makefile.am	2006-06-02 21:45:50.000000000 -0700
++++ binutils-2.17/ld/Makefile.am	2006-11-13 20:57:35.498097688 -0800
+@@ -20,7 +20,7 @@
+ # We put the scripts in the directory $(scriptdir)/ldscripts.
+ # We can't put the scripts in $(datadir) because the SEARCH_DIR
+ # directives need to be different for native and cross linkers.
+-scriptdir = $(tooldir)/lib
++scriptdir = $(libdir)
+ 
+ EMUL = @EMUL@
+ EMULATION_OFILES = @EMULATION_OFILES@
+diff -Naur binutils-2.17.orig/ld/Makefile.in binutils-2.17/ld/Makefile.in
+--- binutils-2.17.orig/ld/Makefile.in	2006-06-02 21:45:50.000000000 -0700
++++ binutils-2.17/ld/Makefile.in	2006-11-13 20:57:35.498097688 -0800
+@@ -269,7 +269,7 @@
+ # We put the scripts in the directory $(scriptdir)/ldscripts.
+ # We can't put the scripts in $(datadir) because the SEARCH_DIR
+ # directives need to be different for native and cross linkers.
+-scriptdir = $(tooldir)/lib
++scriptdir = $(libdir)
+ BASEDIR = $(srcdir)/..
+ BFDDIR = $(BASEDIR)/bfd
+ INCDIR = $(BASEDIR)/include
+diff -Naur binutils-2.17.orig/ld/configure binutils-2.17/ld/configure
+--- binutils-2.17.orig/ld/configure	2006-04-11 03:36:26.000000000 -0700
++++ binutils-2.17/ld/configure	2006-11-13 20:58:00.373289810 -0800
+@@ -3413,7 +3413,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+diff -Naur binutils-2.17.orig/ld/emultempl/elf32.em binutils-2.17/ld/emultempl/elf32.em
+--- binutils-2.17.orig/ld/emultempl/elf32.em	2006-06-12 06:05:04.000000000 -0700
++++ binutils-2.17/ld/emultempl/elf32.em	2006-11-13 20:58:36.268122666 -0800
+@@ -970,6 +970,8 @@
+ 	      && command_line.rpath == NULL)
+ 	    {
+ 	      lib_path = (const char *) getenv ("LD_RUN_PATH");
++	      if ((lib_path) && (strlen (lib_path) == 0))
++		  lib_path = NULL;
+ 	      if (gld${EMULATION_NAME}_search_needed (lib_path, &n,
+ 						      force))
+ 		break;
+@@ -1154,6 +1156,8 @@
+   rpath = command_line.rpath;
+   if (rpath == NULL)
+     rpath = (const char *) getenv ("LD_RUN_PATH");
++  if ((rpath) && (strlen (rpath) == 0))
++      rpath = NULL;
+   if (! (bfd_elf_size_dynamic_sections
+ 	 (output_bfd, command_line.soname, rpath,
+ 	  command_line.filter_shlib,
+diff -Naur binutils-2.17.orig/libtool.m4 binutils-2.17/libtool.m4
+--- binutils-2.17.orig/libtool.m4	2005-12-27 08:37:57.000000000 -0800
++++ binutils-2.17/libtool.m4	2006-11-13 20:58:00.373289810 -0800
+@@ -739,7 +739,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+diff -Naur binutils-2.17.orig/ltconfig binutils-2.17/ltconfig
+--- binutils-2.17.orig/ltconfig	2005-07-15 19:36:38.000000000 -0700
++++ binutils-2.17/ltconfig	2006-11-13 20:58:00.373289810 -0800
+@@ -602,6 +602,7 @@
+ 
+ # Transform linux* to *-*-linux-gnu*, to support old configure scripts.
+ case $host_os in
++linux-uclibc*) ;;
+ linux-gnu*) ;;
+ linux*) host=`echo $host | sed 's/^\(.*-.*-linux\)\(.*\)$/\1-gnu\2/'`
+ esac
+@@ -1247,7 +1248,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   version_type=linux
+   need_lib_prefix=no
+   need_version=no
+diff -Naur binutils-2.17.orig/opcodes/configure binutils-2.17/opcodes/configure
+--- binutils-2.17.orig/opcodes/configure	2006-02-17 06:36:28.000000000 -0800
++++ binutils-2.17/opcodes/configure	2006-11-13 20:58:00.377289680 -0800
+@@ -3579,7 +3579,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 

@@ -28,6 +28,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term>Binutils uClibc Patch - <token>&binutils-uclibc-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&binutils-uclibc-patch;"/></para>
+        <para>MD5 sum: <literal>&binutils-uclibc-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term>Busybox Fixes Patch - <token>&busybox-fixes-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
@@ -60,6 +69,15 @@
         <para>Download: <ulink
         url="&patches-root;&gcc-posix-patch;"/></para>
         <para>MD5 sum: <literal>&gcc-posix-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GCC uClibc Patch - <token>&gcc-uclibc-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&gcc-uclibc-patch;"/></para>
+        <para>MD5 sum: <literal>&gcc-uclibc-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
