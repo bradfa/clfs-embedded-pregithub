@@ -11,7 +11,7 @@
 <!ENTITY minor-version "0">
 <!ENTITY extra-version "0">
 <!ENTITY milestone "3.0.0">
-<!ENTITY generic-version "svn-3.0"> <!-- Use "svn", "testing", or "x.y.z[-pre{x}]" -->
+<!ENTITY generic-version "3.0.0"> <!-- Use "svn", "testing", or "x.y.z[-pre{x}]" -->
 
 <!ENTITY version "SVN-&major-version;.&minor-version;.&extra-version;-&year;&month;&day;">
 
