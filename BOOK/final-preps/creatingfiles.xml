@@ -43,7 +43,7 @@
   command:</para>
 
 <screen><userinput>cat &gt; ${CLFS}/etc/passwd &lt;&lt; "EOF"
-<literal>root::0:0:root:/root:/bin/bash</literal>
+<literal>root::0:0:root:/root:/bin/ash</literal>
 EOF</userinput></screen>
 
   <para>The actual password for <systemitem class="username">root</systemitem>
@@ -98,7 +98,7 @@ EOF</userinput></screen>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term><literal>operator:x:50:0:operator:/root:/bin/bash</literal></term>
+      <term><literal>operator:x:50:0:operator:/root:/bin/ash</literal></term>
       <listitem>
         <para>Often used to allow system operators to access the system.</para>
       </listitem>

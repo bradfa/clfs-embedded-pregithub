@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-mdev">
+  <?dbhtml filename="mdev.html"?>
+
+  <title>mdev.conf</title>
+
+  <indexterm zone="ch-scripts-mdev">
+    <primary sortas="a-mde">mdev</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Is a Busybox replacement of udev. With a different rule
+    base.</para>
+
+  </sect2>
+
+  <sect2>
+    <title>Create /etc/mdev.conf</title>
+
+<para os="a">Now we will create the mdev.conf file for use with our system:</para>
+
+<screen os="b"><userinput>cat &gt; ${CLFS}/etc/mdev.conf&lt;&lt; "EOF"
+<literal># /etc/mdev/conf
+SLEEP=10
+
+# Symlinks:
+# Syntax: %s -> %s
+
+MAKEDEV -> ../sbin/MAKEDEV
+/proc/core -> kcore
+fd -> /proc/self/fd
+mcdx -> mcdx0
+radio -> radio0
+ram -> ram1
+sbpcd -> sbpcd0
+sr0 -> scd0
+sr1 -> scd1
+sr10 -> scd10
+sr11 -> scd11
+sr12 -> scd12
+sr13 -> scd13
+sr14 -> scd14
+sr15 -> scd15
+sr16 -> scd16
+sr2 -> scd2
+sr3 -> scd3
+sr4 -> scd4
+sr5 -> scd5
+sr6 -> scd6
+sr7 -> scd7
+sr8 -> scd8
+sr9 -> scd9
+stderr -> fd/2
+stdin -> fd/0
+stdout -> fd/1
+
+# Remove these devices, if using a headless system
+# You will see an error mdev: Bad line 35
+vbi -> vbi0
+vcs -> vcs0
+vcsa -> vcsa0
+video -> video0
+# Stop Remove for headless system
+
+# Devices:
+# Syntax: %s %d:%d %s
+# devices user:group mode
+
+null 0:0 777
+zero 0:0 666
+
+urandom 0:0 444
+
+console 0:5 0600
+fd0 0:11 0660
+hdc 0:6 0660
+kmem 0:9 000
+mem 0:9 0640
+port 0:9 0640
+ptmx 0:5 0660
+
+sda* 0:6 0660
+sdb* 0:6 0660
+hda* 0:6 0660
+hdb* 0:6 0660
+
+tty 0:5 0660
+tty0* 0:5 0660
+tty1* 0:5 0660
+tty2* 0:5 0660
+tty3* 0:5 0660
+tty4* 0:5 0660
+tty5* 0:5 0660
+tty6* 0:5 0660
+
+ttyS* 0:20 640</literal>
+EOF</userinput></screen>
+
+  </sect2>
+
+</sect1>
+

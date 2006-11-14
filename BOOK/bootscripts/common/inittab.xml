@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-inittab">
+  <?dbhtml filename="inittab.html"?>
+
+  <title>inittab</title>
+
+  <indexterm zone="ch-scripts-inittab">
+    <primary sortas="a-mde">inittab</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Is the file that specifices how to boot and shutdown a system.</para>
+
+  </sect2>
+
+  <sect2>
+    <title>Create /etc/inittab</title>
+
+<para os="a">Now we will create the inittab file for use with our system:</para>
+
+<screen os="b"><userinput>cat &gt; ${CLFS}/etc/inittab&lt;&lt; "EOF"
+<literal># /etc/inittab
+
+::sysinit:/etc/rc.d/startup
+
+tty1::respawn:/sbin/getty 38400 tty1
+tty2::respawn:/sbin/getty 38400 tty2
+tty3::respawn:/sbin/getty 38400 tty3
+tty4::respawn:/sbin/getty 38400 tty4
+tty5::respawn:/sbin/getty 38400 tty5
+tty6::respawn:/sbin/getty 38400 tty6
+
+# Put a getty on the serial line (for a terminal)
+# uncomment this line if your using a serial console
+#::respawn:/sbin/getty -L ttyS0 115200 vt100
+
+::shutdown:/etc/rc.d/shutdown
+::ctrlaltdel:/sbin/reboot</literal>
+EOF</userinput></screen>
+
+  </sect2>
+
+</sect1>
