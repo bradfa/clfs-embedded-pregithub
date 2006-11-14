@@ -51,6 +51,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term>Iana-Etc (&iana-etc-version;) - <token>&iana-etc-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&iana-etc-home;"/></para>
+        <para>Download: <ulink url="&iana-etc-url;"/></para>
+        <para>MD5 sum: <literal>&iana-etc-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term>Linux (&linux-version;) - <token>&linux-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&linux-home;"/></para>

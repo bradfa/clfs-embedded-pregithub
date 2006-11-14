@@ -28,6 +28,12 @@
 <!ENTITY gcc-md5 "ad9f97a4d04982ccf4fd67cb464879f3">
 <!ENTITY gcc-home "http://gcc.gnu.org/">
 
+<!ENTITY iana-etc-version "2.10">
+<!ENTITY iana-etc-size "184 KB">
+<!ENTITY iana-etc-url "http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-&iana-etc-version;.tar.bz2">
+<!ENTITY iana-etc-md5 "53dea53262b281322143c744ca60ffbb">
+<!ENTITY iana-etc-home "http://www.sethwklein.net/projects/iana-etc/">
+
 <!ENTITY linux-dl-version "2.6">
 
 <!ENTITY linux-version "2.6.18.2">
