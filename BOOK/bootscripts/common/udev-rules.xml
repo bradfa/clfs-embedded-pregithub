@@ -27,7 +27,7 @@
 
 <para os="a">Install the package:</para>
 
-<screen os="b"><userinput>make DESTDIR=${CLFS}</userinput></screen>
+<screen os="b"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
 
   </sect2>
 
