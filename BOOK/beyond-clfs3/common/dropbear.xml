@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bclfs-dropbear" role="wrap">
+  <?dbhtml filename="dropbear.html"?>
+
+  <title>Dropbear-&dropbear-version;</title>
+
+  <indexterm zone="ch-bclfs-dropbear">
+    <primary sortas="a-Dropbear">Dropbear</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Dropbear is a relatively small SSH 2 server and client. Dropbear has a small
+     memory footprint suitable for memory-constrained environments, while still having
+     the same features as OpenSSH. It does not depend on OpenSSL and it has a MIT
+     style license. Optionally it can even be made smaller.
+     </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of Dropbear</title>
+
+    <para os="a">Configure dropbear:</para>
+
+<screen os="b"><userinput>./configure --prefix=/usr CC="${CLFS_TARGET}-gcc" RANLIB="${CLFS_TARGET}-ranlib" AR="${CLFS_TARGET}-ar" STRIP="${CLFS_TARGET}-strip"</userinput></screen>
+
+    <note os="c">
+      <para>We are just telling dropbear to use the default configuration.
+      For those for more adventureous, edit options.h to further configure dropbear.</para>
+    </note>
+
+    <para os="d">Compile the package:</para>
+
+<screen os="e"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"</userinput></screen>
+
+    <para os="f">Install the package:</para>
+
+<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=$CLFS/</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-dropbear" role="content">
+    <title>Contents of Dropbear</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+
+      <seglistitem>
+        <seg>To be Written</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+</sect1>

@@ -53,3 +53,10 @@
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
 <!ENTITY uclibc-md5 "1ada58d919a82561061e4741fb6abd29">
 <!ENTITY uclibc-home "http://uclibc.org/">
+
+<!ENTITY dropbear-version "0.48.1">
+<!ENTITY dropbear-size "1,440 KB">
+<!ENTITY dropbear-url "http://matt.ucc.asn.au/dropbear/releases/dropbear-&dropbear-version;.tar.gz">
+<!ENTITY dropbear-md5 "ca8e53a766faec831882831364568421">
+<!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
+
