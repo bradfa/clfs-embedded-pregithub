@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-profile">
+  <?dbhtml filename="profile.html"?>
+
+  <title>Creating /etc/profile</title>
+
+  <indexterm zone="ch-scripts-profile">
+    <primary sortas="a-profile">profile</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Is the file that specifices how to your environment will function.</para>
+
+  </sect2>
+
+  <sect2>
+    <title>Create /etc/profile</title>
+
+<para os="a">Now we will create the profile file for use with our system:</para>
+
+<screen os="b"><userinput>cat &gt; ${CLFS}/etc/profile&lt;&lt; "EOF"
+<literal># /etc/profile
+
+# Set the initial path
+export PATH=/bin:/usr/bin
+
+if [ `id -u` -eq 0 ] ; then
+        PATH=/bin:/sbin:/usr/bin:/usr/sbin
+        unset HISTFILE
+fi
+
+# Setup some environment variables.
+export USER=`id -un`
+export LOGNAME=$USER
+export HOSTNAME=`/bin/hostname`
+export HISTSIZE=1000
+export HISTFILESIZE=1000
+export PAGER='/bin/more '
+export EDITOR='/bin/vi'
+export INPUTRC=/etc/inputrc
+
+# End /etc/profile</literal>
+EOF</userinput></screen>
+
+  </sect2>
+
+</sect1>
