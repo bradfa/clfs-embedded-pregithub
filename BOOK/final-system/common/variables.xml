@@ -13,12 +13,16 @@
   <para>Setup target-specific variables for the compiler
   and linkers:</para>
 
-<screen><userinput>export CC="${CLFS_TARGET}-gcc"
+<screen><userinput>cat &lt;&lt; "EOF" &gt;&gt; ~/.bashrc
+<literal>export CC="${CLFS_TARGET}-gcc"
 export CXX="${CLFS_TARGET}-g++"
 export AR="${CLFS_TARGET}-ar"
 export AS="${CLFS_TARGET}-as"
 export RANLIB="${CLFS_TARGET}-ranlib"
 export LD="${CLFS_TARGET}-ld"
-export STRIP="${CLFS_TARGET}-strip"</userinput></screen>
+export STRIP="${CLFS_TARGET}-strip"</literal>
+EOF
+source ~/.bashrc
+</userinput></screen>
 
 </sect1>
