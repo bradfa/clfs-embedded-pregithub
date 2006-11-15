@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bclfs-iptables" role="wrap">
+  <?dbhtml filename="iptables.html"?>
+
+  <title>iptables-&iptables-version;</title>
+
+  <indexterm zone="ch-bclfs-iptables">
+    <primary sortas="a-iptables">iptables</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>iptables is the userspace command line program used to configure the Linux firewall.
+     </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of iptables</title>
+
+    <para os="a">Compile the package:</para>
+
+<screen os="b"><userinput>make PREFIX=/usr LIBDIR=/lib BINDIR=/sbin</userinput></screen>
+
+    <note os="c">
+      <para>Optionally all iptables modules can be linked directly into the iptables program by appending NO_SHARED_LIBS=1 to both make commands. IPv6 can be disabled in a similar fashion by appending DO_IPV6=0.</para>
+    </note>
+
+    <para os="d">Install the package:</para>
+
+<screen os="e"><userinput>make PREFIX=/usr LIBDIR=/lib BINDIR=/sbin install DESTDIR=${CLFS}/</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-iptables" role="content">
+    <title>Contents of iptables</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+
+      <seglistitem>
+        <seg>To be Written</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+</sect1>

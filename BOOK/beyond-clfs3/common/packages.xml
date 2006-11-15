@@ -23,6 +23,15 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry>
+      <term>Iptables (&iptables-version;) - <token>&iptables-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&iptables-home;"/></para>
+        <para>Download: <ulink url="&iptables-url;"/></para>
+        <para>MD5 sum: <literal>&iptables-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>
