@@ -30,7 +30,7 @@
 
     <para os="a">Configure dropbear:</para>
 
-<screen os="b"><userinput>./configure --prefix=/usr CC="${CLFS_TARGET}-gcc" RANLIB="${CLFS_TARGET}-ranlib" AR="${CLFS_TARGET}-ar" STRIP="${CLFS_TARGET}-strip"</userinput></screen>
+<screen os="b"><userinput>./configure --prefix=/usr</userinput></screen>
 
     <note os="c">
       <para>We are just telling dropbear to use the default configuration.
@@ -43,7 +43,7 @@
 
     <para os="f">Install the package:</para>
 
-<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=$CLFS/</userinput></screen>
+<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=${CLFS}/</userinput></screen>
 
   </sect2>
 
