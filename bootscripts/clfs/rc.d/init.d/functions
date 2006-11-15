@@ -9,7 +9,7 @@ check_status()
 	local ERR=$?
 	echo -en "\\033[65G"
 	if [ $ERR = 0 ]; then
-		echo -en "\\033[1;32OK"
+		echo -en "\\033[1;32mOK"
 	else
 		echo -en "\\033[1;31mFAIL"
 	fi

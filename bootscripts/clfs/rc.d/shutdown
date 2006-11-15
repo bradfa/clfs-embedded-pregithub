@@ -11,7 +11,7 @@ echo
 
 . /etc/rc.d/init.d/functions
 
-echo "Starting local stop scripts."
+echo "Starting stop scripts."
 
 for i in /etc/rc.d/stop/*
 do
@@ -34,4 +34,3 @@ check_status
 
 echo -n "Unmounting all filesystems: "
 umount -a -r
-check_status

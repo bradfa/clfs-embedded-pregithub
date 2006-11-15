@@ -80,7 +80,7 @@ echo -n "Setting up interface lo: "
 ifconfig lo up 127.0.0.1
 check_status
 
-echo "Running local start scripts."
+echo "Running start scripts."
 
 for i in /etc/rc.d/start/*
 do
