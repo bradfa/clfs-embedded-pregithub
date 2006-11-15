@@ -30,7 +30,10 @@
 
     <para os="a">Configure dropbear:</para>
 
-<screen os="b"><userinput>./configure --prefix=/usr</userinput></screen>
+<screen os="b"><userinput>./configure --prefix=/usr
+cp options.h options.h.backup
+sed "s@/dev/random@/dev/urandom@" options.h.backup > options.h
+</userinput></screen>
 
     <note os="c">
       <para>We are just telling dropbear to use the default configuration.
