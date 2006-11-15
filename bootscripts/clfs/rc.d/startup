@@ -10,9 +10,10 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin
 /bin/mount -t proc proc /proc
 /bin/mount -t sysfs none /sys
 /bin/mount -o remount,rw /
-/bin/mount -t tmpfs -o mode=0755 /dev
+/bin/mount -t tmpfs -o mode=0755 udev /dev
 /bin/mkdir /dev/pts
 /bin/mkdir /dev/shm
+/bin/echo "/sbin/mdev" > /proc/sys/kernel/hotplug
 /sbin/mdev -s
 
 echo -n "Setting system clock: "
