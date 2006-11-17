@@ -7,11 +7,11 @@
 
 <!ENTITY releasedate "&month_name; &day;, &year;">
 
-<!ENTITY major-version "1">
+<!ENTITY major-version "0">
 <!ENTITY minor-version "0">
-<!ENTITY extra-version "0">
-<!ENTITY milestone "1.0.0">
-<!ENTITY generic-version "1.0.0"> <!-- Use "svn", "testing", or "x.y.z[-pre{x}]" -->
+<!ENTITY extra-version "1">
+<!ENTITY milestone "0.0.1">
+<!ENTITY generic-version "0.0.1"> <!-- Use "svn", "testing", or "x.y.z[-pre{x}]" -->
 
 <!ENTITY version "SVN-&major-version;.&minor-version;.&extra-version;-&year;&month;&day;">
 
