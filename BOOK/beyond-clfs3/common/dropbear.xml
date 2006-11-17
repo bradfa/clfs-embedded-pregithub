@@ -31,8 +31,8 @@
     <para os="a">Configure dropbear:</para>
 
 <screen os="b"><userinput>./configure --prefix=/usr
-cp options.h options.h.backup
-sed "s@/dev/random@/dev/urandom@" options.h.backup > options.h
+cp -v options.h options.h.backup
+sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h
 </userinput></screen>
 
     <note os="c">
@@ -46,7 +46,12 @@ sed "s@/dev/random@/dev/urandom@" options.h.backup > options.h
 
     <para os="f">Install the package:</para>
 
-<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=${CLFS}/</userinput></screen>
+<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=${CLFS}
+ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/sbin/dropbear
+ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/sbin/dbclient
+ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearkey
+ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearconvert
+ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
 
   </sect2>
 

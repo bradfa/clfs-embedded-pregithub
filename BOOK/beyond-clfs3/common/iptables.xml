@@ -8,7 +8,7 @@
 <sect1 id="ch-bclfs-iptables" role="wrap">
   <?dbhtml filename="iptables.html"?>
 
-  <title>iptables-&iptables-version;</title>
+  <title>IPTables-&iptables-version;</title>
 
   <indexterm zone="ch-bclfs-iptables">
     <primary sortas="a-iptables">iptables</primary>
@@ -35,7 +35,7 @@
 
     <para os="d">Install the package:</para>
 
-<screen os="e"><userinput>make PREFIX=/usr LIBDIR=/lib BINDIR=/sbin install DESTDIR=${CLFS}/</userinput></screen>
+<screen os="e"><userinput>make PREFIX=/usr LIBDIR=/lib BINDIR=/sbin install DESTDIR=${CLFS}</userinput></screen>
 
   </sect2>
 
