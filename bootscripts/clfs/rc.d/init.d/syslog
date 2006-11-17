@@ -7,8 +7,6 @@
 
 SYSLOG_ROTATE_SIZE=80kb
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
-
 case "$1" in
 start)
 	echo -n "Starting syslogd: "

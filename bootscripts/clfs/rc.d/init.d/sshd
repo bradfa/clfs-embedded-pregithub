@@ -4,8 +4,6 @@
 
 . /etc/rc.d/init.d/functions
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
-
 DSSKEY=/etc/ssh/dss_host_key
 RSAKEY=/etc/ssh/rsa_host_key
 

@@ -3,13 +3,12 @@
 # System Shutdown Script
 #
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
+. /etc/rc.d/init.d/functions
 
 echo
 echo "System is going down for reboot or halt now."
 echo
 
-. /etc/rc.d/init.d/functions
 
 echo "Starting stop scripts."
 

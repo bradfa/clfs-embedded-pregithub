@@ -1,6 +1,10 @@
 # Common Routines
 #
 
+# Default Path for scripts
+#
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
 # Check status and print
 # OK or FAIL
 #

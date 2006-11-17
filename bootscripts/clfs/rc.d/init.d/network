@@ -5,8 +5,6 @@
 # config: /etc/network.conf
 #	  /etc/network.d/interface.[devname]
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
-
 . /etc/rc.d/init.d/functions
 . /etc/network.conf
 

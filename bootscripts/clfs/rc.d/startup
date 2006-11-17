@@ -2,9 +2,6 @@
 
 # System Startup Script
 # 
-
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
-
 . /etc/rc.d/init.d/functions
 
 /bin/mount -t proc proc /proc
