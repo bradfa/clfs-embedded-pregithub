@@ -71,19 +71,24 @@ for config in $UCLIBC_OPTIONS; do
 done
 echo "UCLIBC_HAS_FULL_RPC=y" >> .config</userinput></screen>
 
-    <para os="l">Compile the package:</para>
+    <para os="l">We have made some changes to our config, let's make sure
+    that we didn't miss and dependencies:</para>
 
-<screen os="m"><userinput>make TARGET_ARCH=i386</userinput></screen>
+<screen os="m"><userinput>make TARGET_ARCH=i386 oldconfig</userinput></screen>
 
-   <para os="n">The uClibc build system creates symlinks in its
+    <para os="n">Compile the package:</para>
+
+<screen os="o"><userinput>make TARGET_ARCH=i386</userinput></screen>
+
+   <para os="p">The uClibc build system creates symlinks in its
    <filename class="directory">include</filename> directory pointing to
    ${CLFS}/usr/include. We will need to remove these symlinks from the source dir:</para>
 
-<screen os="o"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
+<screen os="q"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
 
-    <para os="p">Install the package:</para>
+    <para os="r">Install the package:</para>
 
-<screen os="q"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="s"><userinput>make PREFIX=${CLFS} install</userinput></screen>
 
   </sect2>
 

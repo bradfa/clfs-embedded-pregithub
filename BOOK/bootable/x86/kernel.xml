@@ -36,31 +36,31 @@
     kernel compilation. Do not rely on the source tree being clean after
     un-tarring.</para>
 
-    <para os="h">Configure the kernel via a menu-driven interface.
+    <para os="e">Configure the kernel via a menu-driven interface.
     Please note that the udev bootscript requires "rtc" and "tmpfs" to be
     enabled and built into the kernel, not as modules. BLFS has
     some information regarding particular kernel configuration requirements of
     packages outside of CLFS at <ulink
     url="&blfs-root;view/svn/longindex.html#kernel-config-index"/>:</para>
 
-<screen os="i"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
+<screen os="f"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
-    <para os="j">Alternatively, <command>make oldconfig</command> may be more
+    <para os="g">Alternatively, <command>make oldconfig</command> may be more
     appropriate in some situations. See the <filename>README</filename>
     file for more information.</para>
 
-    <para os="k">If desired, skip kernel configuration by copying the kernel
+    <para os="h">If desired, skip kernel configuration by copying the kernel
     config file, <filename>.config</filename>, from the host system
     (assuming it is available) to the root directory of the unpacked kernel
     sources. However, we do not recommend this option. It is often better
     to explore all the configuration menus and create the kernel configuration
     from scratch.</para>
 
-    <para os="m">Compile the kernel image and modules:</para>
+    <para os="i">Compile the kernel image and modules:</para>
 
-<screen os="n"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
+<screen os="j"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
 
-    <para os="o">If using kernel modules, an
+    <para os="k">If using kernel modules, an
     <filename>/etc/modprobe.conf</filename> file may be needed.
     Information pertaining to modules and kernel configuration is
     located in the kernel documentation in the <filename
@@ -68,7 +68,7 @@
     sources tree. Also, <filename>modprobe.conf(5)</filename> may
     be of interest.</para>
 
-    <para os="p">Be very careful when reading other documentation relating to
+    <para os="l">Be very careful when reading other documentation relating to
     kernel modules because it usually applies to 2.4.x kernels only. As
     far as we know, kernel configuration issues specific to Hotplug and
     Udev are not documented. The problem is that Udev will create a device
@@ -77,32 +77,38 @@
     Note that statements like the one below in the
     <filename>/etc/modprobe.conf</filename> file do not work with Udev:</para>
 
-<screen os="q"><literal>alias char-major-XXX some-module</literal></screen>
+<screen os="m"><literal>alias char-major-XXX some-module</literal></screen>
 
-    <para os="r">Because of the complications with Udev and modules,
+    <para os="n">Because of the complications with Udev and modules,
     we strongly recommend starting with a completely non-modular kernel
     configuration, especially if this is the first time using Udev.</para>
 
-    <para os="s">Install the modules, if the kernel configuration uses
+    <para os="o">Install the modules, if the kernel configuration uses
     them:</para>
 
-<screen os="t"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- \
+<screen os="p"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- \
     INSTALL_MOD_PATH=${CLFS} modules_install</userinput></screen>
 
-    <para os="u">After kernel compilation is complete, additional steps are
+    <para os="q">After kernel compilation is complete, additional steps are
     required to complete the installation. Some files need to be copied to
     the <filename class="directory">${CLFS}/boot</filename> directory.</para>
 
-    <para os="v">Issue the following command to install the kernel:</para>
+    <para os="r">Issue the following command to install the kernel:</para>
 
-<screen><userinput>cp vmlinux ${CLFS}/boot/clfskernel-&linux-version;</userinput></screen>
+<screen os="s"><userinput>cp vmlinux ${CLFS}/boot/clfskernel-&linux-version;</userinput></screen>
 
-    <para os="w"><filename>System.map</filename> is a symbol file for the kernel.
+    <para os="t"><filename>System.map</filename> is a symbol file for the kernel.
     It maps the function entry points of every function in the kernel API,
     as well as the addresses of the kernel data structures for the running
     kernel. Issue the following command to install the map file:</para>
 
-<screen os="w1"><userinput>cp System.map ${CLFS}/boot/System.map-&linux-version;</userinput></screen>
+<screen os="u"><userinput>cp System.map ${CLFS}/boot/System.map-&linux-version;</userinput></screen>
+
+    <para os="v">If we compiled our kernel with modules and we made sure depmod.pl
+    is avaiable from busybox, we need to create the module dependency list by
+    issuing the following command:</para>
+
+<screen os="w"><userinput>${CLFS}/cross-tools/bin/depmod.pl -F ${CLFS}/boot/System.map -b ${CLFS}/lib/modules/&linux-version;</userinput></screen>
 
     <para os="x">The kernel configuration file <filename>.config</filename>
     produced by the <command>make menuconfig</command> step above contains

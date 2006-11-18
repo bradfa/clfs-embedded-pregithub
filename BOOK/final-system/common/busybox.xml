@@ -60,6 +60,12 @@ sed -e "s:# USING_CROSS_COMPILER.*:USING_CROSS_COMPILER=y:" \
 
 <screen os="i"><userinput>make PREFIX="${CLFS}" install</userinput></screen>
 
+    <para os="j">If your going to build your kernel with modules, you will need to make
+    sure depmod.pl is available:</para>
+
+<screen os="k"><userinput>cp examples/depmod.pl ${CLFS}/cross-tools/bin
+chmod 755 ${CLFS}/cross-tools/bin/depmod.pl</userinput></screen>
+
   </sect2>
 
   <sect2 id="contents-busybox" role="content">
