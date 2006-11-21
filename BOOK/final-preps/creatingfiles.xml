@@ -34,6 +34,12 @@
     <primary sortas="e-/var/log/wtmp">/var/log/wtmp</primary>
   </indexterm>
 
+  <para>A proper Linux system maintains a list of the mounted file systems in
+  the file <filename>/etc/mtab</filename>.  With the way our embedded system is
+  is designed, we will be using a symlink to <filename>/proc/mounts</filename>:</para>
+
+<screen><userinput>ln -svf ../proc/mounts ${CLFS}/etc/mtab</userinput></screen>
+ 
   <para>In order for user <systemitem class="username">root</systemitem> to be
   able to login and for the name <quote>root</quote> to be recognized, there
   must be relevant entries in the <filename>/etc/passwd</filename> and

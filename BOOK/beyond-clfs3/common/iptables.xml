@@ -27,15 +27,13 @@
 
     <para os="a">Compile the package:</para>
 
-<screen os="b"><userinput>make PREFIX=/usr LIBDIR=/lib BINDIR=/sbin</userinput></screen>
+<screen os="b"><userinput>make CC="${CC} -Os" LD=${LD} DO_MULTI=1 PREFIX=/usr \
+   LIBDIR=/lib BINDIR=/sbin</userinput></screen>
 
-    <note os="c">
-      <para>Optionally all iptables modules can be linked directly into the iptables program by appending NO_SHARED_LIBS=1 to both make commands. IPv6 can be disabled in a similar fashion by appending DO_IPV6=0.</para>
-    </note>
+    <para os="c">Install the package:</para>
 
-    <para os="d">Install the package:</para>
-
-<screen os="e"><userinput>make PREFIX=/usr LIBDIR=/lib BINDIR=/sbin install DESTDIR=${CLFS}</userinput></screen>
+<screen os="d"><userinput>make CC="${CC} -Os" LD=${LD} DO_MULTI=1 PREFIX=/usr \
+   LIBDIR=/lib BINDIR=/sbin install DESTDIR=${CLFS}</userinput></screen>
 
   </sect2>
 
