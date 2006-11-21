@@ -48,10 +48,10 @@
 <!ENTITY linux-headers-md5 "04a523fbe7726fc8014fcf6030d3a6e5">
 <!ENTITY linux-headers-home "http://headers.cross-lfs.org/">
 
-<!ENTITY uclibc-version "0.9.28">
-<!ENTITY uclibc-size "1,724 KB">
+<!ENTITY uclibc-version "snapshot">
+<!ENTITY uclibc-size "0 KB">
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
-<!ENTITY uclibc-md5 "1ada58d919a82561061e4741fb6abd29">
+<!ENTITY uclibc-md5 "">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
 <!-- Beyond CLFS packages -->
