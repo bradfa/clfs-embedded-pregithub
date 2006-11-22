@@ -69,3 +69,11 @@
 <!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
 
 
+<!-- MIPS Bootloaders -->
+
+<!ENTITY colo-version "1.22">
+<!ENTITY colo-size "253 KB">
+<!ENTITY colo-url "http://www.colonel-panic.org/cobalt-mips/colo/colo-&colo-version;.tar.gz">
+<!ENTITY colo-md5 "52c16ad31f3b88f710f0fdb5abed0457">
+<!ENTITY colo-home "http://www.linux-mips.org/wiki/CoLo">
+

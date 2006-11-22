@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bootloaders-patches-x86">
+  <?dbhtml filename="patches.html"?>
+
+  <title>Needed Patches</title>
+
+  <para>In addition to the bootloader packages, several patches are
+  also required. These patches correct any mistakes in the packages that
+  should be fixed by the maintainer. The patches also make small modifications to
+  make the packages easier to work with. The following patches will be
+  needed to build a CLFS system:</para>
+
+<!--
+  <variablelist role="bootpatches">
+
+    <varlistentry os="colo-mips-patch">
+      <term>Colo Make Patch - <token>&colo-make-patch-size;</token>:</term> <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&colo-make-patch;"/></para>
+        <para>MD5 sum: <literal>&colo-make-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry os="colo-relocation-patch">
+      <term>Colo Relocation Patch - <token>&colo-relocation-patch-size;</token>:</term> <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&colo-relocation-patch;"/></para>
+        <para>MD5 sum: <literal>&colo-relocation-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+-->
+  <para os="a">Total size of these patches: about <returnvalue/></para>
+
+</sect1>
