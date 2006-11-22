@@ -8,11 +8,11 @@
 <sect1 id="ch-bootloaders-packages-common">
   <?dbhtml filename="packages.html"?>
 
-  <title>BootloadersPackages</title>
+  <title>Bootloader Packages</title>
 
   <para>Download or otherwise obtain the following packages:</para>
 
-  <variablelist role="bootloaders">
+  <variablelist role="bootloader">
 
     <varlistentry>
       <term>Colo (&colo-version;) - <token>&colo-size;</token>:</term>
