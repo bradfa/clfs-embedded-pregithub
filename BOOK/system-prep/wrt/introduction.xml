@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-systemprep-wrt-introduction">
+  <?dbhtml filename="wrt-intro.html"?>
+
+  <title>Introduction</title>
+
+  <para os="a">This chapter is for preparing host tools if you're planning to build for wireless routers, see <ulink url="http://en.wikibooks.org/wiki/DD-WRT/Supported_Devices" /> for a list of possibly supported devices. Here some basic tools are compiled on the host system, that will be needed later to prepare firmware for the target system. The target will be a 32 bits MIPS Little Endian.</para>
+
+  <para os="b">If you are not building for this type of system, skip this chapter.</para>
+
+</sect1>
