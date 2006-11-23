@@ -81,7 +81,7 @@ echo "UCLIBC_HAS_REENTRANT_RPC=y" >> .config</userinput></screen>
 
     <para os="n">Compile the package:</para>
 
-<screen os="o"><userinput>make TARGET_ARCH=i386</userinput></screen>
+<screen os="o"><userinput>make CC="${CC} ${BUILD}" TARGET_ARCH=i386</userinput></screen>
 
    <para os="p">The uClibc build system creates symlinks in its
    <filename class="directory">include</filename> directory pointing to

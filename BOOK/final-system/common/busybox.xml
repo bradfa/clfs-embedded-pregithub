@@ -54,7 +54,7 @@ sed -e "s:# USING_CROSS_COMPILER.*:USING_CROSS_COMPILER=y:" \
 
     <para os="f">Compile the package:</para>
 
-<screen os="g"><userinput>make CROSS="${CLFS_TARGET}-" PREFIX="${CLFS}" busybox</userinput></screen>
+<screen os="g"><userinput>make CROSS="${CLFS_TARGET}-" PREFIX="${CLFS}"  EXTRA_CFLAGS="${BUILD}" busybox</userinput></screen>
 
     <para os="h">Install the package:</para>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-clear-toolchain">
+  <?dbhtml filename="clear-toolchain.html"?>
+
+  <title>Clear ToolChain Variables</title>
+
+  <para>Now we remove the toolchain variables to prevent
+  then final GCC build from having issues:</para>
+
+<screen><userinput><literal>unset CC
+unset CXX
+unset AR
+unset AS
+unset LD
+unset RANLIB
+unset STRIP"</literal></userinput></screen>
+
+</sect1>

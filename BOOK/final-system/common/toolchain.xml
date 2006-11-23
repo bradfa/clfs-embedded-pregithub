@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-toolchain">
+  <?dbhtml filename="toolchain.html"?>
+
+  <title>ToolChain Variables</title>
+
+  <para>Setup target-specific variables for the compiler
+  and linkers. This time we keep them:</para>
+
+<screen><userinput><literal>echo export CC=\""${CLFS_TARGET}-gcc\"" &gt;&gt; ~/.bashrc
+echo export CXX=\""${CLFS_TARGET}-g++\"" &gt;&gt; ~/.bashrc
+echo export AR=\""${CLFS_TARGET}-ar\"" &gt;&gt; ~/.bashrc
+echo export AS=\""${CLFS_TARGET}-as\"" &gt;&gt; ~/.bashrc
+echo export LD=\""${CLFS_TARGET}-ld\"" &gt;&gt; ~/.bashrc
+echo export RANLIB=\""${CLFS_TARGET}-ranlib\"" &gt;&gt; ~/.bashrc
+echo export READELF=\""${CLFS_TARGET}-readelf\"" &gt;&gt; ~/.bashrc
+echo export STRIP=\""${CLFS_TARGET}-strip\"" &gt;&gt; ~/.bashrc
+echo export BUILD=\""${BUILD}\"" &gt;&gt; ~/.bashrc
+source ~/.bashrc</literal></userinput></screen>
+
+</sect1>

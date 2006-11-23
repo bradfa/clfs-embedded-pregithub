@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-abi">
+  <?dbhtml filename="abi.html"?>
+
+  <title>ABI Variables</title>
+
+  <para>Setup for a Particular ABI:</para>
+
+<screen><userinput><literal>export BUILD="<replaceable>[From Chart]</replaceable>"</literal></userinput></screen>
+
+  <para>The following table gives the entires for the different ABI's that CLFS Embedded supports. Make
+  sure you select one for your build, this will ensure capatibilty of your build with your target
+  architecture.</para>
+
+  <table>
+    <title>List of Build Variables</title>
+    <tgroup cols="2" align="center">
+      <colspec colname="ABI to Select"/>
+      <colspec colname="Variable Value"/>
+      <thead>
+        <row>
+          <entry>ABI</entry>
+          <entry>BUILD=Value</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>32-Bit MIPS</entry>
+          <entry>-mabi=32</entry>
+        </row>
+        <row>
+          <entry>32-Bit All Others</entry>
+          <entry>-m32</entry>
+        </row>
+        <row>
+          <entry>N32 MIPS</entry>
+          <entry>-mabi=n32</entry>
+        </row>
+        <row>
+          <entry>64-Bit MIPS</entry>
+          <entry>-mabi=64</entry>
+        </row>
+        <row>
+          <entry>64-Bit All Others</entry>
+          <entry>-m64</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+</sect1>

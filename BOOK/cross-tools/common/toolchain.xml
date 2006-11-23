@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-toolchain">
+  <?dbhtml filename="toolchain.html"?>
+
+  <title>ToolChain Variables</title>
+
+  <para>We set this up just for uClibc build, we will remove
+  these after we that build. We will reitroduce them in
+  then Final System build:</para>
+
+<screen><userinput><literal>export CC="${CLFS_TARGET}-gcc"
+export CXX="${CLFS_TARGET}-g++"
+export AR="${CLFS_TARGET}-ar"
+export AS="${CLFS_TARGET}-as"
+export LD="${CLFS_TARGET}-ld"
+export RANLIB="${CLFS_TARGET}-ranlib"
+export STRIP="${CLFS_TARGET}-strip"</literal></userinput></screen>
+
+</sect1>

@@ -30,23 +30,26 @@
 
     <para os="a">Configure dropbear:</para>
 
-<screen os="b"><userinput>./configure --prefix=/usr
-cp -v options.h options.h.backup
-sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h
-</userinput></screen>
+<screen os="b"><userinput>CC="${CC} ${BUILD}" ./configure --prefix=/usr</userinput></screen>
 
-    <note os="c">
+    <para os="c">Now we will utilize /dev/urandom instead of /dev/random. To allow
+    this to be utilized we use the following ed:</para>
+
+<screen os="d"><userinput>cp -v options.h options.h.backup
+sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h</userinput></screen>
+
+    <note os="e">
       <para>We are just telling dropbear to use the default configuration.
       For those for more adventureous, edit options.h to further configure dropbear.</para>
     </note>
 
-    <para os="d">Compile the package:</para>
+    <para os="f">Compile the package:</para>
 
-<screen os="e"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"</userinput></screen>
+<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"</userinput></screen>
 
-    <para os="f">Install the package:</para>
+    <para os="h">Install the package:</para>
 
-<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=${CLFS}
+<screen os="i"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=${CLFS}
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/sbin/dropbear
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/sbin/dbclient
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearkey

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cleanup-create-tarball">
+  <?dbhtml filename="create-tarball.html"?>
+
+  <title>Create Tarball of Build</title>
+
+  <para>We just created a cleaned-up version of our build, now
+  we can compress it so we can move it to our target.</para>
+
+  <para>Let's Create A tarball of our build:</para>
+
+<screen><userinput>install -dv ${CLFS}/build
+cd ${CLFS}-final
+tar jcf ${CLFS}/build/clfs-embedded.tar.bz2 *
+</userinput></screen>
+
+  <para>Now you can move your compressed tarball to your target
+  system. This is something that is going to be different on
+  every embedded device.</para>
+
+</sect1>

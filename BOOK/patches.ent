@@ -32,6 +32,10 @@
 <!ENTITY gcc-uclibc-patch-md5 "63a7a8f1990bb333dc5513b9489845d4">
 <!ENTITY gcc-uclibc-patch-size "144 KB">
 
+<!ENTITY zlib-fpic-patch "zlib-&zlib-version;-fPIC-1.patch">
+<!ENTITY zlib-fpic-patch-md5 "545d60b20bfde6f53023de44438cef59">
+<!ENTITY zlib-fpic-patch-size "3.2 KB">
+
 <!-- MIPS Bootloader Patches -->
 
 <!ENTITY colo-make-patch "colo-&colo-version;-make_fix-1.patch">
