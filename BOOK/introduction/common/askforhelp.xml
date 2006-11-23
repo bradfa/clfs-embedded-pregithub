@@ -36,7 +36,7 @@
     <itemizedlist>
       <listitem>
         <para>The version of the book being used (in this case
-        &version;)</para>
+        CLFS Embedded &version;)</para>
       </listitem>
       <listitem>
         <para>The host distribution and version being used to
@@ -46,7 +46,7 @@
         <para>The architecture of the host and target.</para>
       </listitem>
       <listitem>
-        <para>The value of the ${CLFS_HOST}, ${CLFS_TARGET}, ${BUILD32}, and ${BUILD64}
+        <para>The value of the ${CLFS_HOST}, ${CLFS_TARGET}, and ${BUILD}
         environment variables.</para>
       </listitem>
       <listitem>

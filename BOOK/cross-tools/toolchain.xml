@@ -13,7 +13,7 @@
   <para>Setup target-specific variables for the compiler
   and linkers:</para>
 
-<screen><userinput>cat &lt;&lt; "EOF" &gt;&gt; ~/.bashrc
+<screen><userinput>cat &gt; ~/.bash_profile &lt;&lt; "EOF"
 <literal>export CC="${CLFS_TARGET}-gcc"
 export CXX="${CLFS_TARGET}-g++"
 export AR="${CLFS_TARGET}-ar"

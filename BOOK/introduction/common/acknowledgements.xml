@@ -59,6 +59,12 @@
     <listitem>
       <para>Chris Staub - x86 builds. Leader of Quality Control.</para>
     </listitem>
+    <listitem>
+      <para>Maarten Lankhorst - MIPS/WRT embedded builds.</para>
+    </listitem>
+    <listitem>
+      <para>Zack Winkles - Testing and Quality Control.</para>
+    </listitem>
   </itemizedlist>
 
   <para>Outside the Development Team</para>
