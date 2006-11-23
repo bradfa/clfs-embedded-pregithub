@@ -42,7 +42,6 @@
    xpointer="xpointer(//*[@os='e'])"/>
 
 <screen os="f"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
-<screen os="j"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
@@ -128,6 +127,10 @@
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='z'])"/>
+
+    <para os="aa">The bootloaders section contains more information on
+    how to configure the kernel for specifc bootloaders. Please refer
+    to this section for your specific needs.</para>
 
   </sect2>
 
