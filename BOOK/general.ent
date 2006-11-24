@@ -34,6 +34,7 @@
 <!ENTITY redhat "ftp://sources.redhat.com/pub/">
 <!ENTITY kernel "http://www.kernel.org/pub/">
 <!ENTITY sourceforge "http://prdownloads.sourceforge.net/">
+<!ENTITY svn-clfs-software "http://svn.cross-lfs.org/svn/repos/cross-lfs/branches/clfs-embedded/software/">
 
 <!ENTITY dependencies "Installation depends on">
 <!ENTITY testsuites "Test suite depends on">

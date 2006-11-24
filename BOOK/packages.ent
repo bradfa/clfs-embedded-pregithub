@@ -84,13 +84,13 @@
 
 <!ENTITY trx-version "svn">
 <!ENTITY trx-size "16 KB">
-<!ENTITY trx-url "http://cross-lfs.org/~mlankhorst/trx.c">
+<!ENTITY trx-url "&svn-clfs-software;/trx/trx.c">
 <!ENTITY trx-md5 "cb0141dd59a90d34a72693139e31e49a">
 <!ENTITY trx-home "http://www.openwrt.org/">
 
 <!ENTITY addpattern-version "svn">
 <!ENTITY addpattern-size "8 KB">
-<!ENTITY addpattern-url "http://cross-lfs.org/~mlankhorst/addpattern.c">
+<!ENTITY addpattern-url "&svn-clfs-software;/addpattern/addpattern.c">
 <!ENTITY addpattern-md5 "ff13bf18d640c3a2a75032a34bf5858b">
 <!ENTITY addpattern-home "http://www.openwrt.org/">
 
