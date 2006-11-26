@@ -11,7 +11,7 @@
   <title>Clear ToolChain Variables</title>
 
   <para>Now we remove the toolchain variables to prevent
-  then final GCC build from having issues:</para>
+  the final GCC build from having issues:</para>
 
 <screen><userinput><literal>unset CC
 unset CXX

@@ -10,7 +10,7 @@
 
   <title>Introduction</title>
 
-  <para os="a">Since Every Embedded Architecture has a different type of
-  bootloader, we will discuss how to configuration them in this section.</para>
+  <para os="a">Since every embedded architecture has a different type of
+  bootloader, we will discuss how to configure them in this section.</para>
 
 </sect1>

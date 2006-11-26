@@ -29,12 +29,12 @@
   <sect2 role="installation">
     <title>Installation of Busybox</title>
 
-    <para os="p1">The follow patches fixes some issues that are related to the
-    headers we are using. To correct this issues apply the following patch:</para>
+    <para os="p1">The following patch fixes some issues that are related to the
+    headers we are using:</para>
 
 <screen os="p2"><userinput>patch -Np1 -i ../&busybox-fixes-patch;</userinput></screen>
 
-    <para os="a">Create default configuration:</para>
+    <para os="a">Create the default configuration:</para>
 
 <screen os="b"><userinput>make defconfig</userinput></screen>
 
