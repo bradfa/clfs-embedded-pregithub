@@ -41,11 +41,11 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="f"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
-
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
-   xpointer="xpointer(//*[@os='g'])"/>
+   xpointer="xpointer(//*[@os='f'])"/>
+
+<screen os="g"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
@@ -55,11 +55,11 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='i'])"/>
 
-<screen os="j"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
-
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
-   xpointer="xpointer(//*[@os='k'])"/>
+   xpointer="xpointer(//*[@os='j'])"/>
+
+<screen os="k"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
@@ -77,12 +77,12 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='o'])"/>
 
-<screen os="p"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}- \
-    INSTALL_MOD_PATH=${CLFS} modules_install</userinput></screen>
-
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
-   xpointer="xpointer(//*[@os='q'])"/>
+   xpointer="xpointer(//*[@os='p'])"/>
+
+<screen os="q"><userinput>make ARCH=mips CROSS_COMPILE=${CLFS_TARGET}- \
+    INSTALL_MOD_PATH=${CLFS} modules_install</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
@@ -128,9 +128,13 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='z'])"/>
 
-    <para os="aa">The bootloaders section contains more information on
-    how to configure the kernel for specifc bootloaders. Please refer
-    to this section for your specific needs.</para>
+   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+   href="../x86/kernel.xml"
+   xpointer="xpointer(//*[@os='aa'])"/>
+
+   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+   href="../x86/kernel.xml"
+   xpointer="xpointer(//*[@os='ab'])"/>
 
   </sect2>
 
