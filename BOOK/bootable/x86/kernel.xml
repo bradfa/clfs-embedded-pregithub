@@ -44,9 +44,10 @@
     url="&blfs-root;view/svn/longindex.html#kernel-config-index"/>:</para>
   
     <note os="f"><para>Since we are building for an embedded system we need to make sure
-    our key components are build into the kernel and not as modules. Our key
+    our key components are built into the kernel and not as modules. Our key
     components are console/video, disk, and network. With out these built in our
-    system will not function properly.</para></note>
+    system will not function properly. If your concerned about disk space, your kernel
+    should be without modules.</para></note>
 
 <screen os="g"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
