@@ -56,6 +56,10 @@ ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearkey
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearconvert
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
 
+    <para os="j">Create the directory for the dropbear key files:</para>
+
+<screen os="k"><userinput>install -dv ${CLFS}/etc/ssh</userinput></screen>
+
   </sect2>
 
   <sect2 id="contents-dropbear" role="content">
