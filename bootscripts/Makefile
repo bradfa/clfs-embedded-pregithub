@@ -17,10 +17,14 @@ install: create-dirs
 	install -m ${MODE} clfs/rc.d/shutdown        ${EXTDIR}/rc.d/
 	install -m ${MODE} clfs/rc.d/init.d/network  ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/rc.d/init.d/syslog   ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/syslog ${EXTDIR}/rc.d/start/S05syslog
+	ln -sf ../init.d/syslog ${EXTDIR}/rc.d/stop/K99syslog
+	ln -sf ../init.d/network ${EXTDIR}/rc.d/start/S10network
+	ln -sf ../init.d/network ${EXTDIR}/rc.d/stop/K80network
 
 install-dropbear: create-dirs
 	install -m ${MODE} clfs/rc.d/init.d/sshd   ${EXTDIR}/rc.d/init.d/
-	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/start/S10sshd
-	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/stop/K10sshd
+	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/start/S30sshd
+	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/stop/K30sshd
 
 .PHONY: all create-dirs install install-dropbear
