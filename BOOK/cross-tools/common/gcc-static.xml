@@ -60,7 +60,7 @@ cd ../gcc-build</userinput></screen>
 
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
     --host=${CLFS_HOST} --target=${CLFS_TARGET} --disable-multilib \
-    --with-sysroot=${CLFS} --disable-nls --disable-shared \
+    --with-sysroot=${CLFS} --disable-nls --disable-shared --disable-threads \
     --enable-languages=c --disable-threads</userinput></screen>
 
     <variablelist os="af">
