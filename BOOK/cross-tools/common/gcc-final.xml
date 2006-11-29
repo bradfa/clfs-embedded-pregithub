@@ -76,9 +76,9 @@
       <title>The meaning of the new configure options:</title>
 
       <varlistentry os="af1">
-        <term><parameter>--enable-languages=c,c++</parameter></term>
+        <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
-          <para>This option ensures that only the C compiler is built. If the C++ compiler is not needed, use --enable-languages=c</para>
+          <para>This option ensures that only the C compiler is built. If the C++ compiler is needed, use --enable-languages=c,c++</para>
         </listitem>
       </varlistentry>
 
