@@ -19,6 +19,6 @@ unset AR
 unset AS
 unset LD
 unset RANLIB
-unset STRIP"</literal></userinput></screen>
+unset STRIP</literal></userinput></screen>
 
 </sect1>
