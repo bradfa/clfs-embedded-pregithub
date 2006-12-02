@@ -87,7 +87,7 @@ sed -e "/^KERNEL_SOURCE/s:=.*:=\"${CLFS}/usr\":" \
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='r'])"/>
 
-<screen os="s"><userinput>PREFIX=${CLFS} install_dev</userinput></screen>
+<screen os="s"><userinput>make PREFIX=${CLFS} install_dev</userinput></screen>
 
   </sect2>
 
