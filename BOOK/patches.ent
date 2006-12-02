@@ -36,6 +36,23 @@
 <!ENTITY zlib-destdir-patch-md5 "d21bdd08bf444f87f275b6aef44e1a84">
 <!ENTITY zlib-destdir-patch-size "8 KB">
 
+<!-- MIPS Patches -->
+<!ENTITY linux-mips-patch "linux-&linux-version;-mips-1.patch">
+<!ENTITY linux-mips-patch-md5 "4c75e5302a334649f126a0de3295b883">
+<!ENTITY linux-mips-patch-size "464 KB">
+
+<!ENTITY linux-mips_fixes-patch "linux-&linux-version;-mips_fixes-1.patch">
+<!ENTITY linux-mips_fixes-patch-md5 "447226a5e1585de8c57ab4f64a348d21">
+<!ENTITY linux-mips_fixes-patch-size "12 KB">
+
+<!ENTITY linux-squashfs-patch "linux-&linux-version;-squashfs-1.patch">
+<!ENTITY linux-squashfs-patch-md5 "842859f1b9afe819655de0926efb5dcb">
+<!ENTITY linux-squashfs-patch-size "128 KB">
+
+<!ENTITY linux-bcm947xx-patch "linux-&linux-version;-bcm947xx-1.patch">
+<!ENTITY linux-bcm947xx-patch-md5 "358997106f1b81ff70e0beafa5c3571a">
+<!ENTITY linux-bcm947xx-patch-size "232 KB">
+
 <!-- MIPS Bootloader Patches -->
 
 <!ENTITY colo-make-patch "colo-&colo-version;-make_fix-1.patch">
