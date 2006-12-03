@@ -37,6 +37,22 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='d'])"/>
 
+<para os="d1">The following patch merges changes from Linux-MIPS into the kernel:</para>
+
+<screen os="d2"><userinput>patch -Np1 -i ../linux-&linux-version;-mips-1.patch</userinput></screen>
+
+<para os="d3">The following patch merges updates for Linux-MIPS kernel:</para>
+
+<screen os="d4"><userinput>patch -Np1 -i ../linux-&linux-version;-mips-1.patch</userinput></screen>
+
+<para os="d5">The following patch adds support for squashed filesystens to the kernel:</para>
+
+<screen os="d6"><userinput>patch -Np1 -i ../linux-&linux-version;-squashfs-1.patch</userinput></screen>
+
+<para os="d7">The following patch adds support for wireless routers to the kernel:</para>
+
+<screen os="d8"><userinput>patch -Np1 -i ../linux-&linux-version;-bcm947xx-1.patch</userinput></screen>
+
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='e'])"/>
@@ -91,14 +107,6 @@
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='s'])"/>
-
-   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-   href="../x86/kernel.xml"
-   xpointer="xpointer(//*[@os='t'])"/>
-
-   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-   href="../x86/kernel.xml"
-   xpointer="xpointer(//*[@os='t'])"/>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
