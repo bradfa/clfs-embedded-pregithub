@@ -35,7 +35,7 @@
 
     <para os="d">Install the package:</para>
 
-<screen os="e"><userinput>make PREFIX="${CLFS}" install</userinput></screen>
+<screen os="e"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
 
   </sect2>
 
