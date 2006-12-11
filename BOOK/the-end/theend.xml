@@ -23,6 +23,6 @@
   point) to find out which CLFS version is installed on the system.
   Create this file by running:</para>
 
-<screen><userinput>echo CLFS-Embedded&version; &gt; ${CLFS}/etc/clfs-release</userinput></screen>
+<screen><userinput>echo CLFS-Embedded-&version; &gt; ${CLFS}/etc/clfs-release</userinput></screen>
 
 </sect1>
