@@ -1,6 +1,6 @@
-BASEDIR		:= ~/cross-lfs-book
-DUMPDIR		:= ~/cross-lfs-commands
-DLLISTDIR	:= ~/cross-lfs-dllist
+BASEDIR		:= ~/cross-lfs-embedded-book
+DUMPDIR		:= ~/cross-lfs-embedded-commands
+DLLISTDIR	:= ~/cross-lfs-embedded-dllist
 CHUNK_QUIET	:= 1
 XSLROOTDIR	:= /usr/share/xml/docbook/xsl-stylesheets-1.69.1
 
