@@ -1,0 +1,4299 @@
+From da20def23769f672480f6d7bc472d1fa54e1bafa Mon Sep 17 00:00:00 2001
+From: Maarten Lankhorst <mlankhorst:cross-lfs.org>
+Date: Tue, 9 Jan 2007 22:42:47 +0000
+Subject: [PATCH] Add bcm947xx support
+
+---
+ arch/mips/Kconfig                                  |   20 +
+ arch/mips/Makefile                                 |   12 +
+ arch/mips/bcm947xx/Makefile                        |    8 +
+ arch/mips/bcm947xx/cfe_env.c                       |  232 ++++++
+ arch/mips/bcm947xx/include/nvram.h                 |   37 +
+ arch/mips/bcm947xx/irq.c                           |   63 ++
+ arch/mips/bcm947xx/nvram.c                         |  131 +++
+ arch/mips/bcm947xx/pci.c                           |  227 +++++
+ arch/mips/bcm947xx/prom.c                          |   59 ++
+ arch/mips/bcm947xx/setup.c                         |  163 ++++
+ arch/mips/bcm947xx/time.c                          |   62 ++
+ arch/mips/cfe/Makefile                             |    5 +
+ arch/mips/cfe/cfe.c                                |  533 ++++++++++++
+ arch/mips/cfe/cfe_private.h                        |  176 ++++
+ arch/mips/kernel/cpu-probe.c                       |   25 +
+ arch/mips/kernel/head.S                            |    3 +
+ arch/mips/kernel/proc.c                            |    2 +
+ arch/mips/mm/tlbex.c                               |    2 +
+ drivers/mtd/chips/cfi_cmdset_0002.c                |    3 -
+ drivers/mtd/maps/Kconfig                           |    6 +
+ drivers/mtd/maps/Makefile                          |    1 +
+ drivers/mtd/maps/bcm47xx-flash.c                   |  477 +++++++++++
+ drivers/net/Kconfig                                |    2 +-
+ drivers/net/b44.c                                  |  873 +++++++++++---------
+ drivers/net/b44.h                                  |   83 +--
+ include/asm-mips/bootinfo.h                        |    6 +
+ include/asm-mips/cfe.h                             |  189 +++++
+ include/asm-mips/cpu.h                             |   11 +-
+ include/asm-mips/mach-bcm947xx/kernel-entry-init.h |   26 +
+ include/linux/pci_ids.h                            |    1 +
+ 30 files changed, 2988 insertions(+), 450 deletions(-)
+
+diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
+index 1443024..d845a8f 100644
+--- a/arch/mips/Kconfig
++++ b/arch/mips/Kconfig
+@@ -4,6 +4,10 @@ config MIPS
+ 	# Horrible source of confusion.  Die, die, die ...
+ 	select EMBEDDED
+ 
++config CFE
++	bool
++	# Common Firmware Environment
++
+ mainmenu "Linux/MIPS Kernel Configuration"
+ 
+ menu "Machine selection"
+@@ -222,6 +226,22 @@ config MACH_JAZZ
+ 	 Members include the Acer PICA, MIPS Magnum 4000, MIPS Millenium and
+ 	 Olivetti M700-10 workstations.
+ 
++config BCM947XX
++	bool "Support for BCM947xx based boards"
++	select DMA_NONCOHERENT
++	select HW_HAS_PCI
++	select IRQ_CPU
++	select SYS_HAS_CPU_MIPS32_R1
++	select SYS_SUPPORTS_32BIT_KERNEL
++	select SYS_SUPPORTS_LITTLE_ENDIAN
++	select MIPS_CPU_SCACHE
++	select SSB
++	select SSB_DRIVER_MIPS
++	select SSB_DRIVER_EXTIF
++	select CFE
++	help
++	 Support for BCM947xx based boards
++
+ config LASAT
+ 	bool "LASAT Networks platforms"
+ 	select DMA_NONCOHERENT
+diff --git a/arch/mips/Makefile b/arch/mips/Makefile
+index d580d46..03429c5 100644
+--- a/arch/mips/Makefile
++++ b/arch/mips/Makefile
+@@ -571,6 +571,18 @@ libs-$(CONFIG_SIBYTE_BIGSUR)	+= arch/mip
+ load-$(CONFIG_SIBYTE_BIGSUR)	:= 0xffffffff80100000
+ 
+ #
++# Broadcom BCM47XX boards
++#
++core-$(CONFIG_BCM947XX)		+= arch/mips/bcm947xx/
++cflags-$(CONFIG_BCM947XX)	+= -Iarch/mips/bcm947xx/include -Iinclude/asm-mips/mach-bcm947xx
++load-$(CONFIG_BCM947XX)		:= 0xffffffff80001000
++
++#
++# Common Firmware Environment
++#
++core-$(CONFIG_CFE)		+= arch/mips/cfe/
++
++#
+ # SNI RM200 PCI
+ #
+ core-$(CONFIG_SNI_RM200_PCI)	+= arch/mips/sni/
+diff --git a/arch/mips/bcm947xx/Makefile b/arch/mips/bcm947xx/Makefile
+new file mode 100644
+index 0000000..b02e840
+--- /dev/null
++++ b/arch/mips/bcm947xx/Makefile
+@@ -0,0 +1,8 @@
++#
++# Makefile for the BCM47xx specific kernel interface routines
++# under Linux.
++#
++
++obj-y := irq.o prom.o setup.o time.o
++obj-y += nvram.o cfe_env.o
++#obj-y += pci.o
+diff --git a/arch/mips/bcm947xx/cfe_env.c b/arch/mips/bcm947xx/cfe_env.c
+new file mode 100644
+index 0000000..6ef464f
+--- /dev/null
++++ b/arch/mips/bcm947xx/cfe_env.c
+@@ -0,0 +1,232 @@
++/*
++ * CFE environment varialble access
++ *
++ * Copyright 2006, Felix Fietkau <nbd@openwrt.org>
++ * 
++ * This program is free software; you can redistribute  it and/or modify it
++ * under  the terms of  the GNU General  Public License as published by the
++ * Free Software Foundation;  either version 2 of the  License, or (at your
++ * option) any later version.
++ *
++ * Copyright 2001-2003, Broadcom Corporation
++ * 
++ * THIS SOFTWARE IS OFFERED "AS IS", AND BROADCOM GRANTS NO WARRANTIES OF ANY
++ * KIND, EXPRESS OR IMPLIED, BY STATUTE, COMMUNICATION OR OTHERWISE. BROADCOM
++ * SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
++ * FOR A SPECIFIC PURPOSE OR NONINFRINGEMENT CONCERNING THIS SOFTWARE.
++ */
++
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/kernel.h>
++#include <linux/string.h>
++#include <asm/io.h>
++#include <asm/uaccess.h>
++
++#define NVRAM_SIZE       (0x1ff0)
++static char _nvdata[NVRAM_SIZE] __initdata;
++static char _valuestr[256] __initdata;
++
++/*
++ * TLV types.  These codes are used in the "type-length-value"
++ * encoding of the items stored in the NVRAM device (flash or EEPROM)
++ *
++ * The layout of the flash/nvram is as follows:
++ *
++ * <type> <length> <data ...> <type> <length> <data ...> <type_end>
++ *
++ * The type code of "ENV_TLV_TYPE_END" marks the end of the list.
++ * The "length" field marks the length of the data section, not
++ * including the type and length fields.
++ *
++ * Environment variables are stored as follows:
++ *
++ * <type_env> <length> <flags> <name> = <value>
++ *
++ * If bit 0 (low bit) is set, the length is an 8-bit value.
++ * If bit 0 (low bit) is clear, the length is a 16-bit value
++ * 
++ * Bit 7 set indicates "user" TLVs.  In this case, bit 0 still
++ * indicates the size of the length field.  
++ *
++ * Flags are from the constants below:
++ *
++ */
++#define ENV_LENGTH_16BITS	0x00	/* for low bit */
++#define ENV_LENGTH_8BITS	0x01
++
++#define ENV_TYPE_USER		0x80
++
++#define ENV_CODE_SYS(n,l) (((n)<<1)|(l))
++#define ENV_CODE_USER(n,l) ((((n)<<1)|(l)) | ENV_TYPE_USER)
++
++/*
++ * The actual TLV types we support
++ */
++
++#define ENV_TLV_TYPE_END	0x00	
++#define ENV_TLV_TYPE_ENV	ENV_CODE_SYS(0,ENV_LENGTH_8BITS)
++
++/*
++ * Environment variable flags 
++ */
++
++#define ENV_FLG_NORMAL		0x00	/* normal read/write */
++#define ENV_FLG_BUILTIN		0x01	/* builtin - not stored in flash */
++#define ENV_FLG_READONLY	0x02	/* read-only - cannot be changed */
++
++#define ENV_FLG_MASK		0xFF	/* mask of attributes we keep */
++#define ENV_FLG_ADMIN		0x100	/* lets us internally override permissions */
++
++
++/*  *********************************************************************
++    *  _nvram_read(buffer,offset,length)
++    *  
++    *  Read data from the NVRAM device
++    *  
++    *  Input parameters: 
++    *  	   buffer - destination buffer
++    *  	   offset - offset of data to read
++    *  	   length - number of bytes to read
++    *  	   
++    *  Return value:
++    *  	   number of bytes read, or <0 if error occured
++    ********************************************************************* */
++static int
++_nvram_read(unsigned char *nv_buf, unsigned char *buffer, int offset, int length)
++{
++    int i;
++    if (offset > NVRAM_SIZE)
++	return -1; 
++
++    for ( i = 0; i < length; i++) {
++	buffer[i] = ((volatile unsigned char*)nv_buf)[offset + i];
++    }
++    return length;
++}
++
++
++static char*
++_strnchr(const char *dest,int c,size_t cnt)
++{
++	while (*dest && (cnt > 0)) {
++	if (*dest == c) return (char *) dest;
++	dest++;
++	cnt--;
++	}
++	return NULL;
++}
++
++
++
++/*
++ * Core support API: Externally visible.
++ */
++
++/*
++ * Get the value of an NVRAM variable
++ * @param	name	name of variable to get
++ * @return	value of variable or NULL if undefined
++ */
++
++char* 
++cfe_env_get(unsigned char *nv_buf, char* name)
++{
++    int size;
++    unsigned char *buffer;
++    unsigned char *ptr;
++    unsigned char *envval;
++    unsigned int reclen;
++    unsigned int rectype;
++    int offset;
++    int flg;
++    
++    size = NVRAM_SIZE;
++    buffer = &_nvdata[0];
++
++    ptr = buffer;
++    offset = 0;
++
++    /* Read the record type and length */
++    if (_nvram_read(nv_buf, ptr,offset,1) != 1) {
++	goto error;
++    }
++    
++    while ((*ptr != ENV_TLV_TYPE_END)  && (size > 1)) {
++
++	/* Adjust pointer for TLV type */
++	rectype = *(ptr);
++	offset++;
++	size--;
++
++	/* 
++	 * Read the length.  It can be either 1 or 2 bytes
++	 * depending on the code 
++	 */
++	if (rectype & ENV_LENGTH_8BITS) {
++	    /* Read the record type and length - 8 bits */
++	    if (_nvram_read(nv_buf, ptr,offset,1) != 1) {
++		goto error;
++	    }
++	    reclen = *(ptr);
++	    size--;
++	    offset++;
++	}
++	else {
++	    /* Read the record type and length - 16 bits, MSB first */
++	    if (_nvram_read(nv_buf, ptr,offset,2) != 2) {
++		goto error;
++	    }
++	    reclen = (((unsigned int) *(ptr)) << 8) + (unsigned int) *(ptr+1);
++	    size -= 2;
++	    offset += 2;
++	}
++
++	if (reclen > size)
++	    break;	/* should not happen, bad NVRAM */
++
++	switch (rectype) {
++	    case ENV_TLV_TYPE_ENV:
++		/* Read the TLV data */
++		if (_nvram_read(nv_buf, ptr,offset,reclen) != reclen)
++		    goto error;
++		flg = *ptr++;
++		envval = (unsigned char *) _strnchr(ptr,'=',(reclen-1));
++		if (envval) {
++		    *envval++ = '\0';
++		    memcpy(_valuestr,envval,(reclen-1)-(envval-ptr));
++		    _valuestr[(reclen-1)-(envval-ptr)] = '\0';
++#if 0			
++		    printk(KERN_INFO "NVRAM:%s=%s\n", ptr, _valuestr);
++#endif
++		    if(!strcmp(ptr, name)){
++			return _valuestr;
++		    }
++		    if((strlen(ptr) > 1) && !strcmp(&ptr[1], name))
++			return _valuestr;
++		}
++		break;
++		
++	    default: 
++		/* Unknown TLV type, skip it. */
++		break;
++	    }
++
++	/*
++	 * Advance to next TLV 
++	 */
++		
++	size -= (int)reclen;
++	offset += reclen;
++
++	/* Read the next record type */
++	ptr = buffer;
++	if (_nvram_read(nv_buf, ptr,offset,1) != 1)
++	    goto error;
++	}
++
++error:
++    return NULL;
++
++}
++
+diff --git a/arch/mips/bcm947xx/include/nvram.h b/arch/mips/bcm947xx/include/nvram.h
+new file mode 100644
+index 0000000..6bb18e8
+--- /dev/null
++++ b/arch/mips/bcm947xx/include/nvram.h
+@@ -0,0 +1,37 @@
++/*
++ *  Copyright (C) 2006 Felix Fietkau <nbd@openwrt.org>
++ *
++ *  This program is free software; you can redistribute  it and/or modify it
++ *  under  the terms of  the GNU General  Public License as published by the
++ *  Free Software Foundation;  either version 2 of the  License, or (at your
++ *  option) any later version.
++ */
++
++#ifndef __NVRAM_H
++#define __NVRAM_H
++
++struct nvram_header {
++	u32 magic;
++	u32 len;
++	u32 crc_ver_init;	/* 0:7 crc, 8:15 ver, 16:31 sdram_init */
++	u32 config_refresh;	/* 0:15 sdram_config, 16:31 sdram_refresh */
++	u32 config_ncdl;	/* ncdl values for memc */
++};
++
++struct nvram_tuple {
++	char *name;
++	char *value;
++	struct nvram_tuple *next;
++};
++
++#define NVRAM_HEADER		0x48534C46	/* 'FLSH' */
++#define NVRAM_VERSION		1
++#define NVRAM_HEADER_SIZE	20
++#define NVRAM_SPACE		0x8000
++
++#define NVRAM_MAX_VALUE_LEN 255
++#define NVRAM_MAX_PARAM_LEN 64
++
++char *nvram_get(const char *name);
++
++#endif
+diff --git a/arch/mips/bcm947xx/irq.c b/arch/mips/bcm947xx/irq.c
+new file mode 100644
+index 0000000..8727a4f
+--- /dev/null
++++ b/arch/mips/bcm947xx/irq.c
+@@ -0,0 +1,63 @@
++/*
++ *  Copyright (C) 2004 Florian Schirmer (jolt@tuxbox.org)
++ *
++ *  This program is free software; you can redistribute  it and/or modify it
++ *  under  the terms of  the GNU General  Public License as published by the
++ *  Free Software Foundation;  either version 2 of the  License, or (at your
++ *  option) any later version.
++ *
++ *  THIS  SOFTWARE  IS PROVIDED   ``AS  IS'' AND   ANY  EXPRESS OR IMPLIED
++ *  WARRANTIES,   INCLUDING, BUT NOT  LIMITED  TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
++ *  NO  EVENT  SHALL   THE AUTHOR  BE    LIABLE FOR ANY   DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++ *  NOT LIMITED   TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS OF
++ *  USE, DATA,  OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
++ *  ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT
++ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ *  You should have received a copy of the  GNU General Public License along
++ *  with this program; if not, write  to the Free Software Foundation, Inc.,
++ *  675 Mass Ave, Cambridge, MA 02139, USA.
++ */
++
++#include <linux/errno.h>
++#include <linux/init.h>
++#include <linux/interrupt.h>
++#include <linux/irq.h>
++#include <linux/module.h>
++#include <linux/smp.h>
++#include <linux/types.h>
++
++#include <asm/cpu.h>
++#include <asm/io.h>
++#include <asm/irq.h>
++#include <asm/irq_cpu.h>
++
++void plat_irq_dispatch(void)
++{
++	u32 cause;
++
++	cause = read_c0_cause() & read_c0_status() & CAUSEF_IP;
++
++	clear_c0_status(cause);
++
++	if (cause & CAUSEF_IP7)
++		do_IRQ(7);
++	if (cause & CAUSEF_IP2)
++		do_IRQ(2);
++	if (cause & CAUSEF_IP3)
++		do_IRQ(3);
++	if (cause & CAUSEF_IP4)
++		do_IRQ(4);
++	if (cause & CAUSEF_IP5)
++		do_IRQ(5);
++	if (cause & CAUSEF_IP6)
++		do_IRQ(6);
++}
++
++void __init arch_init_irq(void)
++{
++	mips_cpu_irq_init(0);
++}
+diff --git a/arch/mips/bcm947xx/nvram.c b/arch/mips/bcm947xx/nvram.c
+new file mode 100644
+index 0000000..d147adb
+--- /dev/null
++++ b/arch/mips/bcm947xx/nvram.c
+@@ -0,0 +1,131 @@
++/*
++ * BCM947xx nvram variable access
++ *
++ * Copyright 2006, Felix Fietkau <nbd@openwrt.org>
++ * 
++ * This program is free software; you can redistribute  it and/or modify it
++ * under  the terms of  the GNU General  Public License as published by the
++ * Free Software Foundation;  either version 2 of the  License, or (at your
++ * option) any later version.
++ *
++ *
++ * Copyright 2005, Broadcom Corporation
++ * 
++ * THIS SOFTWARE IS OFFERED "AS IS", AND BROADCOM GRANTS NO WARRANTIES OF ANY
++ * KIND, EXPRESS OR IMPLIED, BY STATUTE, COMMUNICATION OR OTHERWISE. BROADCOM
++ * SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
++ * FOR A SPECIFIC PURPOSE OR NONINFRINGEMENT CONCERNING THIS SOFTWARE.
++ *
++ */
++
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/ssb.h>
++#include <linux/kernel.h>
++#include <linux/string.h>
++#include <linux/interrupt.h>
++#include <linux/spinlock.h>
++#include <linux/slab.h>
++#include <asm/byteorder.h>
++#include <asm/bootinfo.h>
++#include <asm/addrspace.h>
++#include <asm/io.h>
++#include <asm/uaccess.h>
++
++#include <nvram.h>
++
++#define MB * 1048576
++extern struct ssb_bus ssb;
++
++static char nvram_buf[NVRAM_SPACE];
++static int cfe_env;
++extern char *cfe_env_get(char *nv_buf, const char *name);
++		
++/* Probe for NVRAM header */
++static void __init early_nvram_init(void)
++{
++	struct ssb_mipscore *mcore = &ssb.mipscore;
++	struct nvram_header *header;
++	int i;
++	u32 base, lim, off;
++	u32 *src, *dst;
++	
++	base = mcore->flash_window;
++	lim = mcore->flash_window_size;
++	cfe_env = 0;
++
++	
++	/* XXX: hack for supporting the CFE environment stuff on WGT634U */
++	if (lim >= 8 MB) {
++		src = (u32 *) KSEG1ADDR(base + 8 MB - 0x2000);
++		dst = (u32 *) nvram_buf;
++
++		if ((*src & 0xff00ff) == 0x000001) {
++			printk("early_nvram_init: WGT634U NVRAM found.\n");
++
++			for (i = 0; i < 0x1ff0; i++) {
++				if (*src == 0xFFFFFFFF)
++					break;
++				*dst++ = *src++;
++			}
++			cfe_env = 1;
++			return;
++		}
++	}
++
++	off = 0x20000;
++	while (off <= lim) {
++		/* Windowed flash access */
++		header = (struct nvram_header *) KSEG1ADDR(base + off - NVRAM_SPACE);
++		if (header->magic == NVRAM_HEADER)
++			goto found;
++		off <<= 1;
++	}
++
++	/* Try embedded NVRAM at 4 KB and 1 KB as last resorts */
++	header = (struct nvram_header *) KSEG1ADDR(base + 4096);
++	if (header->magic == NVRAM_HEADER)
++		goto found;
++	
++	header = (struct nvram_header *) KSEG1ADDR(base + 1024);
++	if (header->magic == NVRAM_HEADER)
++		goto found;
++	
++	return;
++
++found:
++	src = (u32 *) header;
++	dst = (u32 *) nvram_buf;
++	for (i = 0; i < sizeof(struct nvram_header); i += 4)
++		*dst++ = *src++;
++	for (; i < header->len && i < NVRAM_SPACE; i += 4)
++		*dst++ = le32_to_cpu(*src++);
++}
++
++char *nvram_get(const char *name)
++{
++	char *var, *value, *end, *eq;
++
++	if (!name)
++		return NULL;
++
++	if (!nvram_buf[0])
++		early_nvram_init();
++
++	if (cfe_env)
++		return cfe_env_get(nvram_buf, name);
++
++	/* Look for name=value and return value */
++	var = &nvram_buf[sizeof(struct nvram_header)];
++	end = nvram_buf + sizeof(nvram_buf) - 2;
++	end[0] = end[1] = '\0';
++	for (; *var; var = value + strlen(value) + 1) {
++		if (!(eq = strchr(var, '=')))
++			break;
++		value = eq + 1;
++		if ((eq - var) == strlen(name) && strncmp(var, name, (eq - var)) == 0)
++			return value;
++	}
++
++	return NULL;
++}
+diff --git a/arch/mips/bcm947xx/pci.c b/arch/mips/bcm947xx/pci.c
+new file mode 100644
+index 0000000..bdc3d96
+--- /dev/null
++++ b/arch/mips/bcm947xx/pci.c
+@@ -0,0 +1,227 @@
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/pci.h>
++#include <linux/types.h>
++
++#include <asm/cpu.h>
++#include <asm/io.h>
++
++#include <typedefs.h>
++#include <osl.h>
++#include <sbutils.h>
++#include <sbmips.h>
++#include <sbconfig.h>
++#include <sbpci.h>
++#include <bcmdevs.h>
++#include <pcicfg.h>
++
++extern sb_t *sbh;
++extern spinlock_t sbh_lock;
++
++
++static int
++sb_pci_read_config(struct pci_bus *bus, unsigned int devfn,
++				int reg, int size, u32 *val)
++{
++	int ret;
++	unsigned long flags;
++	
++	spin_lock_irqsave(&sbh_lock, flags);
++	ret = sbpci_read_config(sbh, bus->number, PCI_SLOT(devfn), PCI_FUNC(devfn), reg, val, size);
++	spin_unlock_irqrestore(&sbh_lock, flags);
++
++	return ret ? PCIBIOS_DEVICE_NOT_FOUND : PCIBIOS_SUCCESSFUL;
++}
++
++static int
++sb_pci_write_config(struct pci_bus *bus, unsigned int devfn,
++				int reg, int size, u32 val)
++{
++	int ret;
++	unsigned long flags;
++	
++	spin_lock_irqsave(&sbh_lock, flags);
++	ret = sbpci_write_config(sbh, bus->number, PCI_SLOT(devfn), PCI_FUNC(devfn), reg, &val, size);
++	spin_unlock_irqrestore(&sbh_lock, flags);
++
++	return ret ? PCIBIOS_DEVICE_NOT_FOUND : PCIBIOS_SUCCESSFUL;
++}
++
++
++static struct pci_ops sb_pci_ops = {
++	.read   = sb_pci_read_config,
++	.write  = sb_pci_write_config,
++};
++
++static struct resource sb_pci_mem_resource = {
++	.name   = "SB PCI Memory resources",
++	.start  = SB_ENUM_BASE,
++	.end    = SB_ENUM_LIM - 1,
++	.flags  = IORESOURCE_MEM,
++};
++
++static struct resource sb_pci_io_resource = {
++	.name   = "SB PCI I/O resources",
++	.start  = 0x000,
++	.end    = 0x0FF,
++	.flags  = IORESOURCE_IO,
++};
++
++static struct pci_controller bcm47xx_sb_pci_controller = {
++	.pci_ops        = &sb_pci_ops,
++	.mem_resource   = &sb_pci_mem_resource,
++	.io_resource    = &sb_pci_io_resource,
++};
++
++static struct resource ext_pci_mem_resource = {
++	.name   = "Ext PCI Memory resources",
++	.start  = 0x40000000,
++	.end    = 0x7fffffff,
++	.flags  = IORESOURCE_MEM,
++};
++
++static struct resource ext_pci_io_resource = {
++	.name   = "Ext PCI I/O resources",
++	.start  = 0x100,
++	.end    = 0x7FF,
++	.flags  = IORESOURCE_IO,
++};
++
++static struct pci_controller bcm47xx_ext_pci_controller = {
++	.pci_ops        = &sb_pci_ops,
++	.io_resource    = &ext_pci_io_resource,
++	.mem_resource   = &ext_pci_mem_resource,
++	.mem_offset		= 0x24000000,
++};
++
++void bcm47xx_pci_init(void)
++{
++	unsigned long flags;
++	
++	spin_lock_irqsave(&sbh_lock, flags);
++	sbpci_init(sbh);
++	spin_unlock_irqrestore(&sbh_lock, flags);
++
++	set_io_port_base((unsigned long) ioremap_nocache(SB_PCI_MEM, 0x04000000));
++
++	register_pci_controller(&bcm47xx_sb_pci_controller);
++	register_pci_controller(&bcm47xx_ext_pci_controller);
++}
++
++int __init pcibios_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
++{
++	unsigned long flags;
++	u8 irq;
++	uint idx;
++	
++	/* external: use the irq of the pci core */
++	if (dev->bus->number >= 1) {
++		spin_lock_irqsave(&sbh_lock, flags);
++		idx = sb_coreidx(sbh);
++		sb_setcore(sbh, SB_PCI, 0);
++		irq = sb_irq(sbh);
++		sb_setcoreidx(sbh, idx);
++		spin_unlock_irqrestore(&sbh_lock, flags);
++		
++		return irq + 2;
++	}
++	
++	/* internal */
++	pci_read_config_byte(dev, PCI_INTERRUPT_LINE, &irq);
++	return irq + 2;
++}
++
++u32 pci_iobase = 0x100;
++u32 pci_membase = SB_PCI_DMA;
++
++static void bcm47xx_fixup_device(struct pci_dev *d)
++{
++	struct resource *res;
++	int pos, size;
++	u32 *base;
++
++	if (d->bus->number == 0)
++		return;
++	
++	printk("PCI: Fixing up device %s\n", pci_name(d));
++
++	/* Fix up resource bases */
++	for (pos = 0; pos < 6; pos++) {
++		res = &d->resource[pos];
++		base = ((res->flags & IORESOURCE_IO) ? &pci_iobase : &pci_membase);
++		if (res->end) {
++			size = res->end - res->start + 1;
++			if (*base & (size - 1))
++				*base = (*base + size) & ~(size - 1);
++			res->start = *base;
++			res->end = res->start + size - 1;
++			*base += size;
++			pci_write_config_dword(d, PCI_BASE_ADDRESS_0 + (pos << 2), res->start);
++		}
++		/* Fix up PCI bridge BAR0 only */
++		if (d->bus->number == 1 && PCI_SLOT(d->devfn) == 0)
++			break;
++	}
++	/* Fix up interrupt lines */
++	if (pci_find_device(VENDOR_BROADCOM, SB_PCI, NULL))
++		d->irq = (pci_find_device(VENDOR_BROADCOM, SB_PCI, NULL))->irq;
++	pci_write_config_byte(d, PCI_INTERRUPT_LINE, d->irq);
++}
++
++
++static void bcm47xx_fixup_bridge(struct pci_dev *dev)
++{
++	if (dev->bus->number != 1 || PCI_SLOT(dev->devfn) != 0)
++		return;
++	
++	printk("PCI: fixing up bridge\n");
++
++	/* Enable PCI bridge bus mastering and memory space */
++	pci_set_master(dev);
++	pcibios_enable_device(dev, ~0);
++	
++	/* Enable PCI bridge BAR1 prefetch and burst */
++	pci_write_config_dword(dev, PCI_BAR1_CONTROL, 3);
++}
++
++/* Do platform specific device initialization at pci_enable_device() time */
++int pcibios_plat_dev_init(struct pci_dev *dev)
++{
++	uint coreidx;
++	unsigned long flags;
++	
++	bcm47xx_fixup_device(dev);
++
++	/* These cores come out of reset enabled */
++	if ((dev->bus->number != 0) ||
++		(dev->device == SB_MIPS) ||
++		(dev->device == SB_MIPS33) ||
++		(dev->device == SB_EXTIF) ||
++		(dev->device == SB_CC))
++		return 0;
++
++	/* Do a core reset */
++	spin_lock_irqsave(&sbh_lock, flags);
++	coreidx = sb_coreidx(sbh);
++	if (sb_setcoreidx(sbh, PCI_SLOT(dev->devfn)) && (sb_coreid(sbh) == SB_USB)) {
++		/* 
++		 * The USB core requires a special bit to be set during core
++		 * reset to enable host (OHCI) mode. Resetting the SB core in
++		 * pcibios_enable_device() is a hack for compatibility with
++		 * vanilla usb-ohci so that it does not have to know about
++		 * SB. A driver that wants to use the USB core in device mode
++		 * should know about SB and should reset the bit back to 0
++		 * after calling pcibios_enable_device().
++		 */
++		sb_core_disable(sbh, sb_coreflags(sbh, 0, 0));
++		sb_core_reset(sbh, 1 << 29);
++	} else {
++		sb_core_reset(sbh, 0);
++	}
++	sb_setcoreidx(sbh, coreidx);
++	spin_unlock_irqrestore(&sbh_lock, flags);
++	
++	return 0;
++}
++
++DECLARE_PCI_FIXUP_EARLY(PCI_ANY_ID, PCI_ANY_ID, bcm47xx_fixup_bridge);
+diff --git a/arch/mips/bcm947xx/prom.c b/arch/mips/bcm947xx/prom.c
+new file mode 100644
+index 0000000..7a6981d
+--- /dev/null
++++ b/arch/mips/bcm947xx/prom.c
+@@ -0,0 +1,59 @@
++/*
++ *  Copyright (C) 2004 Florian Schirmer (jolt@tuxbox.org)
++ *
++ *  This program is free software; you can redistribute  it and/or modify it
++ *  under  the terms of  the GNU General  Public License as published by the
++ *  Free Software Foundation;  either version 2 of the  License, or (at your
++ *  option) any later version.
++ *
++ *  THIS  SOFTWARE  IS PROVIDED   ``AS  IS'' AND   ANY  EXPRESS OR IMPLIED
++ *  WARRANTIES,   INCLUDING, BUT NOT  LIMITED  TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
++ *  NO  EVENT  SHALL   THE AUTHOR  BE    LIABLE FOR ANY   DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++ *  NOT LIMITED   TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS OF
++ *  USE, DATA,  OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
++ *  ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT
++ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ *  You should have received a copy of the  GNU General Public License along
++ *  with this program; if not, write  to the Free Software Foundation, Inc.,
++ *  675 Mass Ave, Cambridge, MA 02139, USA.
++ */
++
++#include <linux/init.h>
++#include <linux/mm.h>
++#include <linux/sched.h>
++#include <linux/bootmem.h>
++
++#include <asm/addrspace.h>
++#include <asm/bootinfo.h>
++#include <asm/pmon.h>
++
++const char *get_system_type(void)
++{
++	return "Broadcom BCM47xx";
++}
++
++void __init prom_init(void)
++{
++	unsigned long mem;
++
++        mips_machgroup = MACH_GROUP_BRCM;
++        mips_machtype = MACH_BCM47XX;
++
++	/* Figure out memory size by finding aliases */
++	for (mem = (1 << 20); mem < (128 << 20); mem += (1 << 20)) {
++		if (*(unsigned long *)((unsigned long)(prom_init) + mem) == 
++		    *(unsigned long *)(prom_init))
++			break;
++	}
++
++	add_memory_region(0, mem, BOOT_MEM_RAM);
++}
++
++unsigned long __init prom_free_prom_memory(void)
++{
++	return 0;
++}
+diff --git a/arch/mips/bcm947xx/setup.c b/arch/mips/bcm947xx/setup.c
+new file mode 100644
+index 0000000..5ebbd02
+--- /dev/null
++++ b/arch/mips/bcm947xx/setup.c
+@@ -0,0 +1,163 @@
++/*
++ *  Copyright (C) 2004 Florian Schirmer (jolt@tuxbox.org)
++ *  Copyright (C) 2005 Waldemar Brodkorb <wbx@openwrt.org>
++ *  Copyright (C) 2006 Felix Fietkau <nbd@openwrt.org>
++ *  Copyright (C) 2006 Michael Buesch
++ *
++ *  This program is free software; you can redistribute  it and/or modify it
++ *  under  the terms of  the GNU General  Public License as published by the
++ *  Free Software Foundation;  either version 2 of the  License, or (at your
++ *  option) any later version.
++ *
++ *  THIS  SOFTWARE  IS PROVIDED   ``AS  IS'' AND   ANY  EXPRESS OR IMPLIED
++ *  WARRANTIES,   INCLUDING, BUT NOT  LIMITED  TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
++ *  NO  EVENT  SHALL   THE AUTHOR  BE    LIABLE FOR ANY   DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++ *  NOT LIMITED   TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS OF
++ *  USE, DATA,  OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
++ *  ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT
++ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ *  You should have received a copy of the  GNU General Public License along
++ *  with this program; if not, write  to the Free Software Foundation, Inc.,
++ *  675 Mass Ave, Cambridge, MA 02139, USA.
++ */
++
++#include <linux/init.h>
++#include <linux/types.h>
++#include <linux/tty.h>
++#include <linux/serial.h>
++#include <linux/serial_core.h>
++#include <linux/serial_reg.h>
++#include <asm/bootinfo.h>
++#include <asm/time.h>
++#include <asm/reboot.h>
++#include <asm/cfe.h>
++#include <linux/pm.h>
++#include <linux/ssb.h>
++
++#include <nvram.h>
++
++extern void bcm47xx_pci_init(void);
++extern void bcm47xx_time_init(void);
++
++struct ssb_bus ssb;
++
++static void bcm47xx_machine_restart(char *command)
++{
++	printk(KERN_ALERT "Please stand by while rebooting the system...\n");
++	local_irq_disable();
++	/* CFE has a reboot callback, but that does not work.
++	 * Oopses with: Reserved instruction in kernel code.
++	 */
++
++	/* Set the watchdog timer to reset immediately */
++//TODO	sb_watchdog(sbh, 1);
++	while (1)
++		cpu_relax();
++}
++
++static void bcm47xx_machine_halt(void)
++{
++	/* Disable interrupts and watchdog and spin forever */
++	local_irq_disable();
++//TODO	sb_watchdog(sbh, 0);
++	while (1)
++		cpu_relax();
++}
++
++static void e_aton(char *str, char *dest)
++{
++	int i = 0;
++
++	if (str == NULL) {
++		memset(dest, 0, 6);
++		return;
++	}
++	
++	for (;;) {
++		dest[i++] = (char) simple_strtoul(str, NULL, 16);
++		str += 2;
++		if (!*str++ || i == 6)
++			break;
++	}
++}
++
++static void bcm47xx_fill_sprom(struct ssb_sprom *sprom)
++{
++	// TODO
++}
++
++static void bcm47xx_fill_sprom_nvram(struct ssb_sprom *sprom)
++{
++	char *s;
++
++	memset(sprom, 0, sizeof(struct ssb_sprom));
++	
++	sprom->revision = 3;
++	if ((s = nvram_get("et0macaddr")))
++		e_aton(s, sprom->r1.et0mac);
++	if ((s = nvram_get("et1macaddr")))
++		e_aton(s, sprom->r1.et1mac);
++	if ((s = nvram_get("il0macaddr")))
++		e_aton(s, sprom->r1.il0mac);
++	if ((s = nvram_get("et0phyaddr")))
++		sprom->r1.et0phyaddr = simple_strtoul(s, NULL, 10);
++	if ((s = nvram_get("et1phyaddr")))
++		sprom->r1.et1phyaddr = simple_strtoul(s, NULL, 10);
++}
++
++void __init plat_mem_setup(void)
++{
++	int i, err;
++	char *s;
++	struct ssb_mipscore *mcore;
++
++	err = ssb_bus_ssbbus_register(&ssb, SSB_ENUM_BASE, bcm47xx_fill_sprom);
++	if (err) {
++		const char *msg = "Failed to initialize SSB bus (err %d)\n";
++		cfe_printk(msg, err); /* Make sure the message gets out of the box. */
++		panic(msg, err);
++	}
++	mcore = &ssb.mipscore;
++
++	/* FIXME: the nvram init depends on the ssb being fully initializes,
++	 * can't use the fill_sprom callback yet! */
++	bcm47xx_fill_sprom_nvram(&ssb.sprom);
++	
++	s = nvram_get("kernel_args");
++	if (s && !strncmp(s, "console=ttyS1", 13) && (mcore->nr_serial_ports >= 2)) {
++		struct ssb_serial_port port;
++
++		/* swap serial ports */
++		memcpy(&port, &mcore->serial_ports[0], sizeof(port));
++		memcpy(&mcore->serial_ports[0], &mcore->serial_ports[1], sizeof(port));
++		memcpy(&mcore->serial_ports[1], &port, sizeof(port));
++	}
++
++	for (i = 0; i < mcore->nr_serial_ports; i++) {
++		struct ssb_serial_port *port = &(mcore->serial_ports[i]);
++		struct uart_port s;
++	
++		memset(&s, 0, sizeof(s));
++		s.line = i;
++		s.membase = port->regs;
++		s.irq = port->irq + 2;//FIXME?
++		s.uartclk = port->baud_base;
++		s.flags = ASYNC_BOOT_AUTOCONF;
++		s.iotype = SERIAL_IO_MEM;
++		s.regshift = port->reg_shift;
++
++		early_serial_setup(&s);
++	}
++	cfe_printk("Serial init done.\n");
++
++	_machine_restart = bcm47xx_machine_restart;
++	_machine_halt = bcm47xx_machine_halt;
++	pm_power_off = bcm47xx_machine_halt;
++
++	board_time_init = bcm47xx_time_init;//FIXME move into ssb
++}
++
+diff --git a/arch/mips/bcm947xx/time.c b/arch/mips/bcm947xx/time.c
+new file mode 100644
+index 0000000..0adf6af
+--- /dev/null
++++ b/arch/mips/bcm947xx/time.c
+@@ -0,0 +1,62 @@
++/*
++ *  Copyright (C) 2004 Florian Schirmer (jolt@tuxbox.org)
++ *
++ *  This program is free software; you can redistribute  it and/or modify it
++ *  under  the terms of  the GNU General  Public License as published by the
++ *  Free Software Foundation;  either version 2 of the  License, or (at your
++ *  option) any later version.
++ *
++ *  THIS  SOFTWARE  IS PROVIDED   ``AS  IS'' AND   ANY  EXPRESS OR IMPLIED
++ *  WARRANTIES,   INCLUDING, BUT NOT  LIMITED  TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
++ *  NO  EVENT  SHALL   THE AUTHOR  BE    LIABLE FOR ANY   DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++ *  NOT LIMITED   TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS OF
++ *  USE, DATA,  OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
++ *  ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT
++ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ *  You should have received a copy of the  GNU General Public License along
++ *  with this program; if not, write  to the Free Software Foundation, Inc.,
++ *  675 Mass Ave, Cambridge, MA 02139, USA.
++ */
++
++#include <linux/init.h>
++#include <linux/kernel.h>
++#include <linux/sched.h>
++#include <linux/serial_reg.h>
++#include <linux/interrupt.h>
++#include <linux/ssb.h>
++#include <asm/addrspace.h>
++#include <asm/io.h>
++#include <asm/time.h>
++
++extern struct ssb_bus ssb;
++
++void __init
++bcm47xx_time_init(void)
++{
++	unsigned long hz;
++
++	/*
++	 * Use deterministic values for initial counter interrupt
++	 * so that calibrate delay avoids encountering a counter wrap.
++	 */
++	write_c0_count(0);
++	write_c0_compare(0xffff);
++
++	hz = ssb_clockspeed(&ssb);
++	if (!hz)
++		hz = 100000000;
++
++	/* Set MIPS counter frequency for fixed_rate_gettimeoffset() */
++	mips_hpt_frequency = hz;
++}
++
++void __init
++plat_timer_setup(struct irqaction *irq)
++{
++	/* Enable the timer interrupt */
++	setup_irq(7, irq);
++}
+diff --git a/arch/mips/cfe/Makefile b/arch/mips/cfe/Makefile
+new file mode 100644
+index 0000000..d9f046a
+--- /dev/null
++++ b/arch/mips/cfe/Makefile
+@@ -0,0 +1,5 @@
++#
++# Makefile for the Broadcom Common Firmware Environment support
++#
++
++obj-y += cfe.o
+diff --git a/arch/mips/cfe/cfe.c b/arch/mips/cfe/cfe.c
+new file mode 100644
+index 0000000..6d16111
+--- /dev/null
++++ b/arch/mips/cfe/cfe.c
+@@ -0,0 +1,533 @@
++/*
++ * Broadcom Common Firmware Environment (CFE) support
++ *
++ * Copyright 2000, 2001, 2002
++ * Broadcom Corporation. All rights reserved.
++ *
++ * Copyright (C) 2006 Michael Buesch
++ *
++ * Original Authors:  Mitch Lichtenberg, Chris Demetriou
++ *
++ * This software is furnished under license and may be used and copied only
++ * in accordance with the following terms and conditions.  Subject to these
++ * conditions, you may download, copy, install, use, modify and distribute
++ * modified or unmodified copies of this software in source and/or binary
++ * form. No title or ownership is transferred hereby.
++ *
++ * 1) Any source code used, modified or distributed must reproduce and
++ *    retain this copyright notice and list of conditions as they appear in
++ *    the source file.
++ *
++ * 2) No right is granted to use any trade name, trademark, or logo of
++ *    Broadcom Corporation.  The "Broadcom Corporation" name may not be
++ *    used to endorse or promote products derived from this software
++ *    without the prior written permission of Broadcom Corporation.
++ *
++ * 3) THIS SOFTWARE IS PROVIDED "AS-IS" AND ANY EXPRESS OR IMPLIED
++ *    WARRANTIES, INCLUDING BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF
++ *    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
++ *    NON-INFRINGEMENT ARE DISCLAIMED. IN NO EVENT SHALL BROADCOM BE LIABLE
++ *    FOR ANY DAMAGES WHATSOEVER, AND IN PARTICULAR, BROADCOM SHALL NOT BE
++ *    LIABLE FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ *    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ *    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ *    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ *    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ *    OR OTHERWISE), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <linux/init.h>
++#include <linux/string.h>
++#include <linux/errno.h>
++#include <linux/spinlock.h>
++#include <asm/cfe.h>
++
++#include "cfe_private.h"
++
++
++static cfe_uint_t cfe_handle;
++static int (*cfe_trampoline)(long handle, long iocb);
++
++
++#include <linux/kernel.h>
++
++void __init cfe_setup(unsigned long fwarg0, unsigned long fwarg1,
++		      unsigned long fwarg2, unsigned long fwarg3)
++{
++	if (fwarg3 == 0x80300000) {
++		/* WRT54G workaround */
++		fwarg3 = CFE_EPTSEAL;
++		fwarg2 = 0xBFC00500;
++	}
++	if (fwarg3 != CFE_EPTSEAL) {
++		/* We are not booted from CFE */
++		return;
++	}
++	if (fwarg1 == 0) {
++		/* We are on the boot CPU */
++		cfe_handle = (cfe_uint_t)fwarg0;
++		cfe_trampoline = CFE_TO_PTR(fwarg2);
++	}
++}
++
++int cfe_vprintk(const char *fmt, va_list args)
++{
++	static char buffer[1024];
++	static DEFINE_SPINLOCK(lock);
++	static const char pfx[] = "CFE-console: ";
++	static const size_t pfx_len = sizeof(pfx) - 1;
++	unsigned long flags;
++	int len, cnt, pos;
++	int handle;
++	int res;
++
++	if (!cfe_present())
++		return -ENODEV;
++
++	spin_lock_irqsave(&lock, flags);
++	handle = cfe_getstdhandle(CFE_STDHANDLE_CONSOLE);
++	if (CFE_ISERR(handle)) {
++		len = -EIO;
++		goto out;
++	}
++	strcpy(buffer, pfx);
++	len = vscnprintf(buffer + pfx_len,
++			 sizeof(buffer) - pfx_len - 2,
++			 fmt, args);
++	len += pfx_len;
++	/* The CFE console requires CR-LF line-ends.
++	 * Add a CR, if we only terminate lines with a LF.
++	 * This does only fix CR-LF at the end of the string.
++	 * So for multiple lines, use multiple cfe_vprintk calls.
++	 */
++	if (len > 1 &&
++	    buffer[len - 1] == '\n' && buffer[len - 2] != '\r') {
++		buffer[len - 1] = '\r';
++		buffer[len] = '\n';
++		len += 1;
++	}
++	cnt = len;
++	pos = 0;
++	while (cnt > 0) {
++		res = cfe_write(handle, buffer + pos, len - pos);
++		if (CFE_ISERR(res)) {
++			len = -EIO;
++			goto out;
++		}
++		cnt -= res;
++		pos += res;
++	}
++out:
++	spin_unlock_irqrestore(&lock, flags);
++
++	return len;
++}
++
++int cfe_printk(const char *fmt, ...)
++{
++	va_list args;
++	int res;
++
++	va_start(args, fmt);
++	res = cfe_vprintk(fmt, args);
++	va_end(args);
++
++	return res;
++}
++
++static int cfe_iocb_dispatch(struct cfe_iocb *iocb)
++{
++	if (!cfe_present())
++		return CFE_ERR_UNSUPPORTED;
++	return cfe_trampoline((long)cfe_handle, (long)iocb);
++}
++
++int cfe_present(void)
++{
++	return (cfe_trampoline != NULL);
++}
++
++int cfe_close(int handle)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_CLOSE;
++	iocb.handle = handle;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_cpu_start(int cpu, void (*fn)(void), long sp, long gp, long a1)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_FW_CPUCTL;
++	iocb.psize = sizeof(struct cfe_iocb_cpuctl);
++	iocb.cpuctl.number = cpu;
++	iocb.cpuctl.command = CFE_CPU_CMD_START;
++	iocb.cpuctl.gp = gp;
++	iocb.cpuctl.sp = sp;
++	iocb.cpuctl.a1 = a1;
++	iocb.cpuctl.start_addr = (long)fn;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_cpu_stop(int cpu)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_FW_CPUCTL;
++	iocb.psize = sizeof(struct cfe_iocb_cpuctl);
++	iocb.cpuctl.number = cpu;
++	iocb.cpuctl.command = CFE_CPU_CMD_STOP;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_enumenv(int idx, char *name, int namelen, char *val, int vallen)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_ENV_ENUM;
++	iocb.psize = sizeof(struct cfe_iocb_envbuf);
++	iocb.envbuf.index = idx;
++	iocb.envbuf.name = PTR_TO_CFE(name);
++	iocb.envbuf.name_len = namelen;
++	iocb.envbuf.val = PTR_TO_CFE(val);
++	iocb.envbuf.val_len = vallen;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_enumdev(int idx, char *name, int namelen)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++
++	iocb.fcode = CFE_CMD_DEV_ENUM;
++	iocb.psize = sizeof(struct cfe_iocb_envbuf);
++	iocb.envbuf.index = idx;
++	iocb.envbuf.name = PTR_TO_CFE(name);
++	iocb.envbuf.name_len = namelen;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_enummem(int idx, int flags, u64 *start, u64 *length,
++		u64 *type)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++
++	iocb.fcode = CFE_CMD_FW_MEMENUM;
++	iocb.flags = flags;
++	iocb.psize = sizeof(struct cfe_iocb_meminfo);
++	iocb.meminfo.index = idx;
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (!CFE_ISERR(iocb.status)) {
++		*start = iocb.meminfo.addr;
++		*length = iocb.meminfo.size;
++		*type = iocb.meminfo.type;
++	}
++
++	return iocb.status;
++}
++
++int cfe_exit(int warm, int status)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++printk("CFE REBOOT\n");
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_FW_RESTART;
++	if (warm)
++		iocb.flags = CFE_FLG_WARMSTART;
++	iocb.psize = sizeof(struct cfe_iocb_exitstat);
++	iocb.exitstat.status = status;
++
++printk("CALL\n");
++	err = cfe_iocb_dispatch(&iocb);
++printk("DONE\n");
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_flushcache(int flags)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_FW_FLUSHCACHE;
++	iocb.flags = flags;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_getdevinfo(char *name)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_GETINFO;
++	iocb.psize = sizeof(struct cfe_iocb_buf);
++	iocb.buffer.ptr = PTR_TO_CFE(name);
++	iocb.buffer.length = strlen(name);
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++
++	return iocb.buffer.devflags;
++}
++
++int cfe_getenv(char *name, char *dest, int destlen)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	dest[0] = '\0';
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_ENV_GET;
++	iocb.psize = sizeof(struct cfe_iocb_envbuf);
++	iocb.envbuf.name = PTR_TO_CFE(name);
++	iocb.envbuf.name_len = strlen(name);
++	iocb.envbuf.val = PTR_TO_CFE(dest);
++	iocb.envbuf.val_len = destlen;
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_getfwinfo(struct cfe_fwinfo *info)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_FW_GETINFO;
++	iocb.psize = sizeof(struct cfe_iocb_fwinfo);
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return err;
++
++	info->version = iocb.fwinfo.version;
++	info->totalmem = iocb.fwinfo.totalmem;
++	info->flags = iocb.fwinfo.flags;
++	info->boardid = iocb.fwinfo.boardid;
++	info->bootarea_va = iocb.fwinfo.bootarea_va;
++	info->bootarea_pa = iocb.fwinfo.bootarea_pa;
++	info->bootarea_size = iocb.fwinfo.bootarea_size;
++
++	return iocb.status;
++}
++
++int cfe_getstdhandle(int handletype)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_GETHANDLE;
++	iocb.flags = handletype;
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++
++	return iocb.handle;
++}
++
++int cfe_getticks(s64 *ticks)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_FW_GETTIME;
++	iocb.psize = sizeof(struct cfe_iocb_time);
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (!CFE_ISERR(iocb.status))
++		*ticks = iocb.time.ticks;
++
++	return iocb.status;
++}
++
++int cfe_inpstat(int handle)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_INPSTAT;
++	iocb.handle = handle;
++	iocb.psize = sizeof(struct cfe_iocb_inpstat);
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++
++	return iocb.inpstat.status;
++}
++
++int cfe_ioctl(int handle, unsigned int ioctlnum,
++	      unsigned char *buffer, int length,
++	      int *retlen, u64 offset)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_IOCTL;
++	iocb.handle = handle;
++	iocb.psize = sizeof(struct cfe_iocb_buf);
++	iocb.buffer.offset = offset;
++	iocb.buffer.ioctlcmd = ioctlnum;
++	iocb.buffer.ptr = PTR_TO_CFE(buffer);
++	iocb.buffer.length = length;
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++	if (retlen)
++		*retlen = iocb.buffer.retlen;
++
++	return iocb.status;
++}
++
++int cfe_open(char *name)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_OPEN;
++	iocb.psize = sizeof(struct cfe_iocb_buf);
++	iocb.buffer.ptr = PTR_TO_CFE(name);
++	iocb.buffer.length = strlen(name);
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++
++	return iocb.handle;
++}
++
++int cfe_read(int handle, unsigned char *buffer, int length)
++{
++	return cfe_readblk(handle, 0, buffer, length);
++}
++
++int cfe_readblk(int handle, s64 offset, unsigned char *buffer, int length)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_READ;
++	iocb.handle = handle;
++	iocb.psize = sizeof(struct cfe_iocb_buf);
++	iocb.buffer.offset = offset;
++	iocb.buffer.ptr = PTR_TO_CFE(buffer);
++	iocb.buffer.length = length;
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++
++	return iocb.buffer.retlen;
++}
++
++int cfe_setenv(char *name, char *val)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_ENV_SET;
++	iocb.psize = sizeof(struct cfe_iocb_envbuf);
++	iocb.envbuf.name = PTR_TO_CFE(name);
++	iocb.envbuf.name_len = strlen(name);
++	iocb.envbuf.val = PTR_TO_CFE(val);
++	iocb.envbuf.val_len = strlen(val);
++
++	err = cfe_iocb_dispatch(&iocb);
++
++	return (CFE_ISERR(err)) ? err : iocb.status;
++}
++
++int cfe_write(int handle, unsigned char *buffer, int length)
++{
++	return cfe_writeblk(handle, 0, buffer, length);
++}
++
++int cfe_writeblk(int handle, s64 offset, unsigned char *buffer, int length)
++{
++	struct cfe_iocb iocb;
++	int err;
++
++	memset(&iocb, 0, sizeof(iocb));
++	iocb.fcode = CFE_CMD_DEV_WRITE;
++	iocb.handle = handle;
++	iocb.psize = sizeof(struct cfe_iocb_buf);
++	iocb.buffer.offset = offset;
++	iocb.buffer.ptr = PTR_TO_CFE(buffer);
++	iocb.buffer.length = length;
++
++	err = cfe_iocb_dispatch(&iocb);
++	if (CFE_ISERR(err))
++		return err;
++	if (CFE_ISERR(iocb.status))
++		return iocb.status;
++
++	return iocb.buffer.retlen;
++}
+diff --git a/arch/mips/cfe/cfe_private.h b/arch/mips/cfe/cfe_private.h
+new file mode 100644
+index 0000000..0a604d3
+--- /dev/null
++++ b/arch/mips/cfe/cfe_private.h
+@@ -0,0 +1,176 @@
++/*
++ * Broadcom Common Firmware Environment (CFE) support
++ *
++ * Copyright 2000, 2001, 2002
++ * Broadcom Corporation. All rights reserved.
++ *
++ * Copyright (C) 2006 Michael Buesch
++ *
++ * Original Authors:  Mitch Lichtenberg, Chris Demetriou
++ *
++ * This software is furnished under license and may be used and copied only
++ * in accordance with the following terms and conditions.  Subject to these
++ * conditions, you may download, copy, install, use, modify and distribute
++ * modified or unmodified copies of this software in source and/or binary
++ * form. No title or ownership is transferred hereby.
++ *
++ * 1) Any source code used, modified or distributed must reproduce and
++ *    retain this copyright notice and list of conditions as they appear in
++ *    the source file.
++ *
++ * 2) No right is granted to use any trade name, trademark, or logo of
++ *    Broadcom Corporation.  The "Broadcom Corporation" name may not be
++ *    used to endorse or promote products derived from this software
++ *    without the prior written permission of Broadcom Corporation.
++ *
++ * 3) THIS SOFTWARE IS PROVIDED "AS-IS" AND ANY EXPRESS OR IMPLIED
++ *    WARRANTIES, INCLUDING BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF
++ *    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
++ *    NON-INFRINGEMENT ARE DISCLAIMED. IN NO EVENT SHALL BROADCOM BE LIABLE
++ *    FOR ANY DAMAGES WHATSOEVER, AND IN PARTICULAR, BROADCOM SHALL NOT BE
++ *    LIABLE FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ *    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ *    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ *    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ *    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ *    OR OTHERWISE), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef LINUX_CFE_PRIVATE_H_
++#define LINUX_CFE_PRIVATE_H_
++
++#ifndef __ASSEMBLY__
++
++/* Seal indicating CFE's presence, passed to the kernel. */
++#define CFE_EPTSEAL		0x43464531
++
++#define CFE_CMD_FW_GETINFO	0
++#define CFE_CMD_FW_RESTART	1
++#define CFE_CMD_FW_BOOT		2
++#define CFE_CMD_FW_CPUCTL	3
++#define CFE_CMD_FW_GETTIME      4
++#define CFE_CMD_FW_MEMENUM	5
++#define CFE_CMD_FW_FLUSHCACHE	6
++
++#define CFE_CMD_DEV_GETHANDLE	9
++#define CFE_CMD_DEV_ENUM	10
++#define CFE_CMD_DEV_OPEN	11
++#define CFE_CMD_DEV_INPSTAT	12
++#define CFE_CMD_DEV_READ	13
++#define CFE_CMD_DEV_WRITE	14
++#define CFE_CMD_DEV_IOCTL	15
++#define CFE_CMD_DEV_CLOSE	16
++#define CFE_CMD_DEV_GETINFO	17
++
++#define CFE_CMD_ENV_ENUM	20
++#define CFE_CMD_ENV_GET		22
++#define CFE_CMD_ENV_SET		23
++#define CFE_CMD_ENV_DEL		24
++
++#define CFE_CMD_MAX		32
++
++#define CFE_CMD_VENDOR_USE	0x8000	/* codes above this are for customer use */
++
++typedef u64 cfe_uint_t;
++typedef s64 cfe_int_t;
++typedef s64 cfe_ptr_t;
++
++/* Cast a pointer from native to CFE-API pointer and back */
++#define CFE_TO_PTR(p)		((void *)(unsigned long)(p))
++#define PTR_TO_CFE(p)		((cfe_ptr_t)(unsigned long)(p))
++
++struct cfe_iocb_buf {
++	cfe_uint_t	offset;		/* offset on device (bytes) */
++	cfe_ptr_t	ptr;		/* pointer to a buffer */
++	cfe_uint_t	length;		/* length of this buffer */
++	cfe_uint_t	retlen;		/* returned length (for read ops) */
++	union {
++		cfe_uint_t	ioctlcmd;	/* IOCTL command (used only for IOCTLs) */
++		cfe_uint_t	devflags;	/* Returned device info flags */
++	};
++};
++
++struct cfe_iocb_inpstat {
++	cfe_uint_t	status;		/* 1 means input available */
++};
++
++struct cfe_iocb_envbuf {
++	cfe_int_t	index;		/* 0-based enumeration index */
++	cfe_ptr_t	name;		/* name string buffer */
++	cfe_int_t	name_len;	/* size of name buffer */
++	cfe_ptr_t	val;		/* value string buffer */
++	cfe_int_t	val_len;	/* size of value string buffer */
++};
++
++struct cfe_iocb_cpuctl {
++	cfe_uint_t	number;		/* cpu number to control */
++	cfe_uint_t	command;	/* command to issue to CPU */
++	cfe_uint_t	start_addr;	/* CPU start address */
++	cfe_uint_t	gp;		/* starting GP value */
++	cfe_uint_t	sp;		/* starting SP value */
++	cfe_uint_t	a1;		/* starting A1 value */
++};
++
++struct cfe_iocb_time {
++	cfe_int_t	ticks;		/* current time in ticks */
++};
++
++struct cfe_iocb_exitstat {
++	cfe_int_t	status;
++};
++
++struct cfe_iocb_meminfo {
++	cfe_int_t	index;		/* 0-based enumeration index */
++	cfe_int_t	type;		/* type of memory block */
++	cfe_uint_t	addr;		/* physical start address */
++	cfe_uint_t	size;		/* block size */
++};
++
++struct cfe_iocb_fwinfo {
++	cfe_int_t	version;	/* major, minor, eco version */
++	cfe_int_t	totalmem;	/* total installed mem */
++	cfe_int_t	flags;		/* various flags */
++	cfe_int_t	boardid;	/* board ID */
++	cfe_int_t	bootarea_va;	/* VA of boot area */
++	cfe_int_t	bootarea_pa;	/* PA of boot area */
++	cfe_int_t	bootarea_size;	/* size of boot area */
++	cfe_int_t	reserved1;
++	cfe_int_t	reserved2;
++	cfe_int_t	reserved3;
++};
++
++/* CFE I/O Control Block */
++struct cfe_iocb {
++	cfe_uint_t	fcode;		/* IOCB function code */
++	cfe_int_t	status;		/* return status */
++	cfe_int_t	handle;		/* file/device handle */
++	cfe_uint_t	flags;		/* flags for this IOCB */
++	cfe_uint_t	psize;		/* size of parameter list */
++	union {
++		struct cfe_iocb_buf		buffer;		/* buffer parameters */
++		struct cfe_iocb_inpstat		inpstat;	/* input status parameters */
++		struct cfe_iocb_envbuf		envbuf;		/* environment function parameters */
++		struct cfe_iocb_cpuctl		cpuctl;		/* CPU control parameters */
++		struct cfe_iocb_time		time;		/* timer parameters */
++		struct cfe_iocb_meminfo		meminfo;	/* memory arena info parameters */
++		struct cfe_iocb_fwinfo		fwinfo;		/* firmware information */
++		struct cfe_iocb_exitstat	exitstat;	/* Exit Status */
++	};
++};
++
++
++#include <linux/init.h>
++
++void __init cfe_setup(unsigned long fwarg0, unsigned long fwarg1,
++		      unsigned long fwarg2, unsigned long fwarg3);
++
++#else /* __ASSEMBLY__ */
++
++	.macro	cfe_early_init
++#ifdef CONFIG_CFE
++		jal	cfe_setup
++#endif
++	.endm
++
++#endif /* __ASSEMBLY__ */
++#endif /* LINUX_CFE_PRIVATE_H_ */
+diff --git a/arch/mips/kernel/cpu-probe.c b/arch/mips/kernel/cpu-probe.c
+index 8485af3..fb5e5aa 100644
+--- a/arch/mips/kernel/cpu-probe.c
++++ b/arch/mips/kernel/cpu-probe.c
+@@ -723,6 +723,28 @@ static inline void cpu_probe_philips(str
+ }
+ 
+ 
++static inline void cpu_probe_broadcom(struct cpuinfo_mips *c)
++{
++	decode_config1(c);
++	switch (c->processor_id & 0xff00) {
++		case PRID_IMP_BCM3302:
++			c->cputype = CPU_BCM3302;
++			c->isa_level = MIPS_CPU_ISA_M32R1;
++			c->options = MIPS_CPU_TLB | MIPS_CPU_4KEX |
++					MIPS_CPU_4K_CACHE | MIPS_CPU_COUNTER;
++		break;
++		case PRID_IMP_BCM4710:
++			c->cputype = CPU_BCM4710;
++			c->isa_level = MIPS_CPU_ISA_M32R1;
++			c->options = MIPS_CPU_TLB | MIPS_CPU_4KEX |
++					MIPS_CPU_4K_CACHE | MIPS_CPU_COUNTER;
++		break;
++	default:
++		c->cputype = CPU_UNKNOWN;
++		break;
++	}
++}
++
+ __init void cpu_probe(void)
+ {
+ 	struct cpuinfo_mips *c = &current_cpu_data;
+@@ -745,6 +767,9 @@ __init void cpu_probe(void)
+ 	case PRID_COMP_SIBYTE:
+ 		cpu_probe_sibyte(c);
+ 		break;
++	case PRID_COMP_BROADCOM:
++		cpu_probe_broadcom(c);
++		break;
+ 	case PRID_COMP_SANDCRAFT:
+ 		cpu_probe_sandcraft(c);
+ 		break;
+diff --git a/arch/mips/kernel/head.S b/arch/mips/kernel/head.S
+index ddc1b71..252db66 100644
+--- a/arch/mips/kernel/head.S
++++ b/arch/mips/kernel/head.S
+@@ -129,6 +129,9 @@
+ #endif
+ 	.endm
+ 
++	j kernel_entry
++	nop
++
+ 	/*
+ 	 * Reserved space for exception handlers.
+ 	 * Necessary for machines which link their kernels at KSEG0.
+diff --git a/arch/mips/kernel/proc.c b/arch/mips/kernel/proc.c
+index 4ed37ba..2acfa19 100644
+--- a/arch/mips/kernel/proc.c
++++ b/arch/mips/kernel/proc.c
+@@ -83,6 +83,8 @@ static const char *cpu_name[] = {
+ 	[CPU_VR4181]	= "NEC VR4181",
+ 	[CPU_VR4181A]	= "NEC VR4181A",
+ 	[CPU_SR71000]	= "Sandcraft SR71000",
++	[CPU_BCM3302]	= "Broadcom BCM3302",
++	[CPU_BCM4710]	= "Broadcom BCM4710",
+ 	[CPU_PR4450]	= "Philips PR4450",
+ };
+ 
+diff --git a/arch/mips/mm/tlbex.c b/arch/mips/mm/tlbex.c
+index fec318a..3045432 100644
+--- a/arch/mips/mm/tlbex.c
++++ b/arch/mips/mm/tlbex.c
+@@ -880,6 +880,8 @@ static __init void build_tlb_write_entry
+ 	case CPU_4KSC:
+ 	case CPU_20KC:
+ 	case CPU_25KF:
++	case CPU_BCM3302:
++	case CPU_BCM4710:
+ 		tlbw(p);
+ 		break;
+ 
+diff --git a/drivers/mtd/chips/cfi_cmdset_0002.c b/drivers/mtd/chips/cfi_cmdset_0002.c
+index 702ae4c..35cd1c8 100644
+--- a/drivers/mtd/chips/cfi_cmdset_0002.c
++++ b/drivers/mtd/chips/cfi_cmdset_0002.c
+@@ -296,9 +296,6 @@ struct mtd_info *cfi_cmdset_0002(struct
+ 			printk(KERN_ERR "  Unknown Amd/Fujitsu Extended Query "
+ 			       "version %c.%c.\n",  extp->MajorVersion,
+ 			       extp->MinorVersion);
+-			kfree(extp);
+-			kfree(mtd);
+-			return NULL;
+ 		}
+ 
+ 		/* Install our own private info structure */
+diff --git a/drivers/mtd/maps/Kconfig b/drivers/mtd/maps/Kconfig
+index 24747bd..fec2769 100644
+--- a/drivers/mtd/maps/Kconfig
++++ b/drivers/mtd/maps/Kconfig
+@@ -299,6 +299,12 @@ config MTD_CFI_FLAGADM
+ 	  Mapping for the Flaga digital module. If you don't have one, ignore
+ 	  this setting.
+ 
++config MTD_BCM47XX
++	tristate "BCM47xx flash device"
++	depends on MIPS && MTD_CFI && BCM947XX
++	help
++	  Support for the flash chips on the BCM947xx board.
++	  
+ config MTD_BEECH
+ 	tristate "CFI Flash device mapped on IBM 405LP Beech"
+ 	depends on MTD_CFI && BEECH
+diff --git a/drivers/mtd/maps/Makefile b/drivers/mtd/maps/Makefile
+index 191c192..5881584 100644
+--- a/drivers/mtd/maps/Makefile
++++ b/drivers/mtd/maps/Makefile
+@@ -29,6 +29,7 @@ obj-$(CONFIG_MTD_PNC2000)	+= pnc2000.o
+ obj-$(CONFIG_MTD_PCMCIA)	+= pcmciamtd.o
+ obj-$(CONFIG_MTD_RPXLITE)	+= rpxlite.o
+ obj-$(CONFIG_MTD_TQM8XXL)	+= tqm8xxl.o
++obj-$(CONFIG_MTD_BCM47XX)	+= bcm47xx-flash.o
+ obj-$(CONFIG_MTD_SA1100)	+= sa1100-flash.o
+ obj-$(CONFIG_MTD_IPAQ)		+= ipaq-flash.o
+ obj-$(CONFIG_MTD_SBC_GXX)	+= sbc_gxx.o
+diff --git a/drivers/mtd/maps/bcm47xx-flash.c b/drivers/mtd/maps/bcm47xx-flash.c
+new file mode 100644
+index 0000000..334432d
+--- /dev/null
++++ b/drivers/mtd/maps/bcm47xx-flash.c
+@@ -0,0 +1,477 @@
++/*
++ *  Copyright (C) 2006 Felix Fietkau <nbd@openwrt.org>
++ *  Copyright (C) 2005 Waldemar Brodkorb <wbx@openwrt.org>
++ *  Copyright (C) 2004 Florian Schirmer (jolt@tuxbox.org)
++ *
++ *  original functions for finding root filesystem from Mike Baker 
++ *
++ *  This program is free software; you can redistribute  it and/or modify it
++ *  under  the terms of  the GNU General  Public License as published by the
++ *  Free Software Foundation;  either version 2 of the  License, or (at your
++ *  option) any later version.
++ *
++ *  THIS  SOFTWARE  IS PROVIDED   ``AS  IS'' AND   ANY  EXPRESS OR IMPLIED
++ *  WARRANTIES,   INCLUDING, BUT NOT  LIMITED  TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
++ *  NO  EVENT  SHALL   THE AUTHOR  BE    LIABLE FOR ANY   DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++ *  NOT LIMITED   TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS OF
++ *  USE, DATA,  OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
++ *  ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT
++ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ *  You should have received a copy of the  GNU General Public License along
++ *  with this program; if not, write  to the Free Software Foundation, Inc.,
++ *  675 Mass Ave, Cambridge, MA 02139, USA.
++ * 
++ *  Copyright 2001-2003, Broadcom Corporation
++ *  All Rights Reserved.
++ * 
++ *  THIS SOFTWARE IS OFFERED "AS IS", AND BROADCOM GRANTS NO WARRANTIES OF ANY
++ *  KIND, EXPRESS OR IMPLIED, BY STATUTE, COMMUNICATION OR OTHERWISE. BROADCOM
++ *  SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
++ *  FOR A SPECIFIC PURPOSE OR NONINFRINGEMENT CONCERNING THIS SOFTWARE.
++ *
++ *  Flash mapping for BCM947XX boards
++ */
++
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/types.h>
++#include <linux/kernel.h>
++#include <linux/wait.h>
++#include <linux/mtd/mtd.h>
++#include <linux/mtd/map.h>
++#ifdef CONFIG_MTD_PARTITIONS
++#include <linux/mtd/partitions.h>
++#endif
++#ifdef CONFIG_SQUASHFS
++#include <linux/squashfs_fs.h>
++#endif
++#include <linux/jffs2.h>
++#include <linux/crc32.h>
++#include <linux/ssb.h>
++#include <asm/io.h>
++
++
++#define TRX_MAGIC	0x30524448	/* "HDR0" */
++#define TRX_VERSION	1
++#define TRX_MAX_LEN	0x3A0000
++#define TRX_NO_HEADER	1		/* Do not write TRX header */	
++#define TRX_GZ_FILES	0x2     /* Contains up to TRX_MAX_OFFSET individual gzip files */
++#define TRX_MAX_OFFSET	3
++
++struct trx_header {
++	u32 magic;		/* "HDR0" */
++	u32 len;		/* Length of file including header */
++	u32 crc32;		/* 32-bit CRC from flag_version to end of file */
++	u32 flag_version;	/* 0:15 flags, 16:31 version */
++	u32 offsets[TRX_MAX_OFFSET];	/* Offsets of partitions from start of header */
++};
++
++#define ROUNDUP(x, y) ((((x)+((y)-1))/(y))*(y))
++#define NVRAM_SPACE 0x8000
++#define WINDOW_ADDR 0x1fc00000
++#define WINDOW_SIZE 0x400000
++#define BUSWIDTH 2
++
++extern struct ssb_bus ssb;
++static struct mtd_info *bcm947xx_mtd;
++
++static void bcm947xx_map_copy_from(struct map_info *map, void *to, unsigned long from, ssize_t len)
++{
++#define MIPS_MEMCPY_ALIGN 4
++	map_word ret;
++	ssize_t transfer;
++	ssize_t done = 0;
++	if ((len >= MIPS_MEMCPY_ALIGN) && (!(from & (MIPS_MEMCPY_ALIGN - 1))) && (!(((unsigned int)to & (MIPS_MEMCPY_ALIGN - 1))))) {
++		done = len & ~(MIPS_MEMCPY_ALIGN - 1);
++		memcpy_fromio(to, map->virt + from, done);
++	}
++	while (done < len) {
++		ret = map->read(map, from + done);
++		transfer = len - done;
++		if (transfer > map->bankwidth)
++			transfer = map->bankwidth;
++		memcpy((void *)((unsigned long)to + done), &ret.x[0], transfer);
++		done += transfer;
++	}
++}
++
++static struct map_info bcm947xx_map = {
++	name: "Physically mapped flash",
++	size: WINDOW_SIZE,
++	bankwidth: BUSWIDTH,
++	phys: WINDOW_ADDR,
++};
++
++#ifdef CONFIG_MTD_PARTITIONS
++
++static struct mtd_partition bcm947xx_parts[] = {
++	{ name: "cfe",	offset: 0, size: 0, mask_flags: MTD_WRITEABLE, },
++	{ name: "linux", offset: 0, size: 0, },
++	{ name: "rootfs", offset: 0, size: 0, },
++	{ name: "nvram", offset: 0, size: 0, },
++	{ name: "OpenWrt", offset: 0, size: 0, },
++	{ name: NULL, },
++};
++
++static int __init
++find_cfe_size(struct mtd_info *mtd, size_t size)
++{
++	struct trx_header *trx;
++	unsigned char buf[512];
++	int off;
++	size_t len;
++	int blocksize;
++
++	trx = (struct trx_header *) buf;
++
++	blocksize = mtd->erasesize;
++	if (blocksize < 0x10000)
++		blocksize = 0x10000;
++
++	for (off = (128*1024); off < size; off += blocksize) {
++		memset(buf, 0xe5, sizeof(buf));
++
++		/*
++		 * Read into buffer 
++		 */
++		if (mtd->read(mtd, off, sizeof(buf), &len, buf) ||
++		    len != sizeof(buf))
++			continue;
++
++		/* found a TRX header */
++		if (le32_to_cpu(trx->magic) == TRX_MAGIC) {
++			goto found;
++		}
++	}
++
++	printk(KERN_NOTICE
++	       "%s: Couldn't find bootloader size\n",
++	       mtd->name);
++	return -1;
++
++ found:
++	printk(KERN_NOTICE "bootloader size: %d\n", off);
++	return off;
++
++}
++
++/*
++ * Copied from mtdblock.c
++ *
++ * Cache stuff...
++ * 
++ * Since typical flash erasable sectors are much larger than what Linux's
++ * buffer cache can handle, we must implement read-modify-write on flash
++ * sectors for each block write requests.  To avoid over-erasing flash sectors
++ * and to speed things up, we locally cache a whole flash sector while it is
++ * being written to until a different sector is required.
++ */
++
++static void erase_callback(struct erase_info *done)
++{
++	wait_queue_head_t *wait_q = (wait_queue_head_t *)done->priv;
++	wake_up(wait_q);
++}
++
++static int erase_write (struct mtd_info *mtd, unsigned long pos, 
++			int len, const char *buf)
++{
++	struct erase_info erase;
++	DECLARE_WAITQUEUE(wait, current);
++	wait_queue_head_t wait_q;
++	size_t retlen;
++	int ret;
++
++	/*
++	 * First, let's erase the flash block.
++	 */
++
++	init_waitqueue_head(&wait_q);
++	erase.mtd = mtd;
++	erase.callback = erase_callback;
++	erase.addr = pos;
++	erase.len = len;
++	erase.priv = (u_long)&wait_q;
++
++	set_current_state(TASK_INTERRUPTIBLE);
++	add_wait_queue(&wait_q, &wait);
++
++	ret = mtd->erase(mtd, &erase);
++	if (ret) {
++		set_current_state(TASK_RUNNING);
++		remove_wait_queue(&wait_q, &wait);
++		printk (KERN_WARNING "erase of region [0x%lx, 0x%x] "
++				     "on \"%s\" failed\n",
++			pos, len, mtd->name);
++		return ret;
++	}
++
++	schedule();  /* Wait for erase to finish. */
++	remove_wait_queue(&wait_q, &wait);
++
++	/*
++	 * Next, writhe data to flash.
++	 */
++
++	ret = mtd->write (mtd, pos, len, &retlen, buf);
++	if (ret)
++		return ret;
++	if (retlen != len)
++		return -EIO;
++	return 0;
++}
++
++
++
++
++static int __init
++find_root(struct mtd_info *mtd, size_t size, struct mtd_partition *part)
++{
++	struct trx_header trx, *trx2;
++	unsigned char buf[512], *block;
++	int off, blocksize;
++	u32 i, crc = ~0;
++	size_t len;
++#ifdef CONFIG_SQUASHFS
++	struct squashfs_super_block *sb = (struct squashfs_super_block *) buf;
++#endif
++
++	blocksize = mtd->erasesize;
++	if (blocksize < 0x10000)
++		blocksize = 0x10000;
++
++	for (off = (128*1024); off < size; off += blocksize) {
++		memset(&trx, 0xe5, sizeof(trx));
++
++		/*
++		 * Read into buffer 
++		 */
++		if (mtd->read(mtd, off, sizeof(trx), &len, (char *) &trx) ||
++		    len != sizeof(trx))
++			continue;
++
++		/* found a TRX header */
++		if (le32_to_cpu(trx.magic) == TRX_MAGIC) {
++			part->offset = le32_to_cpu(trx.offsets[2]) ? : 
++				le32_to_cpu(trx.offsets[1]);
++			part->size = le32_to_cpu(trx.len); 
++
++			part->size -= part->offset;
++			part->offset += off;
++
++			goto found;
++		}
++	}
++
++	printk(KERN_NOTICE
++	       "%s: Couldn't find root filesystem\n",
++	       mtd->name);
++	return -1;
++
++ found:
++	if (part->size == 0)
++		return 0;
++	
++	if (mtd->read(mtd, part->offset, sizeof(buf), &len, buf) || len != sizeof(buf))
++		return 0;
++#ifdef CONFIG_SQUASHFS
++	if (*((__u32 *) buf) == SQUASHFS_MAGIC) {
++		printk(KERN_INFO "%s: Filesystem type: squashfs, size=0x%x\n", mtd->name, (u32) sb->bytes_used);
++
++		/* Update the squashfs partition size based on the superblock info */
++		part->size = sb->bytes_used;
++		len = part->offset + part->size;
++		len +=  (mtd->erasesize - 1);
++		len &= ~(mtd->erasesize - 1);
++		part->size = len - part->offset;
++	} else
++#endif
++	if (*((__u16 *) buf) == JFFS2_MAGIC_BITMASK) {
++		printk(KERN_INFO "%s: Filesystem type: jffs2\n", mtd->name);
++
++		/* Move the squashfs outside of the trx */
++		part->size = 0;
++	} else {
++		printk(KERN_INFO "%s: Filesystem type: unknown\n", mtd->name);
++		return 0;
++	}
++
++	if (trx.len != part->offset + part->size - off) {
++		/* Update the trx offsets and length */
++		trx.len = part->offset + part->size - off;
++	
++		/* Update the trx crc32 */
++		for (i = (u32) &(((struct trx_header *)NULL)->flag_version); i <= trx.len; i += sizeof(buf)) {
++			if (mtd->read(mtd, off + i, sizeof(buf), &len, buf) || len != sizeof(buf))
++				return 0;
++			crc = crc32_le(crc, buf, min(sizeof(buf), trx.len - i));
++		}
++		trx.crc32 = crc;
++
++		/* read first eraseblock from the trx */
++		block = kmalloc(mtd->erasesize, GFP_KERNEL);
++		trx2 = (struct trx_header *) block;
++		if (mtd->read(mtd, off, mtd->erasesize, &len, block) || len != mtd->erasesize) {
++			printk("Error accessing the first trx eraseblock\n");
++			return 0;
++		}
++		
++		printk("Updating TRX offsets and length:\n");
++		printk("old trx = [0x%08x, 0x%08x, 0x%08x], len=0x%08x crc32=0x%08x\n", trx2->offsets[0], trx2->offsets[1], trx2->offsets[2], trx2->len, trx2->crc32);
++		printk("new trx = [0x%08x, 0x%08x, 0x%08x], len=0x%08x crc32=0x%08x\n",   trx.offsets[0],   trx.offsets[1],   trx.offsets[2],   trx.len, trx.crc32);
++
++		/* Write updated trx header to the flash */
++		memcpy(block, &trx, sizeof(trx));
++		if (mtd->unlock)
++			mtd->unlock(mtd, off, mtd->erasesize);
++		erase_write(mtd, off, mtd->erasesize, block);
++		if (mtd->sync)
++			mtd->sync(mtd);
++		kfree(block);
++		printk("Done\n");
++	}
++	
++	return part->size;
++}
++
++struct mtd_partition * __init
++init_mtd_partitions(struct mtd_info *mtd, size_t size)
++{
++	int cfe_size;
++
++	if ((cfe_size = find_cfe_size(mtd,size)) < 0)
++		return NULL;
++
++	/* boot loader */
++	bcm947xx_parts[0].offset = 0;
++	bcm947xx_parts[0].size   = cfe_size;
++
++	/* nvram */
++	if (cfe_size != 384 * 1024) {
++		bcm947xx_parts[3].offset = size - ROUNDUP(NVRAM_SPACE, mtd->erasesize);
++		bcm947xx_parts[3].size   = ROUNDUP(NVRAM_SPACE, mtd->erasesize);
++	} else {
++		/* nvram (old 128kb config partition on netgear wgt634u) */
++		bcm947xx_parts[3].offset = bcm947xx_parts[0].size;
++		bcm947xx_parts[3].size   = ROUNDUP(NVRAM_SPACE, mtd->erasesize);
++	}
++
++	/* linux (kernel and rootfs) */
++	if (cfe_size != 384 * 1024) {
++		bcm947xx_parts[1].offset = bcm947xx_parts[0].size;
++		bcm947xx_parts[1].size   = bcm947xx_parts[3].offset - 
++			bcm947xx_parts[1].offset;
++	} else {
++		/* do not count the elf loader, which is on one block */
++		bcm947xx_parts[1].offset = bcm947xx_parts[0].size + 
++			bcm947xx_parts[3].size + mtd->erasesize;
++		bcm947xx_parts[1].size   = size - 
++			bcm947xx_parts[0].size - 
++			(2*bcm947xx_parts[3].size) - 
++			mtd->erasesize;
++	}
++
++	/* find and size rootfs */
++	if (find_root(mtd,size,&bcm947xx_parts[2])==0) {
++		/* entirely jffs2 */
++		bcm947xx_parts[4].name = NULL;
++		bcm947xx_parts[2].size = size - bcm947xx_parts[2].offset - 
++				bcm947xx_parts[3].size;
++	} else {
++		/* legacy setup */
++		/* calculate leftover flash, and assign it to the jffs2 partition */
++		if (cfe_size != 384 * 1024) {
++			bcm947xx_parts[4].offset = bcm947xx_parts[2].offset + 
++				bcm947xx_parts[2].size;
++			if ((bcm947xx_parts[4].offset % mtd->erasesize) > 0) {
++				bcm947xx_parts[4].offset += mtd->erasesize - 
++					(bcm947xx_parts[4].offset % mtd->erasesize);
++			}
++			bcm947xx_parts[4].size = bcm947xx_parts[3].offset - 
++				bcm947xx_parts[4].offset;
++		} else {
++			bcm947xx_parts[4].offset = bcm947xx_parts[2].offset + 
++				bcm947xx_parts[2].size;
++			if ((bcm947xx_parts[4].offset % mtd->erasesize) > 0) {
++				bcm947xx_parts[4].offset += mtd->erasesize - 
++					(bcm947xx_parts[4].offset % mtd->erasesize);
++			}
++			bcm947xx_parts[4].size = size - bcm947xx_parts[3].size - 
++				bcm947xx_parts[4].offset;
++		}
++	}
++
++	return bcm947xx_parts;
++}
++#endif
++
++int __init init_bcm947xx_map(void)
++{
++	struct ssb_mipscore *mcore = &ssb.mipscore;
++	size_t size;
++	int ret = 0;
++#ifdef CONFIG_MTD_PARTITIONS
++	struct mtd_partition *parts;
++	int i;
++#endif
++	u32 window = mcore->flash_window;
++	u32 window_size = mcore->flash_window_size;
++
++	printk("flash init: 0x%08x 0x%08x\n", window, window_size);
++	bcm947xx_map.virt = ioremap(window, window_size);
++
++	if (!bcm947xx_map.virt) {
++		printk("Failed to ioremap\n");
++		return -EIO;
++	}
++	simple_map_init(&bcm947xx_map);
++	
++	bcm947xx_map.copy_from = bcm947xx_map_copy_from;
++	
++	if (!(bcm947xx_mtd = do_map_probe("cfi_probe", &bcm947xx_map))) {
++		printk("Failed to do_map_probe\n");
++		iounmap((void *)bcm947xx_map.virt);
++		return -ENXIO;
++	}
++
++	bcm947xx_mtd->owner = THIS_MODULE;
++
++	size = bcm947xx_mtd->size;
++
++	printk(KERN_NOTICE "Flash device: 0x%x at 0x%x\n", size, WINDOW_ADDR);
++
++#ifdef CONFIG_MTD_PARTITIONS
++	parts = init_mtd_partitions(bcm947xx_mtd, size);
++	for (i = 0; parts[i].name; i++);
++	ret = add_mtd_partitions(bcm947xx_mtd, parts, i);
++	if (ret) {
++		printk(KERN_ERR "Flash: add_mtd_partitions failed\n");
++		goto fail;
++	}
++#endif
++	return 0;
++
++ fail:
++	if (bcm947xx_mtd)
++		map_destroy(bcm947xx_mtd);
++	if (bcm947xx_map.virt)
++		iounmap((void *)bcm947xx_map.virt);
++	bcm947xx_map.virt = 0;
++	return ret;
++}
++
++void __exit cleanup_bcm947xx_map(void)
++{
++#ifdef CONFIG_MTD_PARTITIONS
++	del_mtd_partitions(bcm947xx_mtd);
++#endif
++	map_destroy(bcm947xx_mtd);
++	iounmap((void *)bcm947xx_map.virt);
++}
++
++module_init(init_bcm947xx_map);
++module_exit(cleanup_bcm947xx_map);
+diff --git a/drivers/net/Kconfig b/drivers/net/Kconfig
+index 6e863aa..a09a8e4 100644
+--- a/drivers/net/Kconfig
++++ b/drivers/net/Kconfig
+@@ -1402,7 +1402,7 @@ config APRICOT
+ 
+ config B44
+ 	tristate "Broadcom 4400 ethernet support"
+-	depends on NET_PCI && PCI
++	depends on SSB && EXPERIMENTAL
+ 	select MII
+ 	help
+ 	  If you have a network (Ethernet) controller of this type, say Y and
+diff --git a/drivers/net/b44.c b/drivers/net/b44.c
+index 474a4e3..eb29c71 100644
+--- a/drivers/net/b44.c
++++ b/drivers/net/b44.c
+@@ -1,7 +1,9 @@
+-/* b44.c: Broadcom 4400 device driver.
++/* b44.c: Broadcom 4400/47xx device driver.
+  *
+  * Copyright (C) 2002 David S. Miller (davem@redhat.com)
+- * Fixed by Pekka Pietikainen (pp@ee.oulu.fi)
++ * Copyright (C) 2004 Pekka Pietikainen (pp@ee.oulu.fi)
++ * Copyright (C) 2004 Florian Schirmer (jolt@tuxbox.org)
++ * Copyright (C) 2006 Felix Fietkau (nbd@openwrt.org)
+  * Copyright (C) 2006 Broadcom Corporation.
+  *
+  * Distribute under GPL.
+@@ -20,11 +22,13 @@
+ #include <linux/delay.h>
+ #include <linux/init.h>
+ #include <linux/dma-mapping.h>
++#include <linux/ssb.h>
+ 
+ #include <asm/uaccess.h>
+ #include <asm/io.h>
+ #include <asm/irq.h>
+ 
++
+ #include "b44.h"
+ 
+ #define DRV_MODULE_NAME		"b44"
+@@ -87,8 +91,8 @@
+ static char version[] __devinitdata =
+ 	DRV_MODULE_NAME ".c:v" DRV_MODULE_VERSION " (" DRV_MODULE_RELDATE ")\n";
+ 
+-MODULE_AUTHOR("Florian Schirmer, Pekka Pietikainen, David S. Miller");
+-MODULE_DESCRIPTION("Broadcom 4400 10/100 PCI ethernet driver");
++MODULE_AUTHOR("Felix Fietkau, Florian Schirmer, Pekka Pietikainen, David S. Miller");
++MODULE_DESCRIPTION("Broadcom 4400/47xx 10/100 PCI ethernet driver");
+ MODULE_LICENSE("GPL");
+ MODULE_VERSION(DRV_MODULE_VERSION);
+ 
+@@ -96,24 +100,18 @@ static int b44_debug = -1;	/* -1 == use
+ module_param(b44_debug, int, 0);
+ MODULE_PARM_DESC(b44_debug, "B44 bitmapped debugging message enable value");
+ 
+-static struct pci_device_id b44_pci_tbl[] = {
+-	{ PCI_VENDOR_ID_BROADCOM, PCI_DEVICE_ID_BCM4401,
+-	  PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0UL },
+-	{ PCI_VENDOR_ID_BROADCOM, PCI_DEVICE_ID_BCM4401B0,
+-	  PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0UL },
+-	{ PCI_VENDOR_ID_BROADCOM, PCI_DEVICE_ID_BCM4401B1,
+-	  PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0UL },
+-	{ }	/* terminate list with empty entry */
++static struct ssb_device_id b44_ssb_tbl[] = {
++	SSB_DEVICE(SSB_VENDOR_BROADCOM, SSB_DEV_ETHERNET, SSB_ANY_REV),
++	SSB_DEVTABLE_END
+ };
+ 
+-MODULE_DEVICE_TABLE(pci, b44_pci_tbl);
+-
+ static void b44_halt(struct b44 *);
+ static void b44_init_rings(struct b44 *);
+ static void b44_init_hw(struct b44 *, int);
+ 
+ static int dma_desc_align_mask;
+ static int dma_desc_sync_size;
++static int instance;
+ 
+ static const char b44_gstrings[][ETH_GSTRING_LEN] = {
+ #define _B44(x...)	# x,
+@@ -121,35 +119,24 @@ B44_STAT_REG_DECLARE
+ #undef _B44
+ };
+ 
+-static inline void b44_sync_dma_desc_for_device(struct pci_dev *pdev,
+-                                                dma_addr_t dma_base,
+-                                                unsigned long offset,
+-                                                enum dma_data_direction dir)
+-{
+-	dma_sync_single_range_for_device(&pdev->dev, dma_base,
+-	                                 offset & dma_desc_align_mask,
+-	                                 dma_desc_sync_size, dir);
+-}
+-
+-static inline void b44_sync_dma_desc_for_cpu(struct pci_dev *pdev,
+-                                             dma_addr_t dma_base,
+-                                             unsigned long offset,
+-                                             enum dma_data_direction dir)
+-{
+-	dma_sync_single_range_for_cpu(&pdev->dev, dma_base,
+-	                              offset & dma_desc_align_mask,
+-	                              dma_desc_sync_size, dir);
+-}
+-
+-static inline unsigned long br32(const struct b44 *bp, unsigned long reg)
++static inline void b44_sync_dma_desc_for_device(struct ssb_device *sdev,
++	                                       dma_addr_t dma_base,
++	                                       unsigned long offset,
++	                                       enum dma_data_direction dir)
+ {
+-	return readl(bp->regs + reg);
++	dma_sync_single_range_for_device(&sdev->dev, dma_base,
++		                        offset & dma_desc_align_mask,
++		                        dma_desc_sync_size, dir);
+ }
+ 
+-static inline void bw32(const struct b44 *bp,
+-			unsigned long reg, unsigned long val)
++static inline void b44_sync_dma_desc_for_cpu(struct ssb_device *sdev,
++	                                    dma_addr_t dma_base,
++	                                    unsigned long offset,
++	                                    enum dma_data_direction dir)
+ {
+-	writel(val, bp->regs + reg);
++	dma_sync_single_range_for_cpu(&sdev->dev, dma_base,
++		                     offset & dma_desc_align_mask,
++		                     dma_desc_sync_size, dir);
+ }
+ 
+ static int b44_wait_bit(struct b44 *bp, unsigned long reg,
+@@ -177,117 +164,29 @@ static int b44_wait_bit(struct b44 *bp,
+ 	return 0;
+ }
+ 
+-/* Sonics SiliconBackplane support routines.  ROFL, you should see all the
+- * buzz words used on this company's website :-)
+- *
+- * All of these routines must be invoked with bp->lock held and
+- * interrupts disabled.
+- */
+-
+-#define SB_PCI_DMA             0x40000000      /* Client Mode PCI memory access space (1 GB) */
+-#define BCM4400_PCI_CORE_ADDR  0x18002000      /* Address of PCI core on BCM4400 cards */
+-
+-static u32 ssb_get_core_rev(struct b44 *bp)
+-{
+-	return (br32(bp, B44_SBIDHIGH) & SBIDHIGH_RC_MASK);
+-}
+-
+-static u32 ssb_pci_setup(struct b44 *bp, u32 cores)
+-{
+-	u32 bar_orig, pci_rev, val;
+-
+-	pci_read_config_dword(bp->pdev, SSB_BAR0_WIN, &bar_orig);
+-	pci_write_config_dword(bp->pdev, SSB_BAR0_WIN, BCM4400_PCI_CORE_ADDR);
+-	pci_rev = ssb_get_core_rev(bp);
+-
+-	val = br32(bp, B44_SBINTVEC);
+-	val |= cores;
+-	bw32(bp, B44_SBINTVEC, val);
+-
+-	val = br32(bp, SSB_PCI_TRANS_2);
+-	val |= SSB_PCI_PREF | SSB_PCI_BURST;
+-	bw32(bp, SSB_PCI_TRANS_2, val);
+-
+-	pci_write_config_dword(bp->pdev, SSB_BAR0_WIN, bar_orig);
+-
+-	return pci_rev;
+-}
+-
+-static void ssb_core_disable(struct b44 *bp)
+-{
+-	if (br32(bp, B44_SBTMSLOW) & SBTMSLOW_RESET)
+-		return;
+-
+-	bw32(bp, B44_SBTMSLOW, (SBTMSLOW_REJECT | SBTMSLOW_CLOCK));
+-	b44_wait_bit(bp, B44_SBTMSLOW, SBTMSLOW_REJECT, 100000, 0);
+-	b44_wait_bit(bp, B44_SBTMSHIGH, SBTMSHIGH_BUSY, 100000, 1);
+-	bw32(bp, B44_SBTMSLOW, (SBTMSLOW_FGC | SBTMSLOW_CLOCK |
+-			    SBTMSLOW_REJECT | SBTMSLOW_RESET));
+-	br32(bp, B44_SBTMSLOW);
+-	udelay(1);
+-	bw32(bp, B44_SBTMSLOW, (SBTMSLOW_REJECT | SBTMSLOW_RESET));
+-	br32(bp, B44_SBTMSLOW);
+-	udelay(1);
+-}
+-
+-static void ssb_core_reset(struct b44 *bp)
++static inline void __b44_cam_read(struct b44 *bp, unsigned char *data, int index)
+ {
+ 	u32 val;
+ 
+-	ssb_core_disable(bp);
+-	bw32(bp, B44_SBTMSLOW, (SBTMSLOW_RESET | SBTMSLOW_CLOCK | SBTMSLOW_FGC));
+-	br32(bp, B44_SBTMSLOW);
+-	udelay(1);
+-
+-	/* Clear SERR if set, this is a hw bug workaround.  */
+-	if (br32(bp, B44_SBTMSHIGH) & SBTMSHIGH_SERR)
+-		bw32(bp, B44_SBTMSHIGH, 0);
+-
+-	val = br32(bp, B44_SBIMSTATE);
+-	if (val & (SBIMSTATE_IBE | SBIMSTATE_TO))
+-		bw32(bp, B44_SBIMSTATE, val & ~(SBIMSTATE_IBE | SBIMSTATE_TO));
+-
+-	bw32(bp, B44_SBTMSLOW, (SBTMSLOW_CLOCK | SBTMSLOW_FGC));
+-	br32(bp, B44_SBTMSLOW);
+-	udelay(1);
+-
+-	bw32(bp, B44_SBTMSLOW, (SBTMSLOW_CLOCK));
+-	br32(bp, B44_SBTMSLOW);
+-	udelay(1);
+-}
++	bw32(bp, B44_CAM_CTRL, (CAM_CTRL_READ |
++			    (index << CAM_CTRL_INDEX_SHIFT)));
+ 
+-static int ssb_core_unit(struct b44 *bp)
+-{
+-#if 0
+-	u32 val = br32(bp, B44_SBADMATCH0);
+-	u32 base;
++	b44_wait_bit(bp, B44_CAM_CTRL, CAM_CTRL_BUSY, 100, 1);
+ 
+-	type = val & SBADMATCH0_TYPE_MASK;
+-	switch (type) {
+-	case 0:
+-		base = val & SBADMATCH0_BS0_MASK;
+-		break;
++	val = br32(bp, B44_CAM_DATA_LO);
+ 
+-	case 1:
+-		base = val & SBADMATCH0_BS1_MASK;
+-		break;
++	data[2] = (val >> 24) & 0xFF;
++	data[3] = (val >> 16) & 0xFF;
++	data[4] = (val >> 8) & 0xFF;
++	data[5] = (val >> 0) & 0xFF;
+ 
+-	case 2:
+-	default:
+-		base = val & SBADMATCH0_BS2_MASK;
+-		break;
+-	};
+-#endif
+-	return 0;
+-}
++	val = br32(bp, B44_CAM_DATA_HI);
+ 
+-static int ssb_is_core_up(struct b44 *bp)
+-{
+-	return ((br32(bp, B44_SBTMSLOW) & (SBTMSLOW_RESET | SBTMSLOW_REJECT | SBTMSLOW_CLOCK))
+-		== SBTMSLOW_CLOCK);
++	data[0] = (val >> 8) & 0xFF;
++	data[1] = (val >> 0) & 0xFF;
+ }
+ 
+-static void __b44_cam_write(struct b44 *bp, unsigned char *data, int index)
++static inline void __b44_cam_write(struct b44 *bp, unsigned char *data, int index)
+ {
+ 	u32 val;
+ 
+@@ -323,14 +222,14 @@ static void b44_enable_ints(struct b44 *
+ 	bw32(bp, B44_IMASK, bp->imask);
+ }
+ 
+-static int b44_readphy(struct b44 *bp, int reg, u32 *val)
++static int __b44_readphy(struct b44 *bp, int phy_addr, int reg, u32 *val)
+ {
+ 	int err;
+ 
+ 	bw32(bp, B44_EMAC_ISTAT, EMAC_INT_MII);
+ 	bw32(bp, B44_MDIO_DATA, (MDIO_DATA_SB_START |
+ 			     (MDIO_OP_READ << MDIO_DATA_OP_SHIFT) |
+-			     (bp->phy_addr << MDIO_DATA_PMD_SHIFT) |
++			     (phy_addr << MDIO_DATA_PMD_SHIFT) |
+ 			     (reg << MDIO_DATA_RA_SHIFT) |
+ 			     (MDIO_TA_VALID << MDIO_DATA_TA_SHIFT)));
+ 	err = b44_wait_bit(bp, B44_EMAC_ISTAT, EMAC_INT_MII, 100, 0);
+@@ -339,18 +238,34 @@ static int b44_readphy(struct b44 *bp, i
+ 	return err;
+ }
+ 
+-static int b44_writephy(struct b44 *bp, int reg, u32 val)
++static int __b44_writephy(struct b44 *bp, int phy_addr, int reg, u32 val)
+ {
+ 	bw32(bp, B44_EMAC_ISTAT, EMAC_INT_MII);
+ 	bw32(bp, B44_MDIO_DATA, (MDIO_DATA_SB_START |
+ 			     (MDIO_OP_WRITE << MDIO_DATA_OP_SHIFT) |
+-			     (bp->phy_addr << MDIO_DATA_PMD_SHIFT) |
++			     (phy_addr << MDIO_DATA_PMD_SHIFT) |
+ 			     (reg << MDIO_DATA_RA_SHIFT) |
+ 			     (MDIO_TA_VALID << MDIO_DATA_TA_SHIFT) |
+ 			     (val & MDIO_DATA_DATA)));
+ 	return b44_wait_bit(bp, B44_EMAC_ISTAT, EMAC_INT_MII, 100, 0);
+ }
+ 
++static inline int b44_readphy(struct b44 *bp, int reg, u32 *val)
++{
++	if (bp->phy_addr == B44_PHY_ADDR_NO_PHY)
++		return 0;
++
++	return __b44_readphy(bp, bp->phy_addr, reg, val);
++}
++
++static inline int b44_writephy(struct b44 *bp, int reg, u32 val)
++{
++	if (bp->phy_addr == B44_PHY_ADDR_NO_PHY)
++		return 0;
++		
++	return __b44_writephy(bp, bp->phy_addr, reg, val);
++}
++
+ /* miilib interface */
+ /* FIXME FIXME: phy_id is ignored, bp->phy_addr use is unconditional
+  * due to code existing before miilib use was added to this driver.
+@@ -379,6 +294,8 @@ static int b44_phy_reset(struct b44 *bp)
+ 	u32 val;
+ 	int err;
+ 
++	if (bp->phy_addr == B44_PHY_ADDR_NO_PHY)
++		return 0;
+ 	err = b44_writephy(bp, MII_BMCR, BMCR_RESET);
+ 	if (err)
+ 		return err;
+@@ -437,11 +354,27 @@ static void b44_set_flow_ctrl(struct b44
+ 	__b44_set_flow_ctrl(bp, pause_enab);
+ }
+ 
++
++extern char *nvram_get(char *name); //FIXME: move elsewhere
+ static int b44_setup_phy(struct b44 *bp)
+ {
+ 	u32 val;
+ 	int err;
+ 
++	/*
++	 * workaround for bad hardware design in Linksys WAP54G v1.0
++	 * see https://dev.openwrt.org/ticket/146
++	 * check and reset bit "isolate"
++	 */
++	if ((atoi(nvram_get("boardnum")) == 2) &&
++			(__b44_readphy(bp, 0, MII_BMCR, &val) == 0) && 
++			(val & BMCR_ISOLATE) &&
++			(__b44_writephy(bp, 0, MII_BMCR, val & ~BMCR_ISOLATE) != 0)) {
++		printk(KERN_WARNING PFX "PHY: cannot reset MII transceiver isolate bit.\n");
++	}
++
++	if (bp->phy_addr == B44_PHY_ADDR_NO_PHY)
++		return 0;
+ 	if ((err = b44_readphy(bp, B44_MII_ALEDCTRL, &val)) != 0)
+ 		goto out;
+ 	if ((err = b44_writephy(bp, B44_MII_ALEDCTRL,
+@@ -537,6 +470,19 @@ static void b44_check_phy(struct b44 *bp
+ {
+ 	u32 bmsr, aux;
+ 
++	if (bp->phy_addr == B44_PHY_ADDR_NO_PHY) {
++		bp->flags |= B44_FLAG_100_BASE_T;
++		bp->flags |= B44_FLAG_FULL_DUPLEX;
++		if (!netif_carrier_ok(bp->dev)) {
++			u32 val = br32(bp, B44_TX_CTRL);
++			val |= TX_CTRL_DUPLEX;
++			bw32(bp, B44_TX_CTRL, val);
++			netif_carrier_on(bp->dev);
++			b44_link_report(bp);
++		}
++		return;
++	}
++
+ 	if (!b44_readphy(bp, MII_BMSR, &bmsr) &&
+ 	    !b44_readphy(bp, B44_MII_AUXCTRL, &aux) &&
+ 	    (bmsr != 0xffff)) {
+@@ -613,10 +559,10 @@ static void b44_tx(struct b44 *bp)
+ 
+ 		BUG_ON(skb == NULL);
+ 
+-		pci_unmap_single(bp->pdev,
++		dma_unmap_single(&bp->sdev->dev,
+ 				 pci_unmap_addr(rp, mapping),
+ 				 skb->len,
+-				 PCI_DMA_TODEVICE);
++				 DMA_TO_DEVICE);
+ 		rp->skb = NULL;
+ 		dev_kfree_skb_irq(skb);
+ 	}
+@@ -652,10 +598,10 @@ static int b44_alloc_rx_skb(struct b44 *
+ 	skb = dev_alloc_skb(RX_PKT_BUF_SZ);
+ 	if (skb == NULL)
+ 		return -ENOMEM;
+-
+-	mapping = pci_map_single(bp->pdev, skb->data,
++	
++	mapping = dma_map_single(&bp->sdev->dev, skb->data,
+ 				 RX_PKT_BUF_SZ,
+-				 PCI_DMA_FROMDEVICE);
++				 DMA_FROM_DEVICE);
+ 
+ 	/* Hardware bug work-around, the chip is unable to do PCI DMA
+ 	   to/from anything above 1GB :-( */
+@@ -663,18 +609,18 @@ static int b44_alloc_rx_skb(struct b44 *
+ 		mapping + RX_PKT_BUF_SZ > B44_DMA_MASK) {
+ 		/* Sigh... */
+ 		if (!dma_mapping_error(mapping))
+-			pci_unmap_single(bp->pdev, mapping, RX_PKT_BUF_SZ,PCI_DMA_FROMDEVICE);
++			dma_unmap_single(&bp->sdev->dev, mapping, RX_PKT_BUF_SZ,DMA_FROM_DEVICE);
+ 		dev_kfree_skb_any(skb);
+ 		skb = __dev_alloc_skb(RX_PKT_BUF_SZ,GFP_DMA);
+ 		if (skb == NULL)
+ 			return -ENOMEM;
+-		mapping = pci_map_single(bp->pdev, skb->data,
++		mapping = dma_map_single(&bp->sdev->dev, skb->data,
+ 					 RX_PKT_BUF_SZ,
+-					 PCI_DMA_FROMDEVICE);
++					 DMA_FROM_DEVICE);
+ 		if (dma_mapping_error(mapping) ||
+ 			mapping + RX_PKT_BUF_SZ > B44_DMA_MASK) {
+ 			if (!dma_mapping_error(mapping))
+-				pci_unmap_single(bp->pdev, mapping, RX_PKT_BUF_SZ,PCI_DMA_FROMDEVICE);
++				dma_unmap_single(&bp->sdev->dev, mapping, RX_PKT_BUF_SZ,DMA_FROM_DEVICE);
+ 			dev_kfree_skb_any(skb);
+ 			return -ENOMEM;
+ 		}
+@@ -703,9 +649,9 @@ static int b44_alloc_rx_skb(struct b44 *
+ 	dp->addr = cpu_to_le32((u32) mapping + bp->rx_offset + bp->dma_offset);
+ 
+ 	if (bp->flags & B44_FLAG_RX_RING_HACK)
+-		b44_sync_dma_desc_for_device(bp->pdev, bp->rx_ring_dma,
+-		                             dest_idx * sizeof(dp),
+-		                             DMA_BIDIRECTIONAL);
++		b44_sync_dma_desc_for_device(bp->sdev, bp->rx_ring_dma,
++			                    dest_idx * sizeof(dp),
++			                    DMA_BIDIRECTIONAL);
+ 
+ 	return RX_PKT_BUF_SZ;
+ }
+@@ -732,9 +678,9 @@ static void b44_recycle_rx(struct b44 *b
+ 			   pci_unmap_addr(src_map, mapping));
+ 
+ 	if (bp->flags & B44_FLAG_RX_RING_HACK)
+-		b44_sync_dma_desc_for_cpu(bp->pdev, bp->rx_ring_dma,
+-		                          src_idx * sizeof(src_desc),
+-		                          DMA_BIDIRECTIONAL);
++		b44_sync_dma_desc_for_cpu(bp->sdev, bp->rx_ring_dma,
++			                 src_idx * sizeof(src_desc),
++			                 DMA_BIDIRECTIONAL);
+ 
+ 	ctrl = src_desc->ctrl;
+ 	if (dest_idx == (B44_RX_RING_SIZE - 1))
+@@ -748,13 +694,13 @@ static void b44_recycle_rx(struct b44 *b
+ 	src_map->skb = NULL;
+ 
+ 	if (bp->flags & B44_FLAG_RX_RING_HACK)
+-		b44_sync_dma_desc_for_device(bp->pdev, bp->rx_ring_dma,
+-		                             dest_idx * sizeof(dest_desc),
+-		                             DMA_BIDIRECTIONAL);
++		b44_sync_dma_desc_for_device(bp->sdev, bp->rx_ring_dma,
++			                    dest_idx * sizeof(dest_desc),
++			                    DMA_BIDIRECTIONAL);
+ 
+-	pci_dma_sync_single_for_device(bp->pdev, src_desc->addr,
++	dma_sync_single_for_device(&bp->sdev->dev, src_desc->addr,
+ 				       RX_PKT_BUF_SZ,
+-				       PCI_DMA_FROMDEVICE);
++				       DMA_FROM_DEVICE);
+ }
+ 
+ static int b44_rx(struct b44 *bp, int budget)
+@@ -774,9 +720,9 @@ static int b44_rx(struct b44 *bp, int bu
+ 		struct rx_header *rh;
+ 		u16 len;
+ 
+-		pci_dma_sync_single_for_cpu(bp->pdev, map,
++		dma_sync_single_for_cpu(&bp->sdev->dev, map,
+ 					    RX_PKT_BUF_SZ,
+-					    PCI_DMA_FROMDEVICE);
++					    DMA_FROM_DEVICE);
+ 		rh = (struct rx_header *) skb->data;
+ 		len = cpu_to_le16(rh->len);
+ 		if ((len > (RX_PKT_BUF_SZ - bp->rx_offset)) ||
+@@ -808,11 +754,11 @@ static int b44_rx(struct b44 *bp, int bu
+ 			skb_size = b44_alloc_rx_skb(bp, cons, bp->rx_prod);
+ 			if (skb_size < 0)
+ 				goto drop_it;
+-			pci_unmap_single(bp->pdev, map,
+-					 skb_size, PCI_DMA_FROMDEVICE);
++			dma_unmap_single(&bp->sdev->dev, map,
++					 skb_size, DMA_FROM_DEVICE);
+ 			/* Leave out rx_header */
+-                	skb_put(skb, len+bp->rx_offset);
+-            	        skb_pull(skb,bp->rx_offset);
++	       	skb_put(skb, len+bp->rx_offset);
++	   	        skb_pull(skb,bp->rx_offset);
+ 		} else {
+ 			struct sk_buff *copy_skb;
+ 
+@@ -980,23 +926,23 @@ static int b44_start_xmit(struct sk_buff
+ 		goto err_out;
+ 	}
+ 
+-	mapping = pci_map_single(bp->pdev, skb->data, len, PCI_DMA_TODEVICE);
++	mapping = dma_map_single(&bp->sdev->dev, skb->data, len, DMA_TO_DEVICE);
+ 	if (dma_mapping_error(mapping) || mapping + len > B44_DMA_MASK) {
+ 		/* Chip can't handle DMA to/from >1GB, use bounce buffer */
+ 		if (!dma_mapping_error(mapping))
+-			pci_unmap_single(bp->pdev, mapping, len, PCI_DMA_TODEVICE);
++			dma_unmap_single(&bp->sdev->dev, mapping, len, DMA_TO_DEVICE);
+ 
+ 		bounce_skb = __dev_alloc_skb(TX_PKT_BUF_SZ,
+ 					     GFP_ATOMIC|GFP_DMA);
+ 		if (!bounce_skb)
+ 			goto err_out;
+ 
+-		mapping = pci_map_single(bp->pdev, bounce_skb->data,
+-					 len, PCI_DMA_TODEVICE);
++		mapping = dma_map_single(&bp->sdev->dev, bounce_skb->data,
++					 len, DMA_TO_DEVICE);
+ 		if (dma_mapping_error(mapping) || mapping + len > B44_DMA_MASK) {
+ 			if (!dma_mapping_error(mapping))
+-				pci_unmap_single(bp->pdev, mapping,
+-					 len, PCI_DMA_TODEVICE);
++				dma_unmap_single(&bp->sdev->dev, mapping,
++					 len, DMA_TO_DEVICE);
+ 			dev_kfree_skb_any(bounce_skb);
+ 			goto err_out;
+ 		}
+@@ -1019,9 +965,9 @@ static int b44_start_xmit(struct sk_buff
+ 	bp->tx_ring[entry].addr = cpu_to_le32((u32) mapping+bp->dma_offset);
+ 
+ 	if (bp->flags & B44_FLAG_TX_RING_HACK)
+-		b44_sync_dma_desc_for_device(bp->pdev, bp->tx_ring_dma,
+-		                             entry * sizeof(bp->tx_ring[0]),
+-		                             DMA_TO_DEVICE);
++		b44_sync_dma_desc_for_device(bp->sdev, bp->tx_ring_dma,
++			                    entry * sizeof(bp->tx_ring[0]),
++			                    DMA_TO_DEVICE);
+ 
+ 	entry = NEXT_TX(entry);
+ 
+@@ -1094,10 +1040,10 @@ static void b44_free_rings(struct b44 *b
+ 
+ 		if (rp->skb == NULL)
+ 			continue;
+-		pci_unmap_single(bp->pdev,
++		dma_unmap_single(&bp->sdev->dev,
+ 				 pci_unmap_addr(rp, mapping),
+ 				 RX_PKT_BUF_SZ,
+-				 PCI_DMA_FROMDEVICE);
++				 DMA_FROM_DEVICE);
+ 		dev_kfree_skb_any(rp->skb);
+ 		rp->skb = NULL;
+ 	}
+@@ -1108,10 +1054,10 @@ static void b44_free_rings(struct b44 *b
+ 
+ 		if (rp->skb == NULL)
+ 			continue;
+-		pci_unmap_single(bp->pdev,
++		dma_unmap_single(&bp->sdev->dev,
+ 				 pci_unmap_addr(rp, mapping),
+ 				 rp->skb->len,
+-				 PCI_DMA_TODEVICE);
++				 DMA_TO_DEVICE);
+ 		dev_kfree_skb_any(rp->skb);
+ 		rp->skb = NULL;
+ 	}
+@@ -1133,14 +1079,14 @@ static void b44_init_rings(struct b44 *b
+ 	memset(bp->tx_ring, 0, B44_TX_RING_BYTES);
+ 
+ 	if (bp->flags & B44_FLAG_RX_RING_HACK)
+-		dma_sync_single_for_device(&bp->pdev->dev, bp->rx_ring_dma,
+-		                           DMA_TABLE_BYTES,
+-		                           PCI_DMA_BIDIRECTIONAL);
++		dma_sync_single_for_device(&bp->sdev->dev, bp->rx_ring_dma,
++			                  DMA_TABLE_BYTES,
++			                  DMA_BIDIRECTIONAL);
+ 
+ 	if (bp->flags & B44_FLAG_TX_RING_HACK)
+-		dma_sync_single_for_device(&bp->pdev->dev, bp->tx_ring_dma,
+-		                           DMA_TABLE_BYTES,
+-		                           PCI_DMA_TODEVICE);
++		dma_sync_single_for_device(&bp->sdev->dev, bp->tx_ring_dma,
++			                  DMA_TABLE_BYTES,
++			                  DMA_TO_DEVICE);
+ 
+ 	for (i = 0; i < bp->rx_pending; i++) {
+ 		if (b44_alloc_rx_skb(bp, -1, i) < 0)
+@@ -1160,24 +1106,24 @@ static void b44_free_consistent(struct b
+ 	bp->tx_buffers = NULL;
+ 	if (bp->rx_ring) {
+ 		if (bp->flags & B44_FLAG_RX_RING_HACK) {
+-			dma_unmap_single(&bp->pdev->dev, bp->rx_ring_dma,
+-				         DMA_TABLE_BYTES,
+-				         DMA_BIDIRECTIONAL);
++			dma_unmap_single(&bp->sdev->dev, bp->rx_ring_dma,
++					DMA_TABLE_BYTES,
++					DMA_BIDIRECTIONAL);
+ 			kfree(bp->rx_ring);
+ 		} else
+-			pci_free_consistent(bp->pdev, DMA_TABLE_BYTES,
++			dma_free_coherent(&bp->sdev->dev, DMA_TABLE_BYTES,
+ 					    bp->rx_ring, bp->rx_ring_dma);
+ 		bp->rx_ring = NULL;
+ 		bp->flags &= ~B44_FLAG_RX_RING_HACK;
+ 	}
+ 	if (bp->tx_ring) {
+ 		if (bp->flags & B44_FLAG_TX_RING_HACK) {
+-			dma_unmap_single(&bp->pdev->dev, bp->tx_ring_dma,
+-				         DMA_TABLE_BYTES,
+-				         DMA_TO_DEVICE);
++			dma_unmap_single(&bp->sdev->dev, bp->tx_ring_dma,
++					DMA_TABLE_BYTES,
++					DMA_TO_DEVICE);
+ 			kfree(bp->tx_ring);
+ 		} else
+-			pci_free_consistent(bp->pdev, DMA_TABLE_BYTES,
++			dma_free_coherent(&bp->sdev->dev, DMA_TABLE_BYTES,
+ 					    bp->tx_ring, bp->tx_ring_dma);
+ 		bp->tx_ring = NULL;
+ 		bp->flags &= ~B44_FLAG_TX_RING_HACK;
+@@ -1203,7 +1149,7 @@ static int b44_alloc_consistent(struct b
+ 		goto out_err;
+ 
+ 	size = DMA_TABLE_BYTES;
+-	bp->rx_ring = pci_alloc_consistent(bp->pdev, size, &bp->rx_ring_dma);
++	bp->rx_ring = dma_alloc_coherent(&bp->sdev->dev, size, &bp->rx_ring_dma, GFP_ATOMIC);
+ 	if (!bp->rx_ring) {
+ 		/* Allocation may have failed due to pci_alloc_consistent
+ 		   insisting on use of GFP_DMA, which is more restrictive
+@@ -1215,9 +1161,9 @@ static int b44_alloc_consistent(struct b
+ 		if (!rx_ring)
+ 			goto out_err;
+ 
+-		rx_ring_dma = dma_map_single(&bp->pdev->dev, rx_ring,
+-		                             DMA_TABLE_BYTES,
+-		                             DMA_BIDIRECTIONAL);
++		rx_ring_dma = dma_map_single(&bp->sdev->dev, rx_ring,
++			                    DMA_TABLE_BYTES,
++			                    DMA_BIDIRECTIONAL);
+ 
+ 		if (dma_mapping_error(rx_ring_dma) ||
+ 			rx_ring_dma + size > B44_DMA_MASK) {
+@@ -1230,9 +1176,9 @@ static int b44_alloc_consistent(struct b
+ 		bp->flags |= B44_FLAG_RX_RING_HACK;
+ 	}
+ 
+-	bp->tx_ring = pci_alloc_consistent(bp->pdev, size, &bp->tx_ring_dma);
++	bp->tx_ring = dma_alloc_coherent(&bp->sdev->dev, size, &bp->tx_ring_dma, GFP_ATOMIC);
+ 	if (!bp->tx_ring) {
+-		/* Allocation may have failed due to pci_alloc_consistent
++		/* Allocation may have failed due to dma_alloc_coherent
+ 		   insisting on use of GFP_DMA, which is more restrictive
+ 		   than necessary...  */
+ 		struct dma_desc *tx_ring;
+@@ -1242,9 +1188,9 @@ static int b44_alloc_consistent(struct b
+ 		if (!tx_ring)
+ 			goto out_err;
+ 
+-		tx_ring_dma = dma_map_single(&bp->pdev->dev, tx_ring,
+-		                             DMA_TABLE_BYTES,
+-		                             DMA_TO_DEVICE);
++		tx_ring_dma = dma_map_single(&bp->sdev->dev, tx_ring,
++			                    DMA_TABLE_BYTES,
++			                    DMA_TO_DEVICE);
+ 
+ 		if (dma_mapping_error(tx_ring_dma) ||
+ 			tx_ring_dma + size > B44_DMA_MASK) {
+@@ -1279,7 +1225,9 @@ static void b44_clear_stats(struct b44 *
+ /* bp->lock is held. */
+ static void b44_chip_reset(struct b44 *bp)
+ {
+-	if (ssb_is_core_up(bp)) {
++	struct ssb_device *sdev = bp->sdev;
++
++	if (ssb_device_is_enabled(bp->sdev)) {
+ 		bw32(bp, B44_RCV_LAZY, 0);
+ 		bw32(bp, B44_ENET_CTRL, ENET_CTRL_DISABLE);
+ 		b44_wait_bit(bp, B44_ENET_CTRL, ENET_CTRL_DISABLE, 100, 1);
+@@ -1291,19 +1239,23 @@ static void b44_chip_reset(struct b44 *b
+ 		}
+ 		bw32(bp, B44_DMARX_CTRL, 0);
+ 		bp->rx_prod = bp->rx_cons = 0;
+-	} else {
+-		ssb_pci_setup(bp, (bp->core_unit == 0 ?
+-				   SBINTVEC_ENET0 :
+-				   SBINTVEC_ENET1));
+ 	}
+ 
+-	ssb_core_reset(bp);
+-
++	ssb_device_enable(bp->sdev, 0);
+ 	b44_clear_stats(bp);
+ 
+-	/* Make PHY accessible. */
+-	bw32(bp, B44_MDIO_CTRL, (MDIO_CTRL_PREAMBLE |
++	switch (sdev->bus->bustype) {
++	case SSB_BUSTYPE_SSB: 
++			bw32(bp, B44_MDIO_CTRL, (MDIO_CTRL_PREAMBLE |
++			     (((ssb_clockspeed(sdev->bus) + (B44_MDC_RATIO / 2)) / B44_MDC_RATIO)
++			     & MDIO_CTRL_MAXF_MASK)));
++		break;
++	case SSB_BUSTYPE_PCI:
++		bw32(bp, B44_MDIO_CTRL, (MDIO_CTRL_PREAMBLE |
+ 			     (0x0d & MDIO_CTRL_MAXF_MASK)));
++		break;
++	}
++
+ 	br32(bp, B44_MDIO_CTRL);
+ 
+ 	if (!(br32(bp, B44_DEVCTRL) & DEVCTRL_IPP)) {
+@@ -1346,6 +1298,7 @@ static int b44_set_mac_addr(struct net_d
+ {
+ 	struct b44 *bp = netdev_priv(dev);
+ 	struct sockaddr *addr = p;
++ 	u32 val;
+ 
+ 	if (netif_running(dev))
+ 		return -EBUSY;
+@@ -1356,7 +1309,11 @@ static int b44_set_mac_addr(struct net_d
+ 	memcpy(dev->dev_addr, addr->sa_data, dev->addr_len);
+ 
+ 	spin_lock_irq(&bp->lock);
+-	__b44_set_mac_addr(bp);
++   
++   	val = br32(bp, B44_RXCONFIG);
++   	if (!(val & RXCONFIG_CAM_ABSENT))
++		__b44_set_mac_addr(bp);
++   
+ 	spin_unlock_irq(&bp->lock);
+ 
+ 	return 0;
+@@ -1442,18 +1399,6 @@ out:
+ 	return err;
+ }
+ 
+-#if 0
+-/*static*/ void b44_dump_state(struct b44 *bp)
+-{
+-	u32 val32, val32_2, val32_3, val32_4, val32_5;
+-	u16 val16;
+-
+-	pci_read_config_word(bp->pdev, PCI_STATUS, &val16);
+-	printk("DEBUG: PCI status [%04x] \n", val16);
+-
+-}
+-#endif
+-
+ #ifdef CONFIG_NET_POLL_CONTROLLER
+ /*
+  * Polling receive - used by netconsole and other diagnostic tools
+@@ -1568,7 +1513,6 @@ static void b44_setup_pseudo_magicp(stru
+ static void b44_setup_wol(struct b44 *bp)
+ {
+ 	u32 val;
+-	u16 pmval;
+ 
+ 	bw32(bp, B44_RXCONFIG, RXCONFIG_ALLMULTI);
+ 
+@@ -1592,13 +1536,6 @@ static void b44_setup_wol(struct b44 *bp
+  	} else {
+  		b44_setup_pseudo_magicp(bp);
+  	}
+-
+-	val = br32(bp, B44_SBTMSLOW);
+-	bw32(bp, B44_SBTMSLOW, val | SBTMSLOW_PE);
+-
+-	pci_read_config_word(bp->pdev, SSB_PMCSR, &pmval);
+-	pci_write_config_word(bp->pdev, SSB_PMCSR, pmval | SSB_PE);
+-
+ }
+ 
+ static int b44_close(struct net_device *dev)
+@@ -1698,7 +1635,7 @@ static void __b44_set_rx_mode(struct net
+ 
+ 	val = br32(bp, B44_RXCONFIG);
+ 	val &= ~(RXCONFIG_PROMISC | RXCONFIG_ALLMULTI);
+-	if (dev->flags & IFF_PROMISC) {
++	if ((dev->flags & IFF_PROMISC) || (val & RXCONFIG_CAM_ABSENT)) {
+ 		val |= RXCONFIG_PROMISC;
+ 		bw32(bp, B44_RXCONFIG, val);
+ 	} else {
+@@ -1745,12 +1682,8 @@ static void b44_set_msglevel(struct net_
+ 
+ static void b44_get_drvinfo (struct net_device *dev, struct ethtool_drvinfo *info)
+ {
+-	struct b44 *bp = netdev_priv(dev);
+-	struct pci_dev *pci_dev = bp->pdev;
+-
+ 	strcpy (info->driver, DRV_MODULE_NAME);
+ 	strcpy (info->version, DRV_MODULE_VERSION);
+-	strcpy (info->bus_info, pci_name(pci_dev));
+ }
+ 
+ static int b44_nway_reset(struct net_device *dev)
+@@ -2034,6 +1967,245 @@ static const struct ethtool_ops b44_etht
+ 	.get_perm_addr		= ethtool_op_get_perm_addr,
+ };
+ 
++static int b44_ethtool_ioctl (struct net_device *dev, void __user *useraddr)
++{
++	struct b44 *bp = dev->priv;
++	u32 ethcmd;
++
++	if (copy_from_user (&ethcmd, useraddr, sizeof (ethcmd)))
++		return -EFAULT;
++
++	switch (ethcmd) {
++	case ETHTOOL_GDRVINFO: {
++		struct ethtool_drvinfo info = { ETHTOOL_GDRVINFO };
++		strcpy (info.driver, DRV_MODULE_NAME);
++		strcpy (info.version, DRV_MODULE_VERSION);
++		memset(&info.fw_version, 0, sizeof(info.fw_version));
++		info.eedump_len = 0;
++		info.regdump_len = 0;
++		if (copy_to_user (useraddr, &info, sizeof (info)))
++			return -EFAULT;
++		return 0;
++	}
++
++	case ETHTOOL_GSET: {
++		struct ethtool_cmd cmd = { ETHTOOL_GSET };
++
++		if (!(bp->flags & B44_FLAG_INIT_COMPLETE))
++			return -EAGAIN;
++		cmd.supported = (SUPPORTED_Autoneg);
++		cmd.supported |= (SUPPORTED_100baseT_Half |
++				  SUPPORTED_100baseT_Full |
++				  SUPPORTED_10baseT_Half |
++				  SUPPORTED_10baseT_Full |
++				  SUPPORTED_MII);
++
++		cmd.advertising = 0;
++		if (bp->flags & B44_FLAG_ADV_10HALF)
++			cmd.advertising |= ADVERTISE_10HALF;
++		if (bp->flags & B44_FLAG_ADV_10FULL)
++			cmd.advertising |= ADVERTISE_10FULL;
++		if (bp->flags & B44_FLAG_ADV_100HALF)
++			cmd.advertising |= ADVERTISE_100HALF;
++		if (bp->flags & B44_FLAG_ADV_100FULL)
++			cmd.advertising |= ADVERTISE_100FULL;
++		cmd.advertising |= ADVERTISE_PAUSE_CAP | ADVERTISE_PAUSE_ASYM;
++		cmd.speed = (bp->flags & B44_FLAG_100_BASE_T) ?
++			SPEED_100 : SPEED_10;
++		cmd.duplex = (bp->flags & B44_FLAG_FULL_DUPLEX) ?
++			DUPLEX_FULL : DUPLEX_HALF;
++		cmd.port = 0;
++		cmd.phy_address = bp->phy_addr;
++		cmd.transceiver = (bp->flags & B44_FLAG_INTERNAL_PHY) ?
++			XCVR_INTERNAL : XCVR_EXTERNAL;
++		cmd.autoneg = (bp->flags & B44_FLAG_FORCE_LINK) ?
++			AUTONEG_DISABLE : AUTONEG_ENABLE;
++		cmd.maxtxpkt = 0;
++		cmd.maxrxpkt = 0;
++		if (copy_to_user(useraddr, &cmd, sizeof(cmd)))
++			return -EFAULT;
++		return 0;
++	}
++	case ETHTOOL_SSET: {
++		struct ethtool_cmd cmd;
++
++		if (!(bp->flags & B44_FLAG_INIT_COMPLETE))
++			return -EAGAIN;
++
++		if (copy_from_user(&cmd, useraddr, sizeof(cmd)))
++			return -EFAULT;
++
++		/* We do not support gigabit. */
++		if (cmd.autoneg == AUTONEG_ENABLE) {
++			if (cmd.advertising &
++			    (ADVERTISED_1000baseT_Half |
++			     ADVERTISED_1000baseT_Full))
++				return -EINVAL;
++		} else if ((cmd.speed != SPEED_100 &&
++			    cmd.speed != SPEED_10) ||
++			   (cmd.duplex != DUPLEX_HALF &&
++			    cmd.duplex != DUPLEX_FULL)) {
++				return -EINVAL;
++		}
++
++		spin_lock_irq(&bp->lock);
++
++		if (cmd.autoneg == AUTONEG_ENABLE) {
++			bp->flags &= ~B44_FLAG_FORCE_LINK;
++			bp->flags &= ~(B44_FLAG_ADV_10HALF |
++				       B44_FLAG_ADV_10FULL |
++				       B44_FLAG_ADV_100HALF |
++				       B44_FLAG_ADV_100FULL);
++			if (cmd.advertising & ADVERTISE_10HALF)
++				bp->flags |= B44_FLAG_ADV_10HALF;
++			if (cmd.advertising & ADVERTISE_10FULL)
++				bp->flags |= B44_FLAG_ADV_10FULL;
++			if (cmd.advertising & ADVERTISE_100HALF)
++				bp->flags |= B44_FLAG_ADV_100HALF;
++			if (cmd.advertising & ADVERTISE_100FULL)
++				bp->flags |= B44_FLAG_ADV_100FULL;
++		} else {
++			bp->flags |= B44_FLAG_FORCE_LINK;
++			if (cmd.speed == SPEED_100)
++				bp->flags |= B44_FLAG_100_BASE_T;
++			if (cmd.duplex == DUPLEX_FULL)
++				bp->flags |= B44_FLAG_FULL_DUPLEX;
++		}
++
++		b44_setup_phy(bp);
++
++		spin_unlock_irq(&bp->lock);
++
++		return 0;
++	}
++
++	case ETHTOOL_GMSGLVL: {
++		struct ethtool_value edata = { ETHTOOL_GMSGLVL };
++		edata.data = bp->msg_enable;
++		if (copy_to_user(useraddr, &edata, sizeof(edata)))
++			return -EFAULT;
++		return 0;
++	}
++	case ETHTOOL_SMSGLVL: {
++		struct ethtool_value edata;
++		if (copy_from_user(&edata, useraddr, sizeof(edata)))
++			return -EFAULT;
++		bp->msg_enable = edata.data;
++		return 0;
++	}
++	case ETHTOOL_NWAY_RST: {
++		u32 bmcr;
++		int r;
++
++		spin_lock_irq(&bp->lock);
++		b44_readphy(bp, MII_BMCR, &bmcr);
++		b44_readphy(bp, MII_BMCR, &bmcr);
++		r = -EINVAL;
++		if (bmcr & BMCR_ANENABLE) {
++			b44_writephy(bp, MII_BMCR,
++				     bmcr | BMCR_ANRESTART);
++			r = 0;
++		}
++		spin_unlock_irq(&bp->lock);
++
++		return r;
++	}
++	case ETHTOOL_GLINK: {
++		struct ethtool_value edata = { ETHTOOL_GLINK };
++		edata.data = netif_carrier_ok(bp->dev) ? 1 : 0;
++		if (copy_to_user(useraddr, &edata, sizeof(edata)))
++			return -EFAULT;
++		return 0;
++	}
++	case ETHTOOL_GRINGPARAM: {
++		struct ethtool_ringparam ering = { ETHTOOL_GRINGPARAM };
++
++		ering.rx_max_pending = B44_RX_RING_SIZE - 1;
++		ering.rx_pending = bp->rx_pending;
++
++		/* XXX ethtool lacks a tx_max_pending, oops... */
++
++		if (copy_to_user(useraddr, &ering, sizeof(ering)))
++			return -EFAULT;
++		return 0;
++	}
++	case ETHTOOL_SRINGPARAM: {
++		struct ethtool_ringparam ering;
++
++		if (copy_from_user(&ering, useraddr, sizeof(ering)))
++			return -EFAULT;
++
++		if ((ering.rx_pending > B44_RX_RING_SIZE - 1) ||
++		    (ering.rx_mini_pending != 0) ||
++		    (ering.rx_jumbo_pending != 0) ||
++		    (ering.tx_pending > B44_TX_RING_SIZE - 1))
++			return -EINVAL;
++
++		spin_lock_irq(&bp->lock);
++
++		bp->rx_pending = ering.rx_pending;
++		bp->tx_pending = ering.tx_pending;
++
++		b44_halt(bp);
++		b44_init_rings(bp);
++		b44_init_hw(bp, 1);
++		netif_wake_queue(bp->dev);
++		spin_unlock_irq(&bp->lock);
++
++		b44_enable_ints(bp);
++		
++		return 0;
++	}
++	case ETHTOOL_GPAUSEPARAM: {
++		struct ethtool_pauseparam epause = { ETHTOOL_GPAUSEPARAM };
++
++		epause.autoneg =
++			(bp->flags & B44_FLAG_PAUSE_AUTO) != 0;
++		epause.rx_pause =
++			(bp->flags & B44_FLAG_RX_PAUSE) != 0;
++		epause.tx_pause =
++			(bp->flags & B44_FLAG_TX_PAUSE) != 0;
++		if (copy_to_user(useraddr, &epause, sizeof(epause)))
++			return -EFAULT;
++		return 0;
++	}
++	case ETHTOOL_SPAUSEPARAM: {
++		struct ethtool_pauseparam epause;
++
++		if (copy_from_user(&epause, useraddr, sizeof(epause)))
++			return -EFAULT;
++
++		spin_lock_irq(&bp->lock);
++		if (epause.autoneg)
++			bp->flags |= B44_FLAG_PAUSE_AUTO;
++		else
++			bp->flags &= ~B44_FLAG_PAUSE_AUTO;
++		if (epause.rx_pause)
++			bp->flags |= B44_FLAG_RX_PAUSE;
++		else
++			bp->flags &= ~B44_FLAG_RX_PAUSE;
++		if (epause.tx_pause)
++			bp->flags |= B44_FLAG_TX_PAUSE;
++		else
++			bp->flags &= ~B44_FLAG_TX_PAUSE;
++		if (bp->flags & B44_FLAG_PAUSE_AUTO) {
++			b44_halt(bp);
++			b44_init_rings(bp);
++			b44_init_hw(bp, 1);
++		} else {
++			__b44_set_flow_ctrl(bp, bp->flags);
++		}
++		spin_unlock_irq(&bp->lock);
++
++		b44_enable_ints(bp);
++		
++		return 0;
++	}
++	};
++
++	return -EOPNOTSUPP;
++}
++
+ static int b44_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd)
+ {
+ 	struct mii_ioctl_data *data = if_mii(ifr);
+@@ -2043,40 +2215,64 @@ static int b44_ioctl(struct net_device *
+ 	if (!netif_running(dev))
+ 		goto out;
+ 
+-	spin_lock_irq(&bp->lock);
+-	err = generic_mii_ioctl(&bp->mii_if, data, cmd, NULL);
+-	spin_unlock_irq(&bp->lock);
+-out:
+-	return err;
+-}
++	switch (cmd) {
++	case SIOCETHTOOL:
++	       return b44_ethtool_ioctl(dev, (void __user*) ifr->ifr_data);
+ 
+-/* Read 128-bytes of EEPROM. */
+-static int b44_read_eeprom(struct b44 *bp, u8 *data)
+-{
+-	long i;
+-	u16 *ptr = (u16 *) data;
++	case SIOCGMIIPHY:
++	       data->phy_id = bp->phy_addr;
+ 
+-	for (i = 0; i < 128; i += 2)
+-		ptr[i / 2] = cpu_to_le16(readw(bp->regs + 4096 + i));
++	       /* fallthru */
++	case SIOCGMIIREG: {
++	       u32 mii_regval;
++	       spin_lock_irq(&bp->lock);
++	       err = __b44_readphy(bp, data->phy_id & 0x1f, data->reg_num & 0x1f, &mii_regval);
++	       spin_unlock_irq(&bp->lock);
+ 
+-	return 0;
++	       data->val_out = mii_regval;
++
++	       return err;
++	}
++
++	case SIOCSMIIREG:
++	       if (!capable(CAP_NET_ADMIN))
++		      return -EPERM;
++
++	       spin_lock_irq(&bp->lock);
++	       err = __b44_writephy(bp, data->phy_id & 0x1f, data->reg_num & 0x1f, data->val_in);
++	       spin_unlock_irq(&bp->lock);
++
++	       return err;
++
++	default:
++	       break;
++	};
++	return -EOPNOTSUPP;
++
++out:
++	return err;
+ }
+ 
+ static int __devinit b44_get_invariants(struct b44 *bp)
+ {
+-	u8 eeprom[128];
+-	int err;
++	struct ssb_device *sdev = bp->sdev;
++	int err = 0;
++	u8 *addr;
+ 
+-	err = b44_read_eeprom(bp, &eeprom[0]);
+-	if (err)
+-		goto out;
++	bp->dma_offset = ssb_dma_offset(sdev);
+ 
+-	bp->dev->dev_addr[0] = eeprom[79];
+-	bp->dev->dev_addr[1] = eeprom[78];
+-	bp->dev->dev_addr[2] = eeprom[81];
+-	bp->dev->dev_addr[3] = eeprom[80];
+-	bp->dev->dev_addr[4] = eeprom[83];
+-	bp->dev->dev_addr[5] = eeprom[82];
++	switch (instance) {
++	case 1:
++	       addr = sdev->bus->sprom.r1.et0mac;
++	       bp->phy_addr = sdev->bus->sprom.r1.et0phyaddr;
++	       break;
++	default:
++	       addr = sdev->bus->sprom.r1.et1mac;
++	       bp->phy_addr = sdev->bus->sprom.r1.et1phyaddr;
++	       break;
++	}
++
++	memcpy(bp->dev->dev_addr, addr, 6);
+ 
+ 	if (!is_valid_ether_addr(&bp->dev->dev_addr[0])){
+ 		printk(KERN_ERR PFX "Invalid MAC address found in EEPROM\n");
+@@ -2085,108 +2281,52 @@ static int __devinit b44_get_invariants(
+ 
+ 	memcpy(bp->dev->perm_addr, bp->dev->dev_addr, bp->dev->addr_len);
+ 
+-	bp->phy_addr = eeprom[90] & 0x1f;
+-
+ 	/* With this, plus the rx_header prepended to the data by the
+ 	 * hardware, we'll land the ethernet header on a 2-byte boundary.
+ 	 */
+ 	bp->rx_offset = 30;
+-
+ 	bp->imask = IMASK_DEF;
+-
+-	bp->core_unit = ssb_core_unit(bp);
+-	bp->dma_offset = SB_PCI_DMA;
+-
+ 	/* XXX - really required?
+ 	   bp->flags |= B44_FLAG_BUGGY_TXPTR;
+-         */
++	*/
+ 
+- 	if (ssb_get_core_rev(bp) >= 7)
+- 		bp->flags |= B44_FLAG_B0_ANDLATER;
+-
+-out:
+ 	return err;
+ }
+ 
+-static int __devinit b44_init_one(struct pci_dev *pdev,
+-				  const struct pci_device_id *ent)
++static int __devinit b44_init_one(struct ssb_device *sdev,
++				  const struct ssb_device_id *ent)
+ {
+ 	static int b44_version_printed = 0;
+-	unsigned long b44reg_base, b44reg_len;
+ 	struct net_device *dev;
+ 	struct b44 *bp;
+ 	int err, i;
+ 
++	instance++;
++
+ 	if (b44_version_printed++ == 0)
+ 		printk(KERN_INFO "%s", version);
+ 
+-	err = pci_enable_device(pdev);
+-	if (err) {
+-		dev_err(&pdev->dev, "Cannot enable PCI device, "
+-		       "aborting.\n");
+-		return err;
+-	}
+-
+-	if (!(pci_resource_flags(pdev, 0) & IORESOURCE_MEM)) {
+-		dev_err(&pdev->dev,
+-			"Cannot find proper PCI device "
+-		       "base address, aborting.\n");
+-		err = -ENODEV;
+-		goto err_out_disable_pdev;
+-	}
+-
+-	err = pci_request_regions(pdev, DRV_MODULE_NAME);
+-	if (err) {
+-		dev_err(&pdev->dev,
+-			"Cannot obtain PCI resources, aborting.\n");
+-		goto err_out_disable_pdev;
+-	}
+-
+-	pci_set_master(pdev);
+-
+-	err = pci_set_dma_mask(pdev, (u64) B44_DMA_MASK);
+-	if (err) {
+-		dev_err(&pdev->dev, "No usable DMA configuration, aborting.\n");
+-		goto err_out_free_res;
+-	}
+-
+-	err = pci_set_consistent_dma_mask(pdev, (u64) B44_DMA_MASK);
+-	if (err) {
+-		dev_err(&pdev->dev, "No usable DMA configuration, aborting.\n");
+-		goto err_out_free_res;
+-	}
+-
+-	b44reg_base = pci_resource_start(pdev, 0);
+-	b44reg_len = pci_resource_len(pdev, 0);
+-
+ 	dev = alloc_etherdev(sizeof(*bp));
+ 	if (!dev) {
+-		dev_err(&pdev->dev, "Etherdev alloc failed, aborting.\n");
++		dev_err(&sdev->dev, "Etherdev alloc failed, aborting.\n");
+ 		err = -ENOMEM;
+-		goto err_out_free_res;
++		goto out;
+ 	}
+ 
+ 	SET_MODULE_OWNER(dev);
+-	SET_NETDEV_DEV(dev,&pdev->dev);
++	SET_NETDEV_DEV(dev,&sdev->dev);
+ 
+ 	/* No interesting netdevice features in this card... */
+ 	dev->features |= 0;
+ 
+ 	bp = netdev_priv(dev);
+-	bp->pdev = pdev;
++	bp->sdev = sdev;
+ 	bp->dev = dev;
+ 
+ 	bp->msg_enable = netif_msg_init(b44_debug, B44_DEF_MSG_ENABLE);
+ 
+ 	spin_lock_init(&bp->lock);
+ 
+-	bp->regs = ioremap(b44reg_base, b44reg_len);
+-	if (bp->regs == 0UL) {
+-		dev_err(&pdev->dev, "Cannot map device registers, aborting.\n");
+-		err = -ENOMEM;
+-		goto err_out_free_dev;
+-	}
+-
+ 	bp->rx_pending = B44_DEF_RX_RING_PENDING;
+ 	bp->tx_pending = B44_DEF_TX_RING_PENDING;
+ 
+@@ -2205,16 +2345,16 @@ static int __devinit b44_init_one(struct
+ 	dev->poll_controller = b44_poll_controller;
+ #endif
+ 	dev->change_mtu = b44_change_mtu;
+-	dev->irq = pdev->irq;
++	dev->irq = sdev->irq;
+ 	SET_ETHTOOL_OPS(dev, &b44_ethtool_ops);
+ 
+ 	netif_carrier_off(dev);
+ 
+ 	err = b44_get_invariants(bp);
+ 	if (err) {
+-		dev_err(&pdev->dev,
++		dev_err(&sdev->dev,
+ 			"Problem fetching invariants of chip, aborting.\n");
+-		goto err_out_iounmap;
++		goto err_out_free_dev;
+ 	}
+ 
+ 	bp->mii_if.dev = dev;
+@@ -2233,61 +2373,52 @@ static int __devinit b44_init_one(struct
+ 
+ 	err = register_netdev(dev);
+ 	if (err) {
+-		dev_err(&pdev->dev, "Cannot register net device, aborting.\n");
+-		goto err_out_iounmap;
++		dev_err(&sdev->dev, "Cannot register net device, aborting.\n");
++		goto out;
+ 	}
+ 
+-	pci_set_drvdata(pdev, dev);
+-
+-	pci_save_state(bp->pdev);
++	ssb_set_drvdata(sdev, dev);
+ 
+ 	/* Chip reset provides power to the b44 MAC & PCI cores, which
+ 	 * is necessary for MAC register access.
+ 	 */
+ 	b44_chip_reset(bp);
+ 
+-	printk(KERN_INFO "%s: Broadcom 4400 10/100BaseT Ethernet ", dev->name);
++	printk(KERN_INFO "%s: Broadcom 10/100BaseT Ethernet ", dev->name);
+ 	for (i = 0; i < 6; i++)
+ 		printk("%2.2x%c", dev->dev_addr[i],
+ 		       i == 5 ? '\n' : ':');
+ 
+-	return 0;
++	/* Initialize phy */
++	spin_lock_irq(&bp->lock);
++	b44_chip_reset(bp);
++	spin_unlock_irq(&bp->lock);
+ 
+-err_out_iounmap:
+-	iounmap(bp->regs);
++	return 0;
+ 
+ err_out_free_dev:
+ 	free_netdev(dev);
+ 
+-err_out_free_res:
+-	pci_release_regions(pdev);
+-
+-err_out_disable_pdev:
+-	pci_disable_device(pdev);
+-	pci_set_drvdata(pdev, NULL);
++out:
+ 	return err;
+ }
+ 
+-static void __devexit b44_remove_one(struct pci_dev *pdev)
++static void __devexit b44_remove_one(struct ssb_device *pdev)
+ {
+-	struct net_device *dev = pci_get_drvdata(pdev);
+-	struct b44 *bp = netdev_priv(dev);
++	struct net_device *dev = ssb_get_drvdata(pdev);
+ 
+ 	unregister_netdev(dev);
+-	iounmap(bp->regs);
+ 	free_netdev(dev);
+-	pci_release_regions(pdev);
+-	pci_disable_device(pdev);
+-	pci_set_drvdata(pdev, NULL);
++	ssb_set_drvdata(pdev, NULL);
+ }
+ 
+-static int b44_suspend(struct pci_dev *pdev, pm_message_t state)
++static int b44_suspend(struct ssb_device *pdev, pm_message_t state)
+ {
+-	struct net_device *dev = pci_get_drvdata(pdev);
++	struct net_device *dev = ssb_get_drvdata(pdev);
+ 	struct b44 *bp = netdev_priv(dev);
+ 
+         if (!netif_running(dev))
+-                 return 0;
++	        return 0;
+ 
+ 	del_timer_sync(&bp->timer);
+ 
+@@ -2305,19 +2436,15 @@ static int b44_suspend(struct pci_dev *p
+ 		b44_init_hw(bp, 0);
+ 		b44_setup_wol(bp);
+ 	}
+-	pci_disable_device(pdev);
++
+ 	return 0;
+ }
+ 
+-static int b44_resume(struct pci_dev *pdev)
++static int b44_resume(struct ssb_device *pdev)
+ {
+-	struct net_device *dev = pci_get_drvdata(pdev);
++	struct net_device *dev = ssb_get_drvdata(pdev);
+ 	struct b44 *bp = netdev_priv(dev);
+ 
+-	pci_restore_state(pdev);
+-	pci_enable_device(pdev);
+-	pci_set_master(pdev);
+-
+ 	if (!netif_running(dev))
+ 		return 0;
+ 
+@@ -2339,29 +2466,31 @@ static int b44_resume(struct pci_dev *pd
+ 	return 0;
+ }
+ 
+-static struct pci_driver b44_driver = {
++static struct ssb_driver b44_driver = {
+ 	.name		= DRV_MODULE_NAME,
+-	.id_table	= b44_pci_tbl,
++	.id_table	= b44_ssb_tbl,
+ 	.probe		= b44_init_one,
+ 	.remove		= __devexit_p(b44_remove_one),
+-        .suspend        = b44_suspend,
+-        .resume         = b44_resume,
++	.suspend	= b44_suspend,
++	.resume		= b44_resume,
+ };
+ 
+ static int __init b44_init(void)
+ {
+ 	unsigned int dma_desc_align_size = dma_get_cache_alignment();
+ 
++	instance = 0;
++
+ 	/* Setup paramaters for syncing RX/TX DMA descriptors */
+ 	dma_desc_align_mask = ~(dma_desc_align_size - 1);
+ 	dma_desc_sync_size = max_t(unsigned int, dma_desc_align_size, sizeof(struct dma_desc));
+ 
+-	return pci_register_driver(&b44_driver);
++	return ssb_driver_register(&b44_driver);
+ }
+ 
+ static void __exit b44_cleanup(void)
+ {
+-	pci_unregister_driver(&b44_driver);
++	ssb_driver_unregister(&b44_driver);
+ }
+ 
+ module_init(b44_init);
+diff --git a/drivers/net/b44.h b/drivers/net/b44.h
+index 4944507..7e3ea87 100644
+--- a/drivers/net/b44.h
++++ b/drivers/net/b44.h
+@@ -129,6 +129,7 @@
+ #define  RXCONFIG_FLOW		0x00000020 /* Flow Control Enable */
+ #define  RXCONFIG_FLOW_ACCEPT	0x00000040 /* Accept Unicast Flow Control Frame */
+ #define  RXCONFIG_RFILT		0x00000080 /* Reject Filter */
++#define  RXCONFIG_CAM_ABSENT	0x00000100 /* CAM Absent */
+ #define B44_RXMAXLEN	0x0404UL /* EMAC RX Max Packet Length */
+ #define B44_TXMAXLEN	0x0408UL /* EMAC TX Max Packet Length */
+ #define B44_MDIO_CTRL	0x0410UL /* EMAC MDIO Control */
+@@ -227,75 +228,9 @@
+ #define B44_RX_PAUSE	0x05D4UL /* MIB RX Pause Packets */
+ #define B44_RX_NPAUSE	0x05D8UL /* MIB RX Non-Pause Packets */
+ 
+-/* Silicon backplane register definitions */
+-#define B44_SBIMSTATE	0x0F90UL /* SB Initiator Agent State */
+-#define  SBIMSTATE_PC		0x0000000f /* Pipe Count */
+-#define  SBIMSTATE_AP_MASK	0x00000030 /* Arbitration Priority */
+-#define  SBIMSTATE_AP_BOTH	0x00000000 /* Use both timeslices and token */
+-#define  SBIMSTATE_AP_TS	0x00000010 /* Use timeslices only */
+-#define  SBIMSTATE_AP_TK	0x00000020 /* Use token only */
+-#define  SBIMSTATE_AP_RSV	0x00000030 /* Reserved */
+-#define  SBIMSTATE_IBE		0x00020000 /* In Band Error */
+-#define  SBIMSTATE_TO		0x00040000 /* Timeout */
+-#define B44_SBINTVEC	0x0F94UL /* SB Interrupt Mask */
+-#define  SBINTVEC_PCI		0x00000001 /* Enable interrupts for PCI */
+-#define  SBINTVEC_ENET0		0x00000002 /* Enable interrupts for enet 0 */
+-#define  SBINTVEC_ILINE20	0x00000004 /* Enable interrupts for iline20 */
+-#define  SBINTVEC_CODEC		0x00000008 /* Enable interrupts for v90 codec */
+-#define  SBINTVEC_USB		0x00000010 /* Enable interrupts for usb */
+-#define  SBINTVEC_EXTIF		0x00000020 /* Enable interrupts for external i/f */
+-#define  SBINTVEC_ENET1		0x00000040 /* Enable interrupts for enet 1 */
+-#define B44_SBTMSLOW	0x0F98UL /* SB Target State Low */
+-#define  SBTMSLOW_RESET		0x00000001 /* Reset */
+-#define  SBTMSLOW_REJECT	0x00000002 /* Reject */
+-#define  SBTMSLOW_CLOCK		0x00010000 /* Clock Enable */
+-#define  SBTMSLOW_FGC		0x00020000 /* Force Gated Clocks On */
+-#define  SBTMSLOW_PE		0x40000000 /* Power Management Enable */
+-#define  SBTMSLOW_BE		0x80000000 /* BIST Enable */
+-#define B44_SBTMSHIGH	0x0F9CUL /* SB Target State High */
+-#define  SBTMSHIGH_SERR		0x00000001 /* S-error */
+-#define  SBTMSHIGH_INT		0x00000002 /* Interrupt */
+-#define  SBTMSHIGH_BUSY		0x00000004 /* Busy */
+-#define  SBTMSHIGH_GCR		0x20000000 /* Gated Clock Request */
+-#define  SBTMSHIGH_BISTF	0x40000000 /* BIST Failed */
+-#define  SBTMSHIGH_BISTD	0x80000000 /* BIST Done */
+-#define B44_SBIDHIGH	0x0FFCUL /* SB Identification High */
+-#define  SBIDHIGH_RC_MASK	0x0000000f /* Revision Code */
+-#define  SBIDHIGH_CC_MASK	0x0000fff0 /* Core Code */
+-#define  SBIDHIGH_CC_SHIFT	4
+-#define  SBIDHIGH_VC_MASK	0xffff0000 /* Vendor Code */
+-#define  SBIDHIGH_VC_SHIFT	16
+-
+-/* SSB PCI config space registers.  */
+-#define SSB_PMCSR		0x44
+-#define  SSB_PE			0x100
+-#define	SSB_BAR0_WIN		0x80
+-#define	SSB_BAR1_WIN		0x84
+-#define	SSB_SPROM_CONTROL	0x88
+-#define	SSB_BAR1_CONTROL	0x8c
+-
+-/* SSB core and host control registers.  */
+-#define SSB_CONTROL		0x0000UL
+-#define SSB_ARBCONTROL		0x0010UL
+-#define SSB_ISTAT		0x0020UL
+-#define SSB_IMASK		0x0024UL
+-#define SSB_MBOX		0x0028UL
+-#define SSB_BCAST_ADDR		0x0050UL
+-#define SSB_BCAST_DATA		0x0054UL
+-#define SSB_PCI_TRANS_0		0x0100UL
+-#define SSB_PCI_TRANS_1		0x0104UL
+-#define SSB_PCI_TRANS_2		0x0108UL
+-#define SSB_SPROM		0x0800UL
+-
+-#define SSB_PCI_MEM		0x00000000
+-#define SSB_PCI_IO		0x00000001
+-#define SSB_PCI_CFG0		0x00000002
+-#define SSB_PCI_CFG1		0x00000003
+-#define SSB_PCI_PREF		0x00000004
+-#define SSB_PCI_BURST		0x00000008
+-#define SSB_PCI_MASK0		0xfc000000
+-#define SSB_PCI_MASK1		0xfc000000
+-#define SSB_PCI_MASK2		0xc0000000
++#define br32(bp, REG)	ssb_read32((bp)->sdev, (REG))
++#define bw32(bp, REG, VAL)	ssb_write32((bp)->sdev, (REG), (VAL))
++#define atoi(str) simple_strtoul(((str != NULL) ? str : ""), NULL, 0)
+ 
+ /* 4400 PHY registers */
+ #define B44_MII_AUXCTRL		24	/* Auxiliary Control */
+@@ -346,10 +281,12 @@ struct rx_header {
+ 
+ struct ring_info {
+ 	struct sk_buff		*skb;
+-	DECLARE_PCI_UNMAP_ADDR(mapping);
++	dma_addr_t	mapping;
+ };
+ 
+ #define B44_MCAST_TABLE_SIZE	32
++#define B44_PHY_ADDR_NO_PHY	30
++#define B44_MDC_RATIO		5000000
+ 
+ #define	B44_STAT_REG_DECLARE		\
+ 	_B44(tx_good_octets)		\
+@@ -425,9 +362,10 @@ struct b44 {
+ 
+ 	u32			dma_offset;
+ 	u32			flags;
+-#define B44_FLAG_B0_ANDLATER	0x00000001
++#define B44_FLAG_INIT_COMPLETE	0x00000001
+ #define B44_FLAG_BUGGY_TXPTR	0x00000002
+ #define B44_FLAG_REORDER_BUG	0x00000004
++#define B44_FLAG_B0_ANDLATER    0x00000008
+ #define B44_FLAG_PAUSE_AUTO	0x00008000
+ #define B44_FLAG_FULL_DUPLEX	0x00010000
+ #define B44_FLAG_100_BASE_T	0x00020000
+@@ -452,8 +390,7 @@ struct b44 {
+ 	struct net_device_stats	stats;
+ 	struct b44_hw_stats	hw_stats;
+ 
+-	void __iomem		*regs;
+-	struct pci_dev		*pdev;
++	struct ssb_device	*sdev;
+ 	struct net_device	*dev;
+ 
+ 	dma_addr_t		rx_ring_dma, tx_ring_dma;
+diff --git a/include/asm-mips/bootinfo.h b/include/asm-mips/bootinfo.h
+index 1e5ccda..fd5cc13 100644
+--- a/include/asm-mips/bootinfo.h
++++ b/include/asm-mips/bootinfo.h
+@@ -212,6 +212,12 @@
+ #define MACH_GROUP_NEC_EMMA2RH 25	/* NEC EMMA2RH (was 23)		*/
+ #define  MACH_NEC_MARKEINS	0	/* NEC EMMA2RH Mark-eins	*/
+ 
++/*
++ * Valid machtype for group Broadcom
++ */
++#define MACH_GROUP_BRCM		23	/* Broadcom			*/
++#define MACH_BCM47XX		1	/* Broadcom BCM47xx		*/
++
+ #define CL_SIZE			COMMAND_LINE_SIZE
+ 
+ const char *get_system_type(void);
+diff --git a/include/asm-mips/cfe.h b/include/asm-mips/cfe.h
+new file mode 100644
+index 0000000..47c3f56
+--- /dev/null
++++ b/include/asm-mips/cfe.h
+@@ -0,0 +1,189 @@
++/*
++ * Broadcom Common Firmware Environment (CFE) support
++ *
++ * Copyright 2000, 2001, 2002
++ * Broadcom Corporation. All rights reserved.
++ *
++ * Copyright (C) 2006 Michael Buesch
++ *
++ * Original Authors:  Mitch Lichtenberg, Chris Demetriou
++ *
++ * This software is furnished under license and may be used and copied only
++ * in accordance with the following terms and conditions.  Subject to these
++ * conditions, you may download, copy, install, use, modify and distribute
++ * modified or unmodified copies of this software in source and/or binary
++ * form. No title or ownership is transferred hereby.
++ *
++ * 1) Any source code used, modified or distributed must reproduce and
++ *    retain this copyright notice and list of conditions as they appear in
++ *    the source file.
++ *
++ * 2) No right is granted to use any trade name, trademark, or logo of
++ *    Broadcom Corporation.  The "Broadcom Corporation" name may not be
++ *    used to endorse or promote products derived from this software
++ *    without the prior written permission of Broadcom Corporation.
++ *
++ * 3) THIS SOFTWARE IS PROVIDED "AS-IS" AND ANY EXPRESS OR IMPLIED
++ *    WARRANTIES, INCLUDING BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF
++ *    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
++ *    NON-INFRINGEMENT ARE DISCLAIMED. IN NO EVENT SHALL BROADCOM BE LIABLE
++ *    FOR ANY DAMAGES WHATSOEVER, AND IN PARTICULAR, BROADCOM SHALL NOT BE
++ *    LIABLE FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ *    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ *    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ *    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ *    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ *    OR OTHERWISE), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef LINUX_CFE_API_H_
++#define LINUX_CFE_API_H_
++
++#include <linux/types.h>
++
++
++#define CFE_MI_RESERVED		0		/* memory is reserved, do not use */
++#define CFE_MI_AVAILABLE	1		/* memory is available */
++
++#define CFE_FLG_WARMSTART	0x00000001
++#define CFE_FLG_FULL_ARENA	0x00000001
++#define CFE_FLG_ENV_PERMANENT	0x00000001
++
++#define CFE_CPU_CMD_START	1
++#define CFE_CPU_CMD_STOP	0
++
++#define CFE_STDHANDLE_CONSOLE	0
++
++#define CFE_DEV_NETWORK 	1
++#define CFE_DEV_DISK		2
++#define CFE_DEV_FLASH		3
++#define CFE_DEV_SERIAL		4
++#define CFE_DEV_CPU		5
++#define CFE_DEV_NVRAM		6
++#define CFE_DEV_CLOCK           7
++#define CFE_DEV_OTHER		8
++#define CFE_DEV_MASK		0x0F
++
++#define CFE_CACHE_FLUSH_D	1
++#define CFE_CACHE_INVAL_I	2
++#define CFE_CACHE_INVAL_D	4
++#define CFE_CACHE_INVAL_L2	8
++
++#define CFE_FWI_64BIT		0x00000001
++#define CFE_FWI_32BIT		0x00000002
++#define CFE_FWI_RELOC		0x00000004
++#define CFE_FWI_UNCACHED	0x00000008
++#define CFE_FWI_MULTICPU	0x00000010
++#define CFE_FWI_FUNCSIM		0x00000020
++#define CFE_FWI_RTLSIM		0x00000040
++
++struct cfe_fwinfo {
++	s64 version;		/* major, minor, eco version */
++	s64 totalmem;		/* total installed mem */
++	s64 flags;		/* various flags */
++	s64 boardid;		/* board ID */
++	s64 bootarea_va;	/* VA of boot area */
++	s64 bootarea_pa;	/* PA of boot area */
++	s64 bootarea_size;	/* size of boot area */
++};
++
++
++/* The public CFE API */
++
++int cfe_present(void);	/* Check if we booted from CFE. Returns bool */
++
++int cfe_getticks(s64 *ticks);
++int cfe_close(int handle);
++int cfe_cpu_start(int cpu, void (*fn)(void), long sp, long gp, long a1);
++int cfe_cpu_stop(int cpu);
++int cfe_enumenv(int idx, char *name, int namelen, char *val, int vallen);
++int cfe_enumdev(int idx, char *name, int namelen);
++int cfe_enummem(int idx, int flags, u64 *start, u64 *length,
++		u64 *type);
++int cfe_exit(int warm, int status);
++int cfe_flushcache(int flags);
++int cfe_getdevinfo(char *name);
++int cfe_getenv(char *name, char *dest, int destlen);
++int cfe_getfwinfo(struct cfe_fwinfo *info);
++int cfe_getstdhandle(int handletype);
++int cfe_inpstat(int handle);
++int cfe_ioctl(int handle, unsigned int ioctlnum, unsigned char *buffer,
++	      int length, int *retlen, u64 offset);
++int cfe_open(char *name);
++int cfe_read(int handle, unsigned char *buffer, int length);
++int cfe_readblk(int handle, s64 offset, unsigned char *buffer, int length);
++int cfe_setenv(char *name, char *val);
++int cfe_write(int handle, unsigned char *buffer, int length);
++int cfe_writeblk(int handle, s64 offset, unsigned char *buffer,
++		 int length);
++
++
++/* High level API */
++
++/* Print some information to CFE's console (most likely serial line) */
++int cfe_printk(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
++int cfe_vprintk(const char *fmt, va_list args);
++
++
++
++/* Error codes returned by the low API functions */
++
++#define CFE_ISERR(errcode)	(errcode < 0)
++
++#define CFE_OK			 0
++#define CFE_ERR                 -1	/* generic error */
++#define CFE_ERR_INV_COMMAND	-2
++#define CFE_ERR_EOF		-3
++#define CFE_ERR_IOERR		-4
++#define CFE_ERR_NOMEM		-5
++#define CFE_ERR_DEVNOTFOUND	-6
++#define CFE_ERR_DEVOPEN		-7
++#define CFE_ERR_INV_PARAM	-8
++#define CFE_ERR_ENVNOTFOUND	-9
++#define CFE_ERR_ENVREADONLY	-10
++
++#define CFE_ERR_NOTELF		-11
++#define CFE_ERR_NOT32BIT 	-12
++#define CFE_ERR_WRONGENDIAN 	-13
++#define CFE_ERR_BADELFVERS 	-14
++#define CFE_ERR_NOTMIPS 	-15
++#define CFE_ERR_BADELFFMT 	-16
++#define CFE_ERR_BADADDR 	-17
++
++#define CFE_ERR_FILENOTFOUND	-18
++#define CFE_ERR_UNSUPPORTED	-19
++
++#define CFE_ERR_HOSTUNKNOWN	-20
++
++#define CFE_ERR_TIMEOUT		-21
++
++#define CFE_ERR_PROTOCOLERR	-22
++
++#define CFE_ERR_NETDOWN		-23
++#define CFE_ERR_NONAMESERVER	-24
++
++#define CFE_ERR_NOHANDLES	-25
++#define CFE_ERR_ALREADYBOUND	-26
++
++#define CFE_ERR_CANNOTSET	-27
++#define CFE_ERR_NOMORE		-28
++#define CFE_ERR_BADFILESYS	-29
++#define CFE_ERR_FSNOTAVAIL	-30
++
++#define CFE_ERR_INVBOOTBLOCK	-31
++#define CFE_ERR_WRONGDEVTYPE	-32
++#define CFE_ERR_BBCHECKSUM	-33
++#define CFE_ERR_BOOTPROGCHKSUM	-34
++
++#define CFE_ERR_LDRNOTAVAIL	-35
++
++#define CFE_ERR_NOTREADY	-36
++
++#define CFE_ERR_GETMEM          -37
++#define CFE_ERR_SETMEM          -38
++
++#define CFE_ERR_NOTCONN		-39
++#define CFE_ERR_ADDRINUSE	-40
++
++
++#endif /* LINUX_CFE_API_H_ */
+diff --git a/include/asm-mips/cpu.h b/include/asm-mips/cpu.h
+index d38fdbf..4621876 100644
+--- a/include/asm-mips/cpu.h
++++ b/include/asm-mips/cpu.h
+@@ -104,6 +104,13 @@
+ #define PRID_IMP_SR71000        0x0400
+ 
+ /*
++ * These are the PRID's for when 23:16 == PRID_COMP_BROADCOM
++ */
++
++#define PRID_IMP_BCM4710	0x4000
++#define PRID_IMP_BCM3302	0x9000
++
++/*
+  * Definitions for 7:0 on legacy processors
+  */
+ 
+@@ -200,7 +207,9 @@
+ #define CPU_SB1A		62
+ #define CPU_74K			63
+ #define CPU_R14000		64
+-#define CPU_LAST		64
++#define CPU_BCM3302		65
++#define CPU_BCM4710		66
++#define CPU_LAST		66
+ 
+ /*
+  * ISA Level encodings
+diff --git a/include/asm-mips/mach-bcm947xx/kernel-entry-init.h b/include/asm-mips/mach-bcm947xx/kernel-entry-init.h
+new file mode 100644
+index 0000000..7df0dc2
+--- /dev/null
++++ b/include/asm-mips/mach-bcm947xx/kernel-entry-init.h
+@@ -0,0 +1,26 @@
++/*
++ * This file is subject to the terms and conditions of the GNU General Public
++ * License.  See the file "COPYING" in the main directory of this archive
++ * for more details.
++ *
++ * Copyright (C) 2005 Embedded Alley Solutions, Inc
++ * Copyright (C) 2005 Ralf Baechle (ralf@linux-mips.org)
++ * Copyright (C) 2006 Michael Buesch
++ */
++#ifndef __ASM_MACH_GENERIC_KERNEL_ENTRY_H
++#define __ASM_MACH_GENERIC_KERNEL_ENTRY_H
++
++/* Intentionally empty macro, used in head.S. Override in
++ * arch/mips/mach-xxx/kernel-entry-init.h when necessary.
++ */
++	.macro	kernel_entry_setup
++	.endm
++
++/*
++ * Do SMP slave processor setup necessary before we can savely execute C code.
++ */
++	.macro	smp_slave_setup
++	.endm
++
++
++#endif /* __ASM_MACH_GENERIC_KERNEL_ENTRY_H */
+diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+index fa4e1d7..cbc4de7 100644
+--- a/include/linux/pci_ids.h
++++ b/include/linux/pci_ids.h
+@@ -1950,6 +1950,7 @@
+ #define PCI_DEVICE_ID_TIGON3_5906M	0x1713
+ #define PCI_DEVICE_ID_BCM4401		0x4401
+ #define PCI_DEVICE_ID_BCM4401B0		0x4402
++#define PCI_DEVICE_ID_BCM4713		0x4713
+ 
+ #define PCI_VENDOR_ID_TOPIC		0x151f
+ #define PCI_DEVICE_ID_TOPIC_TP560	0x0000
+-- 
+1.4.4.1
+
