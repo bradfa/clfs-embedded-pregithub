@@ -49,9 +49,17 @@
 <!ENTITY linux-squashfs-patch-md5 "842859f1b9afe819655de0926efb5dcb">
 <!ENTITY linux-squashfs-patch-size "128 KB">
 
-<!ENTITY linux-bcm947xx-patch "linux-&linux-version;-bcm947xx-1.patch">
-<!ENTITY linux-bcm947xx-patch-md5 "358997106f1b81ff70e0beafa5c3571a">
-<!ENTITY linux-bcm947xx-patch-size "232 KB">
+<!ENTITY linux-d80211-patch "linux-&linux-version;-d80211-import-1.patch.gz">
+<!ENTITY linux-d80211-patch-md5 "d8c09209ac1d481b96ab5f1f32bbd93f">
+<!ENTITY linux-d80211-patch-size "516 KB">
+
+<!ENTITY linux-bcm43xx-patch "linux-&linux-version;-bcm43xx-update-1.patch.gz">
+<!ENTITY linux-bcm43xx-patch-md5 "a2d297c320d2909db2eb7e326e85779a">
+<!ENTITY linux-bcm43xx-patch-size "136 KB">
+
+<!ENTITY linux-bcm947xx-patch "linux-&linux-version;-bcm947xx-2.patch">
+<!ENTITY linux-bcm947xx-patch-md5 "c81142728a7a9b96c25fb2f840e1d48b">
+<!ENTITY linux-bcm947xx-patch-size "128 KB">
 
 <!-- MIPS Bootloader Patches -->
 

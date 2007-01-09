@@ -49,9 +49,17 @@
 
 <screen os="d6"><userinput>patch -Np1 -i ../linux-&linux-version;-squashfs-1.patch</userinput></screen>
 
-<para os="d7">The following patch adds support for wireless routers to the kernel:</para>
+<para os="d7">The following patch backports the d80211 wireless stack to the kernel:</para>
 
-<screen os="d8"><userinput>patch -Np1 -i ../linux-&linux-version;-bcm947xx-1.patch</userinput></screen>
+<screen os="d8"><userinput>zcat ../linux-2.6.19-d80211-import-1.patch.gz | patch -Np1</userinput></screen>
+
+<para os="d9">The following patch updates the bcm43xx-d80211 wireless module:</para>
+
+<screen os="da"><userinput>zcat ../linux-2.6.19-bcm43xx-update-1.patch.gz | patch -Np1</userinput></screen>
+
+<para os="db">The following patch adds support for wireless routers to the kernel:</para>
+
+<screen os="dc"><userinput>patch -Np1 -i ../linux-&linux-version;-bcm947xx-2.patch</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
