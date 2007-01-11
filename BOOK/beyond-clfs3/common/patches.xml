@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-beyond-clfs3-patches">
+  <?dbhtml filename="patches.html"?>
+
+  <title>Needed Patches</title>
+
+  <para>In addition to the packages, several patches are also required.
+  These patches correct any mistakes in the packages that should be
+  fixed by the maintainer. The patches also make small modifications to
+  make the packages easier to work with. The following patches will be
+  needed to build a CLFS system:</para>
+
+  <variablelist role="beyond-clfs3">
+
+    <varlistentry>
+      <term>Dropbear Autotool Patch - <token>&dropbear-autotool-patch-size;</token>:</term> <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&dropbear-autotool-patch;"/></para>
+        <para>MD5 sum: <literal>&dropbear-autotool-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+
+  <para os="a">Total size of these patches: about <returnvalue/></para>
+
+</sect1>

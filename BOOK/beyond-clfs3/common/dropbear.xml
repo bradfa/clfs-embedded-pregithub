@@ -28,9 +28,13 @@
   <sect2 role="installation">
     <title>Installation of Dropbear</title>
 
+    <para os="p1">Dropbear doesn't accept our ${CLFS_TARGET} by default, so a patch is needed to make it recognise it:</para>
+
+    <para os="p2"><userinput>patch -Np1 -i ../dropbear-&dropbear-version;-autotools-1.patch</userinput></para>
+
     <para os="a">Configure dropbear:</para>
 
-<screen os="b"><userinput>CC="${CC} ${BUILD}" ./configure --prefix=/usr</userinput></screen>
+<screen os="b"><userinput>CC="${CC} ${BUILD}" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>
 
     <para os="c">Now we will utilize /dev/urandom instead of /dev/random. To allow
     this to be utilized we use the following sed:</para>

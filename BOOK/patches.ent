@@ -36,6 +36,11 @@
 <!ENTITY zlib-destdir-patch-md5 "d21bdd08bf444f87f275b6aef44e1a84">
 <!ENTITY zlib-destdir-patch-size "8 KB">
 
+<!-- Beyond patches -->
+<!ENTITY dropbear-autotool-patch "dropbear-&dropbear-version;-autotool-1.patch">
+<!ENTITY dropbear-autotool-patch-md5 "eb5c1803aec03ea0d62cf57b4ef9bcb5">
+<!ENTITY dropbear-autotool-patch-size "56 KB">
+
 <!-- MIPS Patches -->
 <!ENTITY linux-mips-patch "linux-&linux-version;-mips-1.patch">
 <!ENTITY linux-mips-patch-md5 "4c75e5302a334649f126a0de3295b883">
