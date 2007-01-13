@@ -41,6 +41,15 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry>
+      <term>bcm43xx Firmware cutter (&fwcutter-version;) - <token>&fwcutter-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&fwcutter-home;"/></para>
+        <para>Download: <ulink url="&fwcutter-url;"/></para>
+        <para>MD5 sum: <literal>&fwcutter-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>

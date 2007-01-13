@@ -16,5 +16,6 @@
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/trx.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/addpattern.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/mtd-utils.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/fwcutter.xml"/>
 
 </chapter>

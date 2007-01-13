@@ -94,6 +94,12 @@
 <!ENTITY addpattern-md5 "ff13bf18d640c3a2a75032a34bf5858b">
 <!ENTITY addpattern-home "http://www.openwrt.org/">
 
+<!ENTITY fwcutter-version "006">
+<!ENTITY fwcutter-size "28 KB">
+<!ENTITY fwcutter-url "http://download.berlios.de/bcm43xx/bcm43xx-fwcutter-&fwcutter-version;.tar.bz2">
+<!ENTITY fwcutter-md5 "83efd18480a4d151fc81a5f3ece60f93">
+<!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
+
 <!-- MIPS Bootloaders -->
 
 <!ENTITY colo-version "1.22">
