@@ -34,7 +34,8 @@
 
     <para os="p3">Dropbear incorrectly calls ld instead of gcc for linking, so fix it:</para>
 
-    <screen os="p4"><userinput>sed -e s/@LD@/@CC@/ -i Makefile.in</userinput></screen>
+    <screen os="p4"><userinput>cp Makefile.in Makefile.in.orig
+sed -e s/@LD@/@CC@/ Makefile.in.orig > Makefile.in</userinput></screen>
 
     <para os="a">Configure dropbear:</para>
 
