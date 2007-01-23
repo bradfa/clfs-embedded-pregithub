@@ -4,23 +4,24 @@
 
 . /etc/rc.d/init.d/functions
 
-DSSKEY=/etc/ssh/dss_host_key
-RSAKEY=/etc/ssh/rsa_host_key
+DSSKEY=/etc/dropbear/dropbear_dss_host_key
+RSAKEY=/etc/dropbear/dropbear_rsa_host_key
+PIDFILE=/var/run/dropbear.pid
 
 case "$1" in
 start)
 	if [ ! -r "$DSSKEY" ]; then
 		echo -n "Generating DSS host key: "
-		dropbearkey -t dss -f "$DSSKEY" &> /dev/null
+		dropbearkey -t dss -f "$DSSKEY" >/dev/null 2>&1
 		check_status
 	fi
 	if [ ! -r "$RSAKEY" ]; then
 		echo -n "Generating RSA host key: "
-		dropbearkey -t rsa -f "$RSAKEY" &> /dev/null
+		dropbearkey -t rsa -f "$RSAKEY" >/dev/null 2>&1
 		check_status
 	fi
-	if [ -r /var/run/dropbear.pid ]; then
-		echo "Service sshd already running."
+	if [ -r "$PIDFILE" ]; then
+		echo "Service dropbear already running."
 	else
 		echo -n "Starting SSH server: "
 		dropbear
@@ -28,12 +29,12 @@ start)
 	fi
 	;;
 stop)
-	if [ -r /var/run/dropbear.pid ]; then
-		echo -n "Stopping SSH server: "
-		kill `cat /var/run/dropbear.pid`
+	if [ -r "$PIDFILE" ]; then
+		echo -n "Stopping dropbear SSH server: "
+		kill `cat "$PIDFILE"`
 		check_status
 	else
-		echo "Service sshd not running."
+		echo "Service dropbear not running."
 	fi
 	;;
 restart)
@@ -41,10 +42,10 @@ restart)
 	$0 start
 	;;
 status)
-	if [ -r /var/run/dropbear.pid ]; then
-		echo "Service sshd running (PID `cat /var/run/dropbear.pid`)."
+	if [ -r "$PIDFILE" ]; then
+		echo "Service dropbear running (PID $(cat "$PIDFILE"))."
 	else
-		echo "Service sshd not running."
+		echo "Service dropbear not running."
 	fi
 	;;
 *)
