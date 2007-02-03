@@ -79,15 +79,7 @@ sed -e "/^KERNEL_HEADERS/s:=.*:=\"${CLFS}/usr\":" \
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='p'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
-  xpointer="xpointer(//*[@os='q'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
-  xpointer="xpointer(//*[@os='r'])"/>
-
-<screen os="s"><userinput>make PREFIX=${CLFS} install_dev</userinput></screen>
+<screen os="1"><userinput>make PREFIX=${CLFS} install_dev</userinput></screen>
 
   </sect2>
 

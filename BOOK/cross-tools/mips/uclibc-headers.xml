@@ -80,14 +80,6 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='q'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
-  xpointer="xpointer(//*[@os='r'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc-headers.xml"
-  xpointer="xpointer(//*[@os='s'])"/>
-
   </sect2>
 
   <sect2 role="content" id="contents-uclibc-headers">

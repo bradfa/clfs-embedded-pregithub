@@ -83,15 +83,9 @@ echo "UCLIBC_HAS_REENTRANT_RPC=y" >> .config</userinput></screen>
 
 <screen os="o"><userinput>make CC="${CC} ${BUILD}" TARGET_ARCH=i386</userinput></screen>
 
-   <para os="p">The uClibc build system creates symlinks in its
-   <filename class="directory">include</filename> directory pointing to
-   ${CLFS}/usr/include. We will need to remove these symlinks from the source dir:</para>
+    <para os="p">Install the package:</para>
 
-<screen os="q"><userinput>rm include/{asm,asm-generic,linux}</userinput></screen>
-
-    <para os="r">Install the package:</para>
-
-<screen os="s"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="q"><userinput>make PREFIX=${CLFS} install</userinput></screen>
 
   </sect2>
 
