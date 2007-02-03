@@ -54,7 +54,7 @@ done</userinput></screen>
 
 <screen os="i"><userinput>cp .config .config.orig
 sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
-    -e "/^KERNEL_HEADERS/s:=.*:=\"${CLFS}/usr\":" \
+    -e "/^KERNEL_HEADERS/s:=.*:=\"${CLFS}/usr/include\":" \
     -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
     -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \
     -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
