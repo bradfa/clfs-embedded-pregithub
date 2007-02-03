@@ -60,7 +60,7 @@ sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h</userinput></s
 
 <screen os="i"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install DESTDIR=${CLFS}
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/sbin/dropbear
-ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/sbin/dbclient
+ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dbclient
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearkey
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearconvert
 ln -svf ../../usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
