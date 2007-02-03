@@ -11,7 +11,7 @@
   href="../../index.xml"
   xpointer="xpointer(/bookinfo/title)"/>
 
-  <subtitle>Version &version-mips;</subtitle>
+  <subtitle>Version &version-wrt;</subtitle>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../../index.xml"
