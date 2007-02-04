@@ -10,10 +10,10 @@
 <!ENTITY binutils-md5 "e26e2e06b6e4bf3acf1dc8688a94c0d1">
 <!ENTITY binutils-home "http://sources.redhat.com/binutils/">
 
-<!ENTITY busybox-version "1.2.2.1">
-<!ENTITY busybox-size "1,385 KB">
+<!ENTITY busybox-version "1.4.1">
+<!ENTITY busybox-size "1,483 KB">
 <!ENTITY busybox-url "http://busybox.net/downloads/busybox-&busybox-version;.tar.bz2">
-<!ENTITY busybox-md5 "153f7a4d7580c19ed6f6570f039b64b5">
+<!ENTITY busybox-md5 "5728403bce309cdabcffa414e2e64052">
 <!ENTITY busybox-home "http://www.busybox.net">
 
 <!ENTITY clfs-bootscripts-version "1.0-pre4">
@@ -21,6 +21,12 @@
 <!ENTITY clfs-bootscripts-url "&packages-root;clfs-embedded-bootscripts-&clfs-bootscripts-version;.tar.bz2">
 <!ENTITY clfs-bootscripts-md5 "b276c989058a7c2a5ec1ecdf6e08363e">
 <!ENTITY clfs-bootscripts-home " ">
+
+<!ENTITY e2fsprogs-version "1.39">
+<!ENTITY e2fsprogs-size "3,612 KB">
+<!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
+<!ENTITY e2fsprogs-md5 "06f7806782e357797fad1d34b7ced0c6">
+<!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
 <!ENTITY gcc-version "4.1.1">
 <!ENTITY gcc-size "38,300 KB">
@@ -36,16 +42,16 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.19">
-<!ENTITY linux-size "41,896 KB">
+<!ENTITY linux-version "2.6.19.2">
+<!ENTITY linux-size "41,892 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "443c265b57e87eadc0c677c3acc37e20">
+<!ENTITY linux-md5 "ca0ce8f288e8ae93ac243b568f906bf8">
 <!ENTITY linux-home "http://www.kernel.org/">
 
-<!ENTITY linux-headers-version "&linux-version;-12042006">
-<!ENTITY linux-headers-size "1,627 KB">
+<!ENTITY linux-headers-version "&linux-version;-01232007">
+<!ENTITY linux-headers-size "1,636 KB">
 <!ENTITY linux-headers-url "&packages-root;linux-headers-&linux-headers-version;.tar.bz2">
-<!ENTITY linux-headers-md5 "0bef91b0af3f234829a341e101354d68">
+<!ENTITY linux-headers-md5 "acb30395626a7be00da8056421f7f72f">
 <!ENTITY linux-headers-home "http://headers.cross-lfs.org/">
 
 <!ENTITY uclibc-version "snapshot">

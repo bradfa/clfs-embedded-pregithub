@@ -73,16 +73,16 @@ sed -e "s:default CONFIG_MIPS_ISA_1:default CONFIG_MIPS_ISA_${CLFS_MIPS_LEVEL}:"
     <para os="m1">If your MIPS system is Big Endian, you will
     need at add the following lines to your configuration:</para>
 
-<screen os="m2"><userinput>echo "ARCH_ANY_ENDIAN=y" >> .config
-echo "ARCH_BIG_ENDIAN=y" >> .config
-echo "ARCH_WANTS_BIG_ENDIAN=y" >> .config</userinput></screen>
+<screen os="m2"><userinput>echo "ARCH_ANY_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_BIG_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_WANTS_BIG_ENDIAN=y" &gt;&gt; .config</userinput></screen>
 
     <para os="m3">If your MIPS system is Little Endian, you will
     need at add the following lines to your configuration:</para>
 
-<screen os="m4"><userinput>echo "ARCH_ANY_ENDIAN=y" >> .config
-echo "ARCH_LITTLE_ENDIAN=y" >> .config
-echo "ARCH_WANTS_LITTLE_ENDIAN=y" >> .config</userinput></screen>
+<screen os="m4"><userinput>echo "ARCH_ANY_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_LITTLE_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_WANTS_LITTLE_ENDIAN=y" &gt;&gt; .config</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"

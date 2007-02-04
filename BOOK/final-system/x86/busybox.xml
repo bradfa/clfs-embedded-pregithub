@@ -29,6 +29,10 @@
   <sect2 role="installation">
     <title>Installation of Busybox</title>
 
+    <para os="p0">Before you build BusyBox, you may want to check the following URL for 
+    patches that the upstream maintainer of BusyBox has released to fix issues.
+    <ulink url="http://busybox.net/downloads/fixes-&busybox-version;"/></para>
+
     <para os="p1">The following patch fixes some issues that are related to the
     headers we are using:</para>
 
@@ -45,20 +49,33 @@
     </note>
 
    <para os="d">We will need to edit the configuration file, to make sure everything gets
-   compiled and put into it's proper locations:</para>
+   compiled:</para>
 
-<screen os="e"><userinput>cp .config .config.orig
-sed -e "s:# USING_CROSS_COMPILER.*:USING_CROSS_COMPILER=y:" \
-    -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
-    .config.orig > .config</userinput></screen>
+<screen os="e"><userinput>BUSYBOX_OPTIONS="CONFIG_DMALLOC CONFIG_BUILD_AT_ONCE CONFIG_BUILD_LIBBUSYBOX
+                 CONFIG_FEATURE_SH_IS_NONE CONFIG_LOCALE_SUPPORT CONFIG_TFTP CONFIG_FTPGET CONFIG_FTPPUT
+                 CONFIG_IPCALC CONFIG_TFTP CONFIG_HUSH CONFIG_LASH CONFIG_MSH CONFIG_INETD CONFIG_DPKG
+                 CONFIG_RPM2CPIO CONFIG_RPM CONFIG_FOLD CONFIG_LOGNAME CONFIG_OD CONFIG_CRONTAB
+                 CONFIG_UUDECODE CONFIG_UUENCODE CONFIG_SULOGIN CONFIG_DC CONFIG_DEBUG_YANK_SUSv2
+                 CONFIG_DEBUG_INIT CONFIG_DEBUG_CROND_OPTION CONFIG_FEATURE_UDHCP_DEBUG CONFIG_TASKSET
+                 CONFIG_CHATTR CONFIG_FSCK CONFIG_LSATTR CONFIG_CHPST CONFIG_SETUIDGID
+                 CONFIG_ENVUIDGID CONFIG_ENVDIR CONFIG_SOFTLIMIT CONFIG_FEATURE_2_4_MODULES"
+for config in $BUSYBOX_OPTIONS; do
+        cp .config .config.orig
+        sed -e "s:${config}=y:${config}=n:" .config.orig &gt; .config
+done
+BUSYBOX_OPTIONS="CONFIG_FEATURE_SH_IS_ASH CONFIG_FEATURE_TRACEROUTE_VERBOSE CONFIG_FEATURE_TRACEROUTE_SOURCE_ROUTE"
+for config in $BUSYBOX_OPTIONS; do
+        cp .config .config.orig
+        sed -e "s:# ${config} is not set:${config}=y:" .config.orig &gt; .config
+done</userinput></screen>
 
     <para os="f">Compile the package:</para>
 
-<screen os="g"><userinput>make CROSS="${CLFS_TARGET}-" PREFIX="${CLFS}"  EXTRA_CFLAGS="${BUILD}" busybox</userinput></screen>
+<screen os="g"><userinput>make ARCH=i386 CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}"</userinput></screen>
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make PREFIX="${CLFS}" install</userinput></screen>
+<screen os="i"><userinput>make ARCH=i386 PREFIX="${CLFS}" install</userinput></screen>
 
     <para os="j">If your going to build your kernel with modules, you will need to make
     sure depmod.pl is available:</para>
