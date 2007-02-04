@@ -46,7 +46,7 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='h'])"/>
 
-<screen os="i"><userinput>cp .config .config.orig
+<screen os="i"><userinput>cp .config{,.orig}
 sed -e "/^KERNEL_HEADERS/s:=.*:=\"${CLFS}/usr/include\":" \
     -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
     -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \

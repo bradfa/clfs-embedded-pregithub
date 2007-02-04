@@ -27,7 +27,7 @@
 
     <para os="a">Compile the package:</para>
 
-<screen os="b"><userinput>make CC="${CC} ${BUILD} -Os" LD=${LD} DO_MULTI=1 PREFIX=/usr \
+<screen os="b"><userinput>make CC="${CC} ${BUILD}" COPT_FLAGS="-Os" LD=${LD} DO_MULTI=1 PREFIX=/usr \
    LIBDIR=/lib BINDIR=/sbin</userinput></screen>
 
     <para os="c">Install the package:</para>

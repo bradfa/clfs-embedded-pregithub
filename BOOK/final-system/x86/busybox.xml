@@ -65,12 +65,12 @@
                  CONFIG_CHATTR CONFIG_FSCK CONFIG_LSATTR CONFIG_CHPST CONFIG_SETUIDGID
                  CONFIG_ENVUIDGID CONFIG_ENVDIR CONFIG_SOFTLIMIT CONFIG_FEATURE_2_4_MODULES"
 for config in $BUSYBOX_OPTIONS; do
-        cp .config .config.orig
+        cp .config{,.orig}
         sed -e "s:${config}=y:${config}=n:" .config.orig &gt; .config
 done
 BUSYBOX_OPTIONS="CONFIG_FEATURE_SH_IS_ASH CONFIG_FEATURE_TRACEROUTE_VERBOSE CONFIG_FEATURE_TRACEROUTE_SOURCE_ROUTE"
 for config in $BUSYBOX_OPTIONS; do
-        cp .config .config.orig
+        cp .config{,.orig}
         sed -e "s:# ${config} is not set:${config}=y:" .config.orig &gt; .config
 done</userinput></screen>
 

@@ -32,10 +32,10 @@
     This is not acceptable in our build scenario, so we modify the Makefiles
     so that the headers will be copied instead:</para>
 
-<screen os="d"><userinput>cp Makefile Makefile.orig
+<screen os="d"><userinput>cp Makefile{,.orig}
 sed -e 's/$(LN) -fs/cp/g' Makefile.orig &gt; Makefile
 for file in `find libc/sysdeps/linux -name Makefile`; do
-        cp $file $file.orig
+        cp $file{,.orig}
         sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' $file.orig > $file
 done</userinput></screen>
 
@@ -52,7 +52,7 @@ done</userinput></screen>
    <para os="h">We will need to edit the configuration file, to make sure everything gets
    compiled and put into its proper location:</para>
 
-<screen os="i"><userinput>cp .config .config.orig
+<screen os="i"><userinput>cp .config{,.orig}
 sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     -e "/^KERNEL_HEADERS/s:=.*:=\"${CLFS}/usr/include\":" \
     -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
@@ -68,7 +68,7 @@ sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
 		UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_FTW UCLIBC_HAS_IPV6 UCLIBC_HAS_GLIBC_CUSTOM_PRINTF
 		UCLIBC_USE_NETLINK LDSO_PRELOAD_FILE_SUPPORT"
 for config in $UCLIBC_OPTIONS; do
-        cp .config .config.orig
+        cp .config{,.orig}
         sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
 done
 echo "UCLIBC_HAS_FULL_RPC=y" &gt;&gt; .config
