@@ -74,7 +74,7 @@
 <!ENTITY dropbear-md5 "ca8e53a766faec831882831364568421">
 <!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
 
-<!ENTITY iptables-version "1.3.6">
+<!ENTITY iptables-version "1.3.7">
 <!ENTITY iptables-size "184 KB">
 <!ENTITY iptables-url "http://www.netfilter.org/projects/iptables/files/iptables-&iptables-version;.tar.bz2">
 <!ENTITY iptables-md5 "077e886a9c90a11bb47f3d7a4fc4a689">
