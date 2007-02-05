@@ -58,7 +58,7 @@
 
     <title>Beyond CLFS</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs3/x86-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="cleanup/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="the-end/chapter.xml"/>
 
