@@ -25,14 +25,18 @@
   <sect2 role="installation">
     <title>Installation of iptables</title>
 
+   <para os="p1">Fixes Compile Issue with DO_MULTI=1:</para>
+
+    <screen os="p2"><userinput>patch -Np1 -i ../&iptables-domulti-patch;</userinput></screen>
+
     <para os="a">Compile the package:</para>
 
-<screen os="b"><userinput>make CC="${CC} ${BUILD}" COPT_FLAGS="-Os" LD=${LD} DO_MULTI=0 PREFIX=/usr \
+<screen os="b"><userinput>make CC="${CC} ${BUILD}" COPT_FLAGS="-Os" LD=${LD} DO_MULTI=1 PREFIX=/usr \
     KERNEL_DIR=${CLFS}/lib/modules/&linux-version;/build LIBDIR=/lib BINDIR=/sbin</userinput></screen>
 
     <para os="c">Install the package:</para>
 
-<screen os="d"><userinput>make DO_MULTI=0 PREFIX=/usr \
+<screen os="d"><userinput>make DO_MULTI=1 PREFIX=/usr \
    LIBDIR=/lib BINDIR=/sbin install DESTDIR=${CLFS}</userinput></screen>
 
   </sect2>

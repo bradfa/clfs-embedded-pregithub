@@ -30,11 +30,11 @@
 
     <para os="p1">Dropbear doesn't accept our ${CLFS_TARGET} by default, so a patch is needed to make it recognise it:</para>
 
-    <screen os="p2"><userinput>patch -Np1 -i ../dropbear-&dropbear-version;-autotools-1.patch</userinput></screen>
+    <screen os="p2"><userinput>patch -Np1 -i ../&dropbear-autotool-patch;</userinput></screen>
 
     <para os="p3">Dropbear incorrectly calls ld instead of gcc for linking, so fix it:</para>
 
-    <screen os="p4"><userinput>cp Makefile.in Makefile.in.orig
+    <screen os="p4"><userinput>cp Makefile.in{,.orig}
 sed -e s/@LD@/@CC@/ Makefile.in.orig > Makefile.in</userinput></screen>
 
     <para os="a">Configure dropbear:</para>
