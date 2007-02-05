@@ -43,7 +43,7 @@
 <!ENTITY dropbear-autotool-patch-size "56 KB">
 
 <!ENTITY iptables-domulti-patch "iptables-&iptables-version;-do_multi-1.patch">
-<!ENTITY iptables-domulti-patch-md5 "b0c73cb8ae3a7e767b6ae9eedce09436">
+<!ENTITY iptables-domulti-patch-md5 "badcc9ea0dc1097d3a0a4f299eaa9219">
 <!ENTITY iptables-domulti-patch-size "4 KB">
 
 <!-- MIPS Patches -->
