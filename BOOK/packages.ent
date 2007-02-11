@@ -106,6 +106,12 @@
 <!ENTITY fwcutter-md5 "83efd18480a4d151fc81a5f3ece60f93">
 <!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
 
+<!ENTITY bcmfw-version "4.80.53.0">
+<!ENTITY bcmfw-size "888 KB">
+<!ENTITY bcmfw-url "http://downloads.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
+<!ENTITY bcmfw-md5 "a7d8dde3ce474c361143b83e1d9890b1">
+<!ENTITY bcmfw-home "http://linuxwireless.org/en/users/Drivers/bcm43xx">
+
 <!-- MIPS Bootloaders -->
 
 <!ENTITY colo-version "1.22">

@@ -50,6 +50,15 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry>
+      <term>bcm43xx v4 Firmware (&bcmfw-version;) - <token>&bcmfw-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&bcmfw-home;"/></para>
+        <para>Download: <ulink url="&bcmfw-url;"/></para>
+        <para>MD5 sum: <literal>&bcmfw-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>
