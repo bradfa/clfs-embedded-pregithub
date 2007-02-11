@@ -13,7 +13,7 @@
   <para>It is time to create some structure in the CLFS file system. Create a
   standard directory tree by issuing the following commands:</para>
 
-<screen><userinput>mkdir -pv ${CLFS}/{bin,boot,dev,{etc/,}opt,home,lib,mnt}
+<screen><userinput>mkdir -pv ${CLFS}/{bin,boot,dev,{etc/,}opt,home,lib/{firmware,modules},mnt}
 mkdir -pv ${CLFS}/{proc,media/{floppy,cdrom},sbin,srv,sys}
 mkdir -pv ${CLFS}/var/{lock,log,mail,run,spool}
 mkdir -pv ${CLFS}/var/{opt,cache,lib/{misc,locate},local}
