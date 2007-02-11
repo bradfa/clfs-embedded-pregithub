@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-systembuild-wrt-bcmfw" role="wrap">
+  <?dbhtml filename="bcm43xx-firmware.html"?>
+
+  <title>bcm43xx firmware v&bcmfw-version;</title>
+
+  <indexterm zone="ch-systembuild-wrt-bcmfw">
+    <primary sortas="a-BCMFW">bcm43xx Firmware</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>The bcm43xx firmware package contains the source files which we can extract firmware from, broadcom refuses to release their firmware, but the firmware can be extracted from broadcom's binary wireless router module.</para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of bcm43xx firmware</title>
+
+    <para os="a">Extract the firmware:</para>
+
+<screen os="b"><userinput>bcm43xx-fwcutter kmod/wl_apsta.o</userinput></screen>
+
+    <para os="c">Install the firmware:</para>
+
+<screen os="d"><userinput>cp *.fw ${CLFS}/lib/firmware</userinput></screen>
+
+  </sect2>
+
+</sect1>
