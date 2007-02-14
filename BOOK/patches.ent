@@ -17,19 +17,15 @@
 <!ENTITY busybox-fixes-patch-size "4 KB">
 
 <!ENTITY gcc-cross_search-patch "gcc-&gcc-version;-cross_search_paths-1.patch">
-<!ENTITY gcc-cross_search-patch-md5 "541fe39d228ddaa0d8396a35ec3a0ada">
-<!ENTITY gcc-cross_search-patch-size "2 KB">
-
-<!ENTITY gcc-PR20425-patch "gcc-&gcc-version;-PR20425-1.patch">
-<!ENTITY gcc-PR20425-patch-md5 "95535bda8e4d37d30251db0b121b5374">
-<!ENTITY gcc-PR20425-patch-size "36 KB">
+<!ENTITY gcc-cross_search-patch-md5 "8ef51c0c74f0ea8511e59544f719470f">
+<!ENTITY gcc-cross_search-patch-size "4 KB">
 
 <!ENTITY gcc-posix-patch "gcc-&gcc-version;-posix-1.patch">
-<!ENTITY gcc-posix-patch-md5 "0d88068740a0e00780891f2cb905b808">
-<!ENTITY gcc-posix-patch-size "9 KB">
+<!ENTITY gcc-posix-patch-md5 "9aa1cdcbaedb4e1ed3f65ae25cdc413b">
+<!ENTITY gcc-posix-patch-size "12 KB">
 
 <!ENTITY gcc-uclibc-patch "gcc-&gcc-version;-uclibc-1.patch">
-<!ENTITY gcc-uclibc-patch-md5 "63a7a8f1990bb333dc5513b9489845d4">
+<!ENTITY gcc-uclibc-patch-md5 "77764a4a5e2b71980e3964bbb6a95e35">
 <!ENTITY gcc-uclibc-patch-size "144 KB">
 
 <!ENTITY zlib-destdir-patch "zlib-&zlib-version;-DESTDIR-1.patch">

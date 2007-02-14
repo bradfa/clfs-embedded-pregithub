@@ -28,11 +28,11 @@
 <!ENTITY e2fsprogs-md5 "06f7806782e357797fad1d34b7ced0c6">
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
-<!ENTITY gcc-version "4.1.1">
-<!ENTITY gcc-size "38,300 KB">
+<!ENTITY gcc-version "4.1.2">
+<!ENTITY gcc-size "38,931 KB">
 <!ENTITY gcc-url "&gnu;gcc/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
-<!ENTITY gcc-md5 "ad9f97a4d04982ccf4fd67cb464879f3">
-<!ENTITY gcc-home "http://gcc.gnu.org/">
+<!ENTITY gcc-md5 "a4a3eb15c96030906d8494959eeda23c">
+<!ENTITY gcc-home "http://gcc.gnu.org">
 
 <!ENTITY iana-etc-version "2.20">
 <!ENTITY iana-etc-size "192 KB">

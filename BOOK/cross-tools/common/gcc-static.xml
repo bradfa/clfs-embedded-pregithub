@@ -36,19 +36,12 @@
 
 <screen os="p4"><userinput>patch -Np1 -i ../&gcc-uclibc-patch;</userinput></screen>
 
-    <para os="p5">The following patch fixes the searching of multilib dirs for
-    specs file.The patch standardizes the gcc drivers path iteration functions,
-    ensuring multilib directories are searched in the correct order. This fixes
-    various issues, most noticably with libtool on multilib systems:</para>
-
-<screen os="p6"><userinput>patch -Np1 -i ../&gcc-PR20425-patch;</userinput></screen>
-
-    <para os="p7">The following patch ensures that <command>gcc</command> does not
+    <para os="p5">The following patch ensures that <command>gcc</command> does not
     search the <filename class="directory">/usr</filename> directory for
     <filename class="libraryfile">libgcc_s.so</filename> when
     cross-compiling:</para>
 
-<screen os="p8"><userinput>patch -Np1 -i ../&gcc-cross_search-patch;</userinput></screen>
+<screen os="p6"><userinput>patch -Np1 -i ../&gcc-cross_search-patch;</userinput></screen>
 
     <para os="c">The GCC documentation recommends building GCC outside of the source
     directory in a dedicated build directory:</para>
