@@ -7,7 +7,7 @@
 
 <book>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="prologue/mips/bookinfo.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="prologue/wrt/bookinfo.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="prologue/preface.xml"/>
 
   <part id="part1">
@@ -15,7 +15,7 @@
 
     <title>Introduction</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="introduction/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="introduction/wrt-chapter.xml"/>
 
   </part>
 
@@ -24,8 +24,8 @@
 
     <title>Preparing for the Build</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="partitioning/mips-chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="materials/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="partitioning/wrt-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="materials/wrt-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-preps/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="system-prep/wrt-chapter.xml"/>
   </part>
@@ -35,7 +35,7 @@
 
     <title>Make the Cross-Compile Tools</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="cross-tools/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="cross-tools/wrt-chapter.xml"/>
 
   </part>
 
@@ -44,9 +44,9 @@
 
     <title>Building the CLFS System</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-system/mips-chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="system-build/mips-chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootable/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-system/wrt-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="system-build/wrt-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootable/wrt-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootscripts/chapter.xml"/>
 
   </part>
@@ -56,7 +56,7 @@
 
     <title>Beyond CLFS</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs/wrt-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="cleanup/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="the-end/chapter.xml"/>
 

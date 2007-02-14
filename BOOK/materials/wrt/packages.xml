@@ -5,16 +5,61 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-materials-packages-mips">
-  <?dbhtml filename="packages-mips.html"?>
+<sect1 id="ch-materials-packages-wrt">
+  <?dbhtml filename="packages-wrt.html"?>
 
   <title>Additional Packages for WRT</title>
 
-<!--
+  <para>Download or otherwise obtain the following packages:</para>
+
   <variablelist role="materials">
 
+    <varlistentry>
+      <term>TRX (&trx-version;) - <token>&trx-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&trx-home;"/></para>
+        <para>Download: <ulink url="&trx-url;"/></para>
+        <para>MD5 sum: <literal>&trx-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Addpattern (&addpattern-version;) - <token>&addpattern-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&addpattern-home;"/></para>
+        <para>Download: <ulink url="&addpattern-url;"/></para>
+        <para>MD5 sum: <literal>&addpattern-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>MTD Utils (&mtdutils-version;) - <token>&mtdutils-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&mtdutils-home;"/></para>
+        <para>Download: <ulink url="&mtdutils-url;"/></para>
+        <para>MD5 sum: <literal>&mtdutils-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>bcm43xx Firmware cutter (&fwcutter-version;) - <token>&fwcutter-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&fwcutter-home;"/></para>
+        <para>Download: <ulink url="&fwcutter-url;"/></para>
+        <para>MD5 sum: <literal>&fwcutter-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>bcm43xx v4 Firmware (&bcmfw-version;) - <token>&bcmfw-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&bcmfw-home;"/></para>
+        <para>Download: <ulink url="&bcmfw-url;"/></para>
+        <para>MD5 sum: <literal>&bcmfw-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
--->
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/packages.xml"

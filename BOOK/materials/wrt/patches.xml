@@ -5,7 +5,7 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-materials-patches-mips">
+<sect1 id="ch-materials-patches-wrt">
   <?dbhtml filename="patches-wrt.html"?>
 
   <title>Additional Patches for WRT</title>

@@ -12,7 +12,6 @@
   <title>Preparation for wireless routers</title>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/introduction.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/packages.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/trx.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/addpattern.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/mtd-utils.xml"/>
