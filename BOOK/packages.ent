@@ -42,17 +42,17 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.19.2">
-<!ENTITY linux-size "41,892 KB">
+<!ENTITY linux-version "2.6.20.1">
+<!ENTITY linux-size "42,529 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "ca0ce8f288e8ae93ac243b568f906bf8">
-<!ENTITY linux-home "http://www.kernel.org/">
+<!ENTITY linux-md5 "3288ad6c10ba89e85041a8416bd9644d">
+<!ENTITY linux-home "http://www.kernel.org">
 
-<!ENTITY linux-headers-version "&linux-version;-01232007">
-<!ENTITY linux-headers-size "1,636 KB">
+<!ENTITY linux-headers-version "&linux-version;-02252007">
+<!ENTITY linux-headers-size "1,626 KB">
 <!ENTITY linux-headers-url "&packages-root;linux-headers-&linux-headers-version;.tar.bz2">
-<!ENTITY linux-headers-md5 "acb30395626a7be00da8056421f7f72f">
-<!ENTITY linux-headers-home "http://headers.cross-lfs.org/">
+<!ENTITY linux-headers-md5 "91871367451dfe36926f860887657db9">
+<!ENTITY linux-headers-home "http://headers.cross-lfs.org">
 
 <!ENTITY uclibc-version "snapshot">
 <!ENTITY uclibc-size "3,450 KB">
