@@ -27,10 +27,7 @@
     following sed makes sure we are using the proper settings for our
     architecture:</para>
 
-<screen os="b"><userinput>cp extra/Configs/Config.in extra/Configs/Config.in.orig
-sed -e "s:default TARGET_i386:default TARGET_mips:" \
-   extra/Configs/Config.in.orig > extra/Configs/Config.in
-cp extra/Configs/Config.mips extra/Configs/Config.mips.orig
+<screen os="b"><userinput>cp extra/Configs/Config.mips extra/Configs/Config.mips.orig
 sed -e "s:default CONFIG_MIPS_ISA_1:default CONFIG_MIPS_ISA_${CLFS_MIPS_LEVEL}:" \
    extra/Configs/Config.mips.orig > extra/Configs/Config.mips</userinput></screen>
 
@@ -50,9 +47,7 @@ sed -e "s:default CONFIG_MIPS_ISA_1:default CONFIG_MIPS_ISA_${CLFS_MIPS_LEVEL}:"
   href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='f'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='g'])"/>
+<screen os="g"><userinput>make defconfig ARCH=mips</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"

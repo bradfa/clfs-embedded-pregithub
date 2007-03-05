@@ -47,7 +47,7 @@ done</userinput></screen>
 
     <para os="f">Create the default configuration:</para>
 
-<screen os="g"><userinput>make defconfig</userinput></screen>
+<screen os="g"><userinput>make defconfig ARCH=i386</userinput></screen>
 
    <para os="h">We will need to edit the configuration file, to make sure everything gets
    compiled and put into its proper location:</para>
