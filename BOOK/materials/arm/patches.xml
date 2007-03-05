@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-materials-patches-arm">
+  <?dbhtml filename="patches-arm.html"?>
+
+  <title>Additional Patches for ARM</title>
+
+<!--
+  <variablelist role="materials">
+    <varlistentry os="linux-mips-patch">
+      <term>Linux-MIPS Merge Patch - <token>&linux-mips-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&linux-mips-patch;"/></para>
+        <para>MD5 sum: <literal>&linux-mips-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+-->
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/patches.xml"
+  xpointer="xpointer(//*[@os='a'])"/>
+
+</sect1>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-linux-headers" role="wrap">
+  <?dbhtml filename="linux-headers.html"?>
+
+  <title>Linux-Headers-&linux-headers-version;</title>
+
+  <indexterm zone="ch-system-linux-headers">
+    <primary sortas="a-Linux-Headers">Linux-Headers</primary>
+  </indexterm>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/linux-headers.xml"
+  xpointer="xpointer(//*[@role='package'])"/>
+
+  <sect2 role="installation">
+    <title>Installation of Linux Headers</title>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/linux-headers.xml"
+  xpointer="xpointer(//*[@os='a'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/linux-headers.xml"
+  xpointer="xpointer(//*[@os='b'])"/>
+
+<screen os="c"><userinput>install -dv ${CLFS}/usr/include
+cp -av include/{asm-generic,linux,mtd,scsi,sound} ${CLFS}/usr/include</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/linux-headers.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
+
+<screen><userinput>cp -av include/asm-arm ${CLFS}/usr/include/asm</userinput></screen>
+
+  </sect2>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/linux-headers.xml"
+  xpointer="xpointer(//*[@role='content'])"/>
+
+</sect1>
+
+

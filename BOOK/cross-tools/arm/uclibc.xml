@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-uclibc" role="wrap">
+  <?dbhtml filename="uclibc.html"?>
+
+  <title>uClibc-&uclibc-version;</title>
+
+  <indexterm zone="ch-cross-tools-uclibc">
+    <primary sortas="a-uClibc">uClibc</primary>
+    <secondary>cross tools</secondary>
+  </indexterm>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@role='package'])"/>
+
+  <sect2 role="installation">
+    <title>Installation of uClibc</title>
+
+    <para os="a">Since we are cross-compiling, we need to make sure when we
+    configuration for our architecture we get the correct information. The
+    following sed makes sure we are using the proper settings for our
+    architecture:</para>
+
+<screen os="b"><userinput>
+cp extra/Configs/Config.arm extra/Configs/Config.arm.orig
+sed -e "/default/s:OABI:EABI:" \
+   extra/Configs/Config.arm.orig > extra/Configs/Config.arm</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='e'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='f'])"/>
+
+<screen os="g"><userinput>make defconfig ARCH=arm</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='h'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='i'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='j'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='k'])"/>
+
+    <para os="m1">If your ARM system is Big Endian, you will
+    need at add the following lines to your configuration:</para>
+
+<screen os="m2"><userinput>echo "ARCH_ANY_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_BIG_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_WANTS_BIG_ENDIAN=y" &gt;&gt; .config</userinput></screen>
+
+    <para os="m3">If your ARM system is Little Endian, you will
+    need at add the following lines to your configuration:</para>
+
+<screen os="m4"><userinput>echo "ARCH_ANY_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_LITTLE_ENDIAN=y" &gt;&gt; .config
+echo "ARCH_WANTS_LITTLE_ENDIAN=y" &gt;&gt; .config</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='l'])"/>
+
+<screen os="m"><userinput>make TARGET_ARCH=arm oldconfig</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='n'])"/>
+
+<screen os="o"><userinput>make CC="${CC} ${BUILD}" TARGET_ARCH=arm</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='p'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='q'])"/>
+
+  </sect2>
+
+  <sect2 role="content" id="contents-uclibc">
+    <title/>
+
+    <para>Details on this package are located in <xref
+    linkend="contents-uclibc" role="."/></para>
+
+  </sect2>
+
+</sect1>
+

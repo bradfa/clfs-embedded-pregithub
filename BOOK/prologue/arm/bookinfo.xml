@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<bookinfo>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../../index.xml"
+  xpointer="xpointer(/bookinfo/title)"/>
+
+  <subtitle>Version &version-arm;</subtitle>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../../index.xml"
+  xpointer="xpointer(/bookinfo/authorgroup)"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../../index.xml"
+  xpointer="xpointer(/bookinfo/copyright)"/>
+
+  <legalnotice>
+    <para>Copyright &copy; 2005-2007, Jim Gifford, Ryan Oliver &amp; Maarten Lankhorst</para>
+
+    <para>All rights reserved.</para>
+
+    <para>This material may be distributed only subject to the terms and
+    conditions set forth in the <xref linkend="license"/> v1.0 or later
+    (the latest version is presently available at <ulink
+    url="http://www.opencontent.org/openpub/"/>).</para>
+
+    <!-- Modifications and limitations to the OPL (see section VI)
+    can be place here, if needed. -->
+
+    <para><trademark class='registered'>Linux</trademark> is a registered
+    trademark of Linus Torvalds.</para>
+
+  </legalnotice>
+
+</bookinfo>
