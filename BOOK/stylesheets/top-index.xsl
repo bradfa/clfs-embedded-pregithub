@@ -121,8 +121,15 @@ hr {
           </li>
           <li>
             <h4>
+              <a href="arm">
+                <xsl:text>ARM</xsl:text>
+              </a>
+            </h4>
+          </li>
+          <li>
+            <h4>
               <a href="wrt">
-                <xsl:text>WRT - MIPS Based</xsl:text>
+                <xsl:text>Wireless Routers -- MIPS Based</xsl:text>
               </a>
             </h4>
           </li>
