@@ -19,6 +19,7 @@
   -->
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/changelog.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/changelog.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="wrt/supporteddevices.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/resources.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/askforhelp.xml"/>
 
