@@ -77,11 +77,11 @@ echo "UCLIBC_HAS_REENTRANT_RPC=y" &gt;&gt; .config</userinput></screen>
     <para os="l">We have made some changes to our config, let's make sure
     that we didn't miss and dependencies:</para>
 
-<screen os="m"><userinput>make TARGET_ARCH=i386 oldconfig</userinput></screen>
+<screen os="m"><userinput>make oldconfig</userinput></screen>
 
     <para os="n">Compile the package:</para>
 
-<screen os="o"><userinput>make CC="${CC} ${BUILD}" TARGET_ARCH=i386</userinput></screen>
+<screen os="o"><userinput>make CC="${CC} ${BUILD}"</userinput></screen>
 
     <para os="p">Install the package:</para>
 

@@ -54,10 +54,10 @@
 <!ENTITY linux-headers-md5 "91871367451dfe36926f860887657db9">
 <!ENTITY linux-headers-home "http://headers.cross-lfs.org">
 
-<!ENTITY uclibc-version "snapshot">
-<!ENTITY uclibc-size "3,450 KB">
+<!ENTITY uclibc-version "0.9.29">
+<!ENTITY uclibc-size "2092 KB">
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
-<!ENTITY uclibc-md5 "NOT AVAILABLE">
+<!ENTITY uclibc-md5 "61dc55f43b17a38a074f347e74095b20">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
 <!ENTITY zlib-version "1.2.3">
