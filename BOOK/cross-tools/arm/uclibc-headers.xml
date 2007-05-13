@@ -70,15 +70,14 @@
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='n'])"/>
 
-<screen os="o"><userinput>make TARGET_ARCH=arm headers</userinput></screen>
+<screen os="o"><userinput>make headers</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="uclibc.xml"
   xpointer="xpointer(//*[@os='p'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="uclibc.xml"
-  xpointer="xpointer(//*[@os='q'])"/>
+  <screen os="1"><userinput>mkdir ${CLFS}/usr/include/bits
+		  make PREFIX=${CLFS} install_headers</userinput></screen>
 
   </sect2>
 
