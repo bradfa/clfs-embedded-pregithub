@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-intro-supported-devices-wrt">
+  <title>Supported Devices for WRT</title>
+  <?dbhtml filename="supported-devices.html"?>
+
+  <para>In order to build CLFS for your device, we need to know what processor it has, amd more inportantly if it is a big or small edin, and what MIPS ISA level it is. The MIPS ISA level is needed so that we can build uClibc properly. </para>
+  
+  <para> The following is a list of devices that have been tested and reported as tested and working with this book. Apart from this list, there is no garentee that your device, apart from this list will work. If U secussfully get a device to work, please contact the CLFS Dev team, and we will add it to the list. For the most recent and up to date list, please view the SVN version of this book. </para>
+
+  <table os="g">
+	  <title>Supported Devices</title>
+	  <tgroup cols="6" align="center">
+		  <colspec colname="Manufacture"/>
+		  <colspec colname="Device"/>
+		  <colspec colname="Supported/Working"/>
+		  <colspec colname="Processor"/>
+		  <colspec colname="Big or Small Edin"/>
+		  <colspec colname="Mips Level"/>
+		  <thead>
+			  <row>
+				  <entry>Manufacture</entry>
+				  <entry>Device</entry>
+				  <entry>Supported/Working</entry>
+				  <entry>Processor </entry>
+				  <entry>Big or Small Edin </entry>
+				  <entry>Mips Level </entry>
+			  </row>
+		  </thead>
+		  <tbody>
+			  <row>
+				  <entry>Linksys</entry>
+				  <entry>WRT54G Vs. 1</entry>
+				  <entry>Testing</entry>
+				  <entry>Broadcom 4712 @ 200MHz, 2MB Flash, 8MB RAM</entry>
+				  <entry>Small</entry>
+				  <entry>1 or 2, testing</entry>
+			  </row>
+			  
+		  </tbody>
+	  </tgroup>
+  </table>
+</sect1>
