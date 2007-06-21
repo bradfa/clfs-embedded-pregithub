@@ -6,7 +6,7 @@
 ]>
 
 <sect1 id="ch-intro-changelog-arm">
-  <title>Changelog for MIPS</title>
+  <title>Changelog for ARM</title>
   <?dbhtml filename="changelog-arm.html"?>
 
   <para>Below is a list of changes specifics for this architecture made
