@@ -80,7 +80,7 @@ done</userinput></screen>
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make ARCH=i386 CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}" PREFIX="${CLFS}" install</userinput></screen>
+<screen os="i"><userinput>make ARCH=i386 CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}" CONFIG_PREFIX="${CLFS}" install</userinput></screen>
 
     <para os="j">If your going to build your kernel with modules, you will need to make
     sure depmod.pl is available:</para>
