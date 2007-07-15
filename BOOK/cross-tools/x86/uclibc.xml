@@ -71,6 +71,11 @@ for config in $UCLIBC_OPTIONS; do
         cp .config{,.orig}
         sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
 done
+UCLIBC_OPTIONS="UCLIBC_HAS_CTYPE_UNSAFE"
+for config in $UCLIBC_OPTIONS; do
+        cp .config{,.orig}
+        sed -e "s:${config}=y:# ${config} is not set:" .config.orig > .config
+done
 echo "UCLIBC_HAS_FULL_RPC=y" &gt;&gt; .config
 echo "UCLIBC_HAS_REENTRANT_RPC=y" &gt;&gt; .config</userinput></screen>
 
