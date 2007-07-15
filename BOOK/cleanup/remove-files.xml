@@ -24,14 +24,14 @@ cp -arv ${CLFS}/* ${CLFS}-final/</userinput></screen>
 <screen><userinput>rm -rfv ${CLFS}-final/cross-tools
 rm -rfv ${CLFS}-final/usr/src/*
 rm -rfv ${CLFS}-final/usr/include
-rm -rfv ${CLFS}-final/usr/man 
+rm -rfv ${CLFS}-final/usr/man
 rm -rfv ${CLFS}-final/usr/share/man</userinput></screen>
 
   <para>Lets remove the static libaries:</para>
 
 <screen><userinput>FILES="`ls ${CLFS}-final/lib/*.a ${CLFS}-final/usr/lib/*.a`"
 for file in $FILES; do
-        rm -fv $file
+    rm -fv $file
 done</userinput></screen>
 
 </sect1>

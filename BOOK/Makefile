@@ -33,7 +33,7 @@ tmpdir:
 	@echo "Creating and cleaning $(RENDERTMP)"
 	$(Q)[ -d $(RENDERTMP) ] || mkdir -p $(RENDERTMP)
 	$(Q)rm -f $(RENDERTMP)/*-{full,html,pdf}.xml
-	$(Q)rm -f $(RENDERTMP)/*-pdf.fo
+	$(Q)rm -f $(RENDERTMP)/*.fo
 
 ifeq ($(shell which tidy >/dev/null 2>&1 && echo yes),yes)
 tidy:

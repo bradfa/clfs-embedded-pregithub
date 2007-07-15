@@ -13,15 +13,15 @@
   <para>Setup target-specific variables for the compiler
   and linkers. This time we keep them:</para>
 
-<screen><userinput><literal>echo export CC=\""${CLFS_TARGET}-gcc\"" &gt;&gt; ~/.bashrc
-echo export CXX=\""${CLFS_TARGET}-g++\"" &gt;&gt; ~/.bashrc
-echo export AR=\""${CLFS_TARGET}-ar\"" &gt;&gt; ~/.bashrc
-echo export AS=\""${CLFS_TARGET}-as\"" &gt;&gt; ~/.bashrc
-echo export LD=\""${CLFS_TARGET}-ld\"" &gt;&gt; ~/.bashrc
-echo export RANLIB=\""${CLFS_TARGET}-ranlib\"" &gt;&gt; ~/.bashrc
-echo export READELF=\""${CLFS_TARGET}-readelf\"" &gt;&gt; ~/.bashrc
-echo export STRIP=\""${CLFS_TARGET}-strip\"" &gt;&gt; ~/.bashrc
-echo export BUILD=\""${BUILD}\"" &gt;&gt; ~/.bashrc
-source ~/.bashrc</literal></userinput></screen>
+<screen><userinput>echo <literal>export CC=\""${CLFS_TARGET}-gcc\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export CXX=\""${CLFS_TARGET}-g++\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export AR=\""${CLFS_TARGET}-ar\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export AS=\""${CLFS_TARGET}-as\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export LD=\""${CLFS_TARGET}-ld\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export RANLIB=\""${CLFS_TARGET}-ranlib\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export READELF=\""${CLFS_TARGET}-readelf\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export STRIP=\""${CLFS_TARGET}-strip\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export BUILD=\""${BUILD}\""</literal> &gt;&gt; ~/.bashrc
+source ~/.bashrc</userinput></screen>
 
 </sect1>

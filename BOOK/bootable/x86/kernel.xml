@@ -42,7 +42,7 @@
     some information regarding particular kernel configuration requirements of
     packages outside of CLFS at <ulink
     url="&blfs-root;view/svn/longindex.html#kernel-config-index"/>:</para>
-  
+
     <note os="f"><para>Since we are building for an embedded system we need to make sure
     our key components are built into the kernel and not as modules. Our key
     components are console/video, disk, and network. With out these built in our
@@ -110,11 +110,12 @@
 
 <screen os="v"><userinput>cp System.map ${CLFS}/boot/System.map-&linux-version;</userinput></screen>
 
-    <para os="w">If we compiled our kernel with modules and we made sure depmod.pl
-    is avaiable from busybox, we need to create the module dependency list by
-    issuing the following command:</para>
+    <para os="w">If we compiled our kernel with modules and we made sure
+    <command>depmod.pl</command> is avaiable from BusyBox, we need to create the
+    module dependency list by issuing the following command:</para>
 
-<screen os="x"><userinput>${CLFS}/cross-tools/bin/depmod.pl -F ${CLFS}/boot/System.map -b ${CLFS}/lib/modules/&linux-version;</userinput></screen>
+<screen os="x"><userinput>${CLFS}/cross-tools/bin/depmod.pl -F ${CLFS}/boot/System.map \
+    -b ${CLFS}/lib/modules/&linux-version;</userinput></screen>
 
     <para os="y">The kernel configuration file <filename>.config</filename>
     produced by the <command>make menuconfig</command> step above contains

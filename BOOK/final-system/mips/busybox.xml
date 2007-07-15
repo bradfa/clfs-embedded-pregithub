@@ -71,7 +71,8 @@
     href="../x86/busybox.xml"
     xpointer="xpointer(//*[@os='h'])"/>
 
-<screen os="i"><userinput>make ARCH=mips CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}" CONFIG_PREFIX="${CLFS}" install</userinput></screen>
+<screen os="i"><userinput>make ARCH=mips CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}" \
+    CONFIG_PREFIX="${CLFS}" install</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../x86/busybox.xml"

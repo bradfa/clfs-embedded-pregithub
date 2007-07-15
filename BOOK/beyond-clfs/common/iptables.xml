@@ -37,7 +37,8 @@
     <para os="c">Install the package:</para>
 
 <screen os="d"><userinput>make CC="${CC} ${BUILD}" COPT_FLAGS="-Os" LD=${LD} DO_MULTI=1 PREFIX=/usr \
-    KERNEL_DIR=${CLFS}/lib/modules/&linux-version;/build LIBDIR=/lib BINDIR=/sbin DESTDIR=${CLFS} install</userinput></screen>
+    KERNEL_DIR=${CLFS}/lib/modules/&linux-version;/build LIBDIR=/lib BINDIR=/sbin \
+    DESTDIR=${CLFS} install</userinput></screen>
 
   </sect2>
 

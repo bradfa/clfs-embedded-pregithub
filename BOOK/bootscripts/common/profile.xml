@@ -11,20 +11,12 @@
   <title>Creating /etc/profile</title>
 
   <indexterm zone="ch-scripts-profile">
-    <primary sortas="a-profile">profile</primary>
+    <primary sortas="e-/etc/profile">/etc/profile</primary>
   </indexterm>
 
-  <sect2 role="package">
-    <title/>
+  <para>Is the file that specifices how to your environment will function.</para>
 
-    <para>Is the file that specifices how to your environment will function.</para>
-
-  </sect2>
-
-  <sect2>
-    <title>Create /etc/profile</title>
-
-<para os="a">Now we will create the profile file for use with our system:</para>
+  <para os="a">Now we will create the profile file for use with our system:</para>
 
 <screen os="b"><userinput>cat &gt; ${CLFS}/etc/profile&lt;&lt; "EOF"
 <literal># /etc/profile
@@ -49,7 +41,5 @@ export INPUTRC=/etc/inputrc
 
 # End /etc/profile</literal>
 EOF</userinput></screen>
-
-  </sect2>
 
 </sect1>

@@ -13,12 +13,12 @@
   <para>Now we remove the toolchain variables to prevent
   the final GCC build from having issues:</para>
 
-<screen><userinput><literal>unset CC
+<screen><userinput>unset CC
 unset CXX
 unset AR
 unset AS
 unset LD
 unset RANLIB
-unset STRIP</literal></userinput></screen>
+unset STRIP</userinput></screen>
 
 </sect1>

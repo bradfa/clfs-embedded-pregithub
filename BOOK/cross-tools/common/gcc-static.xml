@@ -53,8 +53,8 @@ cd ../gcc-build</userinput></screen>
 
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
     --host=${CLFS_HOST} --target=${CLFS_TARGET} --disable-multilib \
-    --with-sysroot=${CLFS} --disable-nls --disable-shared --disable-threads \
-    --enable-languages=c</userinput></screen>
+    --with-sysroot=${CLFS} --disable-nls --disable-shared \
+    --disable-threads --enable-languages=c</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>

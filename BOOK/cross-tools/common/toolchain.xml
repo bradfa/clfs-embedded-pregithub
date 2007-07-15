@@ -14,12 +14,12 @@
   these after we that build. We will reitroduce them in
   then Final System build:</para>
 
-<screen><userinput><literal>export CC="${CLFS_TARGET}-gcc"
+<screen><userinput>export CC="${CLFS_TARGET}-gcc"
 export CXX="${CLFS_TARGET}-g++"
 export AR="${CLFS_TARGET}-ar"
 export AS="${CLFS_TARGET}-as"
 export LD="${CLFS_TARGET}-ld"
 export RANLIB="${CLFS_TARGET}-ranlib"
-export STRIP="${CLFS_TARGET}-strip"</literal></userinput></screen>
+export STRIP="${CLFS_TARGET}-strip"</userinput></screen>
 
 </sect1>

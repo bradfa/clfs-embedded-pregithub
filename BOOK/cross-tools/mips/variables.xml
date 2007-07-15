@@ -45,10 +45,14 @@ echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinp
 
   <table os="g">
     <title>Processor Type and  Target Triplets</title>
-    <tgroup cols="2" align="center">
-      <colspec colname="Processor"/>
-      <colspec colname="Triplet"/>
-      <colspec colname="MIPS Level"/>
+    <?dbfo table-width="5.5in" ?>
+
+    <tgroup cols="2">
+
+      <colspec colnum="1" colwidth="2in"   colname="Processor"/>
+      <colspec colnum="2" colwidth="2.5in" colname="Triplet"/>
+      <colspec colnum="3" colwidth="1in"   colname="MIPS Level"/>
+
       <thead>
         <row>
           <entry>Processor</entry>
@@ -56,6 +60,7 @@ echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinp
           <entry>MIPS Level</entry>
         </row>
       </thead>
+
       <tbody>
         <row>
           <entry>MIPS 32 bits Little Endian</entry>
@@ -78,7 +83,9 @@ echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinp
           <entry>3</entry>
         </row>
       </tbody>
+
     </tgroup>
+
   </table>
 
 </sect1>

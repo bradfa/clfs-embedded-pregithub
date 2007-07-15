@@ -23,11 +23,15 @@
   </sect2>
 
   <sect2>
-    <title>Create /etc/mdev.conf</title>
+    <title>Creating /etc/mdev.conf</title>
+
+    <indexterm zone="ch-scripts-mdev">
+      <primary sortas="e-/etc/mdev.conf">/etc/mdev.conf</primary>
+    </indexterm>
 
 <para os="a">Now we will create the mdev.conf file for use with our system:</para>
 
-<screen os="b"><userinput>cat &gt; ${CLFS}/etc/mdev.conf&lt;&lt; "EOF"
+<screen os="b"><?dbfo keep-together="auto"?><userinput>cat &gt; ${CLFS}/etc/mdev.conf&lt;&lt; "EOF"
 <literal># /etc/mdev/conf
 SLEEP=10
 

@@ -19,7 +19,8 @@
   particular needs. To set this information you can issue the following
   command:</para>
 
-<screen os="b"><userinput>export CLFS_HOST="$(echo $MACHTYPE | sed "s/$(echo $MACHTYPE | cut -d- -f2)/cross/")"</userinput></screen>
+<screen os="b"><userinput>export CLFS_HOST="$(echo $MACHTYPE | \
+    sed "s/$(echo $MACHTYPE | cut -d- -f2)/cross/")"</userinput></screen>
 
   <para os="c">Now you will need to set the target triplet for the target
   architecture. You can do this by running the same command as above, just
@@ -37,15 +38,20 @@ echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc</userinput></scr
 
   <table os="g">
     <title>Processor Type and  Target Triplets</title>
-    <tgroup cols="2" align="center">
-      <colspec colname="Processor"/>
-      <colspec colname="Triplet"/>
+    <?dbfo table-width="4.5in" ?>
+
+    <tgroup cols="2">
+
+      <colspec colnum="1" colwidth="2.5in"   colname="Processor"/>
+      <colspec colnum="2" colwidth="2in" colname="Triplet"/>
+
       <thead>
         <row>
           <entry>Processor</entry>
           <entry>Target Triplet</entry>
         </row>
       </thead>
+
       <tbody>
         <row>
           <entry>486 Compatibles</entry>
@@ -64,7 +70,9 @@ echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc</userinput></scr
           <entry>i686-pc-linux-uclibc</entry>
         </row>
       </tbody>
+
     </tgroup>
+
   </table>
 
 </sect1>

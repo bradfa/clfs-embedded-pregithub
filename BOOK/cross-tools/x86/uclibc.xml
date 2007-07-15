@@ -35,8 +35,9 @@
 <screen os="d"><userinput>cp Makefile{,.orig}
 sed -e 's/$(LN) -fs/cp/g' Makefile.orig &gt; Makefile
 for file in `find libc/sysdeps/linux -name Makefile`; do
-        cp $file{,.orig}
-        sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' $file.orig > $file
+    cp $file{,.orig}
+    sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' \
+        $file.orig > $file
 done</userinput></screen>
 
     <note os="e">
@@ -64,17 +65,17 @@ sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
     can utilize all the features of BusyBox:</para>
 
 <screen os="k"><userinput>UCLIBC_OPTIONS="DO_C99_MATH UCLIBC_HAS_RPC UCLIBC_HAS_CTYPE_CHECKED
-		UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE
-		UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_FTW UCLIBC_HAS_IPV6 UCLIBC_HAS_GLIBC_CUSTOM_PRINTF
-		UCLIBC_USE_NETLINK LDSO_PRELOAD_FILE_SUPPORT"
+    UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS LDSO_PRELOAD_FILE_SUPPORT
+    UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_IPV6
+    UCLIBC_HAS_GLIBC_CUSTOM_PRINTF UCLIBC_USE_NETLINK UCLIBC_HAS_FTW"
 for config in $UCLIBC_OPTIONS; do
-        cp .config{,.orig}
-        sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
+    cp .config{,.orig}
+    sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
 done
 UCLIBC_OPTIONS="UCLIBC_HAS_CTYPE_UNSAFE"
 for config in $UCLIBC_OPTIONS; do
-        cp .config{,.orig}
-        sed -e "s:${config}=y:# ${config} is not set:" .config.orig > .config
+    cp .config{,.orig}
+    sed -e "s:${config}=y:# ${config} is not set:" .config.orig > .config
 done
 echo "UCLIBC_HAS_FULL_RPC=y" &gt;&gt; .config
 echo "UCLIBC_HAS_REENTRANT_RPC=y" &gt;&gt; .config</userinput></screen>

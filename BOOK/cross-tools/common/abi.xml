@@ -12,7 +12,7 @@
 
   <para>Setup for a Particular ABI:</para>
 
-<screen><userinput><literal>export BUILD="<replaceable>[From Chart]</replaceable>"</literal></userinput></screen>
+<screen><userinput>export BUILD="<replaceable>[From Chart]</replaceable>"</userinput></screen>
 
   <para>The following table gives the entires for the different ABI's that CLFS Embedded supports. Make
   sure you select one for your build, this will ensure capatibilty of your build with your target
@@ -20,15 +20,20 @@
 
   <table>
     <title>List of Build Variables</title>
-    <tgroup cols="2" align="center">
-      <colspec colname="ABI to Select"/>
-      <colspec colname="Variable Value"/>
+    <?dbfo table-width="3in" ?>
+
+    <tgroup cols="2">
+
+      <colspec colnum="1" colwidth="1.5in" colname="ABI to Select"/>
+      <colspec colnum="2" colwidth="1.5in" colname="Variable Value"/>
+
       <thead>
         <row>
           <entry>ABI</entry>
           <entry>BUILD=Value</entry>
         </row>
       </thead>
+
       <tbody>
         <row>
           <entry>32-Bit MIPS</entry>
@@ -51,7 +56,9 @@
           <entry>-m64</entry>
         </row>
       </tbody>
+
     </tgroup>
+
   </table>
 
 </sect1>
