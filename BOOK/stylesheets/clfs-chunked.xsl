@@ -10,7 +10,7 @@ $Date$
                 version="1.0">
 
     <!-- LFS top-level chunk templates. -->
-  <xsl:import href="lfs-xsl/chunked.xsl"/>
+  <xsl:import href="lfs-xsl/chunkfast.xsl"/>
 
     <!-- The LFS book type to be processed (lfs, blfs, clfs, or hlfs) -->
   <xsl:param name="book-type">clfs</xsl:param>
