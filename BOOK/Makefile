@@ -67,6 +67,7 @@ $(ARCHS_HTML):
 	  $(PWD)/stylesheets/lfs-xsl/profile.xsl $(RENDERTMP)/$(html_arch)-full.xml
 
 	@echo "Rendering chunked XHTML of $(html_arch)..."
+	$(Q)mkdir -p $(BASEDIR)/$(html_arch)
 	$(Q)xsltproc --nonet -stringparam chunk.quietly $(CHUNK_QUIET) \
 	  -stringparam rootid "$(ROOT_ID)" \
 	  -stringparam base.dir $(BASEDIR)/$(html_arch)/ \
@@ -95,6 +96,7 @@ $(ARCHS_NOCHUNKS):
 	  $(RENDERTMP)/$(nochunk_arch)-full.xml
 
 	@echo "Rendering Single File HTML of $(nochunk_arch)..."
+	$(Q)mkdir -p $(BASEDIR)
 	$(Q)xsltproc --nonet -stringparam rootid "$(ROOT_ID)" \
 	  --output $(BASEDIR)/CLFS-EMBEDDED-$(nochunk_arch).html \
 	  $(PWD)/stylesheets/clfs-nochunks.xsl $(RENDERTMP)/$(nochunk_arch)-html.xml
@@ -127,6 +129,7 @@ $(ARCHS_PDF):
 	$(Q)sed -i -e 's/span="inherit"/span="all"/' $(RENDERTMP)/$(pdf_arch).fo
 
 	@echo "Rendering PDF of $(pdf_arch)..."
+	$(Q)mkdir -p $(BASEDIR)
 	$(Q)fop $(RENDERTMP)/$(pdf_arch).fo $(BASEDIR)/CLFS-EMBEDDED-$(pdf_arch).pdf
 
 validate: $(ARCHS_VALIDATE)
@@ -136,7 +139,7 @@ $(ARCHS_VALIDATE):
 	@echo "Validating $(validate_arch)..."
 	$(Q)xmllint --xinclude --noout --nonet --postvalid $(PWD)/$(validate_arch)-index.xml
 
-trouble: $(ARCHS_TROUBLE)
+trouble: tmpdir $(ARCHS_TROUBLE)
 
 $(ARCHS_TROUBLE): override trouble_arch =  $(@:%$(S)trouble=%)
 $(ARCHS_TROUBLE):
@@ -151,6 +154,7 @@ dump-commands: $(ARCHS_DUMP)
 $(ARCHS_DUMP): override dump_arch =  $(@:%$(S)dump=%)
 $(ARCHS_DUMP):
 	@echo "Extracting commands from $(dump_arch)..."
+	$(Q)mkdir -p $(DUMPDIR)/$(dump_arch)
 	$(Q)xsltproc --xinclude --nonet --output $(DUMPDIR)/$(dump_arch)/ \
 	  $(PWD)/stylesheets/dump-commands.xsl $(PWD)/$(dump_arch)-index.xml
 
@@ -159,6 +163,7 @@ download-list: $(ARCHS_DLLIST)
 $(ARCHS_DLLIST): override dllist_arch = $(@:%$(S)dllist=%)
 $(ARCHS_DLLIST):
 	@echo "Creating download list for $(dllist_arch)..."
+	$(Q)mkdir -p $(DLLISTDIR)
 	$(Q)xsltproc --xinclude --nonet --output $(DLLISTDIR)/$(dllist_arch).dl.list \
 	  $(PWD)/stylesheets/wget.xsl $(PWD)/$(dllist_arch)-index.xml
 
