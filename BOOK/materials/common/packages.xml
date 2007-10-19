@@ -92,11 +92,6 @@
         <para>Home page: <ulink url="&uclibc-home;"/></para>
         <para>Download: <ulink url="&uclibc-url;"/></para>
         <para>MD5 sum: <literal>&uclibc-md5;</literal></para>
-        <note>
-          <para>uClibc-&uclibc-version; package is updated daily by upstream
-          from the development sources, thus there is no way for us to supply
-          a proper MD5 sum value for this package.</para>
-        </note>
       </listitem>
     </varlistentry>
 
