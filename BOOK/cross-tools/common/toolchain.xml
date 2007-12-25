@@ -10,9 +10,9 @@
 
   <title>ToolChain Variables</title>
 
-  <para>We set this up just for uClibc build, we will remove
-  these after we that build. We will reitroduce them in
-  then Final System build:</para>
+  <para>The following variables are required to be set for the uClibc build.
+  After the uClibc build they will be removed again until they are reset for
+  the final-system.</para>
 
 <screen><userinput>export CC="${CLFS_TARGET}-gcc"
 export CXX="${CLFS_TARGET}-g++"
