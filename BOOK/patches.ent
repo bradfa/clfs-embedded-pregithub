@@ -13,8 +13,8 @@
 <!ENTITY binutils-uclibc-patch-size "12 KB">
 
 <!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
-<!ENTITY busybox-fixes-patch-md5 "6770300fc410a1f8996ba54c870dca8f">
-<!ENTITY busybox-fixes-patch-size "4 KB">
+<!ENTITY busybox-fixes-patch-md5 "8c63ff58287e5de40a40e81145a8a1ad">
+<!ENTITY busybox-fixes-patch-size "20 KB">
 
 <!ENTITY gcc-cross_search-patch "gcc-&gcc-version;-cross_search_paths-1.patch">
 <!ENTITY gcc-cross_search-patch-md5 "8ef51c0c74f0ea8511e59544f719470f">

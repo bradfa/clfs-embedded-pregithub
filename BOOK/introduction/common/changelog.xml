@@ -37,6 +37,15 @@
 -->
 
     <listitem>
+      <para>Janurary 9, 2008</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated Busybox to 1.8.2.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 5, 2006</para>
       <itemizedlist>
         <listitem>
