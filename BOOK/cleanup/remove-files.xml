@@ -8,18 +8,18 @@
 <sect1 id="ch-cleanup-remove-files">
   <?dbhtml filename="remove-files.html"?>
 
-  <title>Remove Unecessary Files</title>
+  <title>Remove Unnecessary Files</title>
 
   <para>Well we have this system finished, we can make it smaller by
   removing files that are not necessary for our build. On this page
   we remove the bloat from our build.</para>
 
-  <para>Now lets create a backup of our build:</para>
+  <para>Now let's create a backup of our build:</para>
 
 <screen><userinput>install -dv ${CLFS}-final
 cp -arv ${CLFS}/* ${CLFS}-final/</userinput></screen>
 
-  <para>Lets remove the files we don't need anymore:</para>
+  <para>Let's remove the files we don't need anymore:</para>
 
 <screen><userinput>rm -rfv ${CLFS}-final/cross-tools
 rm -rfv ${CLFS}-final/usr/src/*
@@ -27,7 +27,7 @@ rm -rfv ${CLFS}-final/usr/include
 rm -rfv ${CLFS}-final/usr/man
 rm -rfv ${CLFS}-final/usr/share/man</userinput></screen>
 
-  <para>Lets remove the static libaries:</para>
+  <para>Let's remove the static libaries:</para>
 
 <screen><userinput>FILES="`ls ${CLFS}-final/lib/*.a ${CLFS}-final/usr/lib/*.a`"
 for file in $FILES; do
