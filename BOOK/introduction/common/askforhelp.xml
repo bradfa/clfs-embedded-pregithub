@@ -46,7 +46,7 @@
         <para>The architecture of the host and target.</para>
       </listitem>
       <listitem>
-        <para>The value of the ${CLFS_HOST}, ${CLFS_TARGET}, and ${BUILD}
+        <para>The value of the ${CLFS_TARGET}, and ${BUILD}
         environment variables.</para>
       </listitem>
       <listitem>

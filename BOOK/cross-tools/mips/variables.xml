@@ -18,14 +18,6 @@
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='b'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='c'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='d'])"/>
 
   <para os="d1">Now you will need to set the MIPS LEVEL. This determines how your
@@ -39,8 +31,7 @@ we are only using 2. For more information, go to
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="f"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="g">

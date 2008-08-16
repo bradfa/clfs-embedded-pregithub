@@ -50,8 +50,8 @@ cd ../binutils-build</userinput></screen>
     <para os="d">Prepare Binutils for compilation:</para>
 
 <screen os="e"><userinput>../binutils-&binutils-version;/configure --prefix=${CLFS}/cross-tools \
-   --host=${CLFS_HOST} --target=${CLFS_TARGET} --with-sysroot=${CLFS} \
-   --disable-nls --enable-shared --disable-multilib</userinput></screen>
+   --target=${CLFS_TARGET} --with-sysroot=${CLFS} --disable-nls \
+   --enable-shared --disable-multilib</userinput></screen>
 
     <variablelist os="f">
       <title>The meaning of the configure options:</title>
@@ -65,21 +65,12 @@ cd ../binutils-build</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry os="f2">
-        <term><parameter>--host=${CLFS_HOST}</parameter></term>
-        <listitem>
-          <para>When used with --target, this creates a cross-architecture
-          executable that creates files for ${CLFS_TARGET} but runs on
-          ${CLFS_HOST}.</para>
-        </listitem>
-      </varlistentry>
-
       <varlistentry os="f3">
         <term><parameter>--target=${CLFS_TARGET}</parameter></term>
         <listitem>
           <para>When used with --host, this creates a cross-architecture
           executable that creates files for ${CLFS_TARGET} but runs on
-          ${CLFS_HOST}.</para>
+          the host system.</para>
         </listitem>
       </varlistentry>
 

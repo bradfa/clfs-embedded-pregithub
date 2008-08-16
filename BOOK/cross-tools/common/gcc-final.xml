@@ -59,7 +59,7 @@
     xpointer="xpointer(//*[@os='e'])"/>
 
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
-    --host=${CLFS_HOST} --target=${CLFS_TARGET} --disable-multilib \
+    --target=${CLFS_TARGET} --disable-multilib \
     --with-sysroot=${CLFS} --disable-nls --enable-shared \
     --enable-languages=c --enable-__cxa_atexit \
     --enable-c99 --enable-long-long --enable-threads=posix</userinput></screen>

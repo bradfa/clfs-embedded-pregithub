@@ -52,7 +52,7 @@ cd ../gcc-build</userinput></screen>
     <para os="e">Prepare GCC for compilation:</para>
 
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
-    --host=${CLFS_HOST} --target=${CLFS_TARGET} --disable-multilib \
+    --target=${CLFS_TARGET} --disable-multilib \
     --with-sysroot=${CLFS} --disable-nls --disable-shared \
     --disable-threads --enable-languages=c</userinput></screen>
 
