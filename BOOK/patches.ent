@@ -9,12 +9,20 @@
 <!ENTITY binutils-posix-patch-size "4 KB">
 
 <!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
-<!ENTITY busybox-fixes-patch-md5 "8c63ff58287e5de40a40e81145a8a1ad">
-<!ENTITY busybox-fixes-patch-size "20 KB">
+<!ENTITY busybox-fixes-patch-md5 "984f771a81475c234b1fc3f92c672b4d">
+<!ENTITY busybox-fixes-patch-size "16 KB">
+
+<!ENTITY busybox-iptunnel_headers-patch "busybox-&busybox-version;-iptunnel_headers-1.patch">
+<!ENTITY busybox-iptunnel_headers-patch-md5 "f0771cde6810a68c5459683b8c5e69b31">
+<!ENTITY busybox-iptunnel_headers-patch-size "4 KB">
 
 <!ENTITY gcc-posix-patch "gcc-&gcc-version;-posix-1.patch">
 <!ENTITY gcc-posix-patch-md5 "ed26ea522e014b2e39adf066bd44053b">
 <!ENTITY gcc-posix-patch-size "12 KB">
+
+<!ENTITY uclibc-flock_fixes-patch "uClibc-&uclibc-version;-flock_fixes-1.patch">
+<!ENTITY uclibc-flock_fixes-patch-md5 "aaff25f9503fe380f82be79f82aa04e9">
+<!ENTITY uclibc-flock_fixes-patch-size "24 KB">
 
 <!ENTITY zlib-destdir-patch "zlib-&zlib-version;-DESTDIR-1.patch">
 <!ENTITY zlib-destdir-patch-md5 "d21bdd08bf444f87f275b6aef44e1a84">

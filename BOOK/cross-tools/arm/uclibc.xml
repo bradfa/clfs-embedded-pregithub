@@ -27,14 +27,21 @@
     following sed makes sure we are using the proper settings for our
     architecture:</para>
 
-<screen os="b"><userinput>
-cp extra/Configs/Config.arm extra/Configs/Config.arm.orig
+<screen os="b"><userinput>cp extra/Configs/Config.arm extra/Configs/Config.arm.orig
 sed -e "/default/s:OABI:EABI:" \
    extra/Configs/Config.arm.orig > extra/Configs/Config.arm</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='e'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='p1'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='p2'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"

@@ -40,6 +40,9 @@
       <para>November 8, 2008</para>
       <itemizedlist>
         <listitem>
+          <para>[jciccone] - Updated Busybox to 1.12.1.</para>
+        </listitem>
+        <listitem>
           <para>[jciccone] - Updated uClibc to 0.9.30-rc3.</para>
         </listitem>
       </itemizedlist>

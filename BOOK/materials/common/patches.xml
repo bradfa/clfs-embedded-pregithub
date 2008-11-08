@@ -37,11 +37,29 @@
     </varlistentry>
 
     <varlistentry>
+      <term>Busybox Iptunnel Headers Patch - <token>&busybox-iptunnel_headers-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&busybox-iptunnel_headers-patch;"/></para>
+        <para>MD5 sum: <literal>&busybox-iptunnel_headers-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term>GCC Posix Patch - <token>&gcc-posix-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&gcc-posix-patch;"/></para>
         <para>MD5 sum: <literal>&gcc-posix-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>uClibc Flock Fixes Patch - <token>&uclibc-flock_fixes-patch-size;</token>:</term>
+      <listitem>
+        <para>Downloads: <ulink
+        url="&patches-root;&uclibc-flock_fixes-patch;"/></para>
+        <para>MD5 sum: <literal>&uclibc-flock_fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 

@@ -1,0 +1,696 @@
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/alpha/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/alpha/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/alpha/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/alpha/bits/fcntl.h	2008-11-08 10:12:27.000000000 -0500
+@@ -138,6 +138,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ /* We don't need to support __USE_FILE_OFFSET64.  */
+ struct flock
+   {
+@@ -147,7 +148,9 @@
+     __off_t l_len;	/* Size of the locked area; zero means until EOF.  */
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -158,6 +161,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ 
+ /* Define some more compatibility macros to be backward compatible with
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/arm/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/arm/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/arm/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/arm/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -143,6 +143,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -156,7 +157,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -167,6 +170,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/avr32/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/avr32/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/avr32/bits/fcntl.h	2008-09-17 07:45:37.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/avr32/bits/fcntl.h	2008-11-08 10:13:35.000000000 -0500
+@@ -124,6 +124,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock {
+ 	short		l_type;
+ 	short		l_whence;
+@@ -136,7 +137,9 @@
+ #endif
+ 	__pid_t		l_pid;
+ };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64 {
+ 	short		l_type;
+@@ -146,6 +149,7 @@
+ 	__pid_t		l_pid;
+ };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+  *    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/bfin/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/bfin/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/bfin/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/bfin/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -139,6 +139,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -152,7 +153,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -163,6 +166,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/cris/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/cris/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/cris/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/cris/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -140,6 +140,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -153,7 +154,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -164,6 +167,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/e1/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/e1/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/e1/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/e1/bits/fcntl.h	2008-11-08 10:06:40.000000000 -0500
+@@ -136,6 +136,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -149,7 +150,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -160,6 +163,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/frv/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/frv/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/frv/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/frv/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -118,6 +118,7 @@
+ # define LOCK_UN	8	/* remove lock */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.  */
+@@ -131,7 +132,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -142,6 +145,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/h8300/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/h8300/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/h8300/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/h8300/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -136,6 +136,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -149,7 +150,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -160,6 +163,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/hppa/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/hppa/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/hppa/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/hppa/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -130,6 +130,7 @@
+ # define DN_MULTISHOT   0x80000000      /* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.  */
+@@ -143,7 +144,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -154,6 +157,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/i386/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/i386/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/i386/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/i386/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -143,6 +143,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -156,7 +157,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -167,6 +170,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/i960/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/i960/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/i960/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/i960/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -136,6 +136,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -149,7 +150,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -160,6 +163,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/ia64/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/ia64/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/ia64/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/ia64/bits/fcntl.h	2008-11-08 10:11:31.000000000 -0500
+@@ -140,6 +140,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ /* We don't need to support __USE_FILE_OFFSET64.  */
+ struct flock
+   {
+@@ -149,7 +150,9 @@
+     __off_t l_len;	/* Size of the locked area; zero means until EOF.  */
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -160,6 +163,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ 
+ /* Define some more compatibility macros to be backward compatible with
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/m68k/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/m68k/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/m68k/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/m68k/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -139,6 +139,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -152,7 +153,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -163,6 +166,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/microblaze/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/microblaze/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/microblaze/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/microblaze/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -136,6 +136,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -149,7 +150,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -160,6 +163,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/mips/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/mips/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/mips/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/mips/bits/fcntl.h	2008-11-08 10:12:05.000000000 -0500
+@@ -152,6 +152,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -176,7 +177,9 @@
+ #endif
+   };
+ typedef struct flock flock_t;
++#endif 
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -187,6 +190,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/nios/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/nios/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/nios/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/nios/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -139,6 +139,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.  */
+@@ -152,7 +153,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -163,6 +166,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/nios2/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/nios2/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/nios2/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/nios2/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -139,6 +139,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -152,7 +153,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -163,6 +166,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/sh/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/sh/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/sh/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/sh/bits/fcntl.h	2008-11-08 10:07:07.000000000 -0500
+@@ -143,6 +143,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -156,7 +157,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -167,6 +170,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/sh64/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/sh64/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/sh64/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/sh64/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -118,6 +118,7 @@
+ # define LOCK_UN	8	/* remove lock */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.  */
+@@ -131,7 +132,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -142,6 +145,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/sparc/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/sparc/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/sparc/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/sparc/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -160,6 +160,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.  */
+@@ -174,7 +175,9 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+     short int __unused;
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -186,6 +189,7 @@
+     short int __unused;
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/v850/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/v850/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/v850/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/v850/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -136,6 +136,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -149,7 +150,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -160,6 +163,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/vax/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/vax/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/vax/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/vax/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -116,6 +116,7 @@
+ # define LOCK_UN	8	/* remove lock */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.  */
+@@ -129,7 +130,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -140,6 +143,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/x86_64/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/x86_64/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/x86_64/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/x86_64/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -157,6 +157,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -170,7 +171,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -181,6 +184,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */
+diff -Naur uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/xtensa/bits/fcntl.h uClibc-0.9.30-rc3/libc/sysdeps/linux/xtensa/bits/fcntl.h
+--- uClibc-0.9.30-rc3.orig/libc/sysdeps/linux/xtensa/bits/fcntl.h	2008-09-16 10:02:54.000000000 -0400
++++ uClibc-0.9.30-rc3/libc/sysdeps/linux/xtensa/bits/fcntl.h	2008-11-08 10:10:44.000000000 -0500
+@@ -140,6 +140,7 @@
+ # define DN_MULTISHOT	0x80000000	/* Don't remove notifier.  */
+ #endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK
+ struct flock
+   {
+     short int l_type;	/* Type of lock: F_RDLCK, F_WRLCK, or F_UNLCK.	*/
+@@ -153,7 +154,9 @@
+ #endif
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
++#endif
+ 
++#ifndef HAVE_ARCH_STRUCT_FLOCK64
+ #ifdef __USE_LARGEFILE64
+ struct flock64
+   {
+@@ -164,6 +167,7 @@
+     __pid_t l_pid;	/* Process holding the lock.  */
+   };
+ #endif
++#endif
+ 
+ /* Define some more compatibility macros to be backward compatible with
+    BSD systems which did not managed to hide these kernel macros.  */

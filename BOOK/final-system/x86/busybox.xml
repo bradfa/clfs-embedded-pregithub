@@ -29,19 +29,16 @@
   <sect2 role="installation">
     <title>Installation of Busybox</title>
 
-    <para os="p1">Before you build BusyBox, you may want to check the following URL for
-    patches that the upstream maintainer of BusyBox has released to fix issues.
-    <ulink url="http://busybox.net/downloads/fixes-&busybox-version;"/></para>
-
-    <para os="p2">Here's an example of how to apply the patches from Busybox's website
-    replace {patch_name} with the name of the patch:</para>
-
-<screen os="p3" role="nodump"><userinput>patch -Np1 -i ../busybox-&busybox-version;{patch_name}</userinput></screen>
-
-    <para os="p4">The following patch fixes some issues that are related to the
+    <para os="p1">The following patch fixes some issues that are related to the
     headers we are using:</para>
 
-<screen os="p5"><userinput>patch -Np1 -i ../&busybox-fixes-patch;</userinput></screen>
+<screen os="p2"><userinput>patch -Np1 -i ../&busybox-fixes-patch;</userinput></screen>
+
+    <para os="p3">The following patch corrects some includes in
+    <filename>iptunnel.c</filename> to be compatible with the sanatized
+    kernel headers installed earlier:</para>
+
+<screen os="p4"><userinput>patch -Np1 -i ../&busybox-iptunnel_headers-patch;</userinput></screen>
 
     <para os="a">Create the default configuration:</para>
 

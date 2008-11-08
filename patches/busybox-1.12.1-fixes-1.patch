@@ -1,0 +1,357 @@
+Submitted By: Joe Ciccone <jciccone@gmail.com>
+Date: 2008-11-08
+Origin: Busybox FTP
+Initial Package Version: 1.12.1
+Upstream Status: From Upstream
+Descriprion: Apply fixes from upstream
+                 busybox-1.12.1-basename.patch
+                 busybox-1.12.1-grep.patch
+                 busybox-1.12.1-lineedit.patch
+                 busybox-1.12.1-login.patch
+                 busybox-1.12.1-modprobe.patch
+                 busybox-1.12.1-standalone.patch
+                 busybox-1.12.1-vi.patch
+
+diff -Naur busybox-1.12.1.orig/coreutils/basename.c busybox-1.12.1/coreutils/basename.c
+--- busybox-1.12.1.orig/coreutils/basename.c	2008-09-28 14:04:18.000000000 -0400
++++ busybox-1.12.1/coreutils/basename.c	2008-11-08 09:49:16.000000000 -0500
+@@ -48,5 +48,5 @@
+ 
+ 	/* puts(s) will do, but we can do without stdio this way: */
+ 	s[m++] = '\n';
+-	return full_write(STDOUT_FILENO, s, m) == (ssize_t)m;
++	return full_write(STDOUT_FILENO, s, m) != (ssize_t)m;
+ }
+diff -Naur busybox-1.12.1.orig/coreutils/env.c busybox-1.12.1/coreutils/env.c
+--- busybox-1.12.1.orig/coreutils/env.c	2008-09-28 14:04:18.000000000 -0400
++++ busybox-1.12.1/coreutils/env.c	2008-11-08 09:49:16.000000000 -0500
+@@ -29,6 +29,8 @@
+  * - use xfunc_error_retval
+  */
+ 
++/* This is a NOEXEC applet. Be very careful! */
++
+ #include "libbb.h"
+ 
+ #if ENABLE_FEATURE_ENV_LONG_OPTIONS
+@@ -119,5 +121,3 @@
+  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+  * SUCH DAMAGE.
+  */
+-
+-
+diff -Naur busybox-1.12.1.orig/editors/vi.c busybox-1.12.1/editors/vi.c
+--- busybox-1.12.1.orig/editors/vi.c	2008-09-28 14:04:29.000000000 -0400
++++ busybox-1.12.1/editors/vi.c	2008-11-08 09:49:16.000000000 -0500
+@@ -291,6 +291,8 @@
+ #define INIT_G() do { \
+ 	SET_PTR_TO_GLOBALS(xzalloc(sizeof(G))); \
+ 	last_file_modified = -1; \
++	/* "" but has space for 2 chars */ \
++	USE_FEATURE_VI_SEARCH(last_search_pattern = xzalloc(2);) \
+ } while (0)
+ 
+ 
+@@ -2974,7 +2976,7 @@
+ 	const char *msg = msg; // for compiler
+ 	char c1, *p, *q, *save_dot;
+ 	char buf[12];
+-	int dir = dir; // for compiler
++	int dir;
+ 	int cnt, i, j;
+ 
+ //	c1 = c; // quiet the compiler
+@@ -3316,7 +3318,7 @@
+ 		q = get_input_line(buf);	// get input line- use "status line"
+ 		if (q[0] && !q[1]) {
+ 			if (last_search_pattern[0])
+-			    last_search_pattern[0] = c;
++				last_search_pattern[0] = c;
+ 			goto dc3; // if no pat re-use old pat
+ 		}
+ 		if (q[0]) {       // strlen(q) > 1: new pat- save it and find
+@@ -3346,14 +3348,8 @@
+ 			do_cmd(c);
+ 		}				// repeat cnt
+  dc3:
+-		if (last_search_pattern == 0) {
+-			msg = "No previous regular expression";
+-			goto dc2;
+-		}
+-		if (last_search_pattern[0] == '/') {
+-			dir = FORWARD;	// assume FORWARD search
+-			p = dot + 1;
+-		}
++		dir = FORWARD;	// assume FORWARD search
++		p = dot + 1;
+ 		if (last_search_pattern[0] == '?') {
+ 			dir = BACK;
+ 			p = dot - 1;
+diff -Naur busybox-1.12.1.orig/findutils/grep.c busybox-1.12.1/findutils/grep.c
+--- busybox-1.12.1.orig/findutils/grep.c	2008-09-28 14:04:28.000000000 -0400
++++ busybox-1.12.1/findutils/grep.c	2008-11-08 09:49:16.000000000 -0500
+@@ -363,12 +363,22 @@
+ 						 * (unless -v: -Fov doesnt print anything at all) */
+ 						if (found)
+ 							print_line(gl->pattern, strlen(gl->pattern), linenum, ':');
+-					} else {
++					} else while (1) {
++						char old = line[gl->matched_range.rm_eo];
+ 						line[gl->matched_range.rm_eo] = '\0';
+ 						print_line(line + gl->matched_range.rm_so,
+ 								gl->matched_range.rm_eo - gl->matched_range.rm_so,
+ 								linenum, ':');
+-					}
++						line[gl->matched_range.rm_eo] = old;
++#if !ENABLE_EXTRA_COMPAT
++						break;
++#else
++						if (re_search(&gl->compiled_regex, line, line_len,
++								gl->matched_range.rm_eo, line_len - gl->matched_range.rm_eo, 
++								&gl->matched_range) < 0)
++							break;
++#endif
++					} 
+ 				} else {
+ 					print_line(line, line_len, linenum, ':');
+ 				}
+diff -Naur busybox-1.12.1.orig/include/applets.h busybox-1.12.1/include/applets.h
+--- busybox-1.12.1.orig/include/applets.h	2008-09-28 14:04:26.000000000 -0400
++++ busybox-1.12.1/include/applets.h	2008-11-08 09:49:16.000000000 -0500
+@@ -136,7 +136,7 @@
+ USE_ED(APPLET(ed, _BB_DIR_BIN, _BB_SUID_NEVER))
+ USE_FEATURE_GREP_EGREP_ALIAS(APPLET_ODDNAME(egrep, grep, _BB_DIR_BIN, _BB_SUID_NEVER, egrep))
+ USE_EJECT(APPLET(eject, _BB_DIR_USR_BIN, _BB_SUID_NEVER))
+-USE_ENV(APPLET(env, _BB_DIR_USR_BIN, _BB_SUID_NEVER))
++USE_ENV(APPLET_NOEXEC(env, env, _BB_DIR_USR_BIN, _BB_SUID_NEVER, env))
+ USE_ENVDIR(APPLET_ODDNAME(envdir, chpst, _BB_DIR_USR_BIN, _BB_SUID_NEVER, envdir))
+ USE_ENVUIDGID(APPLET_ODDNAME(envuidgid, chpst, _BB_DIR_USR_BIN, _BB_SUID_NEVER, envuidgid))
+ USE_ETHER_WAKE(APPLET_ODDNAME(ether-wake, ether_wake, _BB_DIR_USR_BIN, _BB_SUID_NEVER, ether_wake))
+@@ -171,7 +171,7 @@
+ USE_GUNZIP(APPLET(gunzip, _BB_DIR_BIN, _BB_SUID_NEVER))
+ USE_GZIP(APPLET(gzip, _BB_DIR_BIN, _BB_SUID_NEVER))
+ USE_HALT(APPLET(halt, _BB_DIR_SBIN, _BB_SUID_NEVER))
+-USE_HD(APPLET_ODDNAME(hd, hexdump, _BB_DIR_USR_BIN, _BB_SUID_NEVER, hd))
++USE_HD(APPLET_NOEXEC(hd, hexdump, _BB_DIR_USR_BIN, _BB_SUID_NEVER, hd))
+ USE_HDPARM(APPLET(hdparm, _BB_DIR_SBIN, _BB_SUID_NEVER))
+ USE_HEAD(APPLET(head, _BB_DIR_USR_BIN, _BB_SUID_NEVER))
+ USE_HEXDUMP(APPLET_NOEXEC(hexdump, hexdump, _BB_DIR_USR_BIN, _BB_SUID_NEVER, hexdump))
+diff -Naur busybox-1.12.1.orig/libbb/getopt32.c busybox-1.12.1/libbb/getopt32.c
+--- busybox-1.12.1.orig/libbb/getopt32.c	2008-09-28 14:04:20.000000000 -0400
++++ busybox-1.12.1/libbb/getopt32.c	2008-11-08 09:49:16.000000000 -0500
+@@ -515,28 +515,6 @@
+ 		}
+ 	}
+ 
+-	/* In case getopt32 was already called:
+-	 * reset the libc getopt() function, which keeps internal state.
+-	 *
+-	 * BSD-derived getopt() functions require that optind be set to 1 in
+-	 * order to reset getopt() state.  This used to be generally accepted
+-	 * way of resetting getopt().  However, glibc's getopt()
+-	 * has additional getopt() state beyond optind, and requires that
+-	 * optind be set to zero to reset its state.  So the unfortunate state of
+-	 * affairs is that BSD-derived versions of getopt() misbehave if
+-	 * optind is set to 0 in order to reset getopt(), and glibc's getopt()
+-	 * will core dump if optind is set 1 in order to reset getopt().
+-	 *
+-	 * More modern versions of BSD require that optreset be set to 1 in
+-	 * order to reset getopt().   Sigh.  Standards, anyone?
+-	 */
+-#ifdef __GLIBC__
+-	optind = 0;
+-#else /* BSD style */
+-	optind = 1;
+-	/* optreset = 1; */
+-#endif
+-	/* optarg = NULL; opterr = 0; optopt = 0; - do we need this?? */
+ 	pargv = NULL;
+ 
+ 	/* Note: just "getopt() <= 0" will not work well for
+diff -Naur busybox-1.12.1.orig/libbb/lineedit.c busybox-1.12.1/libbb/lineedit.c
+--- busybox-1.12.1.orig/libbb/lineedit.c	2008-09-28 14:04:20.000000000 -0400
++++ busybox-1.12.1/libbb/lineedit.c	2008-11-08 09:49:16.000000000 -0500
+@@ -1415,7 +1415,8 @@
+ 	if ((state->flags & SAVE_HISTORY) && state->hist_file)
+ 		load_history(state->hist_file);
+ #endif
+-	state->cur_history = state->cnt_history;
++	if (state->flags & DO_HISTORY)
++		state->cur_history = state->cnt_history;
+ 
+ 	/* prepare before init handlers */
+ 	cmdedit_y = 0;  /* quasireal y, not true if line > xt*yt */
+diff -Naur busybox-1.12.1.orig/libbb/setup_environment.c busybox-1.12.1/libbb/setup_environment.c
+--- busybox-1.12.1.orig/libbb/setup_environment.c	2008-09-28 14:04:20.000000000 -0400
++++ busybox-1.12.1/libbb/setup_environment.c	2008-11-08 09:49:16.000000000 -0500
+@@ -32,16 +32,16 @@
+ 
+ void FAST_FUNC setup_environment(const char *shell, int clear_env, int change_env, const struct passwd *pw)
+ {
++	/* Change the current working directory to be the home directory
++	 * of the user */
++	if (chdir(pw->pw_dir)) {
++		xchdir("/");
++		bb_error_msg("can't chdir to home directory '%s'", pw->pw_dir);
++	}
++
+ 	if (clear_env) {
+ 		const char *term;
+ 
+-		/* Change the current working directory to be the home directory
+-		 * of the user */
+-		if (chdir(pw->pw_dir)) {
+-			xchdir("/");
+-			bb_error_msg("can't chdir to home directory '%s'", pw->pw_dir);
+-		}
+-
+ 		/* Leave TERM unchanged. Set HOME, SHELL, USER, LOGNAME, PATH.
+ 		   Unset all other environment variables.  */
+ 		term = getenv("TERM");
+diff -Naur busybox-1.12.1.orig/libbb/vfork_daemon_rexec.c busybox-1.12.1/libbb/vfork_daemon_rexec.c
+--- busybox-1.12.1.orig/libbb/vfork_daemon_rexec.c	2008-09-28 14:04:20.000000000 -0400
++++ busybox-1.12.1/libbb/vfork_daemon_rexec.c	2008-11-08 09:49:16.000000000 -0500
+@@ -125,6 +125,7 @@
+ 	int rc, argc;
+ 
+ 	applet_name = APPLET_NAME(applet_no);
++
+ 	xfunc_error_retval = EXIT_FAILURE;
+ 
+ 	/* Special flag for xfunc_die(). If xfunc will "die"
+@@ -132,7 +133,30 @@
+ 	 * die_sleep and longjmp here instead. */
+ 	die_sleep = -1;
+ 
+-	/* option_mask32 = 0; - not needed */
++	/* In case getopt() or getopt32() was already called:
++	 * reset the libc getopt() function, which keeps internal state.
++	 *
++	 * BSD-derived getopt() functions require that optind be set to 1 in
++	 * order to reset getopt() state.  This used to be generally accepted
++	 * way of resetting getopt().  However, glibc's getopt()
++	 * has additional getopt() state beyond optind, and requires that
++	 * optind be set to zero to reset its state.  So the unfortunate state of
++	 * affairs is that BSD-derived versions of getopt() misbehave if
++	 * optind is set to 0 in order to reset getopt(), and glibc's getopt()
++	 * will core dump if optind is set 1 in order to reset getopt().
++	 *
++	 * More modern versions of BSD require that optreset be set to 1 in
++	 * order to reset getopt().  Sigh.  Standards, anyone?
++	 */
++#ifdef __GLIBC__
++	optind = 0;
++#else /* BSD style */
++	optind = 1;
++	/* optreset = 1; */
++#endif
++	/* optarg = NULL; opterr = 1; optopt = 63; - do we need this too? */
++	/* (values above are what they initialized to in glibc and uclibc) */
++	/* option_mask32 = 0; - not needed, no applet depends on it being 0 */
+ 
+ 	argc = 1;
+ 	while (argv[argc])
+@@ -161,8 +185,16 @@
+ 			rc = 0;
+ 	}
+ 
+-	/* Restoring globals */
++	/* Restoring some globals */
+ 	restore_nofork_data(old);
++
++	/* Other globals can be simply reset to defaults */
++#ifdef __GLIBC__
++	optind = 0;
++#else /* BSD style */
++	optind = 1;
++#endif
++
+ 	return rc & 0xff; /* don't confuse people with "exitcodes" >255 */
+ }
+ 
+diff -Naur busybox-1.12.1.orig/modutils/modprobe.c busybox-1.12.1/modutils/modprobe.c
+--- busybox-1.12.1.orig/modutils/modprobe.c	2008-09-28 14:04:15.000000000 -0400
++++ busybox-1.12.1/modutils/modprobe.c	2008-11-08 09:49:16.000000000 -0500
+@@ -263,9 +263,9 @@
+ 	return TRUE;
+ }
+ 
+-static int include_conf_recursive(struct include_conf_t *conf, const char *filename)
++static int include_conf_recursive(struct include_conf_t *conf, const char *filename, int flags)
+ {
+-	return recursive_action(filename, ACTION_RECURSE,
++	return recursive_action(filename, ACTION_RECURSE | flags,
+ 				include_conf_file_act,
+ 				include_conf_dir_act,
+ 				conf, 1);
+@@ -362,7 +362,7 @@
+ 			char *includefile;
+ 
+ 			includefile = skip_whitespace(line_buffer + 8);
+-			include_conf_recursive(conf, includefile);
++			include_conf_recursive(conf, includefile, 0);
+ 		} else if (ENABLE_FEATURE_MODPROBE_BLACKLIST &&
+ 				(is_conf_command(line_buffer, "blacklist"))) {
+ 			char *mod;
+@@ -559,7 +559,7 @@
+ 		if (ENABLE_FEATURE_2_6_MODULES) {
+ 			if (include_conf_file(&conf, "/etc/modprobe.conf"))
+ 				r = TRUE;
+-			if (include_conf_recursive(&conf, "/etc/modprobe.d"))
++			if (include_conf_recursive(&conf, "/etc/modprobe.d", ACTION_QUIET))
+ 				r = TRUE;
+ 		}
+ 		if (ENABLE_FEATURE_2_4_MODULES && !r)
+diff -Naur busybox-1.12.1.orig/shell/ash.c busybox-1.12.1/shell/ash.c
+--- busybox-1.12.1.orig/shell/ash.c	2008-09-28 14:04:18.000000000 -0400
++++ busybox-1.12.1/shell/ash.c	2008-11-08 09:49:16.000000000 -0500
+@@ -6964,8 +6964,11 @@
+ 
+ #if ENABLE_FEATURE_SH_STANDALONE
+ 	if (applet_no >= 0) {
+-		if (APPLET_IS_NOEXEC(applet_no))
++		if (APPLET_IS_NOEXEC(applet_no)) {
++			while (*envp)
++				putenv(*envp++);
+ 			run_applet_no_and_exit(applet_no, argv);
++		}
+ 		/* re-exec ourselves with the new arguments */
+ 		execve(bb_busybox_exec_path, argv, envp);
+ 		/* If they called chroot or otherwise made the binary no longer
+@@ -12014,7 +12017,7 @@
+ 	char *name;
+ 	const char *p;
+ 	char **aptr;
+-	int flag = argv[0][0] == 'r'? VREADONLY : VEXPORT;
++	int flag = argv[0][0] == 'r' ? VREADONLY : VEXPORT;
+ 
+ 	if (nextopt("p") != 'p') {
+ 		aptr = argptr;
+diff -Naur busybox-1.12.1.orig/util-linux/getopt.c busybox-1.12.1/util-linux/getopt.c
+--- busybox-1.12.1.orig/util-linux/getopt.c	2008-09-28 14:04:30.000000000 -0400
++++ busybox-1.12.1/util-linux/getopt.c	2008-11-08 09:49:16.000000000 -0500
+@@ -142,7 +142,8 @@
+  * Other settings are found in global variables.
+  */
+ #if !ENABLE_GETOPT_LONG
+-#define generate_output(argv,argc,optstr,longopts) generate_output(argv,argc,optstr)
++#define generate_output(argv,argc,optstr,longopts) \
++	generate_output(argv,argc,optstr)
+ #endif
+ static int generate_output(char **argv, int argc, const char *optstr, const struct option *longopts)
+ {
+@@ -156,14 +157,6 @@
+ 	if (quiet_errors) /* No error reporting from getopt(3) */
+ 		opterr = 0;
+ 
+-	/* Reset getopt(3) (see libbb/getopt32.c for long rant) */
+-#ifdef __GLIBC__
+-	optind = 0;
+-#else /* BSD style */
+-	optind = 1;
+-	/* optreset = 1; */
+-#endif
+-
+ 	while (1) {
+ 		opt =
+ #if ENABLE_GETOPT_LONG
