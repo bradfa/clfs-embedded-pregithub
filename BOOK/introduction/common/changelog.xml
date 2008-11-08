@@ -40,6 +40,15 @@
       <para>November 8, 2008</para>
       <itemizedlist>
         <listitem>
+          <para>[jciccone] - Updated uClibc to 0.9.30-rc3.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>November 8, 2008</para>
+      <itemizedlist>
+        <listitem>
           <para>[jciccone] - Dropped the uClibc Headers Page.</para>
         </listitem>
         <listitem>
