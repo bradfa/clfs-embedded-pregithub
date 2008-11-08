@@ -34,14 +34,6 @@ sed -e "/default/s:OABI:EABI:" \
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='c'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='d'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='e'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"

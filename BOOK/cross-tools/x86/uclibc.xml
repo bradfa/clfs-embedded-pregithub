@@ -28,18 +28,6 @@
   <sect2 role="installation">
     <title>Installation of uClibc</title>
 
-    <para os="c">By default uClibc symlinks the headers to the source directory.
-    This is not acceptable in our build scenario, so we modify the Makefiles
-    so that the headers will be copied instead:</para>
-
-<screen os="d"><userinput>cp Makefile{,.orig}
-sed -e 's/$(LN) -fs/cp/g' Makefile.orig &gt; Makefile
-for file in `find libc/sysdeps/linux -name Makefile`; do
-    cp $file{,.orig}
-    sed -e 's/$(LN) -fs/cp/g' -e 's@../libc/@$(TOPDIR)libc/@g' \
-        $file.orig > $file
-done</userinput></screen>
-
     <note os="e">
       <para>Below we are just telling uClibc to use its default configuration.
       For those for more adventureous, you can use make menuconfig, and
