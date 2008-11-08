@@ -5,28 +5,16 @@
 <!-- Start of Common Patches -->
 
 <!ENTITY binutils-posix-patch "binutils-&binutils-version;-posix-1.patch">
-<!ENTITY binutils-posix-patch-md5 "7e42a8edc0c59246bbc58c428256113c">
-<!ENTITY binutils-posix-patch-size "4.9 KB">
-
-<!ENTITY binutils-uclibc-patch "binutils-&binutils-version;-uclibc-1.patch">
-<!ENTITY binutils-uclibc-patch-md5 "02206a199a78b14de01be6a38eb45de4">
-<!ENTITY binutils-uclibc-patch-size "12 KB">
+<!ENTITY binutils-posix-patch-md5 "f2020cb369c2facbfd8987fa2263f31f">
+<!ENTITY binutils-posix-patch-size "4 KB">
 
 <!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
 <!ENTITY busybox-fixes-patch-md5 "8c63ff58287e5de40a40e81145a8a1ad">
 <!ENTITY busybox-fixes-patch-size "20 KB">
 
-<!ENTITY gcc-cross_search-patch "gcc-&gcc-version;-cross_search_paths-1.patch">
-<!ENTITY gcc-cross_search-patch-md5 "8ef51c0c74f0ea8511e59544f719470f">
-<!ENTITY gcc-cross_search-patch-size "4 KB">
-
 <!ENTITY gcc-posix-patch "gcc-&gcc-version;-posix-1.patch">
-<!ENTITY gcc-posix-patch-md5 "9aa1cdcbaedb4e1ed3f65ae25cdc413b">
+<!ENTITY gcc-posix-patch-md5 "ed26ea522e014b2e39adf066bd44053b">
 <!ENTITY gcc-posix-patch-size "12 KB">
-
-<!ENTITY gcc-uclibc-patch "gcc-&gcc-version;-uclibc-1.patch">
-<!ENTITY gcc-uclibc-patch-md5 "77764a4a5e2b71980e3964bbb6a95e35">
-<!ENTITY gcc-uclibc-patch-size "144 KB">
 
 <!ENTITY zlib-destdir-patch "zlib-&zlib-version;-DESTDIR-1.patch">
 <!ENTITY zlib-destdir-patch-md5 "d21bdd08bf444f87f275b6aef44e1a84">

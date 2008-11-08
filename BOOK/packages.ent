@@ -4,10 +4,10 @@
 
 <!-- Note: For empty *-home entities use " " not "" -->
 
-<!ENTITY binutils-version "2.17">
-<!ENTITY binutils-size "13,496 KB">
+<!ENTITY binutils-version "2.19">
+<!ENTITY binutils-size "15,860 KB">
 <!ENTITY binutils-url "&gnu;binutils/binutils-&binutils-version;.tar.bz2">
-<!ENTITY binutils-md5 "e26e2e06b6e4bf3acf1dc8688a94c0d1">
+<!ENTITY binutils-md5 "17a52219dee5a76c1a9d9b0bfd337d66">
 <!ENTITY binutils-home "http://sources.redhat.com/binutils/">
 
 <!ENTITY busybox-version "1.8.2">
@@ -28,10 +28,10 @@
 <!ENTITY e2fsprogs-md5 "06f7806782e357797fad1d34b7ced0c6">
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
-<!ENTITY gcc-version "4.1.2">
-<!ENTITY gcc-size "38,931 KB">
+<!ENTITY gcc-version "4.3.2">
+<!ENTITY gcc-size "57,616 KB">
 <!ENTITY gcc-url "&gnu;gcc/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
-<!ENTITY gcc-md5 "a4a3eb15c96030906d8494959eeda23c">
+<!ENTITY gcc-md5 "5dfac5da961ecd5f227c3175859a486d">
 <!ENTITY gcc-home "http://gcc.gnu.org">
 
 <!ENTITY iana-etc-version "2.20">

@@ -32,17 +32,6 @@
 
 <screen os="p2"><userinput>patch -Np1 -i ../&gcc-posix-patch;</userinput></screen>
 
-    <para os="p3">The following patch is needed for GCC to build against uClibc:</para>
-
-<screen os="p4"><userinput>patch -Np1 -i ../&gcc-uclibc-patch;</userinput></screen>
-
-    <para os="p5">The following patch ensures that <command>gcc</command> does not
-    search the <filename class="directory">/usr</filename> directory for
-    <filename class="libraryfile">libgcc_s.so</filename> when
-    cross-compiling:</para>
-
-<screen os="p6"><userinput>patch -Np1 -i ../&gcc-cross_search-patch;</userinput></screen>
-
     <para os="c">The GCC documentation recommends building GCC outside of the source
     directory in a dedicated build directory:</para>
 
@@ -54,6 +43,8 @@ cd ../gcc-build</userinput></screen>
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
     --target=${CLFS_TARGET} --disable-multilib \
     --with-sysroot=${CLFS} --disable-nls --disable-shared \
+    --without-headers --with-newlib --disable-decimal-float \
+    --disable-libgomp --disable-libmudflap --disable-libssp \
     --disable-threads --enable-languages=c</userinput></screen>
 
     <variablelist os="af">
@@ -87,11 +78,11 @@ cd ../gcc-build</userinput></screen>
 
     <para os="ag">Continue with compiling the package:</para>
 
-<screen os="ah"><userinput>make all-gcc</userinput></screen>
+<screen os="ah"><userinput>make</userinput></screen>
 
     <para os="ai">Install the package:</para>
 
-<screen os="aj"><userinput>make install-gcc</userinput></screen>
+<screen os="aj"><userinput>make install</userinput></screen>
 
   </sect2>
 

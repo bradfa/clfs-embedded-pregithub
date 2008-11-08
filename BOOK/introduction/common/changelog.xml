@@ -37,6 +37,21 @@
 -->
 
     <listitem>
+      <para>November 8, 2008</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Dropped the uClibc Headers Page.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated GCC to 4.3.2.</para>
+        </listitem>
+        <listitem>
+          <para>[jciccone] - Updated Binutils to 2.19.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>Janurary 9, 2008</para>
       <itemizedlist>
         <listitem>
