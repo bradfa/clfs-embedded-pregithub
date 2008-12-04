@@ -90,7 +90,9 @@ echo "ARCH_WANTS_LITTLE_ENDIAN=y" &gt;&gt; .config</userinput></screen>
   href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='n'])"/>
 
-<screen os="o"><userinput>make CC="${CC} ${BUILD}"</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/uclibc.xml"
+  xpointer="xpointer(//*[@os='o'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
