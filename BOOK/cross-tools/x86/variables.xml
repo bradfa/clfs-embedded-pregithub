@@ -46,19 +46,19 @@
       <tbody>
         <row>
           <entry>486 Compatibles</entry>
-          <entry>i486-pc-linux-uclibc</entry>
+          <entry>i486-unknown-linux-uclibc</entry>
         </row>
         <row>
           <entry>Pentium, K6, 586 Compatibles</entry>
-          <entry>i586-pc-linux-uclibc</entry>
+          <entry>i586-unknown-linux-uclibc</entry>
         </row>
         <row>
           <entry>Pentium II, Pentium III, Pentium 4</entry>
-          <entry>i686-pc-linux-uclibc</entry>
+          <entry>i686-unknown-linux-uclibc</entry>
         </row>
         <row>
           <entry>Athlon, Duron</entry>
-          <entry>i686-pc-linux-uclibc</entry>
+          <entry>i686-unknown-linux-uclibc</entry>
         </row>
       </tbody>
 
