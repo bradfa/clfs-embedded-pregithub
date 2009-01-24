@@ -36,7 +36,7 @@
 
       <tbody>
         <row>
-          <entry>32-Bit MIPS</entry>
+          <entry>32-Bit</entry>
           <entry>-mabi=32</entry>
         </row>
         <row>
