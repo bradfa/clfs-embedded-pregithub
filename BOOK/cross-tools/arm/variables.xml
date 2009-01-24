@@ -18,15 +18,17 @@
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='d'])"/>
+  xpointer="xpointer(//*[@os='b'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='e'])"/>
+  xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
 
-  <table os="g">
+  <table os="e">
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="5in" ?>
 

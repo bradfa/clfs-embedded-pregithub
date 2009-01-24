@@ -11,15 +11,15 @@
   <title>ABI Variables</title>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/abi.xml"
+  href="../x86/abi.xml"
   xpointer="xpointer(//*[@os='a'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/abi.xml"
+  href="../x86/abi.xml"
   xpointer="xpointer(//*[@os='b'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/abi.xml"
+  href="../x86/abi.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
   <table>

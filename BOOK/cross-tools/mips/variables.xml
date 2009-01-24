@@ -18,23 +18,23 @@
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='d'])"/>
+  xpointer="xpointer(//*[@os='b'])"/>
 
-  <para os="d1">Now you will need to set the MIPS LEVEL. This determines how your
+  <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
 uClibc is built. There are currently 5 MIPS ISA Levels. To keep things simple
 we are only using 2. For more information, go to
 <ulink url="http://www.linux-mips.org/wiki/Instruction_Set_Architecture"/></para>
 
-<screen os="d2"><userinput>export CLFS_MIPS_LEVEL="{mips level}"</userinput></screen>
+<screen os="m2"><userinput>export CLFS_MIPS_LEVEL="{mips level}"</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='e'])"/>
+  xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+<screen os="d"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
-  <table os="g">
+  <table os="e">
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="5.5in" ?>
 

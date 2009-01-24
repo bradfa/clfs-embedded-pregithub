@@ -20,14 +20,14 @@
   target machine, you can use the table at the bottom of this page. Set
   the command using the method listed below:</para>
 
-<screen os="d"><userinput>export CLFS_TARGET="{target triplet}"</userinput></screen>
+<screen os="b"><userinput>export CLFS_TARGET="{target triplet}"</userinput></screen>
 
-  <para os="e">Now we will add this to <filename>~/.bashrc</filename>, just in
+  <para os="c">Now we will add this to <filename>~/.bashrc</filename>, just in
   case you have to exit and restart building later:</para>
 
-<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+<screen os="d"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
-  <table os="g">
+  <table os="e">
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="4.5in" ?>
 

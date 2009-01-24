@@ -36,8 +36,8 @@
 
 <screen os="c"><userinput>install -dv ${CLFS}/usr/include
 make mrproper
-make ARCH=i386 headers_check
-make ARCH=i386 INSTALL_HDR_PATH=dest headers_install
+make ARCH=$(echo ${CLFS_TARGET} | sed 's/i.86/i386/' | cut -f1 -d-) headers_check
+make ARCH=$(echo ${CLFS_TARGET} | sed 's/i.86/i386/' | cut -f1 -d-) INSTALL_HDR_PATH=dest headers_install
 cp -rv dest/include/* ${CLFS}/usr/include</userinput></screen>
 
   </sect2>
