@@ -32,6 +32,14 @@
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
+    xpointer="xpointer(//*[@os='p3'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="gcc-static.xml"
+    xpointer="xpointer(//*[@os='p4'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="gcc-static.xml"
     xpointer="xpointer(//*[@os='c'])"/>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
@@ -43,10 +51,10 @@
     xpointer="xpointer(//*[@os='e'])"/>
 
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
-    --target=${CLFS_TARGET} --disable-multilib \
-    --with-sysroot=${CLFS} --disable-nls --enable-shared \
-    --enable-languages=c --enable-__cxa_atexit \
-    --enable-c99 --enable-long-long --enable-threads=posix</userinput></screen>
+  --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
+  --with-sysroot=${CLFS} --disable-nls --enable-shared \
+  --enable-languages=c --enable-c99 --enable-long-long \
+  --with-mpfr=/cross-tools --with-gmp=/cross-tools</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the new configure options:</title>
@@ -54,39 +62,21 @@
       <varlistentry os="af1">
         <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
-          <para>This option ensures that only the C compiler is built. If the C++ compiler is needed, use --enable-languages=c,c++</para>
+          <para>This option ensures that only the C compiler is built.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry os="af2">
-        <term><parameter>--enable-__cxa_atexit</parameter></term>
-        <listitem>
-          <para>This option allows use of __cxa_atexit, rather than atexit,
-          to register C++ destructors for local statics and global objects
-          and is essential for fully standards-compliant handling of destructors.
-          It also affects the C++ ABI and therefore results in C++ shared libraries
-          and C++ programs that are interoperable with other Linux distributions.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af3">
         <term><parameter>--enable-c99</parameter></term>
         <listitem>
           <para>Enable C99 support for C programs.</para>
         </listitem>
       </varlistentry>
 
-      <varlistentry os="af4">
+      <varlistentry os="af3">
         <term><parameter>--enable-long-long</parameter></term>
         <listitem>
           <para>Enables long long support in the compiler.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af5">
-        <term><parameter>--enable-threads=posix</parameter></term>
-        <listitem>
-          <para>This enables C++ exception handling for multi-threaded code.</para>
         </listitem>
       </varlistentry>
 
@@ -114,10 +104,9 @@
       <segtitle>Installed libraries</segtitle>
 
       <seglistitem>
-        <seg>c++, cc (link to gcc), cpp, g++, gcc, gccbug, and gcov</seg>
+        <seg>cc (link to gcc), gcc, gccbug, and gcov</seg>
         <seg>libgcc.a, libgcc_eh.a, libgcc_s.so, libmudflap.[a,so],
-        libmudflapth.[a,so], libstdc++.[a,so], and
-        libsupc++.a</seg>
+        and libmudflapth.[a,so]</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -132,37 +121,6 @@
           <para>The C compiler</para>
           <indexterm zone="ch-cross-tools-gcc-final cc">
             <primary sortas="b-cc">cc</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="cpp">
-        <term><command>cpp</command></term>
-        <listitem>
-          <para>The C preprocessor; it is used by the compiler to expand the
-          #include, #define, and similar statements in the source files</para>
-          <indexterm zone="ch-cross-tools-gcc-final cpp">
-            <primary sortas="b-cpp">cpp</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="c">
-        <term><command>c++</command></term>
-        <listitem>
-          <para>The C++ compiler</para>
-          <indexterm zone="ch-cross-tools-gcc-final c">
-            <primary sortas="b-c++">c++</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="g">
-        <term><command>g++</command></term>
-        <listitem>
-          <para>The C++ compiler</para>
-          <indexterm zone="ch-cross-tools-gcc-final g">
-            <primary sortas="b-g++">g++</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -215,27 +173,6 @@
           pointer and array dereferencing operations.</para>
           <indexterm zone="ch-cross-tools-gcc-final libmudflap">
             <primary sortas="c-libmudflap*">libmudflap*</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libstdc">
-        <term><filename class="libraryfile">libstdc++</filename></term>
-        <listitem>
-          <para>The standard C++ library</para>
-          <indexterm zone="ch-cross-tools-gcc-final libstdc">
-            <primary sortas="c-libstdc++">libstdc++</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libsupc">
-        <term><filename class="libraryfile">libsupc++</filename></term>
-        <listitem>
-          <para>Provides supporting routines for the C++ programming
-          language</para>
-          <indexterm zone="ch-cross-tools-gcc-final libsupc">
-            <primary sortas="c-libsupc++">libsupc++</primary>
           </indexterm>
         </listitem>
       </varlistentry>

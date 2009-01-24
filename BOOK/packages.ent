@@ -8,7 +8,7 @@
 <!ENTITY binutils-size "15,860 KB">
 <!ENTITY binutils-url "&gnu;binutils/binutils-&binutils-version;.tar.bz2">
 <!ENTITY binutils-md5 "17a52219dee5a76c1a9d9b0bfd337d66">
-<!ENTITY binutils-home "http://sources.redhat.com/binutils/">
+<!ENTITY binutils-home "http://sources.redhat.com/binutils">
 
 <!ENTITY busybox-version "1.12.1">
 <!ENTITY busybox-size "1,980 KB">
@@ -29,10 +29,16 @@
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
 <!ENTITY gcc-version "4.3.2">
-<!ENTITY gcc-size "57,616 KB">
+<!ENTITY gcc-size "57,648 KB">
 <!ENTITY gcc-url "&gnu;gcc/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
 <!ENTITY gcc-md5 "5dfac5da961ecd5f227c3175859a486d">
 <!ENTITY gcc-home "http://gcc.gnu.org">
+
+<!ENTITY gmp-version "4.2.4">
+<!ENTITY gmp-size "1,676 KB">
+<!ENTITY gmp-url "&gnu;gmp/gmp-&gmp-version;.tar.bz2">
+<!ENTITY gmp-md5 "fc1e3b3a2a5038d4d74138d0b9cf8dbe">
+<!ENTITY gmp-home "http://gmplib.org/">
 
 <!ENTITY iana-etc-version "2.20">
 <!ENTITY iana-etc-size "192 KB">
@@ -53,6 +59,12 @@
 <!ENTITY linux-headers-url "&packages-root;linux-headers-&linux-headers-version;.tar.bz2">
 <!ENTITY linux-headers-md5 "91871367451dfe36926f860887657db9">
 <!ENTITY linux-headers-home "http://headers.cross-lfs.org">
+
+<!ENTITY mpfr-version "2.3.2">
+<!ENTITY mpfr-size "968 KB">
+<!ENTITY mpfr-url "http://www.mpfr.org/mpfr-current/mpfr-&mpfr-version;.tar.bz2">
+<!ENTITY mpfr-md5 "527147c097874340cb9cee0579dacf3b">
+<!ENTITY mpfr-home "http://www.mpfr.org/">
 
 <!ENTITY uclibc-version "0.9.30-rc3">
 <!ENTITY uclibc-size "2,248 KB">
