@@ -11,22 +11,27 @@
 
   <authorgroup>
     <author>
-      <firstname>Jim</firstname>
-      <surname>Gifford</surname>
+      <firstname>Joe</firstname>
+      <surname>Ciccone</surname>
     </author>
     <author>
-      <firstname>Ryan</firstname>
-      <surname>Oliver</surname>
+      <firstname>Jim</firstname>
+      <surname>Gifford</surname>
     </author>
     <author>
       <firstname>Maarten</firstname>
       <surname>Lankhorst</surname>
     </author>
+    <author>
+      <firstname>Ryan</firstname>
+      <surname>Oliver</surname>
+    </author>
   </authorgroup>
 
   <copyright id="copyright">
-    <year>2005&ndash;2007</year>
-    <holder>Jim Gifford, Ryan Oliver &amp; Maarten Lankhorst</holder>
+    <year>2005&ndash;&year;</year>
+    <holder>Joe Ciccone, Jim Gifford, Maarten Lankhorst, &amp; Ryan Oliver</holder>
   </copyright>
 
 </bookinfo>
+

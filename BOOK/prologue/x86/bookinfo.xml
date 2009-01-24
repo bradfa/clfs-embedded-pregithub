@@ -15,14 +15,10 @@
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../../index.xml"
-  xpointer="xpointer(/bookinfo/authorgroup)"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../../index.xml"
   xpointer="xpointer(/bookinfo/copyright)"/>
 
   <legalnotice>
-    <para>Copyright &copy; 2005-2007, Jim Gifford &amp; Ryan Oliver</para>
+    <para>Copyright &copy; 2005-&year;, Joe Ciccone, Jim Gifford, Maarten Lankhorst, &amp; Ryan Oliver</para>
 
     <para>All rights reserved.</para>
 
