@@ -78,15 +78,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Linux-Headers (&linux-headers-version;) - <token>&linux-headers-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&linux-headers-home;"/></para>
-        <para>Download: <ulink url="&linux-headers-url;"/></para>
-        <para>MD5 sum: <literal>&linux-headers-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>uClibc (&uclibc-version;) - <token>&uclibc-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&uclibc-home;"/></para>

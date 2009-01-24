@@ -48,17 +48,11 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.20.1">
-<!ENTITY linux-size "42,529 KB">
+<!ENTITY linux-version "2.6.28.1">
+<!ENTITY linux-size "51,516 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "3288ad6c10ba89e85041a8416bd9644d">
+<!ENTITY linux-md5 "5298ae8dcbb32202a16c328a046a7df4">
 <!ENTITY linux-home "http://www.kernel.org">
-
-<!ENTITY linux-headers-version "&linux-version;-02252007">
-<!ENTITY linux-headers-size "1,626 KB">
-<!ENTITY linux-headers-url "&packages-root;linux-headers-&linux-headers-version;.tar.bz2">
-<!ENTITY linux-headers-md5 "91871367451dfe36926f860887657db9">
-<!ENTITY linux-headers-home "http://headers.cross-lfs.org">
 
 <!ENTITY mpfr-version "2.3.2">
 <!ENTITY mpfr-size "968 KB">
