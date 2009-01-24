@@ -100,7 +100,7 @@ hr {
           <li>
             <h4>
               <a href="x86">
-                <xsl:text>X86</xsl:text>
+                <xsl:text>x86 and x86_64</xsl:text>
               </a>
             </h4>
           </li>

@@ -10,17 +10,13 @@
 
   <title>ABI Variables</title>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/abi.xml"
-  xpointer="xpointer(//*[@os='a'])"/>
+  <para os="a" >Setup for a Particular ABI:</para>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/abi.xml"
-  xpointer="xpointer(//*[@os='b'])"/>
+<screen os="b"><userinput>export BUILD="<replaceable>[From Chart]</replaceable>"</userinput></screen>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/abi.xml"
-  xpointer="xpointer(//*[@os='c'])"/>
+  <para os="c">The following table gives the entires for the different ABI's that CLFS Embedded supports. Make
+  sure you select one for your build, this will ensure capatibilty of your build with your target
+  architecture.</para>
 
   <table>
     <title>List of Build Variables</title>
@@ -40,16 +36,12 @@
 
       <tbody>
         <row>
-          <entry>32-Bit</entry>
-          <entry>-mabi=32</entry>
+          <entry>32-Bit for x86 and x86_64</entry>
+          <entry>-m32</entry>
         </row>
         <row>
-          <entry>N32</entry>
-          <entry>-mabi=n32</entry>
-        </row>
-        <row>
-          <entry>64-Bit</entry>
-          <entry>-mabi=64</entry>
+          <entry>64-Bit for x86_64 only</entry>
+          <entry>-m64</entry>
         </row>
       </tbody>
 
