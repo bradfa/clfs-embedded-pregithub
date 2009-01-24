@@ -10,13 +10,17 @@
 
   <title>ABI Variables</title>
 
-  <para>Setup for a Particular ABI:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../mips/abi.xml"
+  xpointer="xpointer(//*[@os='a'])"/>
 
-<screen><userinput>export BUILD="<replaceable>[From Chart]</replaceable>"</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../mips/abi.xml"
+  xpointer="xpointer(//*[@os='b'])"/>
 
-  <para>The following table gives the entires for the different ABI's that CLFS Embedded supports. Make
-  sure you select one for your build, this will ensure capatibilty of your build with your target
-  architecture.</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../mips/abi.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
 
   <table>
     <title>List of Build Variables</title>
@@ -36,24 +40,24 @@
 
       <tbody>
         <row>
-          <entry>32-Bit MIPS</entry>
-          <entry>-mabi=32</entry>
+          <entry>apcs-gnu</entry>
+          <entry>-mabi=apcs-gnu</entry>
         </row>
         <row>
-          <entry>32-Bit All Others</entry>
-          <entry>-m32</entry>
+          <entry>atpcs</entry>
+          <entry>-mabi=atpcs</entry>
         </row>
         <row>
-          <entry>N32 MIPS</entry>
-          <entry>-mabi=n32</entry>
+          <entry>aapcs</entry>
+          <entry>-mabi=aapcs</entry>
         </row>
         <row>
-          <entry>64-Bit MIPS</entry>
-          <entry>-mabi=64</entry>
+          <entry>aapcs-linux</entry>
+          <entry>-mabi=aapcs-linux</entry>
         </row>
         <row>
-          <entry>64-Bit All Others</entry>
-          <entry>-m64</entry>
+          <entry>iwmmxt</entry>
+          <entry>-mabi=iwmmxt</entry>
         </row>
       </tbody>
 
@@ -62,3 +66,4 @@
   </table>
 
 </sect1>
+
