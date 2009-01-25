@@ -25,10 +25,6 @@
   <sect2 role="installation">
     <title>Installation of Zlib</title>
 
-    <para os="p1">This patch will add the ability to use DESTDIR:</para>
-
-<screen os="p2"><userinput>patch -Np1 -i ../&zlib-destdir-patch;</userinput></screen>
-
     <para os="a">Change the default optimization to Os</para>
 
 <screen os="b"><userinput>cp configure{,.orig}
@@ -56,7 +52,7 @@ sed -e 's/-O3/-Os/g' configure.orig > configure</userinput></screen>
 
     <para os="e">Install the package:</para>
 
-<screen os="f"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen os="f"><userinput>make prefix=${CLFS}/usr install</userinput></screen>
 
     <para os="g">The previous command installed a <filename
     class="extension">.so</filename> file in <filename

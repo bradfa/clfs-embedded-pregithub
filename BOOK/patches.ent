@@ -42,10 +42,6 @@
 <!ENTITY uclibc-branch_update-patch-md5 "aba411c0c1b35e1802ef9cac92b62d1f">
 <!ENTITY uclibc-branch_update-patch-size "88 KB">
 
-<!ENTITY zlib-destdir-patch "zlib-&zlib-version;-DESTDIR-1.patch">
-<!ENTITY zlib-destdir-patch-md5 "d21bdd08bf444f87f275b6aef44e1a84">
-<!ENTITY zlib-destdir-patch-size "8 KB">
-
 <!-- Beyond patches -->
 
 <!ENTITY dropbear-autotool-patch "dropbear-&dropbear-version;-autotool-1.patch">
