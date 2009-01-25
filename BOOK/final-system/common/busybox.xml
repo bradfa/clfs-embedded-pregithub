@@ -29,16 +29,10 @@
   <sect2 role="installation">
     <title>Installation of Busybox</title>
 
-    <para os="p1">The following patch fixes some issues that are related to the
-    headers we are using:</para>
+    <para os="p1">The following patch contains a number of updates to the
+    &busybox-version; branch by the Busybox developers:</para>
 
-<screen os="p2"><userinput>patch -Np1 -i ../&busybox-fixes-patch;</userinput></screen>
-
-    <para os="p3">The following patch corrects some includes in
-    <filename>iptunnel.c</filename> to be compatible with the sanatized
-    kernel headers installed earlier:</para>
-
-<screen os="p4"><userinput>patch -Np1 -i ../&busybox-iptunnel_headers-patch;</userinput></screen>
+<screen os="p2"><userinput>patch -Np1 -i ../&busybox-branch_update-patch;</userinput></screen>
 
     <para os="a">Create the default configuration:</para>
 
@@ -76,11 +70,11 @@ done</userinput></screen>
 
     <para os="f">Compile the package:</para>
 
-<screen os="g"><userinput>make ARCH=i386 CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}"</userinput></screen>
+<screen os="g"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}"</userinput></screen>
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make ARCH=i386 CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}" \
+<screen os="i"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE="${CLFS_TARGET}-" CFLAGS="${BUILD}" \
     CONFIG_PREFIX="${CLFS}" install</userinput></screen>
 
     <para os="j">If your going to build your kernel with modules, you will need to make
