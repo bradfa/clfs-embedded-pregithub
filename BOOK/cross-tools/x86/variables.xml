@@ -65,6 +65,10 @@ echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc</userinput></screen>
           <entry>Athlon, Duron</entry>
           <entry>i686-unknown-linux-uclibc</entry>
         </row>
+        <row>
+          <entry>x86_64</entry>
+          <entry>x86_64-unknown-linux-uclibc</entry>
+        </row>
       </tbody>
 
     </tgroup>
