@@ -37,14 +37,6 @@ sed -e "/default/s:OABI:EABI:" \
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='p1'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
-  xpointer="xpointer(//*[@os='p2'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/uclibc.xml"
   xpointer="xpointer(//*[@os='f'])"/>
 
 <screen os="g"><userinput>make defconfig ARCH=arm</userinput></screen>

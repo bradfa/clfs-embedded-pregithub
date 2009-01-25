@@ -27,7 +27,7 @@
 <screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/arm.*/arm/g'</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../mips/variables.xml"
   xpointer="xpointer(//*[@os='e1'])"/>
 
 <screen os="e2"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/armeb/BIG/' -e 's/arm/LITTLE/'</userinput></screen>

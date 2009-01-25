@@ -34,11 +34,6 @@
       do a more custom build for your uClibc installation.</para>
     </note>
 
-    <para os="p1">The following patch creates a condition in a header so that
-    the struct flock will not be redefined:</para>
-
-<screen os="p2"><userinput>patch -Np1 -i ../&uclibc-flock_fixes-patch;</userinput></screen>
-
     <para os="f">Create the default configuration:</para>
 
 <screen os="g"><userinput>make defconfig ARCH=i386</userinput></screen>

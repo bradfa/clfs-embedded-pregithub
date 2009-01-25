@@ -54,6 +54,7 @@
       </listitem>
     </varlistentry>
 
+<!--
     <varlistentry>
       <term>GCC Branch Update Patch - <token>&gcc-branch_update-patch-size;</token>:</term>
       <listitem>
@@ -62,6 +63,7 @@
         <para>MD5 sum: <literal>&gcc-branch_update-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
+-->
 
     <varlistentry>
       <term>GCC Posix Patch - <token>&gcc-posix-patch-size;</token>:</term>
@@ -100,11 +102,11 @@
     </varlistentry>
 
     <varlistentry>
-      <term>uClibc Flock Fixes Patch - <token>&uclibc-flock_fixes-patch-size;</token>:</term>
+      <term>uClibc Branch Update Patch - <token>&uclibc-branch_update-patch-size;</token>:</term>
       <listitem>
-        <para>Downloads: <ulink
-        url="&patches-root;&uclibc-flock_fixes-patch;"/></para>
-        <para>MD5 sum: <literal>&uclibc-flock_fixes-patch-md5;</literal></para>
+        <para>Download: <ulink
+        url="&patches-root;&uclibc-branch_update-patch;"/></para>
+        <para>MD5 sum: <literal>&uclibc-branch_update-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
