@@ -44,7 +44,7 @@
 <screen os="c"><userinput>cp ${CLFS}/sources/uClibc.config .config</userinput></screen>
 
    <para os="d">We will need to edit the configuration file, to make sure everything gets
-   compiled and put into its proper location:</para>
+   compiled and it's compiled to the proper architecture:</para>
 
 <screen os="e"><userinput>cp .config{,.orig}
 sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
@@ -56,8 +56,10 @@ sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
   -e "s@.*\(ARCH_WANTS_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
   .config.orig > .config</userinput></screen>
 
-    <para os="f">We have made some changes to our config, let's make sure
-    that we didn't miss and dependencies:</para>
+    <para os="f">The config is a basic working system, but there are some
+    options that are architecture specifc that need to be set. The following
+    command will only bring up items that need a value that we did not
+    specify in our Generic config file:</para>
 
 <screen os="g"><userinput>make oldconfig</userinput></screen>
 
