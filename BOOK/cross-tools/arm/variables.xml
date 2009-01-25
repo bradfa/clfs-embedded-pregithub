@@ -24,23 +24,28 @@
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/arm.*/arm/g'</userinput></screen>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../mips/variables.xml"
-  xpointer="xpointer(//*[@os='e1'])"/>
-
-<screen os="e2"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/armeb/BIG/' -e 's/arm/LITTLE/'</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/arm.*/arm/g')</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+<screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/armeb/BIG/' -e 's/arm/LITTLE/')
+if [ "${CLFS_ENDIAN}" = "LITTLE"]; then
+  export CLFS_NOT_ENDIAN=BIG
+else
+  export CLFS_NOT_ENDIAN=LITTLE
+fi</userinput></screen>
 
-  <table os="g">
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='g'])"/>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='h'])"/>
+
+  <table os="i">
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="5in" ?>
 

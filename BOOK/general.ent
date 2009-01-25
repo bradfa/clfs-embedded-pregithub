@@ -35,7 +35,8 @@
 <!ENTITY alpha-gnu "ftp://alpha.gnu.org/gnu/">
 <!ENTITY redhat "ftp://sources.redhat.com/pub/">
 <!ENTITY kernel "http://www.kernel.org/pub/">
-<!ENTITY sourceforge "http://prdownloads.sourceforge.net/">
+<!ENTITY sourceforge "http://master.dl.sourceforge.net/">
+<!ENTITY svn-clfs-config "http://svn.cross-lfs.org/svn/repos/cross-lfs/branches/clfs-embedded/config/">
 <!ENTITY svn-clfs-software "http://svn.cross-lfs.org/svn/repos/cross-lfs/branches/clfs-embedded/software/">
 
 <!ENTITY dependencies "Installation depends on">

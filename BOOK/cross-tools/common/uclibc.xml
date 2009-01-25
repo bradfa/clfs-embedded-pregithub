@@ -28,58 +28,46 @@
   <sect2 role="installation">
     <title>Installation of uClibc</title>
 
-    <note os="e">
+    <note os="a">
       <para>Below we are just telling uClibc to use its default configuration.
       For those for more adventureous, you can use make menuconfig, and
       do a more custom build for your uClibc installation.</para>
     </note>
 
-    <para os="f">Create the default configuration:</para>
+    <para os="p1">The following patch contains a number of updates to the
+    &uclibc-version; branch by the uClibc developers:</para>
 
-<screen os="g"><userinput>make defconfig ARCH=i386</userinput></screen>
+<screen os="p2"><userinput>patch -Np1 -i ../&uclibc-branch_update-patch;</userinput></screen>
 
-   <para os="h">We will need to edit the configuration file, to make sure everything gets
+    <para os="b">Copy the uClibc config file from where you downloaded it:</para>
+
+<screen os="c"><userinput>cp ${CLFS}/sources/uClibc.config .config</userinput></screen>
+
+   <para os="d">We will need to edit the configuration file, to make sure everything gets
    compiled and put into its proper location:</para>
 
-<screen os="i"><userinput>cp .config{,.orig}
-sed -e "/^CROSS_COMPILER_PREFIX/s:=.*:=\"${CLFS_TARGET}-\":" \
-    -e "/^KERNEL_HEADERS/s:=.*:=\"${CLFS}/usr/include\":" \
-    -e "/^SHARED_LIB_LOADER_PREFIX/s:=.*:=\"/lib\":" \
-    -e "/^DEVEL_PREFIX/s:=.*:=\"/usr\":" \
-    -e "/^RUNTIME_PREFIX/s:=.*:=\"/\":" \
-    .config.orig > .config</userinput></screen>
+<screen os="e"><userinput>cp .config{,.orig}
+sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
+  -e "s@\(^TARGET_ARCH=\).*@\1\"${CLFS_ARCH}\"@" \
+  -e "s@\(^CROSS_COMPILER_PREFIX=\).*@\1\"${CLFS_TARGET}-\"@" \
+  -e "s@\(^KERNEL_HEADERS=\).*@\1\"${BUILD_INSTALL_DIR}/usr/include\"@" \
+  -e "s@.*\(^ARCH_${CLFS_NOT_ENDIAN}_ENDIAN\).*@# \1 is not set@g" \
+  -e "s@.*\(ARCH_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
+  -e "s@.*\(ARCH_WANTS_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
+  .config.orig > .config</userinput></screen>
 
-    <para os="j">We will need to make sure that some settings in uClibc are set so we
-    can utilize all the features of BusyBox:</para>
-
-<screen os="k"><userinput>UCLIBC_OPTIONS="DO_C99_MATH UCLIBC_HAS_RPC UCLIBC_HAS_CTYPE_CHECKED
-    UCLIBC_HAS_WCHAR UCLIBC_HAS_HEXADECIMAL_FLOATS LDSO_PRELOAD_FILE_SUPPORT
-    UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE UCLIBC_HAS_PRINTF_M_SPEC UCLIBC_HAS_IPV6
-    UCLIBC_HAS_GLIBC_CUSTOM_PRINTF UCLIBC_USE_NETLINK UCLIBC_HAS_FTW"
-for config in $UCLIBC_OPTIONS; do
-    cp .config{,.orig}
-    sed -e "s:# ${config} is not set:${config}=y:" .config.orig > .config
-done
-UCLIBC_OPTIONS="UCLIBC_HAS_CTYPE_UNSAFE"
-for config in $UCLIBC_OPTIONS; do
-    cp .config{,.orig}
-    sed -e "s:${config}=y:# ${config} is not set:" .config.orig > .config
-done
-echo "UCLIBC_HAS_FULL_RPC=y" &gt;&gt; .config
-echo "UCLIBC_HAS_REENTRANT_RPC=y" &gt;&gt; .config</userinput></screen>
-
-    <para os="l">We have made some changes to our config, let's make sure
+    <para os="f">We have made some changes to our config, let's make sure
     that we didn't miss and dependencies:</para>
 
-<screen os="m"><userinput>make oldconfig</userinput></screen>
+<screen os="g"><userinput>make oldconfig</userinput></screen>
 
-    <para os="n">Compile the package:</para>
+    <para os="h">Compile the package:</para>
 
-<screen os="o"><userinput>make CC="${CLFS_TARGET}-gcc ${BUILD}"</userinput></screen>
+<screen os="i"><userinput>make CC="${CLFS_TARGET}-gcc ${BUILD}"</userinput></screen>
 
-    <para os="p">Install the package:</para>
+    <para os="l">Install the package:</para>
 
-<screen os="q"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="j"><userinput>make PREFIX=${CLFS} install</userinput></screen>
 
   </sect2>
 

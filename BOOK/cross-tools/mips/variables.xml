@@ -24,11 +24,18 @@
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/mips.*/mips/' -e 's/mipsel.*/mips/'</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/mips.*/mips/' -e 's/mipsel.*/mips/')</userinput></screen>
 
-  <para os="e1">Now we will setup out default endian needed we need to build:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../x86/variables.xml"
+  xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="e2"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/mipsel/LITTLE/' -e 's/mips/BIG/'</userinput></screen>
+<screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/mipsel/LITTLE/' -e 's/mips/BIG/')
+if [ "${CLFS_ENDIAN}" = "LITTLE"]; then
+  export CLFS_NOT_ENDIAN=BIG
+else
+  export CLFS_NOT_ENDIAN=LITTLE
+fi</userinput></screen>
 
   <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
 uClibc is built. There are currently 5 MIPS ISA Levels. To keep things simple
@@ -39,14 +46,15 @@ we are only using 2. For more information, go to
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='e'])"/>
+  xpointer="xpointer(//*[@os='g'])"/>
 
-<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+<screen os="h"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_NOT_ENDIAN=\""${CLFS_NOT_ENDIAN}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
-  <table os="g">
+  <table os="i">
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="5.5in" ?>
 

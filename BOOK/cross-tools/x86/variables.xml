@@ -24,15 +24,22 @@
 
   <para os="c">Now we will setup out default architecture needed we need to build:</para>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/'</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')</userinput></screen>
 
-  <para os="e">Now we will add this to <filename>~/.bashrc</filename>, just in
+  <para os="e">Now we will setup out default endian needed we need to build and set the one we don't need:</para>
+
+<screen os="f"><userinput>export CLFS_ENDIAN=LITTLE
+export CLFS_NOT_ENDIAN=BIG</userinput></screen>
+
+  <para os="g">Now we will add this to <filename>~/.bashrc</filename>, just in
   case you have to exit and restart building later:</para>
 
-<screen os="f"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+<screen os="h"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_NOT_ENDIAN=\""${CLFS_NOT_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
-  <table os="g">
+  <table os="i">
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="4.5in" ?>
 

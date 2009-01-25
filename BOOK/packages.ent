@@ -66,6 +66,12 @@
 <!ENTITY uclibc-md5 "e5766e2566e0297adebebbcc0aba1f2d">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
+<!ENTITY uclibc-config-version "&uclibc-version;">
+<!ENTITY uclibc-config-size "9 KB">
+<!ENTITY uclibc-config-url "&svn-clfs-config;uClibc-&uclibc-config-version;.config">
+<!ENTITY uclibc-config-md5 "744ec0160bf17418d118f47a4aed4fa6">
+<!ENTITY uclibc-config-home " ">
+
 <!ENTITY zlib-version "1.2.3">
 <!ENTITY zlib-size "485 KB">
 <!ENTITY zlib-url "http://www.zlib.net/zlib-&zlib-version;.tar.gz">
