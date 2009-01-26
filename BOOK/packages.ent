@@ -16,6 +16,12 @@
 <!ENTITY busybox-md5 "9e2a604d18bef219a5a6bf3acf78b9e1">
 <!ENTITY busybox-home "http://www.busybox.net">
 
+<!ENTITY busybox-config-version "&busybox-version;">
+<!ENTITY busybox-config-size "24 KB">
+<!ENTITY busybox-config-url "&svn-clfs-config;busybox-&busybox-config-version;.config">
+<!ENTITY busybox-config-md5 "9b32b986975ce5b4e9d73a1dce7074d8">
+<!ENTITY busybox-config-home " ">
+
 <!ENTITY clfs-bootscripts-version "1.0-pre4">
 <!ENTITY clfs-bootscripts-size "4 KB">
 <!ENTITY clfs-bootscripts-url "&packages-root;clfs-embedded-bootscripts-&clfs-bootscripts-version;.tar.bz2">
