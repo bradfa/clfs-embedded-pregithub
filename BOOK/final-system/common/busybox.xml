@@ -60,8 +60,8 @@
     <para os="j">If your going to build your kernel with modules, you will need to make
     sure <command>depmod.pl</command> is available:</para>
 
-<screen os="k"><userinput>cp examples/depmod.pl ${CLFS}/cross-tools/bin
-chmod 755 ${CLFS}/cross-tools/bin/depmod.pl</userinput></screen>
+<screen os="k"><userinput>cp examples/depmod.pl /cross-tools/bin
+chmod 755 /cross-tools/bin/depmod.pl</userinput></screen>
 
   </sect2>
 
