@@ -19,18 +19,10 @@
   <variablelist role="beyond-clfs3">
 
     <varlistentry>
-      <term>Dropbear Autotool Patch - <token>&dropbear-autotool-patch-size;</token>:</term> <listitem>
+      <term>IPTables Fixes Patch - <token>&iptables-fixes-patch-size;</token>:</term> <listitem>
         <para>Download: <ulink
-        url="&patches-root;&dropbear-autotool-patch;"/></para>
-        <para>MD5 sum: <literal>&dropbear-autotool-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>IPTables DO_MULTI Patch - <token>&iptables-domulti-patch-size;</token>:</term> <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&iptables-domulti-patch;"/></para>
-        <para>MD5 sum: <literal>&iptables-domulti-patch-md5;</literal></para>
+        url="&patches-root;&iptables-fixes-patch;"/></para>
+        <para>MD5 sum: <literal>&iptables-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 

@@ -45,7 +45,7 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='f'])"/>
 
-<screen os="g"><userinput>make ARCH=arm CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
+<screen os="g"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
@@ -59,7 +59,7 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='j'])"/>
 
-<screen os="k"><userinput>make ARCH=arm CROSS_COMPILE=${CLFS_TARGET}- zImage modules</userinput></screen>
+<screen os="k"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- zImage modules</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"
@@ -81,7 +81,7 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='p'])"/>
 
-<screen os="q"><userinput>make ARCH=arm CROSS_COMPILE=${CLFS_TARGET}- \
+<screen os="q"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- \
     INSTALL_MOD_PATH=${CLFS} modules_install</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
@@ -92,7 +92,7 @@
    href="../x86/kernel.xml"
    xpointer="xpointer(//*[@os='s'])"/>
 
-<screen os="t"><userinput>cp arch/arm/boot/zImage ${CLFS}/boot/clfskernel-&linux-version;</userinput></screen>
+<screen os="t"><userinput>cp arch/${CLFS_ARCH}/boot/zImage ${CLFS}/boot/clfskernel-&linux-version;</userinput></screen>
 
    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
    href="../x86/kernel.xml"

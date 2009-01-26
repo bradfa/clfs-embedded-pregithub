@@ -49,7 +49,7 @@
     system will not function properly. If your concerned about disk space, your kernel
     should be without modules.</para></note>
 
-<screen os="g"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
+<screen os="g"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
     <para os="h">Alternatively, <command>make oldconfig</command> may be more
     appropriate in some situations. See the <filename>README</filename>
@@ -64,7 +64,7 @@
 
     <para os="j">Compile the kernel image and modules:</para>
 
-<screen os="k"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
+<screen os="k"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
 
     <para os="l">If using kernel modules, an
     <filename>/etc/modprobe.conf</filename> file may be needed.
@@ -92,7 +92,7 @@
     <para os="p">Install the modules, if the kernel configuration uses
     them:</para>
 
-<screen os="q"><userinput>make ARCH=i386 CROSS_COMPILE=${CLFS_TARGET}- \
+<screen os="q"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- \
     INSTALL_MOD_PATH=${CLFS} modules_install</userinput></screen>
 
     <para os="r">After kernel compilation is complete, additional steps are
@@ -132,11 +132,6 @@
       system as it can cause problems for packages you may wish to build
       once your base CLFS system is complete.</para>
 
-      <para>Also, the headers in the system's <filename
-      class="directory">include</filename> directory should
-      <emphasis>always</emphasis> be the ones against which Glibc was
-      compiled (from the Linux-Headers package) and should
-      <emphasis>never</emphasis> be replaced by the kernel headers.</para>
     </warning>
 
    <para os="ab">The bootloaders section contains more information on

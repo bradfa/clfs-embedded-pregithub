@@ -44,13 +44,9 @@
 
 <!-- Beyond patches -->
 
-<!ENTITY dropbear-autotool-patch "dropbear-&dropbear-version;-autotool-1.patch">
-<!ENTITY dropbear-autotool-patch-md5 "eb5c1803aec03ea0d62cf57b4ef9bcb5">
-<!ENTITY dropbear-autotool-patch-size "56 KB">
-
-<!ENTITY iptables-domulti-patch "iptables-&iptables-version;-do_multi-1.patch">
-<!ENTITY iptables-domulti-patch-md5 "badcc9ea0dc1097d3a0a4f299eaa9219">
-<!ENTITY iptables-domulti-patch-size "4 KB">
+<!ENTITY iptables-fixes-patch "iptables-&iptables-version;-fixes-1.patch">
+<!ENTITY iptables-fixes-patch-md5 "5a8bc894706019ea4f42e506633a49bf">
+<!ENTITY iptables-fixes-patch-size "8 KB">
 
 <!-- MIPS Patches -->
 
