@@ -41,7 +41,7 @@
 
     <para os="b">Copy the uClibc config file from where you downloaded it:</para>
 
-<screen os="c"><userinput>cp ${CLFS}/sources/uClibc.config .config</userinput></screen>
+<screen os="c"><userinput>cp ${CLFS}/sources/uClibc-&uclibc-version;.config .config</userinput></screen>
 
    <para os="d">We will need to edit the configuration file, to make sure everything gets
    compiled and it's compiled to the proper architecture:</para>
