@@ -37,7 +37,6 @@ export HISTSIZE=1000
 export HISTFILESIZE=1000
 export PAGER='/bin/more '
 export EDITOR='/bin/vi'
-export INPUTRC=/etc/inputrc
 
 # End /etc/profile</literal>
 EOF</userinput></screen>
