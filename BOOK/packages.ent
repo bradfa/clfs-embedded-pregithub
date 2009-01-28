@@ -66,10 +66,11 @@
 <!ENTITY linux-mips-md5 "dbe6c061104074cac0fc3438846f9c72">
 <!ENTITY linux-mips-home "http://www.linux-mips.org/wiki/Main_Page">
 
-<!ENTITY mpfr-version "2.3.2">
-<!ENTITY mpfr-size "968 KB">
-<!ENTITY mpfr-url "http://www.mpfr.org/mpfr-current/mpfr-&mpfr-version;.tar.bz2">
-<!ENTITY mpfr-md5 "527147c097874340cb9cee0579dacf3b">
+<!ENTITY mpfr-version "2.4.0">
+<!ENTITY mpfr-size "1,040 KB">
+<!ENTITY mpfr-dlid "16015">
+<!ENTITY mpfr-url "http://gforge.inria.fr/frs/download.php/&mpfr-dlid;/mpfr-&mpfr-version;.tar.bz2">
+<!ENTITY mpfr-md5 "f5916d785d4f7e7282057f6a3ebff9ce">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
 
 <!ENTITY uclibc-version "0.9.30">
