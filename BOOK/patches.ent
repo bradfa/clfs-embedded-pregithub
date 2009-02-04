@@ -40,8 +40,8 @@
 <!ENTITY mpfr-branch_update-patch-size "20 KB">
 -->
 
-<!ENTITY uclibc-branch_update-patch "uClibc-&uclibc-version;-branch_update-1.patch">
-<!ENTITY uclibc-branch_update-patch-md5 "aba411c0c1b35e1802ef9cac92b62d1f">
+<!ENTITY uclibc-branch_update-patch "uClibc-&uclibc-version;-branch_update-2.patch">
+<!ENTITY uclibc-branch_update-patch-md5 "ee5413b11a633dbe35ab0524fa48bf36">
 <!ENTITY uclibc-branch_update-patch-size "88 KB">
 
 <!-- Beyond patches -->
