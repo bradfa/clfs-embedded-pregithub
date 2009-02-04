@@ -50,7 +50,7 @@
 sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
   -e "s@\(^TARGET_ARCH=\).*@\1\"${CLFS_ARCH}\"@" \
   -e "s@\(^CROSS_COMPILER_PREFIX=\).*@\1\"${CLFS_TARGET}-\"@" \
-  -e "s@\(^KERNEL_HEADERS=\).*@\1\"${BUILD_INSTALL_DIR}/usr/include\"@" \
+  -e "s@\(^KERNEL_HEADERS=\).*@\1\"${CLFS}/usr/include\"@" \
   -e "s@.*\(^ARCH_${CLFS_NOT_ENDIAN}_ENDIAN\).*@# \1 is not set@g" \
   -e "s@.*\(ARCH_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
   -e "s@.*\(ARCH_WANTS_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
