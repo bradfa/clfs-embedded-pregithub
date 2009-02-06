@@ -54,7 +54,7 @@
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make make ARCH=${CLFS_ARCH} CC="${CC} ${BUILD}" CROSS_COMPILE="${CLFS_TARGET}-" \
+<screen os="i"><userinput>make ARCH=${CLFS_ARCH} CC="${CC} ${BUILD}" CROSS_COMPILE="${CLFS_TARGET}-" \
   CONFIG_PREFIX=${IMAGE_DIR} install</userinput></screen>
 
     <para os="j">If your going to build your kernel with modules, you will need to make
