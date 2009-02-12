@@ -54,17 +54,11 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.28.2">
-<!ENTITY linux-size "51,468 KB">
+<!ENTITY linux-version "2.6.28.5">
+<!ENTITY linux-size "51,476 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "8fce853ebfe658f0833d34bb1dc14d86">
+<!ENTITY linux-md5 "677e020f785f57ac48576eacb565a489">
 <!ENTITY linux-home "http://www.kernel.org">
-
-<!ENTITY linux-mips-version "2.6.28.1">
-<!ENTITY linux-mips-size "65,236 KB">
-<!ENTITY linux-mips-url "http://www.linux-mips.org/pub/linux/mips/kernel/v&linux-dl-version;/linux-&linux-mips-version;.tar.gz">
-<!ENTITY linux-mips-md5 "dbe6c061104074cac0fc3438846f9c72">
-<!ENTITY linux-mips-home "http://www.linux-mips.org/wiki/Main_Page">
 
 <!ENTITY mpfr-version "2.4.0">
 <!ENTITY mpfr-size "1,040 KB">

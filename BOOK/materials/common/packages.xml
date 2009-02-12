@@ -77,6 +77,15 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry os="linux">
+      <term>Linux (&linux-version;) - <token>&linux-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&linux-home;"/></para>
+        <para>Download: <ulink url="&linux-url;"/></para>
+        <para>MD5 sum: <literal>&linux-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
     <varlistentry>
       <term>uClibc (&uclibc-version;) - <token>&uclibc-size;</token>:</term>
       <listitem>

@@ -10,17 +10,11 @@
 
   <title>Additional Packages for MIPS</title>
 
+<!--
   <variablelist role="materials">
 
-    <varlistentry os="linux-mips">
-      <term>Linux (&linux-mips-version;) - <token>&linux-mips-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&linux-mips-home;"/></para>
-        <para>Download: <ulink url="&linux-mips-url;"/></para>
-        <para>MD5 sum: <literal>&linux-mips-md5;</literal></para>
-      </listitem>
-    </varlistentry>
   </variablelist>
+-->
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/packages.xml"

@@ -10,13 +10,11 @@
 
   <title>Additional Packages for ARM</title>
 
+<!--
   <variablelist role="materials">
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/packages.xml"
-  xpointer="xpointer(//*[@os='linux'])"/>
-
   </variablelist>
+-->
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/packages.xml"
