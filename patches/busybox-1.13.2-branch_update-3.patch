@@ -1,5 +1,5 @@
 Submitted By: Jim Gifford (jim at cross-lfs dot org)
-Date: 02-03-2009
+Date: 02-16-2009
 Initial Package Version: 1.13.2
 Origin: Upstream
 Upstream Status: Applied
@@ -8,7 +8,7 @@ Description: This is a branch update for busybox-1.13.2, and should be
 
 diff -Naur busybox-1.13.2.orig/archival/tar.c busybox-1.13.2/archival/tar.c
 --- busybox-1.13.2.orig/archival/tar.c	2008-11-09 09:28:02.000000000 -0800
-+++ busybox-1.13.2/archival/tar.c	2009-02-03 18:52:40.994695068 -0800
++++ busybox-1.13.2/archival/tar.c	2009-02-16 11:36:01.760066770 -0800
 @@ -591,8 +591,6 @@
  	struct TarBallInfo tbInfo;
  
@@ -18,9 +18,27 @@ diff -Naur busybox-1.13.2.orig/archival/tar.c busybox-1.13.2/archival/tar.c
  	tbInfo.tarFd = tar_fd;
  	tbInfo.verboseFlag = verboseFlag;
  
+diff -Naur busybox-1.13.2.orig/include/libbb.h busybox-1.13.2/include/libbb.h
+--- busybox-1.13.2.orig/include/libbb.h	2008-12-30 19:06:45.000000000 -0800
++++ busybox-1.13.2/include/libbb.h	2009-02-16 11:36:00.780793407 -0800
+@@ -1275,7 +1275,13 @@
+ 	PSSCAN_UTIME    = 1 << 13,
+ 	PSSCAN_TTY      = 1 << 14,
+ 	PSSCAN_SMAPS	= (1 << 15) * ENABLE_FEATURE_TOPMEM,
+-	PSSCAN_ARGVN    = (1 << 16) * (ENABLE_PGREP || ENABLE_PKILL || ENABLE_PIDOF),
++	/* NB: used by find_pid_by_name(). Any applet using it
++	 * needs to be mentioned here. */
++	PSSCAN_ARGVN    = (1 << 16) * (ENABLE_KILLALL
++				|| ENABLE_PGREP || ENABLE_PKILL
++				|| ENABLE_PIDOF
++				|| ENABLE_SESTATUS 
++				),
+ 	USE_SELINUX(PSSCAN_CONTEXT = 1 << 17,)
+ 	PSSCAN_START_TIME = 1 << 18,
+ 	PSSCAN_CPU      = 1 << 19,
 diff -Naur busybox-1.13.2.orig/init/init.c busybox-1.13.2/init/init.c
 --- busybox-1.13.2.orig/init/init.c	2008-12-30 19:06:45.000000000 -0800
-+++ busybox-1.13.2/init/init.c	2009-02-03 18:52:38.186515155 -0800
++++ busybox-1.13.2/init/init.c	2009-02-16 11:35:55.638637240 -0800
 @@ -671,15 +671,14 @@
   */
  static void parse_inittab(void)
@@ -72,7 +90,7 @@ diff -Naur busybox-1.13.2.orig/init/init.c busybox-1.13.2/init/init.c
  #if ENABLE_FEATURE_USE_INITTAB
 diff -Naur busybox-1.13.2.orig/modutils/depmod.c busybox-1.13.2/modutils/depmod.c
 --- busybox-1.13.2.orig/modutils/depmod.c	2008-11-09 09:28:03.000000000 -0800
-+++ busybox-1.13.2/modutils/depmod.c	2009-02-03 18:52:37.966500907 -0800
++++ busybox-1.13.2/modutils/depmod.c	2009-02-16 11:35:55.041711971 -0800
 @@ -33,7 +33,7 @@
  enum {
  	ARG_a = (1<<0), /* All modules, ignore mods in argv */
@@ -194,7 +212,7 @@ diff -Naur busybox-1.13.2.orig/modutils/depmod.c busybox-1.13.2/modutils/depmod.
  			printf("alias symbol:%s %s\n",
 diff -Naur busybox-1.13.2.orig/modutils/modutils-24.c busybox-1.13.2/modutils/modutils-24.c
 --- busybox-1.13.2.orig/modutils/modutils-24.c	2008-11-28 22:48:56.000000000 -0800
-+++ busybox-1.13.2/modutils/modutils-24.c	2009-02-03 18:52:40.062637519 -0800
++++ busybox-1.13.2/modutils/modutils-24.c	2009-02-16 11:36:01.295790474 -0800
 @@ -2150,7 +2150,7 @@
  	sec->name = name;
  	sec->idx = newidx;
@@ -294,7 +312,7 @@ diff -Naur busybox-1.13.2.orig/modutils/modutils-24.c busybox-1.13.2/modutils/mo
  
 diff -Naur busybox-1.13.2.orig/testsuite/mdev.tests busybox-1.13.2/testsuite/mdev.tests
 --- busybox-1.13.2.orig/testsuite/mdev.tests	2008-11-09 09:28:19.000000000 -0800
-+++ busybox-1.13.2/testsuite/mdev.tests	2009-02-03 18:52:38.510535828 -0800
++++ busybox-1.13.2/testsuite/mdev.tests	2009-02-16 11:36:01.053896354 -0800
 @@ -111,6 +111,22 @@
  
  # continuing to use directory structure from prev test
@@ -320,7 +338,7 @@ diff -Naur busybox-1.13.2.orig/testsuite/mdev.tests busybox-1.13.2/testsuite/mde
  	"env - PATH=$PATH ACTION=add DEVPATH=/block/sda chroot mdev.testdir /mdev 2>&1;
 diff -Naur busybox-1.13.2.orig/util-linux/mdev.c busybox-1.13.2/util-linux/mdev.c
 --- busybox-1.13.2.orig/util-linux/mdev.c	2008-11-09 09:28:22.000000000 -0800
-+++ busybox-1.13.2/util-linux/mdev.c	2009-02-03 18:52:38.510535828 -0800
++++ busybox-1.13.2/util-linux/mdev.c	2009-02-16 11:36:01.053896354 -0800
 @@ -179,8 +179,9 @@
  			unsigned i, n;
  #endif
