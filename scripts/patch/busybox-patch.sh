@@ -27,6 +27,14 @@ if ! [ -e busybox-${VERSION}.tar.bz2 ]; then
   wget http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 fi
 
+# Set Patch Number
+#
+cd /usr/src
+wget http://svn.cross-lfs.org/svn/repos/cross-lfs/branches/clfs-embedded/patches/ --no-remove-listing
+PATCH_NUM=$(cat index.html | grep busybox | grep "${VERSION}" | grep branch_update | cut -f2 -d'"' | cut -f1 -d'"'| cut -f4 -d- | cut -f1 -d. | tail -n 1)
+PATCH_NUM=$(expr ${PATCH_NUM} + 1)
+rm -f index.html
+
 # Cleanup Directory
 #
 rm -rf busybox-${VERSION} busybox-${VERSION}.orig
@@ -67,13 +75,13 @@ rm -f *~ *.orig
 # Create Patch
 #
 cd /usr/src
-echo "Submitted By: Jim Gifford (jim at cross-lfs dot org)" > busybox-${VERSION}-branch_update-x.patch
-echo "Date: `date +%m-%d-%Y`" >> busybox-${VERSION}-branch_update-x.patch
-echo "Initial Package Version: ${VERSION}" >> busybox-${VERSION}-branch_update-x.patch
-echo "Origin: Upstream" >> busybox-${VERSION}-branch_update-x.patch
-echo "Upstream Status: Applied" >> busybox-${VERSION}-branch_update-x.patch
-echo "Description: This is a branch update for busybox-${VERSION}, and should be" >> busybox-${VERSION}-branch_update-x.patch
-echo "             rechecked periodically." >> busybox-${VERSION}-branch_update-x.patch
-echo "" >> busybox-${VERSION}-branch_update-x.patch
-diff -Naur busybox-${VERSION}.orig busybox-${VERSION} >> busybox-${VERSION}-branch_update-x.patch
-echo "Created /usr/src/busybox-${VERSION}-branch_update-x.patch."
+echo "Submitted By: Jim Gifford (jim at cross-lfs dot org)" > busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "Date: `date +%m-%d-%Y`" >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "Initial Package Version: ${VERSION}" >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "Origin: Upstream" >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "Upstream Status: Applied" >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "Description: This is a branch update for busybox-${VERSION}, and should be" >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "             rechecked periodically." >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "" >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+diff -Naur busybox-${VERSION}.orig busybox-${VERSION} >> busybox-${VERSION}-branch_update-${PATCH_NUM}.patch
+echo "Created /usr/src/busybox-${VERSION}-branch_update-${PATCH_NUM}.patch."
