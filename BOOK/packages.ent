@@ -5,85 +5,85 @@
 <!-- Note: For empty *-home entities use " " not "" -->
 
 <!ENTITY binutils-version "2.19.1">
-<!ENTITY binutils-size "15,868 KB">
+<!ENTITY binutils-size "15,865 KB">
 <!ENTITY binutils-url "&gnu;binutils/binutils-&binutils-version;.tar.bz2">
 <!ENTITY binutils-md5 "09a8c5821a2dfdbb20665bc0bd680791">
 <!ENTITY binutils-home "http://sources.redhat.com/binutils">
 
 <!ENTITY busybox-version "1.13.2">
-<!ENTITY busybox-size "2,000 KB">
+<!ENTITY busybox-size "1,998 KB">
 <!ENTITY busybox-url "http://busybox.net/downloads/busybox-&busybox-version;.tar.bz2">
 <!ENTITY busybox-md5 "9e2a604d18bef219a5a6bf3acf78b9e1">
 <!ENTITY busybox-home "http://www.busybox.net">
 
 <!ENTITY busybox-config-version "&busybox-version;">
-<!ENTITY busybox-config-size "24 KB">
+<!ENTITY busybox-config-size "20 KB">
 <!ENTITY busybox-config-url "&svn-clfs-config;busybox-&busybox-config-version;.config">
 <!ENTITY busybox-config-md5 "9b32b986975ce5b4e9d73a1dce7074d8">
 <!ENTITY busybox-config-home " ">
 
 <!ENTITY clfs-bootscripts-version "1.0-pre4">
-<!ENTITY clfs-bootscripts-size "4 KB">
+<!ENTITY clfs-bootscripts-size "2 KB">
 <!ENTITY clfs-bootscripts-url "&packages-root;clfs-embedded-bootscripts-&clfs-bootscripts-version;.tar.bz2">
 <!ENTITY clfs-bootscripts-md5 "b276c989058a7c2a5ec1ecdf6e08363e">
 <!ENTITY clfs-bootscripts-home " ">
 
 <!ENTITY e2fsprogs-version "1.41.4">
-<!ENTITY e2fsprogs-size "4,288 KB">
+<!ENTITY e2fsprogs-size "4,286 KB">
 <!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
 <!ENTITY e2fsprogs-md5 "59033388df36987d2b9c9bbf7e19bd57">
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
 <!ENTITY gcc-version "4.3.3">
-<!ENTITY gcc-size "57,984 KB">
+<!ENTITY gcc-size "57,978 KB">
 <!ENTITY gcc-url "ftp://gcc.gnu.org/pub/gcc/releases/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
 <!ENTITY gcc-md5 "cc3c5565fdb9ab87a05ddb106ba0bd1f ">
 <!ENTITY gcc-home "http://gcc.gnu.org">
 
 <!ENTITY gmp-version "4.2.4">
-<!ENTITY gmp-size "1,676 KB">
+<!ENTITY gmp-size "1,670 KB">
 <!ENTITY gmp-url "&gnu;gmp/gmp-&gmp-version;.tar.bz2">
 <!ENTITY gmp-md5 "fc1e3b3a2a5038d4d74138d0b9cf8dbe">
 <!ENTITY gmp-home "http://gmplib.org/">
 
 <!ENTITY iana-etc-version "2.30">
-<!ENTITY iana-etc-size "208 KB">
+<!ENTITY iana-etc-size "200 KB">
 <!ENTITY iana-etc-url "http://sethwklein.net/iana-etc-&iana-etc-version;.tar.bz2">
 <!ENTITY iana-etc-md5 "3ba3afb1d1b261383d247f46cb135ee8">
 <!ENTITY iana-etc-home "http://sethwklein.net/iana-etc">
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.28.5">
+<!ENTITY linux-version "2.6.28.6">
 <!ENTITY linux-size "51,476 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "677e020f785f57ac48576eacb565a489">
+<!ENTITY linux-md5 "6bb4f553551033f29d55d78b49b31733">
 <!ENTITY linux-home "http://www.kernel.org">
 
 <!ENTITY mpfr-version "2.4.0">
-<!ENTITY mpfr-size "1,040 KB">
+<!ENTITY mpfr-size "1,037 KB">
 <!ENTITY mpfr-dlid "16015">
 <!ENTITY mpfr-url "http://gforge.inria.fr/frs/download.php/&mpfr-dlid;/mpfr-&mpfr-version;.tar.bz2">
 <!ENTITY mpfr-md5 "f5916d785d4f7e7282057f6a3ebff9ce">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
 
 <!ENTITY uclibc-version "0.9.30">
-<!ENTITY uclibc-size "2,240 KB">
+<!ENTITY uclibc-size "2,238 KB">
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
 <!ENTITY uclibc-md5 "e5766e2566e0297adebebbcc0aba1f2d">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
 <!ENTITY uclibc-config-version "&uclibc-version;">
-<!ENTITY uclibc-config-size "8 KB">
+<!ENTITY uclibc-config-size "5 KB">
 <!ENTITY uclibc-config-url "&svn-clfs-config;uClibc-&uclibc-config-version;.config">
 <!ENTITY uclibc-config-md5 "ed62fb231034de4f6edea2f6da488613">
 <!ENTITY uclibc-config-home " ">
 
 <!ENTITY zlib-version "1.2.3">
-<!ENTITY zlib-size "485 KB">
+<!ENTITY zlib-size "484 KB">
 <!ENTITY zlib-url "http://www.zlib.net/zlib-&zlib-version;.tar.gz">
 <!ENTITY zlib-md5 "debc62758716a169df9f62e6ab2bc634">
-<!ENTITY zlib-home "http://www.zlib.net/">
+<!ENTITY zlib-home "http://www.zlib.net">
 
 <!-- Beyond CLFS packages -->
 
@@ -102,25 +102,25 @@
 <!-- WRT Specific packages -->
 
 <!ENTITY mtdutils-version "1.2.0">
-<!ENTITY mtdutils-size "272 KB">
+<!ENTITY mtdutils-size "270 KB">
 <!ENTITY mtdutils-url "ftp://ftp.infradead.org/pub/mtd-utils/mtd-utils-&mtdutils-version;.tar.bz2">
 <!ENTITY mtdutils-md5 "ca41f1fbaa056e8b8d71e8d52c0b1bad">
 <!ENTITY mtdutils-home "http://www.linux-mtd.infradead.org/">
 
 <!ENTITY trx-version "svn">
-<!ENTITY trx-size "16 KB">
-<!ENTITY trx-url "&svn-clfs-software;/trx/trx.c">
+<!ENTITY trx-size "13 KB">
+<!ENTITY trx-url "&svn-clfs-software;trx/trx.c">
 <!ENTITY trx-md5 "cb0141dd59a90d34a72693139e31e49a">
 <!ENTITY trx-home "http://www.openwrt.org/">
 
 <!ENTITY addpattern-version "svn">
-<!ENTITY addpattern-size "8 KB">
-<!ENTITY addpattern-url "&svn-clfs-software;/addpattern/addpattern.c">
+<!ENTITY addpattern-size "5 KB">
+<!ENTITY addpattern-url "&svn-clfs-software;addpattern/addpattern.c">
 <!ENTITY addpattern-md5 "ff13bf18d640c3a2a75032a34bf5858b">
 <!ENTITY addpattern-home "http://www.openwrt.org/">
 
 <!ENTITY fwcutter-version "009">
-<!ENTITY fwcutter-size "4 KB">
+<!ENTITY fwcutter-size "3 KB">
 <!ENTITY fwcutter-url "http://prdownload.berlios.de/bcm43xx/b43-fwcutter-&fwcutter-version;.tar.bz">
 <!ENTITY fwcutter-md5 "1541a3f16feacf0c207252169bb3904f">
 <!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
@@ -134,7 +134,7 @@
 <!-- MIPS Bootloaders -->
 
 <!ENTITY colo-version "1.22">
-<!ENTITY colo-size "253 KB">
+<!ENTITY colo-size "251 KB">
 <!ENTITY colo-url "http://www.colonel-panic.org/cobalt-mips/colo/colo-&colo-version;.tar.gz">
 <!ENTITY colo-md5 "52c16ad31f3b88f710f0fdb5abed0457">
-<!ENTITY colo-home "http://www.linux-mips.org/wiki/CoLo">
+<!ENTITY colo-home "http://www.colonel-panic.org/cobalt-mips">
