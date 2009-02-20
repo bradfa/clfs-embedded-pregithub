@@ -127,7 +127,7 @@
 
 <!ENTITY bcmfw-version "4.150.10.5.2">
 <!ENTITY bcmfw-size "3,788 KB">
-<!ENTITY bcmfw-url "http://downloads.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
+<!ENTITY bcmfw-url "http://mirror2.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
 <!ENTITY bcmfw-md5 "904a808dd98da076814fb7cb4b66a695">
 <!ENTITY bcmfw-home "http://linuxwireless.org/en/users/Drivers/bcm43xx">
 
