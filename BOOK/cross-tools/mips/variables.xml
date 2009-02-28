@@ -31,7 +31,7 @@
   xpointer="xpointer(//*[@os='e'])"/>
 
 <screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/mipsel/LITTLE/' -e 's/mips/BIG/')
-if [ "${CLFS_ENDIAN}" = "LITTLE"]; then
+if [ "${CLFS_ENDIAN}" = "LITTLE" ]; then
   export CLFS_NOT_ENDIAN=BIG
 else
   export CLFS_NOT_ENDIAN=LITTLE
