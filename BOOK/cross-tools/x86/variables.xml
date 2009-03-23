@@ -20,7 +20,8 @@
   target machine, you can use the table at the bottom of this page. Set
   the command using the method listed below:</para>
 
-<screen os="b"><userinput>export CLFS_TARGET="{target triplet}"</userinput></screen>
+<screen os="b"><userinput>export CLFS_HOST="${MACHTYPE}"
+export CLFS_TARGET="{target triplet}"</userinput></screen>
 
   <para os="c">Now we will setup out default architecture needed we need to build:</para>
 
