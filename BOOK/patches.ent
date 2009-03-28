@@ -12,9 +12,9 @@
 <!ENTITY binutils-posix-patch-md5 "beb4af55c8de949235758e6436e689e7">
 <!ENTITY binutils-posix-patch-size "3 KB">
 
-<!ENTITY busybox-branch_update-patch "busybox-&busybox-version;-branch_update-3.patch">
-<!ENTITY busybox-branch_update-patch-md5 "0c696b69d8f4d6eb20c9fc2af2236eee">
-<!ENTITY busybox-branch_update-patch-size "11 KB">
+<!ENTITY busybox-branch_update-patch "busybox-&busybox-version;-branch_update-1.patch">
+<!ENTITY busybox-branch_update-patch-md5 "53c147717a7d7bc825a848fc9186bdb9">
+<!ENTITY busybox-branch_update-patch-size "15 KB">
 
 <!ENTITY gcc-branch_update-patch "gcc-&gcc-version;-branch_update-5.patch">
 <!ENTITY gcc-branch_update-patch-md5 "d52b227655a341694809de17eba2d58d">

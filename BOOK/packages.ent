@@ -10,16 +10,16 @@
 <!ENTITY binutils-md5 "09a8c5821a2dfdbb20665bc0bd680791">
 <!ENTITY binutils-home "http://sources.redhat.com/binutils">
 
-<!ENTITY busybox-version "1.13.2">
-<!ENTITY busybox-size "1,998 KB">
+<!ENTITY busybox-version "1.13.3">
+<!ENTITY busybox-size "2,009 KB">
 <!ENTITY busybox-url "http://busybox.net/downloads/busybox-&busybox-version;.tar.bz2">
-<!ENTITY busybox-md5 "9e2a604d18bef219a5a6bf3acf78b9e1">
+<!ENTITY busybox-md5 "0cde6d2790e790837d6d7e82faae3ca1">
 <!ENTITY busybox-home "http://www.busybox.net">
 
 <!ENTITY busybox-config-version "&busybox-version;">
 <!ENTITY busybox-config-size "20 KB">
 <!ENTITY busybox-config-url "&svn-clfs-config;busybox-&busybox-config-version;.config">
-<!ENTITY busybox-config-md5 "9b32b986975ce5b4e9d73a1dce7074d8">
+<!ENTITY busybox-config-md5 "c126f52c23acd119ed321c07213f5030">
 <!ENTITY busybox-config-home " ">
 
 <!ENTITY clfs-bootscripts-version "1.0-pre4">
