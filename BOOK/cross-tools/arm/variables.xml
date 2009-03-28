@@ -30,7 +30,7 @@
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_TARGET} | sed -e 's/armeb/BIG/' -e 's/arm/LITTLE/')
+<screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/armeb/BIG/' -e 's/arm/LITTLE/')
 if [ "${CLFS_ENDIAN}" = "LITTLE" ]; then
   export CLFS_NOT_ENDIAN=BIG
 else

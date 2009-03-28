@@ -31,12 +31,10 @@
     linker and assembler to determine which of their own features to
     enable.</para>
 
-<!--
     <para os="p1">The following patch contains a number of updates to the
     &binutils-version; branch by the Binutils developers:</para>
 
 <screen os="p2"><userinput>patch -Np1 -i ../&binutils-branch_update-patch;</userinput></screen>
--->
 
     <para os="p3">To make sure that the proper syntax is used for a couple of
     tools, apply the following patch:</para>
