@@ -54,10 +54,10 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.28.7">
-<!ENTITY linux-size "51,483 KB">
+<!ENTITY linux-version "2.6.29">
+<!ENTITY linux-size "55,253 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "72d7d509c1f997e6d043bc9c683d89f1">
+<!ENTITY linux-md5 "64921b5ff5cdadbccfcd3820f03be7d8">
 <!ENTITY linux-home "http://www.kernel.org">
 
 <!ENTITY mpfr-version "2.4.1">
@@ -67,10 +67,10 @@
 <!ENTITY mpfr-md5 "f5916d785d4f7e7282057f6a3ebff9ce">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
 
-<!ENTITY uclibc-version "0.9.30">
-<!ENTITY uclibc-size "2,238 KB">
+<!ENTITY uclibc-version "0.9.30.1">
+<!ENTITY uclibc-size "2,231 KB">
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
-<!ENTITY uclibc-md5 "e5766e2566e0297adebebbcc0aba1f2d">
+<!ENTITY uclibc-md5 "1a4b84e5536ad8170563ffa88c34679c">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
 <!ENTITY uclibc-config-version "&uclibc-version;">
