@@ -37,7 +37,7 @@ cd build</userinput></screen>
 
 <screen os="d"><userinput>CC="${CC} ${BUILD} -Os" ../configure --prefix=/usr \
   --with-root-prefix="" --host=${CLFS_TARGET} --with-cc="${CC} ${BUILD} -Os" \
-  --with-linker=${LD}</userinput></screen>
+  --with-linker=${LD} --disable-tls</userinput></screen>
 
     <variablelist os="e">
       <title>The meaning of the configure options:</title>
