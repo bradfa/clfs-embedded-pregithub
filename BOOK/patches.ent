@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<!ENTITY patches-root "http://svn.cross-lfs.org/svn/repos/cross-lfs/branches/clfs-embedded/patches/">
+<!ENTITY patches-root "http://patches.cross-lfs.org/embedded-dev/">
 
 <!-- Start of Common Patches -->
 
