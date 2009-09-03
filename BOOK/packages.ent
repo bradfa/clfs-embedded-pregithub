@@ -119,16 +119,17 @@
 <!ENTITY addpattern-md5 "ff13bf18d640c3a2a75032a34bf5858b">
 <!ENTITY addpattern-home "http://www.openwrt.org/">
 
-<!ENTITY fwcutter-version "009">
-<!ENTITY fwcutter-size "3 KB">
-<!ENTITY fwcutter-url "http://prdownload.berlios.de/bcm43xx/b43-fwcutter-&fwcutter-version;.tar.bz">
-<!ENTITY fwcutter-md5 "1541a3f16feacf0c207252169bb3904f">
+<!ENTITY fwcutter-version "012">
+<!ENTITY fwcutter-size "14 KB">
+<!ENTITY fwcutter-url "http://bu3sch.de/b43/fwcutter/b43-fwcutter-&fwcutter-version;.tar.bz">
+<!ENTITY fwcutter-md5 "69eadf67b459f313a8d6b37aaabef96c">
 <!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
 
-<!ENTITY bcmfw-version "4.150.10.5.2">
-<!ENTITY bcmfw-size "3,788 KB">
-<!ENTITY bcmfw-url "http://mirror2.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
-<!ENTITY bcmfw-md5 "904a808dd98da076814fb7cb4b66a695">
+wget http://downloads.openwrt.org/sources/broadcom-wl-4.80.53.0.tar.bz2r
+<!ENTITY bcmfw-version "4.80.53.0">
+<!ENTITY bcmfw-size "884 KB">
+<!ENTITY bcmfw-url "http://downloads.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
+<!ENTITY bcmfw-md5 "a7d8dde3ce474c361143b83e1d9890b1">
 <!ENTITY bcmfw-home "http://linuxwireless.org/en/users/Drivers/bcm43xx">
 
 <!-- MIPS Bootloaders -->
