@@ -65,7 +65,7 @@ sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
 
     <para os="h">Compile the package:</para>
 
-<screen os="i"><userinput>make CC="${CLFS_TARGET}-gcc ${BUILD}"</userinput></screen>
+<screen os="i"><userinput>make CROSS=${CLFS_TARGET}- CC="${CLFS_TARGET}-gcc ${BUILD}"</userinput></screen>
 
     <para os="l">Install the package:</para>
 
