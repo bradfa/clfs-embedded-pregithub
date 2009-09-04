@@ -44,29 +44,9 @@
 
 <!-- MIPS Patches -->
 
-<!ENTITY linux-mips-patch "linux-&linux-version;-mips-1.patch">
-<!ENTITY linux-mips-patch-md5 "64aceede8c736e43e613b39a6a77f4e1">
-<!ENTITY linux-mips-patch-size "484 KB">
-
-<!ENTITY linux-mips_fixes-patch "linux-&linux-version;-mips_fixes-1.patch">
-<!ENTITY linux-mips_fixes-patch-md5 "c70a04f9302ae3e893bbb964ff5edee8">
-<!ENTITY linux-mips_fixes-patch-size "4 KB">
-
-<!ENTITY linux-squashfs-patch "linux-&linux-version;-squashfs-1.patch">
-<!ENTITY linux-squashfs-patch-md5 "842859f1b9afe819655de0926efb5dcb">
-<!ENTITY linux-squashfs-patch-size "128 KB">
-
-<!ENTITY linux-d80211-patch "linux-&linux-version;-d80211-import-1.patch.gz">
-<!ENTITY linux-d80211-patch-md5 "d8c09209ac1d481b96ab5f1f32bbd93f">
-<!ENTITY linux-d80211-patch-size "516 KB">
-
-<!ENTITY linux-bcm43xx-patch "linux-&linux-version;-bcm43xx-update-1.patch.gz">
-<!ENTITY linux-bcm43xx-patch-md5 "a2d297c320d2909db2eb7e326e85779a">
-<!ENTITY linux-bcm43xx-patch-size "136 KB">
-
-<!ENTITY linux-bcm947xx-patch "linux-&linux-version;-bcm947xx-2.patch">
-<!ENTITY linux-bcm947xx-patch-md5 "c81142728a7a9b96c25fb2f840e1d48b">
-<!ENTITY linux-bcm947xx-patch-size "128 KB">
+<!ENTITY linux-bcm43xx-patch "linux-&linux-version;-openwrt-bcm47xx-fixes-1.patch">
+<!ENTITY linux-bcm43xx-patch-md5 "cac2d0a6c5aa35cd5f6f19c208f3ae94">
+<!ENTITY linux-bcm43xx-patch-size "104 KB">
 
 <!-- MIPS Bootloader Patches -->
 

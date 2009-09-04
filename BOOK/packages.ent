@@ -54,10 +54,10 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.29">
-<!ENTITY linux-size "55,253 KB">
+<!ENTITY linux-version "2.6.30.5">
+<!ENTITY linux-size "58,034 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "64921b5ff5cdadbccfcd3820f03be7d8">
+<!ENTITY linux-md5 "be9c3a697a54ac099c910d068ff0dc03">
 <!ENTITY linux-home "http://www.kernel.org">
 
 <!ENTITY mpfr-version "2.4.1">
@@ -125,12 +125,17 @@
 <!ENTITY fwcutter-md5 "69eadf67b459f313a8d6b37aaabef96c">
 <!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
 
-wget http://downloads.openwrt.org/sources/broadcom-wl-4.80.53.0.tar.bz2r
 <!ENTITY bcmfw-version "4.80.53.0">
-<!ENTITY bcmfw-size "884 KB">
+<!ENTITY bcmfw-size "883 KB">
 <!ENTITY bcmfw-url "http://downloads.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
 <!ENTITY bcmfw-md5 "a7d8dde3ce474c361143b83e1d9890b1">
 <!ENTITY bcmfw-home "http://linuxwireless.org/en/users/Drivers/bcm43xx">
+
+<!ENTITY linux-bcm47xx-config-version "&linux-version;">
+<!ENTITY linux-bcm47xx-config-size "5 KB">
+<!ENTITY linux-bcm47xx-config-url "&svn-clfs-config;linux-bcm47xx-&linux-bcm47xx-config-version;.config">
+<!ENTITY linux-bcm47xx-config-md5 "720eae8e462d56a4f1bc227eb2afe271">
+<!ENTITY linux-bcm47xx-config-home " ">
 
 <!-- MIPS Bootloaders -->
 

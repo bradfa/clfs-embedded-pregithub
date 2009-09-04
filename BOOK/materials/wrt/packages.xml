@@ -15,6 +15,15 @@
   <variablelist role="materials">
 
     <varlistentry>
+      <term>Linux BCM47xx config file (&linux-bcm47xx-config-version;) - <token>&linux-bcm47xx-config-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&linux-bcm47xx-config-home;"/></para>
+        <para>Download: <ulink url="&linux-bcm47xx-config-url;"/></para>
+        <para>MD5 sum: <literal>&linux-bcm47xx-config-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term>TRX (&trx-version;) - <token>&trx-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&trx-home;"/></para>

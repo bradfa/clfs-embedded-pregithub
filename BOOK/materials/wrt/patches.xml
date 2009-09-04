@@ -12,47 +12,12 @@
 
   <variablelist role="materials">
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="../mips/patches.xml"
-    xpointer="xpointer(//*[@os='linux-mips-patch'])"/>
-
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="../mips/patches.xml"
-    xpointer="xpointer(//*[@os='linux-mips_fixes-patch'])"/>
-
-    <varlistentry os="linux-squashfs-patch">
-      <term>Linux Squashfs Patch - <token>&linux-squashfs-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&linux-squashfs-patch;"/></para>
-        <para>MD5 sum: <literal>&linux-squashfs-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry os="linux-d80211-patch">
-      <term>Linux BCM947XX port - <token>&linux-d80211-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&linux-d80211-patch;"/></para>
-        <para>MD5 sum: <literal>&linux-d80211-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
     <varlistentry os="linux-bcm43xx-patch">
-      <term>Linux BCM43XX-d80211 backport - <token>&linux-bcm43xx-patch-size;</token>:</term>
+      <term>Linux Squashfs Patch - <token>&linux-bcm43xx-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&linux-bcm43xx-patch;"/></para>
         <para>MD5 sum: <literal>&linux-bcm43xx-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry os="linux-bcm947xx-patch">
-      <term>Linux BCM947XX port - <token>&linux-bcm947xx-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&linux-bcm947xx-patch;"/></para>
-        <para>MD5 sum: <literal>&linux-bcm947xx-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
