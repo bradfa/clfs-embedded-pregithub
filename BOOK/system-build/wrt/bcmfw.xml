@@ -26,11 +26,11 @@
 
     <para os="a">Extract the firmware:</para>
 
-<screen os="b"><userinput>bcm43xx-fwcutter kmod/wl_apsta.o</userinput></screen>
+<screen os="b"><userinput>b43-fwcutter kmod/wl_apsta.o</userinput></screen>
 
     <para os="c">Install the firmware:</para>
 
-<screen os="d"><userinput>cp *.fw ${CLFS}/lib/firmware</userinput></screen>
+<screen os="d"><userinput>cp b43/*.fw ${CLFS}/lib/firmware</userinput></screen>
 
   </sect2>
 

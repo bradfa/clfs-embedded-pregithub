@@ -30,7 +30,7 @@
 
     <para os="c">Install the package:</para>
 
-<screen os="d"><userinput>cp bcm43xx-fwcutter ${CLFS}/cross-tools/bin</userinput></screen>
+<screen os="d"><userinput>cp b43-fwcutter ${CLFS}/cross-tools/bin</userinput></screen>
 
   </sect2>
 
