@@ -30,7 +30,7 @@
 
     <para os="c">Install the firmware:</para>
 
-<screen os="d"><userinput>cp b43/*.fw ${CLFS}/lib/firmware</userinput></screen>
+<screen os="d"><userinput>install -dv ${CLFS}/lib/firmware/b43; cp b43/*.fw ${CLFS}/lib/firmware/b43</userinput></screen>
 
   </sect2>
 
