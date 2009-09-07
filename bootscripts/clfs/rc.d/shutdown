@@ -19,13 +19,17 @@ do
 	fi
 done
 
-echo -n "Syncing hardware clock to system clock:"
-hwclock --systohc --utc
-check_status
+if [ -x /sbin/hwclock ]; then
+	echo -n "Syncing hardware clock to system clock:"
+	hwclock --systohc --utc
+	check_status
+fi
 
-echo -n "Disabling swap space: "
-swapoff -a
-check_status
+if [ -x /sbin/swapoff ]; then
+	echo -n "Disabling swap space: "
+	swapoff -a
+	check_status
+fi
 
 echo -n "Syncing all filesystems: "
 sync
