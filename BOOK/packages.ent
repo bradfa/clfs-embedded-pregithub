@@ -10,10 +10,10 @@
 <!ENTITY binutils-md5 "09a8c5821a2dfdbb20665bc0bd680791">
 <!ENTITY binutils-home "http://sources.redhat.com/binutils">
 
-<!ENTITY busybox-version "1.14.1">
-<!ENTITY busybox-size "2,149 KB">
+<!ENTITY busybox-version "1.1.0">
+<!ENTITY busybox-size "1,938 KB">
 <!ENTITY busybox-url "http://busybox.net/downloads/busybox-&busybox-version;.tar.bz2">
-<!ENTITY busybox-md5 "d5186821d4f4cf6017452c7c8730cf19">
+<!ENTITY busybox-md5 "4a6f168a4901d5532316e1ad3233e5fc">
 <!ENTITY busybox-home "http://www.busybox.net">
 
 <!ENTITY busybox-config-version "&busybox-version;">
