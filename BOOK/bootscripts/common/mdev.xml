@@ -33,8 +33,6 @@
 
 <screen os="b"><?dbfo keep-together="auto"?><userinput>cat &gt; ${CLFS}/etc/mdev.conf&lt;&lt; "EOF"
 <literal># /etc/mdev/conf
-SLEEP=10
-
 # Symlinks:
 # Syntax: %s -> %s
 
@@ -90,6 +88,7 @@ kmem 0:9 000
 mem 0:9 0640
 port 0:9 0640
 ptmx 0:5 0660
+tun[0-9]* 0:0 0640 =net/
 
 sda* 0:6 0660
 sdb* 0:6 0660
