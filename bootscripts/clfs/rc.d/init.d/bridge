@@ -27,6 +27,9 @@ start)
 	for n in ${BRIDGE_INTERFACES}; do
 		echo -n "Adding ${n} to bridge: "
 		brctl addif br0 ${n}
+		# Bring up the interface unless its wireless
+		# Wireless has to be configured before you can put it up
+		if [ $? = 0 ] && [ ${n} != wlan0 ]; then ifconfig ${n} up; fi
 		check_status
 	done
 	;;
