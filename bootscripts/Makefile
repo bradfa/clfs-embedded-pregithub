@@ -32,4 +32,9 @@ install-bridge: create-dirs
 	ln -sf ../init.d/bridge ${EXTDIR}/rc.d/start/S09bridge
 	ln -sf ../init.d/bridge ${EXTDIR}/rc.d/stop/K81bridge
 
+install-bcm47xx: create-dirs
+	install -m ${MODE} clfs/rc.d/init.d/bcm47xx-switch ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/start/S08bcm47xx-switch
+	ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/stop/K82bcm47xx-switch
+
 .PHONY: all create-dirs install install-dropbear install-bridge
