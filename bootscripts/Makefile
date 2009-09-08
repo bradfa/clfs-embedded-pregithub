@@ -27,4 +27,9 @@ install-dropbear: create-dirs
 	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/start/S30sshd
 	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/stop/K30sshd
 
-.PHONY: all create-dirs install install-dropbear
+install-bridge: create-dirs
+	install -m ${MODE} clfs/rc.d/init.d/bridge ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/bridge ${EXTDIR}/rc.d/start/S09bridge
+	ln -sf ../init.d/bridge ${EXTDIR}/rc.d/stop/K81bridge
+
+.PHONY: all create-dirs install install-dropbear install-bridge

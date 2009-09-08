@@ -10,19 +10,26 @@
 /bin/mkdir /dev/pts
 /bin/mkdir /dev/shm
 /bin/echo "/sbin/mdev" > /proc/sys/kernel/hotplug
-/sbin/mdev -s
 
-if [ -x /sbin/hwclock ]; then
+echo -n "Starting mdev: "
+/sbin/mdev -s
+check_status
+
+echo -n "Mounting devpts: "
+mount /dev/pts
+check_status
+
+if [ -x /sbin/hwclock ] && [ -e /dev/rtc ]; then
 	echo -n "Setting system clock: "
 	hwclock --hctosys --utc
 	check_status
 fi
 
 if [ -x /sbin/fsck ]; then
-	echo "Starting fsck for root filesystem."
-	fsck -T -C /
+	echo "Starting fsck for local filesystems."
+	fsck -A -C -R -T -t nonfs,nosmbfs
 	if [ "$?" -gt 2 ]; then
-		echo "WARNING: Errors found while checking root filesystem."
+		echo "WARNING: Errors found while checking filesystems."
 		echo "You can login as root now, the system will reboot after logout."
 		sulogin
 		reboot
@@ -31,40 +38,21 @@ if [ -x /sbin/fsck ]; then
 		sleep 1
 		reboot
 	else
-		echo -n "Checking root filesystem: "
+		echo -n "Checking local filesystems: "
 		check_status
 	fi
 fi
 
-echo -n "Remounting root rw: "
-mount -o remount,rw /
-check_status
-
-echo -n "Mounting devpts: "
-mount /dev/pts
-check_status
-
-echo "Starting fsck for local filesystems."
-fsck -A -C -R -T -t nonfs,nosmbfs
-if [ "$?" -gt 2 ]; then
-	echo "WARNING: Errors found while checking filesystems."
-	echo "You can login as root now, the system will reboot after logout."
-	sulogin
-	reboot
-elif [ "$?" = "2" ]; then
-	echo "NOTICE: System needs to be rebooted now."
-	sleep 1
-	reboot
-else
-	echo -n "Checking local filesystems: "
-	check_status
-fi
 
 if [ -x /sbin/swapon ]; then
 	echo -n "Enabling swap space: "
 	swapon -a
 	check_status
 fi
+
+echo -n "Remounting root rw: "
+mount -o remount,rw /
+check_status
 
 echo -n "Setting hostname: "
 hostname -F /etc/HOSTNAME
@@ -93,3 +81,5 @@ do
 		$i start
 	fi
 done
+
+exit 0

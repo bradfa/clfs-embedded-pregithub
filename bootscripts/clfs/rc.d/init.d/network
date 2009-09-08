@@ -55,7 +55,7 @@ stop)
 			ifconfig $INTERFACE down
 			check_status
 			if [ "$DHCP" = "yes" ]; then
-				kill `cat "/var/run/udhcpc.$INTERFACE.pid"`
+				kill `cat "/var/run/udhcpc.$INTERFACE.pid"` 2>/dev/null || echo true
 				sleep 1
 			fi
 		fi

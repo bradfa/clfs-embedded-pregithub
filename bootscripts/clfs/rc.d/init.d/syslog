@@ -5,7 +5,7 @@
 
 . /etc/rc.d/init.d/functions
 
-SYSLOG_ROTATE_SIZE=80kb
+SYSLOG_ROTATE_SIZE=65536
 
 case "$1" in
 start)

@@ -19,7 +19,7 @@ do
 	fi
 done
 
-if [ -x /sbin/hwclock ]; then
+if [ -x /sbin/hwclock ] && [ -e /dev/rtc ]; then
 	echo -n "Syncing hardware clock to system clock:"
 	hwclock --systohc --utc
 	check_status
@@ -37,3 +37,4 @@ check_status
 
 echo -n "Unmounting all filesystems: "
 umount -a -r
+
