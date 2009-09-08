@@ -4,6 +4,7 @@
 # 
 . /etc/rc.d/init.d/functions
 
+/bin/mount -t tmpfs /tmp /tmp
 /bin/mount -t proc none /proc
 /bin/mount -t sysfs none /sys
 /bin/mount -t tmpfs -o mode=0755 none /dev
