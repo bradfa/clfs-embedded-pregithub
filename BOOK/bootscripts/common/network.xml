@@ -41,7 +41,17 @@ NETWORKING=yes
 USE_GATEWAY=no
 
 # set to gateway IP address
-GATEWAY=192.168.0.1</literal>
+GATEWAY=192.168.0.1
+
+# Interfaces to add to br0 bridge
+# Leave commented to not setup a network bridge
+# Substitute br0 for eth0 in the interface.eth0 sample below to bring up br0
+# instead
+# bcm47xx with vlans:
+#BRIDGE_INTERFACES="eth0.0 eth0.1 wlan0"
+# Other access point with a wired eth0 and a wireless wlan0 interface:
+#BRIDGE_INTERFACES="eth0 wlan0"
+</literal>
 EOF</userinput></screen>
 
     <para>The <envar>GATEWAY</envar> variable should contain the default
@@ -86,6 +96,71 @@ EOF</userinput></screen>
     <para>The <envar>BROADCAST</envar> variable should contain the default
     Broadcast Address for the Subnet Mask of the IP Range being used on
     this interface.</para>
+
+  </sect2>
+
+  <sect2 id="udhcpc.conf">
+    <title>Creating the ${CLFS}/etc/udhcpc.conf File</title>
+
+    <indexterm zone="udhcpc.conf">
+      <primary sortas="e-/etc/udhcpc.conf">/etc/udhcpc.conf</primary>
+    </indexterm>
+
+    <para>For DHCP to work properly a configuration script is needed.
+    Create a sample udhcpc.conf:</para>
+
+<screen><userinput>mkdir ${CLFS}/etc/network.d &amp;&amp;
+cat &gt; ${CLFS}/etc/network.d/interface.eth0 &lt;&lt; "EOF"
+<literal>#!/bin/sh
+# udhcpc Interface Configuration
+# Based on http://lists.debian.org/debian-boot/2002/11/msg00500.html
+# udhcpc script edited by Tim Riker &lt;Tim@Rikers.org&gt;
+
+[ -z "$1" ] &amp;&amp; echo "Error: should be called from udhcpc" &amp;&amp; exit 1
+
+RESOLV_CONF="/etc/resolv.conf"
+RESOLV_BAK="/etc/resolv.bak"
+
+[ -n "$broadcast" ] &amp;&amp; BROADCAST="broadcast $broadcast"
+[ -n "$subnet" ] &amp;&amp; NETMASK="netmask $subnet"
+
+case "$1" in
+	deconfig)
+		if [ -f "$RESOLV_BAK" ]; then
+			mv "$RESOLV_BAK" "$RESOLV_CONF"
+		fi
+		/sbin/ifconfig $interface 0.0.0.0
+		;;
+
+	renew|bound)
+		/sbin/ifconfig $interface $ip $BROADCAST $NETMASK
+
+		if [ -n "$router" ] ; then
+			while route del default gw 0.0.0.0 dev $interface ; do
+				true
+			done
+
+			for i in $router ; do
+				route add default gw $i dev $interface
+			done
+		fi
+
+		if [ ! -f "$RESOLV_BAK" ] &amp;&amp; [ -f "$RESOLV_CONF" ]; then
+			mv "$RESOLV_CONF" "$RESOLV_BAK"
+		fi
+
+		echo -n &gt; $RESOLV_CONF
+		[ -n "$domain" ] &amp;&amp; echo search $domain &gt;&gt; $RESOLV_CONF
+		for i in $dns ; do
+			echo nameserver $i &gt;&gt; $RESOLV_CONF
+		done
+		;;
+esac
+
+exit 0
+</literal>EOF
+
+chmod +x ${CLFS}/etc/udhcpc.conf</userinput></screen>
 
   </sect2>
 

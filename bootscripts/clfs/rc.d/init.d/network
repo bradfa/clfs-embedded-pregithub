@@ -21,7 +21,13 @@ start)
 			. $i
 			if [ "$DHCP" = "yes" ]; then
 				echo -n "Starting DHCP for interface $INTERFACE: "
-				udhcpc -b -i "$INTERFACE" \
+				# udhcpc is braindead, bring up interface first
+				ifconfig "$INTERFACE" up
+
+				# Bridging code requires some time to wake up
+				[ "$INTERFACE" = "br0" ] && sleep 5
+
+				udhcpc -b -i "$INTERFACE" -s /etc/udhcpc.conf \
 					-p "/var/run/udhcpc.$INTERFACE.pid" \
 					> /dev/null
 			else
