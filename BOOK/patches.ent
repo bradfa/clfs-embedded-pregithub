@@ -44,9 +44,9 @@
 
 <!-- MIPS Patches -->
 
-<!ENTITY linux-bcm43xx-patch "linux-&linux-version;-openwrt-bcm47xx-fixes-1.patch">
-<!ENTITY linux-bcm43xx-patch-md5 "cac2d0a6c5aa35cd5f6f19c208f3ae94">
-<!ENTITY linux-bcm43xx-patch-size "104 KB">
+<!ENTITY linux-bcm43xx-patch "linux-&linux-version;-openwrt-bcm47xx-fixes-2.patch">
+<!ENTITY linux-bcm43xx-patch-md5 "e63459a60e7408d4b2583f184650d0b0">
+<!ENTITY linux-bcm43xx-patch-size "1025 KB">
 
 <!-- MIPS Bootloader Patches -->
 
