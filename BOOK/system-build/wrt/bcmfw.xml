@@ -26,7 +26,7 @@
 
     <para os="a">Extract the firmware:</para>
 
-<screen os="b"><userinput>b43-fwcutter kmod/wl_apsta.o</userinput></screen>
+<screen os="b"><userinput>b43-fwcutter driver/wl_apsta_mimo.o</userinput></screen>
 
     <para os="c">Install the firmware:</para>
 

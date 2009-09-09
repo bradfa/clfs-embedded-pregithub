@@ -125,10 +125,10 @@
 <!ENTITY fwcutter-md5 "69eadf67b459f313a8d6b37aaabef96c">
 <!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
 
-<!ENTITY bcmfw-version "4.80.53.0">
-<!ENTITY bcmfw-size "883 KB">
+<!ENTITY bcmfw-version "4.150.10.5.tar">
+<!ENTITY bcmfw-size "3797 KB">
 <!ENTITY bcmfw-url "http://downloads.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
-<!ENTITY bcmfw-md5 "a7d8dde3ce474c361143b83e1d9890b1">
+<!ENTITY bcmfw-md5 "0c6ba9687114c6b598e8019e262d9a60">
 <!ENTITY bcmfw-home "http://linuxwireless.org/en/users/Drivers/bcm43xx">
 
 <!ENTITY linux-bcm47xx-config-version "&linux-version;">
