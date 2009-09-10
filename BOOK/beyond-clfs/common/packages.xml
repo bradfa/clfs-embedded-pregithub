@@ -32,6 +32,24 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry>
+      <term>libnl (&libnl-version;) - <token>&libnl-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&libnl-home;"/></para>
+        <para>Download: <ulink url="&libnl-url;"/></para>
+        <para>MD5 sum: <literal>&libnl-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Hostapd (&hostapd-version;) - <token>&hostapd-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&hostapd-home;"/></para>
+        <para>Download: <ulink url="&hostapd-url;"/></para>
+        <para>MD5 sum: <literal>&hostapd-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>

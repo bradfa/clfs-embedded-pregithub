@@ -16,5 +16,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/patches.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/dropbear.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/iptables.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/libnl.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/hostapd.xml"/>
 
 </chapter>

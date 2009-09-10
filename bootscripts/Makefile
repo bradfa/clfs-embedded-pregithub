@@ -30,6 +30,11 @@ install-dropbear: create-dirs
 	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/start/S30sshd
 	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/stop/K30sshd
 
+install-hostapd: create-dirs
+	install -m ${MODE} clfs/rc.d/init.d/hostapd ${EXTDIR}/rc.d/init.d
+	ln -sf ../init.d/hostapd ${EXTDIR}/rc.d/start/S08hostapd
+	ln -sf ../init.d/hostapd ${EXTDIR}/rc.d/stop/K82hostapd
+
 install-bcm47xx: create-dirs
 	install -m ${MODE} clfs/rc.d/init.d/bcm47xx-switch ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/start/S08bcm47xx-switch

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bclfs-hostapd" role="wrap">
+  <?dbhtml filename="hostapd.html"?>
+
+  <title>hostapd-&hostapd-version;</title>
+
+  <indexterm zone="ch-bclfs-hostapd">
+    <primary sortas="a-hostapd">hostapd</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Hostapd is a daemon required for setting up a wireless access point, it supports
+    WEP, WPA and WPA2 encryption and can optionally use EAP for authentification, but since
+    this feature requires OpenSSL only basic WEP/WPA/WPA2 encryption will be compiled here.
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of hostapd</title>
+
+    <para os="a">By default only a very basic hostapd is made, but hostapd supports a lot of other options as well. Write a basic config file for hostap:</para>
+
+<screen os="b"><userinput>
+cd hostapd; cat &gt; .config &lt;&lt; EOF
+# Support for nl80211 driver
+CONFIG_DRIVER_NL80211=y
+# Use v2.0 of the netlink appi
+CFLAGS += -DCONFIG_LIBNL20
+LDFLAGS += -lnl-genl
+
+CONFIG_RSN_PREAUTH=y
+
+# PeerKey handshake for Station to Station Link (IEEE 802.11e DLS)
+CONFIG_PEERKEY=y
+# Support draft ieee 802.11n
+CONFIG_IEEE80211N=y
+
+# Remove debugging code that is printing out debug messages to stdout.
+# This can be used to reduce the size of the hostapd considerably if debugging
+# code is not needed.
+CONFIG_NO_STDOUT_DEBUG=y
+EOF
+</userinput></screen>
+
+    <para os="c">Compile the package:</para>
+
+<screen os="d"><userinput>make CC=${CC} CFLAGS="-g -Os -Wall"</userinput></screen>
+
+    <para os="e">Install the package:</para>
+
+<screen os="f"><userinput>cp hostapd hostapd_cli ${CLFS}/usr/sbin</userinput></screen>
+
+    <para os="g">Install the bootscripts from the clfs-bootscripts package:</para>
+
+<screen os="h"><userinput>make install-hostapd DESTDIR=${CLFS}</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-hostapd" role="content">
+    <title>Contents of hostapd</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+
+      <seglistitem>
+        <seg>To be Written</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+</sect1>

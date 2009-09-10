@@ -99,6 +99,18 @@
 <!ENTITY iptables-md5 "a138d1c2e74321e0e4e228a9fb301c9a">
 <!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
 
+<!ENTITY libnl-version "git-gdc273a12d">
+<!ENTITY libnl-size "1217 KB">
+<!ENTITY libnl-url "http://cross-lfs.org/~mlankhorst/libnl-git.tar.bz2">
+<!ENTITY libnl-md5 "6eda026344cffb21f334ec20cdb82d5a">
+<!ENTITY libnl-home "http://git.kernel.org/?p=libs/netlink/libnl.git">
+
+<!ENTITY hostapd-version "git-gcfaab58007">
+<!ENTITY hostapd-size "10744 KB">
+<!ENTITY hostapd-url "http://cross-lfs.org/~mlankhorst/hostap-git.tar.bz2">
+<!ENTITY hostapd-md5 "4fa27f467c10de67fda451396fb6f854">
+<!ENTITY hostapd-home "http://hostap.epitest.fi/">
+
 <!-- WRT Specific packages -->
 
 <!ENTITY mtdutils-version "1.2.0">
@@ -136,6 +148,12 @@
 <!ENTITY linux-bcm47xx-config-url "&svn-clfs-config;linux-bcm47xx-&linux-bcm47xx-config-version;.config">
 <!ENTITY linux-bcm47xx-config-md5 "720eae8e462d56a4f1bc227eb2afe271">
 <!ENTITY linux-bcm47xx-config-home " ">
+
+<!ENTITY bcm47xx-utils-version "1.0">
+<!ENTITY bcm47xx-utils-size "43 KB">
+<!ENTITY bcm47xx-utils-url "http://cross-lfs.org/~mlankhorst/bcm47xx-utils-&bcm47xx-utils-version;.tar.bz2">
+<!ENTITY bcm47xx-utils-md5 "93bdd469c6cff2e18778d26d1185ca84">
+<!ENTITY bcm47xx-utils-home "http://openwrt.org">
 
 <!-- MIPS Bootloaders -->
 
