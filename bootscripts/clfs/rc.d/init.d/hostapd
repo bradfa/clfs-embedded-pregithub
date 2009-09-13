@@ -18,6 +18,7 @@ if [ ! -f /etc/hostapd.conf ]; then
 	echo -n "Starting hostapd: /etc/hostapd.conf not found "
 	false
 	check_status
+	exit 0
 fi
 
 case "$1" in
