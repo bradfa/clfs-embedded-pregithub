@@ -26,7 +26,19 @@ fi
 
 case "$1" in
 start)
-	n=0
+
+	# Add a specific workaround for the case of weirdly set wireless mac address
+	# Do what openwrt is doing, and increment the last hex with 2
+	if [ "`nvram get il0macaddr`" = 00:90:4c:5f:00:2a ]; then
+		et0="$(nvram get et0macaddr)"
+		prefix="$(echo $et0 | sed -e 's/:..$//')"
+		addendum=$(( (0x$(echo $et0 | sed -e s/.*://g) + 2) % 256 ))
+		il0=$(printf %s:%02x $prefix $addendum)
+		echo -n "Fixing up wlan0 mac address: "
+		nvram set il0macaddr=$il0 && nvram commit
+		check_status
+		ifconfig wlan0 hw ether $il0 2>/dev/null
+	fi
 
 	# eth0 has to be up for this
 	ifconfig eth0 up
