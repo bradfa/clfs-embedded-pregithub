@@ -31,7 +31,7 @@
 
 <screen os="b"><userinput>
 cd hostapd; cat &gt; .config &lt;&lt; EOF
-# Support for nl80211 driver
+<literal># Support for nl80211 driver
 CONFIG_DRIVER_NL80211=y
 # Use v2.0 of the netlink appi
 CFLAGS += -DCONFIG_LIBNL20
@@ -48,8 +48,7 @@ CONFIG_IEEE80211N=y
 # This can be used to reduce the size of the hostapd considerably if debugging
 # code is not needed.
 CONFIG_NO_STDOUT_DEBUG=y
-EOF
-</userinput></screen>
+EOF</literal></userinput></screen>
 
     <para os="c">Compile the package:</para>
 
@@ -62,6 +61,29 @@ EOF
     <para os="g">Install the bootscripts from the clfs-bootscripts package:</para>
 
 <screen os="h"><userinput>make install-hostapd DESTDIR=${CLFS}</userinput></screen>
+
+    <para os="i">Create hostapd.conf, this example file will create a WPA2 encrypted
+    host access point with the name dummy and password foobar123 on channel 4:</para>
+
+<screen os="j"><userinput>cat &gt; ${CLFS} &lt;&lt; EOF
+<literal># Sample hostapd.conf
+# See hostapd/hostapd.conf in your hostap source tree for a more detailed version
+interface=wlan0
+bridge=br0
+ctrl_interface=/var/run/hostapd
+ssid=<replaceable>dummy</replaceable>
+#country_code=US
+country_code=<replaceable>EU</replaceable>
+hw_mode=g
+channel=<replaceable>4</replaceable>
+
+# wpa=1 only allow WPA1
+# wpa=2 allow WPA2 only
+# wpa=3 allow WPA1 + WPA2
+wpa=2
+wpa_passphrase=<replaceable>foobar123</replaceable>
+wpa_pairwise=TKIP CCMP
+EOF</literal></userinput></screen>
 
   </sect2>
 
