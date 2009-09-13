@@ -82,7 +82,8 @@ channel=<replaceable>4</replaceable>
 # wpa=3 allow WPA1 + WPA2
 wpa=2
 wpa_passphrase=<replaceable>foobar123</replaceable>
-wpa_pairwise=TKIP CCMP
+wpa_pairwise=CCMP TKIP
+rsn_pairwise=CCMP
 EOF</literal></userinput></screen>
 
   </sect2>
