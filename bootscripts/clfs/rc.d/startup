@@ -4,12 +4,16 @@
 # 
 . /etc/rc.d/init.d/functions
 
-/bin/mount -t tmpfs /tmp /tmp
 /bin/mount -t proc none /proc
 /bin/mount -t sysfs none /sys
+/bin/mount -t tmpfs /tmp /tmp
 /bin/mount -t tmpfs -o mode=0755 none /dev
 /bin/mkdir /dev/pts
 /bin/mkdir /dev/shm
+/bin/mount -t tmpfs -o mode=0755 /var /var
+for x in cache lib lib/misc lib/locate local lock log mail opt run spool; do mkdir /var/$x; done
+ln -s ../tmp /var/tmp
+
 /bin/echo "/sbin/mdev" > /proc/sys/kernel/hotplug
 
 echo -n "Starting mdev: "
