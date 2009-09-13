@@ -42,7 +42,9 @@
    xpointer="xpointer(//*[@os='e'])"/>
 
    <para os="i">Since bcm47xx is fixed hardware, a default kernel config can be obtained,
-   which can be used as a starting point to enable all bcm43xx onboard hardware. To obtain the standard config file:</para>
+   which can be used as a starting point to enable most bcm43xx onboard hardware,
+   omitting optional support for a PCI bus, USB support and the bcm47xx watchdog timer.
+   To obtain the standard config file:</para>
 
    <screen os="xi"><userinput>wget &linux-bcm47xx-config-url; -O .config</userinput></screen>
 
