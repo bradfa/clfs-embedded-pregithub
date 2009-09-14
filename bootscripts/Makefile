@@ -1,17 +1,27 @@
-ETCDIR=/etc
-EXTDIR=${DESTDIR}${ETCDIR}
-MODE=754
-DIRMODE=755
-CONFMODE=644
+VERSION		:= 1.0-pre5
 
-all: install
+ETCDIR		:= /etc
+EXTDIR		:= ${DESTDIR}${ETCDIR}
+MODE		:= 754
+DIRMODE		:= 755
+CONFMODE	:= 644
+
+all:
+	@grep "^install" Makefile | cut -d ":" -f 1
+	@echo dist
+	@echo "Select an appropriate install target from the above list" ; exit 1
+
+dist:
+	rm -rf "dist/bootscripts-clfs-embedded-$(VERSION)"
+	mkdir -p "dist/bootscripts-clfs-embedded-$(VERSION)"
+	tar --exclude dist -c * | tar -x -C "dist/bootscripts-clfs-embedded-$(VERSION)"
+	(cd dist; tar -cjf "bootscripts-clfs-embedded-$(VERSION).tar.bz2" "bootscripts-clfs-embedded-$(VERSION)")
+	rm -rf "dist/bootscripts-clfs-embedded-$(VERSION)"
 
 create-dirs:
-	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/start
-	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/stop
-	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/init.d
+	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/{init.d,start,stop}
 
-install: create-dirs
+install-bootscripts: create-dirs
 	install -m ${CONFMODE} clfs/rc.d/init.d/functions ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/rc.d/startup         ${EXTDIR}/rc.d/
 	install -m ${MODE} clfs/rc.d/shutdown        ${EXTDIR}/rc.d/
@@ -25,19 +35,20 @@ install: create-dirs
 	ln -sf ../init.d/bridge ${EXTDIR}/rc.d/start/S09bridge
 	ln -sf ../init.d/bridge ${EXTDIR}/rc.d/stop/K81bridge
 
+install-bcm47xx: create-dirs
+        install -m ${MODE} clfs/rc.d/init.d/bcm47xx-switch ${EXTDIR}/rc.d/init.d/
+        ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/start/S08bcm47xx-switch
+        ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/stop/K82bcm47xx-switch
+
 install-dropbear: create-dirs
-	install -m ${MODE} clfs/rc.d/init.d/sshd   ${EXTDIR}/rc.d/init.d/
-	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/start/S30sshd
-	ln -sf ../init.d/sshd ${EXTDIR}/rc.d/stop/K30sshd
+        install -m ${MODE} clfs/rc.d/init.d/sshd   ${EXTDIR}/rc.d/init.d/
+        ln -sf ../init.d/sshd ${EXTDIR}/rc.d/start/S30sshd
+        ln -sf ../init.d/sshd ${EXTDIR}/rc.d/stop/K30sshd
 
 install-hostapd: create-dirs
-	install -m ${MODE} clfs/rc.d/init.d/hostapd ${EXTDIR}/rc.d/init.d
-	ln -sf ../init.d/hostapd ${EXTDIR}/rc.d/start/S08hostapd
-	ln -sf ../init.d/hostapd ${EXTDIR}/rc.d/stop/K82hostapd
+        install -m ${MODE} clfs/rc.d/init.d/hostapd ${EXTDIR}/rc.d/init.d
+        ln -sf ../init.d/hostapd ${EXTDIR}/rc.d/start/S08hostapd
+        ln -sf ../init.d/hostapd ${EXTDIR}/rc.d/stop/K82hostapd
 
-install-bcm47xx: create-dirs
-	install -m ${MODE} clfs/rc.d/init.d/bcm47xx-switch ${EXTDIR}/rc.d/init.d/
-	ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/start/S08bcm47xx-switch
-	ln -sf ../init.d/bcm47xx-switch ${EXTDIR}/rc.d/stop/K82bcm47xx-switch
-
-.PHONY: all create-dirs install install-dropbear install-bridge
+.PHONY: dist all create-dirs install install-bcm47xx install-dropbear \
+        install-hostapd
