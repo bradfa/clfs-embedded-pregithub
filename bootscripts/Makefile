@@ -12,11 +12,11 @@ all:
 	@echo "Select an appropriate install target from the above list" ; exit 1
 
 dist:
-	rm -rf "dist/bootscripts-clfs-embedded-$(VERSION)"
-	mkdir -p "dist/bootscripts-clfs-embedded-$(VERSION)"
-	tar --exclude dist -c * | tar -x -C "dist/bootscripts-clfs-embedded-$(VERSION)"
-	(cd dist; tar -cjf "bootscripts-clfs-embedded-$(VERSION).tar.bz2" "bootscripts-clfs-embedded-$(VERSION)")
-	rm -rf "dist/bootscripts-clfs-embedded-$(VERSION)"
+	rm -rf "dist/clfs-embedded-bootscripts-$(VERSION)"
+	mkdir -p "dist/clfs-embedded-bootscripts-$(VERSION)"
+	tar --exclude dist -c * | tar -x -C "dist/clfs-embedded-bootscripts-$(VERSION)"
+	(cd dist; tar -cjf "clfs-embedded-bootscripts-$(VERSION).tar.bz2" "clfs-embedded-bootscripts-$(VERSION)")
+	rm -rf "dist/clfs-embedded-bootscripts-$(VERSION)"
 
 create-dirs:
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/{init.d,start,stop}
