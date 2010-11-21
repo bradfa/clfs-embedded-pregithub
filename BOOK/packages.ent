@@ -40,10 +40,10 @@
 <!ENTITY gcc-md5 "cc3c5565fdb9ab87a05ddb106ba0bd1f ">
 <!ENTITY gcc-home "http://gcc.gnu.org">
 
-<!ENTITY gmp-version "4.2.4">
-<!ENTITY gmp-size "1,670 KB">
+<!ENTITY gmp-version "5.0.1">
+<!ENTITY gmp-size "1,960 KB">
 <!ENTITY gmp-url "&gnu;gmp/gmp-&gmp-version;.tar.bz2">
-<!ENTITY gmp-md5 "fc1e3b3a2a5038d4d74138d0b9cf8dbe">
+<!ENTITY gmp-md5 "6bac6df75c192a13419dfd71d19240a7">
 <!ENTITY gmp-home "http://gmplib.org/">
 
 <!ENTITY iana-etc-version "2.30">
