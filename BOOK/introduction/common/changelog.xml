@@ -40,6 +40,9 @@
       <para>November 21, 2010</para>
       <itemizedlist>
         <listitem>
+          <para>[jciccone] - Updated the Linux Kernel to 2.6.36.</para>
+        </listitem>
+        <listitem>
           <para>[jciccone] - Make sure we change CLFS_HOST before we set it.
           Also make sure that CLFS_HOST gets saved to the bashrc.</para>
         </listitem>

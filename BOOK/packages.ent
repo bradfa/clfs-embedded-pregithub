@@ -54,10 +54,10 @@
 
 <!ENTITY linux-dl-version "2.6">
 
-<!ENTITY linux-version "2.6.30.5">
-<!ENTITY linux-size "58,034 KB">
+<!ENTITY linux-version "2.6.36">
+<!ENTITY linux-size "68,632 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "be9c3a697a54ac099c910d068ff0dc03">
+<!ENTITY linux-md5 "61f3739a73afb6914cb007f37fb09b62">
 <!ENTITY linux-home "http://www.kernel.org">
 
 <!ENTITY mpfr-version "2.4.1">
