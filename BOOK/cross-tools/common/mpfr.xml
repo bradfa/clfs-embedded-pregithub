@@ -26,16 +26,11 @@
   <sect2 role="installation">
     <title>Installation of MPFR</title>
 
-    <para os="p1">The following patch contains a number of updates to the
-    &mpfr-version; branch by the MPFR developers:</para>
-
-<screen os="p2"><userinput>patch -Np1 -i ../&mpfr-branch_update-patch;</userinput></screen>
-
     <para os="a">Prepare MPFR for compilation:</para>
 
-<screen os="b"><userinput>LDFLAGS="-Wl,-rpath,/cross-tools/lib" \
-  ./configure --prefix=/cross-tools --enable-shared \
-  --with-gmp=/cross-tools</userinput></screen>
+<screen os="b"><userinput>LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
+  ./configure --prefix=${CLFS}/cross-tools --enable-shared \
+  --with-gmp=${CLFS}/cross-tools</userinput></screen>
 
     <para os="c">Compile the package:</para>
 
