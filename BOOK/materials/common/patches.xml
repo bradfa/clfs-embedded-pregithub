@@ -28,24 +28,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>GCC Branch Update Patch - <token>&gcc-branch_update-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&gcc-branch_update-patch;"/></para>
-        <para>MD5 sum: <literal>&gcc-branch_update-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>GCC Posix Patch - <token>&gcc-posix-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&gcc-posix-patch;"/></para>
-        <para>MD5 sum: <literal>&gcc-posix-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>uClibc Branch Update Patch - <token>&uclibc-branch_update-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink

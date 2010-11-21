@@ -40,6 +40,9 @@
       <para>November 21, 2010</para>
       <itemizedlist>
         <listitem>
+          <para>[jciccone] - Updated GCC to 4.5.1.</para>
+        </listitem>
+        <listitem>
           <para>[jciccone] - Updated Binutils to 2.20.1.</para>
         </listitem>
         <listitem>

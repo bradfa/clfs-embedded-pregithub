@@ -24,22 +24,6 @@
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
-    xpointer="xpointer(//*[@os='p1'])"/>
-
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
-    xpointer="xpointer(//*[@os='p2'])"/>
-
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
-    xpointer="xpointer(//*[@os='p3'])"/>
-
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
-    xpointer="xpointer(//*[@os='p4'])"/>
-
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
     xpointer="xpointer(//*[@os='c'])"/>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
@@ -50,11 +34,12 @@
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='e'])"/>
 
-<screen os="ae"><userinput>../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
+<screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
+  ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
-  --with-mpfr=/cross-tools --with-gmp=/cross-tools</userinput></screen>
+  --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the new configure options:</title>
