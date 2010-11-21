@@ -48,7 +48,8 @@ we are only using 2. For more information, go to
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='g'])"/>
 
-<screen os="h"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_NOT_ENDIAN=\""${CLFS_NOT_ENDIAN}\"" &gt;&gt; ~/.bashrc

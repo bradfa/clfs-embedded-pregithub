@@ -37,6 +37,16 @@
 -->
 
     <listitem>
+      <para>November 21, 2010</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Make sure we change CLFS_HOST before we set it.
+          Also make sure that CLFS_HOST gets saved to the bashrc.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 8, 2008</para>
       <itemizedlist>
         <listitem>

@@ -20,7 +20,7 @@
   target machine, you can use the table at the bottom of this page. Set
   the command using the method listed below:</para>
 
-<screen os="b"><userinput>export CLFS_HOST="${MACHTYPE}"
+<screen os="b"><userinput>export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 export CLFS_TARGET="{target triplet}"</userinput></screen>
 
   <para os="c">Now we will setup out default architecture needed we need to build:</para>
@@ -35,7 +35,8 @@ export CLFS_NOT_ENDIAN=BIG</userinput></screen>
   <para os="g">Now we will add this to <filename>~/.bashrc</filename>, just in
   case you have to exit and restart building later:</para>
 
-<screen os="h"><userinput>echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_NOT_ENDIAN=\""${CLFS_NOT_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></screen>
