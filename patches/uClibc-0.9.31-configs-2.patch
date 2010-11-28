@@ -7,7 +7,7 @@ Description: Default configurations for CLFS builds of uClibc.
 
 diff -Naur uClibc-0.9.31.orig/clfs/config.alpha.little uClibc-0.9.31/clfs/config.alpha.little
 --- uClibc-0.9.31.orig/clfs/config.alpha.little	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.alpha.little	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.alpha.little	2010-11-28 11:39:10.290656988 -0500
 @@ -0,0 +1,218 @@
 +#
 +# Automatically generated make config: don't edit
@@ -86,7 +86,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.alpha.little uClibc-0.9.31/clfs/config
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -229,7 +229,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.alpha.little uClibc-0.9.31/clfs/config
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.arm.big uClibc-0.9.31/clfs/config.arm.big
 --- uClibc-0.9.31.orig/clfs/config.arm.big	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.arm.big	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.arm.big	2010-11-28 11:39:10.290656988 -0500
 @@ -0,0 +1,252 @@
 +#
 +# Automatically generated make config: don't edit
@@ -337,7 +337,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.arm.big uClibc-0.9.31/clfs/config.arm.
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -485,7 +485,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.arm.big uClibc-0.9.31/clfs/config.arm.
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.arm.little uClibc-0.9.31/clfs/config.arm.little
 --- uClibc-0.9.31.orig/clfs/config.arm.little	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.arm.little	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.arm.little	2010-11-28 11:39:10.290656988 -0500
 @@ -0,0 +1,252 @@
 +#
 +# Automatically generated make config: don't edit
@@ -593,7 +593,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.arm.little uClibc-0.9.31/clfs/config.a
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -741,7 +741,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.arm.little uClibc-0.9.31/clfs/config.a
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.hppa.big uClibc-0.9.31/clfs/config.hppa.big
 --- uClibc-0.9.31.orig/clfs/config.hppa.big	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.hppa.big	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.hppa.big	2010-11-28 11:39:10.295156079 -0500
 @@ -0,0 +1,236 @@
 +#
 +# Automatically generated make config: don't edit
@@ -837,7 +837,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.hppa.big uClibc-0.9.31/clfs/config.hpp
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -981,7 +981,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.hppa.big uClibc-0.9.31/clfs/config.hpp
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.i386.little uClibc-0.9.31/clfs/config.i386.little
 --- uClibc-0.9.31.orig/clfs/config.i386.little	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.i386.little	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.i386.little	2010-11-28 11:39:10.295156079 -0500
 @@ -0,0 +1,256 @@
 +#
 +# Automatically generated make config: don't edit
@@ -1088,7 +1088,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.i386.little uClibc-0.9.31/clfs/config.
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -1241,7 +1241,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.i386.little uClibc-0.9.31/clfs/config.
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.mips.big uClibc-0.9.31/clfs/config.mips.big
 --- uClibc-0.9.31.orig/clfs/config.mips.big	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.mips.big	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.mips.big	2010-11-28 11:39:10.295156079 -0500
 @@ -0,0 +1,242 @@
 +#
 +# Automatically generated make config: don't edit
@@ -1339,7 +1339,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.mips.big uClibc-0.9.31/clfs/config.mip
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -1487,7 +1487,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.mips.big uClibc-0.9.31/clfs/config.mip
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.mips.little uClibc-0.9.31/clfs/config.mips.little
 --- uClibc-0.9.31.orig/clfs/config.mips.little	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.mips.little	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.mips.little	2010-11-28 11:39:10.299157039 -0500
 @@ -0,0 +1,262 @@
 +#
 +# Automatically generated make config: don't edit
@@ -1605,7 +1605,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.mips.little uClibc-0.9.31/clfs/config.
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
@@ -1753,7 +1753,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.mips.little uClibc-0.9.31/clfs/config.
 +# UCLIBC_MJN3_ONLY is not set
 diff -Naur uClibc-0.9.31.orig/clfs/config.x86_64.little uClibc-0.9.31/clfs/config.x86_64.little
 --- uClibc-0.9.31.orig/clfs/config.x86_64.little	1969-12-31 19:00:00.000000000 -0500
-+++ uClibc-0.9.31/clfs/config.x86_64.little	2010-11-28 10:40:39.458657350 -0500
++++ uClibc-0.9.31/clfs/config.x86_64.little	2010-11-28 11:39:10.299157039 -0500
 @@ -0,0 +1,245 @@
 +#
 +# Automatically generated make config: don't edit
@@ -1855,7 +1855,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.x86_64.little uClibc-0.9.31/clfs/confi
 +MALLOC_GLIBC_COMPAT=y
 +UCLIBC_DYNAMIC_ATEXIT=y
 +# COMPAT_ATEXIT is not set
-+# UCLIBC_SUSV3_LEGACY is not set
++UCLIBC_SUSV3_LEGACY=y
 +# UCLIBC_SUSV3_LEGACY_MACROS is not set
 +# UCLIBC_SUSV4_LEGACY is not set
 +# UCLIBC_HAS_STUBS is not set
