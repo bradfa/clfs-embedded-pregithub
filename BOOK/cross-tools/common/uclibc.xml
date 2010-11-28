@@ -42,7 +42,7 @@
    <para os="d">Now we will copy the configuration file best matching this
    build and use that as the base:</para>
 
-<screen os="e"><userinput>cp clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config</userinput></screen>
+<screen os="e"><userinput>cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config</userinput></screen>
 
     <para os="f">The config is a basic working system, but there are some
     options that are architecture specifc that need to be set. The following
