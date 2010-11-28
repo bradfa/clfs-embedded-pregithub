@@ -28,11 +28,11 @@
     </varlistentry>
 
     <varlistentry>
-      <term>uClibc Branch Update Patch - <token>&uclibc-branch_update-patch-size;</token>:</term>
+      <term>uClibc Configs Patch - <token>&uclibc-configs-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
-        url="&patches-root;&uclibc-branch_update-patch;"/></para>
-        <para>MD5 sum: <literal>&uclibc-branch_update-patch-md5;</literal></para>
+        url="&patches-root;&uclibc-configs-patch;"/></para>
+        <para>MD5 sum: <literal>&uclibc-configs-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 

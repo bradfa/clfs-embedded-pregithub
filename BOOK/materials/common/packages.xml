@@ -123,15 +123,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>uClibc Config File (&uclibc-config-version;) - <token>&uclibc-config-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&uclibc-config-home;"/></para>
-        <para>Download: <ulink url="&uclibc-config-url;"/></para>
-        <para>MD5 sum: <literal>&uclibc-config-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Zlib (&zlib-version;) - <token>&zlib-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&zlib-home;"/></para>

@@ -24,18 +24,8 @@
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/arm.*/arm/g')</userinput></screen>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='e'])"/>
-
-<screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/armeb/BIG/' -e 's/arm/LITTLE/')
-if [ "${CLFS_ENDIAN}" = "LITTLE" ]; then
-  export CLFS_NOT_ENDIAN=BIG
-else
-  export CLFS_NOT_ENDIAN=LITTLE
-fi</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=arm
+export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../x86/variables.xml"
@@ -57,21 +47,25 @@ fi</userinput></screen>
       <thead>
         <row>
           <entry>Processor</entry>
+          <entry>Endianess</entry>
           <entry>Target Triplet</entry>
         </row>
       </thead>
 
       <tbody>
         <row>
-          <entry>Generic arm, little endian</entry>
+          <entry>Generic arm</entry>
+          <entry>little</entry>
           <entry>arm-unknown-linux-uclibc</entry>
         </row>
         <row>
-          <entry>Generic arm, version 5, little endian</entry>
+          <entry>Generic arm, version 5</entry>
+          <entry>little</entry>
           <entry>armv5l-unknown-linux-uclibc</entry>
         </row>
         <row>
-          <entry>Generic arm, version 5, big endian</entry>
+          <entry>Generic arm, version 5</entry>
+          <entry>big</entry>
           <entry>armv5b-unknown-linux-uclibc</entry>
         </row>
       </tbody>

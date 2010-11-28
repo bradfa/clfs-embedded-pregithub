@@ -8,9 +8,9 @@
 <!ENTITY busybox-branch_update-patch-md5 "65c152520da3d998233c11de4612d667">
 <!ENTITY busybox-branch_update-patch-size "15 KB">
 
-<!ENTITY uclibc-branch_update-patch "uClibc-&uclibc-version;-branch_update-1.patch">
-<!ENTITY uclibc-branch_update-patch-md5 "7f1ca40d176b74b865977fb085a5eb7f">
-<!ENTITY uclibc-branch_update-patch-size "36 KB">
+<!ENTITY uclibc-configs-patch "uClibc-&uclibc-version;-configs-1.patch">
+<!ENTITY uclibc-configs-patch-md5 "386e96413ff440f8c4c088be8fa3827e">
+<!ENTITY uclibc-configs-patch-size "52 KB">
 
 <!-- Beyond patches -->
 

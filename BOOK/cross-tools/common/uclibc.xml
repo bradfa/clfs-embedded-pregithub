@@ -34,27 +34,15 @@
       do a more custom build for your uClibc installation.</para>
     </note>
 
-    <para os="p1">The following patch contains a number of updates to the
-    &uclibc-version; branch by the uClibc developers:</para>
+    <para os="b">The following patch contains the default configurations for
+    the architectures covered in this book:</para>
 
-<screen os="p2"><userinput>patch -Np1 -i ../&uclibc-branch_update-patch;</userinput></screen>
+<screen os="c"><userinput>patch -Np1 -i ../&uclibc-configs-patch;</userinput></screen>
 
-    <para os="b">Copy the uClibc config file from where you downloaded it:</para>
+   <para os="d">Now we will copy the configuration file best matching this
+   build and use that as the base:</para>
 
-<screen os="c"><userinput>cp ${CLFS}/sources/uClibc-&uclibc-version;.config .config</userinput></screen>
-
-   <para os="d">We will need to edit the configuration file, to make sure everything gets
-   compiled and it's compiled to the proper architecture:</para>
-
-<screen os="e"><userinput>cp .config{,.orig}
-sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
-  -e "s@\(^TARGET_ARCH=\).*@\1\"${CLFS_ARCH}\"@" \
-  -e "s@\(^CROSS_COMPILER_PREFIX=\).*@\1\"${CLFS_TARGET}-\"@" \
-  -e "s@\(^KERNEL_HEADERS=\).*@\1\"${CLFS}/usr/include\"@" \
-  -e "s@.*\(^ARCH_${CLFS_NOT_ENDIAN}_ENDIAN\).*@# \1 is not set@g" \
-  -e "s@.*\(ARCH_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
-  -e "s@.*\(ARCH_WANTS_${CLFS_ENDIAN}_ENDIAN\).*@\1=y@g" \
-  .config.orig > .config</userinput></screen>
+<screen os="e"><userinput>cp clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config</userinput></screen>
 
     <para os="f">The config is a basic working system, but there are some
     options that are architecture specifc that need to be set. The following
@@ -65,7 +53,7 @@ sed -e "s@# TARGET_${CLFS_ARCH} is not set@TARGET_${CLFS_ARCH}=y@" \
 
     <para os="h">Compile the package:</para>
 
-<screen os="i"><userinput>make CROSS=${CLFS_TARGET}- CC="${CLFS_TARGET}-gcc ${BUILD}"</userinput></screen>
+<screen os="i"><userinput>make</userinput></screen>
 
     <para os="l">Install the package:</para>
 

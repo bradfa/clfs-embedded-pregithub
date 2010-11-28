@@ -14,23 +14,19 @@
 
   <para os="a">During the building of the cross-compile tools you will need to
   set a few variables that will be dependent on your particular needs.
-  You will need to set the target triplet for the target
-  architecture. You can do this by running the same command as above, just
-  running it on the target machine. If you can't run the command on the
-  target machine, you can use the table at the bottom of this page. Set
+  You will need to set the target triplet for the target architecture. As well
+  as the CPUs type and endianess. If you do not know what triplet you want,
+  you can use the table at the bottom of this page as a reference. Set
   the command using the method listed below:</para>
 
 <screen os="b"><userinput>export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
-export CLFS_TARGET="{target triplet}"</userinput></screen>
+export CLFS_TARGET=<replaceable>[target triplet]</replaceable></userinput></screen>
 
-  <para os="c">Now we will setup out default architecture needed we need to build:</para>
+  <para os="c">Now we will set the architecture and endianess of the CPU based
+  on the target triplet provided above:</para>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')</userinput></screen>
-
-  <para os="e">Now we will setup out default endian needed we need to build and set the one we don't need:</para>
-
-<screen os="f"><userinput>export CLFS_ENDIAN=LITTLE
-export CLFS_NOT_ENDIAN=BIG</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')
+export CLFS_ENDIAN=little</userinput></screen>
 
   <para os="g">Now we will add this to <filename>~/.bashrc</filename>, just in
   case you have to exit and restart building later:</para>
@@ -38,8 +34,7 @@ export CLFS_NOT_ENDIAN=BIG</userinput></screen>
 <screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_NOT_ENDIAN=\""${CLFS_NOT_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">
     <title>Processor Type and  Target Triplets</title>

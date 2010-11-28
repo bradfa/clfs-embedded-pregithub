@@ -24,18 +24,8 @@
   href="../x86/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/mips64/mips/')</userinput></screen>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='e'])"/>
-
-<screen os="f"><userinput>export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/mipsel/LITTLE/' -e 's/mips/BIG/')
-if [ "${CLFS_ENDIAN}" = "LITTLE" ]; then
-  export CLFS_NOT_ENDIAN=BIG
-else
-  export CLFS_NOT_ENDIAN=LITTLE
-fi</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/\(mips\)\(64\)\?\(el\)\?-.*/\1\3/')
+export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/mipsel/little/' -e 's/mips/big/')</userinput></screen>
 
   <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
 uClibc is built. There are currently 5 MIPS ISA Levels. To keep things simple
@@ -52,7 +42,6 @@ we are only using 2. For more information, go to
 echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_NOT_ENDIAN=\""${CLFS_NOT_ENDIAN}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">

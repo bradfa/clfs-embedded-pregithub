@@ -37,6 +37,15 @@
 -->
 
     <listitem>
+      <para>November 28, 2010</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Updated uClibc to 0.9.31.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 21, 2010</para>
       <itemizedlist>
         <listitem>
