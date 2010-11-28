@@ -4,9 +4,13 @@
 
 <!-- Start of Common Patches -->
 
-<!ENTITY busybox-branch_update-patch "busybox-&busybox-version;-branch_update-1.patch">
-<!ENTITY busybox-branch_update-patch-md5 "65c152520da3d998233c11de4612d667">
-<!ENTITY busybox-branch_update-patch-size "15 KB">
+<!ENTITY busybox-config-patch "busybox-&busybox-version;-config-1.patch">
+<!ENTITY busybox-config-patch-md5 "64bee07ba3efbb512fb4f348e814bf31">
+<!ENTITY busybox-config-patch-size "4 KB">
+
+<!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
+<!ENTITY busybox-fixes-patch-md5 "64bee07ba3efbb512fb4f348e814bf31">
+<!ENTITY busybox-fixes-patch-size "4 KB">
 
 <!ENTITY uclibc-configs-patch "uClibc-&uclibc-version;-configs-1.patch">
 <!ENTITY uclibc-configs-patch-md5 "386e96413ff440f8c4c088be8fa3827e">

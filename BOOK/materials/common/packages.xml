@@ -33,15 +33,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Busybox Config File (&busybox-config-version;) - <token>&busybox-config-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&busybox-config-home;"/></para>
-        <para>Download: <ulink url="&busybox-config-url;"/></para>
-        <para>MD5 sum: <literal>&busybox-config-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>CLFS-Bootscripts (&clfs-bootscripts-version;) - <token>&clfs-bootscripts-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&clfs-bootscripts-home;"/></para>

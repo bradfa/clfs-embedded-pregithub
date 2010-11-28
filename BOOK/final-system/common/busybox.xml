@@ -29,33 +29,36 @@
   <sect2 role="installation">
     <title>Installation of Busybox</title>
 
-    <para os="p1">The following patch contains a number of updates to the
-    &busybox-version; branch by the Busybox developers:</para>
+    <para os="p1">The following patch contains a number of fixes to version
+    &busybox-version; by the Busybox developers:</para>
 
-<screen os="p2"><userinput>patch -Np1 -i ../&busybox-branch_update-patch;</userinput></screen>
+<screen os="p2"><userinput>patch -Np1 -i ../&busybox-fixes-patch;</userinput></screen>
 
-    <para os="a">Copy the Busybox config file from where you downloaded it::</para>
+    <para os="a">The following patch contains a default configuration for busybox:</para>
 
-<screen os="b"><userinput>cp ${CLFS}/sources/busybox-&busybox-version;.config .config</userinput></screen>
+<screen os="b"><userinput>patch -Np1 -i ../&busybox-config-patch;
+cp -v clfs/config .config</userinput></screen>
 
     <note os="c">
-      <para>Below we are just telling Busybox to use the default configuration of
-      Busybox. For those for more adventureous, you can use make menuconfig, and
-      do a more custom build of your Busybox.</para>
+      <para>Currently we are just telling Busybox to use a generic
+      configuration. For those for more adventureous, you can use
+      <command>make menuconfig</command>, and create a custom or modified
+      configuration for your build.</para>
     </note>
 
-   <para os="d">Now we will take our configuration we just created, and make Busybox use it:</para>
+    <para os="d">The following tells BusyBox to validate the configuration,
+    and makes sure all required options are defined:</para>
 
 <screen os="e"><userinput>make oldconfig</userinput></screen>
 
     <para os="f">Compile the package:</para>
 
-<screen os="g"><userinput>make ARCH=${CLFS_ARCH} CC="${CC} ${BUILD}" CROSS_COMPILE="${CLFS_TARGET}-"</userinput></screen>
+<screen os="g"><userinput>make CROSS_COMPILE="${CLFS_TARGET}-"</userinput></screen>
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make ARCH=${CLFS_ARCH} CC="${CC} ${BUILD}" CROSS_COMPILE="${CLFS_TARGET}-" \
-  CONFIG_PREFIX=${CLFS} install</userinput></screen>
+<screen os="i"><userinput>make CROSS_COMPILE="${CLFS_TARGET}-" \
+  CONFIG_PREFIX="${CLFS}" install</userinput></screen>
 
     <para os="j">If your going to build your kernel with modules, you will need to make
     sure <command>depmod.pl</command> is available:</para>

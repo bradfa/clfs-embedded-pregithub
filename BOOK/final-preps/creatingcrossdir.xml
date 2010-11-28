@@ -18,8 +18,7 @@
   temp-system. By keeping these programs in a separate directory, they
   can easily be discarded later after their use.</para>
 
-  <para>Create the required directory by running the following as
-  <systemitem class="username">root</systemitem>:</para>
+  <para>Create the required directory by running the following:</para>
 
 <screen><userinput>install -dv ${CLFS}/cross-tools</userinput></screen>
 
