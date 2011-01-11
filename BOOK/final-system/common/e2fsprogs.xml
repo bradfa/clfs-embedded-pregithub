@@ -19,8 +19,9 @@
 
     <para>The E2fsprogs package contains the utilities for handling the
     <systemitem class="filesystem">ext2</systemitem> file system. It also
-    supports the <systemitem class="filesystem">ext3</systemitem> journaling
-    file system.</para>
+    supports the <systemitem class="filesystem">ext3</systemitem> and
+    <systemitem class="filesystem">ext4</systemitem> journaling
+    file systems.</para>
 
   </sect2>
 
@@ -36,8 +37,8 @@ cd build</userinput></screen>
     <para os="c">Prepare E2fsprogs for compilation:</para>
 
 <screen os="d"><userinput>CC="${CC} ${BUILD} -Os" ../configure --prefix=/usr \
-  --with-root-prefix="" --host=${CLFS_TARGET} --with-cc="${CC} ${BUILD} -Os" \
-  --with-linker=${LD} --disable-tls</userinput></screen>
+    --with-root-prefix="" --host=${CLFS_TARGET} --disable-tls \
+    --disable-debugfs --disable-e2initrd-helper --disable-nls</userinput></screen>
 
     <variablelist os="e">
       <title>The meaning of the configure options:</title>
@@ -53,26 +54,38 @@ cd build</userinput></screen>
           <filename class="directory">/sbin</filename>. If this option is
           not passed to E2fsprogs' configure, the programs are installed into
           the <filename class="directory">/usr</filename> directory.</para>
-        </listitem>
-      </varlistentry>
+       </listitem>
+     </varlistentry>
 
       <varlistentry os="e2">
-        <term><parameter>--enable-elf-shlibs</parameter></term>
+        <term><parameter>--disable-tls</parameter></term>
         <listitem>
-          <para>This creates the shared libraries which some programs
-          in this package use.</para>
+          <para>Disable thread local support</para>
         </listitem>
       </varlistentry>
 
       <varlistentry os="e3">
-        <term><parameter>--disable-evms</parameter></term>
+        <term><parameter>--disable-debugfs</parameter></term>
         <listitem>
-          <para>This disables the building of the Enterprise Volume
-          Management System (EVMS) plugin. This plugin is not up-to-date with
-          the latest EVMS internal interfaces and EVMS is not installed as part
-          of a base CLFS system, so the plugin is not required. See the EVMS
-          website at <ulink url="http://evms.sourceforge.net/"/> for more
-          information regarding EVMS.</para>
+          <para>Disable building of the debugfs program.
+          The debugfs program relies upon utime.h which is not
+          available in the embedded system.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="e4">
+        <term><parameter>--disable-e2initrd-helper</parameter></term>
+        <listitem>
+          <para>Disable building of the e2initrd-helper.
+          The e2initrd-helper program relies upon utime.h which is not
+          available in the embedded system.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="e5">
+        <term><parameter>--disable-nls</parameter></term>
+        <listitem>
+          <para>Disable native language support.</para>
         </listitem>
       </varlistentry>
 
@@ -100,10 +113,10 @@ cd build</userinput></screen>
       <segtitle>Installed libraries</segtitle>
 
       <seglistitem>
-        <seg>badblocks, blkid, chattr, compile_et, debugfs, dumpe2fs,
-        e2fsck, e2image, e2label, filefrag, findfs, fsck, fsck.ext2, fsck.ext3,
-        logsave, lsattr, mk_cmds, mke2fs, mkfs.ext2, mkfs.ext3,
-        mklost+found, resize2fs, tune2fs, and uuidgen.</seg>
+        <seg>badblocks, blkid, chattr, compile_et, dumpe2fs,
+    e2fsck, e2image, e2label, filefrag, findfs, fsck, fsck.ext2, fsck.ext3,
+    fsck.ext4, logsave, lsattr, mk_cmds, mke2fs, mkfs.ext2, mkfs.ext3, 
+    mkfs.ext4, mklost+found, resize2fs, tune2fs, and uuidgen.</seg>
         <seg>libblkid.[a,so], libcom_err.[a,so], libe2p.[a,so],
         libext2fs.[a,so], libss.[a,so], and libuuid.[a,so]</seg>
       </seglistitem>
@@ -158,18 +171,6 @@ cd build</userinput></screen>
           <filename class="libraryfile">com_err</filename> library</para>
           <indexterm zone="ch-system-e2fsprogs compile_et">
             <primary sortas="b-compile_et">compile_et</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="debugfs">
-        <term><command>debugfs</command></term>
-        <listitem>
-          <para>A file system debugger; it can be used to examine and change
-          the state of an <systemitem class="filesystem">ext2</systemitem>
-          file system</para>
-          <indexterm zone="ch-system-e2fsprogs debugfs">
-            <primary sortas="b-debugfs">debugfs</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -273,6 +274,17 @@ cd build</userinput></screen>
         </listitem>
       </varlistentry>
 
+      <varlistentry id="fsck.ext4">
+        <term><command>fsck.ext4</command></term>
+        <listitem>
+          <para>By default checks <systemitem class="filesystem">ext4</systemitem>
+          file systems</para>
+          <indexterm zone="ch-system-e2fsprogs fsck.ext4">
+            <primary sortas="b-fsck.ext4">fsck.ext4</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="logsave">
         <term><command>logsave</command></term>
         <listitem>
@@ -336,6 +348,17 @@ cd build</userinput></screen>
           file systems</para>
           <indexterm zone="ch-system-e2fsprogs mkfs.ext3">
             <primary sortas="b-mkfs.ext3">mkfs.ext3</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkfs.ext4">
+        <term><command>mkfs.ext4</command></term>
+        <listitem>
+          <para>By default creates <systemitem class="filesystem">ext4</systemitem>
+          file systems</para>
+          <indexterm zone="ch-system-e2fsprogs mkfs.ext4">
+            <primary sortas="b-mkfs.ext4">mkfs.ext4</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -433,7 +456,7 @@ cd build</userinput></screen>
       <varlistentry id="libss">
         <term><filename class="libraryfile">libss</filename></term>
         <listitem>
-          <para>Used by <command>debugfs</command></para>
+          <para>Contains routines for command line interface parsing</para>
           <indexterm zone="ch-system-e2fsprogs libss">
             <primary sortas="c-libss">libss</primary>
           </indexterm>

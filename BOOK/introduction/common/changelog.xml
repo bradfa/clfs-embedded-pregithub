@@ -37,6 +37,17 @@
 -->
 
     <listitem>
+      <para>Janurary 10, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Changes Submitted By Andrew Bradford via the
+          CLFS-Dev Mailing List. Updated E2fsprogs to 1.41.14 and changed some
+          configure switches for uClibc compatibility.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 28, 2010</para>
       <itemizedlist>
         <listitem>
