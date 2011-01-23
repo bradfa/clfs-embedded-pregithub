@@ -29,8 +29,7 @@
 
     <para os="b">Install the header files that are common to all architectures:</para>
 
-<screen os="c"><userinput>install -dv ${CLFS}/usr/include
-make mrproper
+<screen os="c"><userinput>make mrproper
 make ARCH=${CLFS_ARCH} headers_check
 make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=dest headers_install
 cp -rv dest/include/* ${CLFS}/usr/include</userinput></screen>
