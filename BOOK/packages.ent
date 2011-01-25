@@ -62,7 +62,7 @@
 
 <!ENTITY mpfr-version "3.0.0">
 <!ENTITY mpfr-size "1,112 KB">
-<!ENTITY mpfr-dlid "18439">
+<!ENTITY mpfr-dlid "27105">
 <!ENTITY mpfr-url "http://gforge.inria.fr/frs/download.php/&mpfr-dlid;/mpfr-&mpfr-version;.tar.bz2">
 <!ENTITY mpfr-md5 "f45bac3584922c8004a10060ab1a8f9f">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
