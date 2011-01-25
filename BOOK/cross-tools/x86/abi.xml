@@ -12,11 +12,12 @@
 
   <para os="a" >Setup for a Particular ABI:</para>
 
-<screen os="b"><userinput>export BUILD="<replaceable>[From Chart]</replaceable>"</userinput></screen>
+<screen os="b"><userinput>export BUILD="<replaceable>[From Chart]</replaceable>"
+echo export BUILD=\""${BUILD}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
-  <para os="c">The following table gives the entires for the different ABI's that CLFS Embedded supports. Make
-  sure you select one for your build, this will ensure capatibilty of your build with your target
-  architecture.</para>
+  <para os="c">The following table gives the entires for the different ABI's 
+  that CLFS Embedded supports. Make sure you select one for your build, this
+  will ensure capatibilty of your build with your target architecture.</para>
 
   <table>
     <title>List of Build Variables</title>

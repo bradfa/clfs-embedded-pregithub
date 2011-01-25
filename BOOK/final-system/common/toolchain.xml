@@ -21,7 +21,6 @@ echo <literal>export LD=\""${CLFS_TARGET}-ld\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export RANLIB=\""${CLFS_TARGET}-ranlib\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export READELF=\""${CLFS_TARGET}-readelf\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export STRIP=\""${CLFS_TARGET}-strip\""</literal> &gt;&gt; ~/.bashrc
-echo <literal>export BUILD=\""${BUILD}\""</literal> &gt;&gt; ~/.bashrc
 source ~/.bashrc</userinput></screen>
 
 </sect1>
