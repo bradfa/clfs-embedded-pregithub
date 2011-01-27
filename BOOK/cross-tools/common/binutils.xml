@@ -135,8 +135,8 @@ make</userinput></screen>
       <segtitle>Installed libraries</segtitle>
 
       <seglistitem>
-        <seg>addr2line, ar, as, c++filt, gprof, ld, nm, objcopy, objdump,
-        ranlib, readelf, size, strings, and strip</seg>
+        <seg>addr2line, ar, as, c++filt, elfedit, gprof, ld, nm, objcopy, 
+        objdump, ranlib, readelf, size, strings, and strip</seg>
         <seg>libiberty.a, libbfd.[a,so], and libopcodes.[a,so]</seg>
       </seglistitem>
     </segmentedlist>
@@ -191,6 +191,16 @@ make</userinput></screen>
         </listitem>
       </varlistentry>
 
+      <varlistentry id="elfedit">
+        <term><command>elfedit</command></term>
+        <listitem>
+          <para>Examine and modify ELF metadata within an ELF object</para>
+          <indexterm zone="ch-cross-tools-binutils elfedit">
+            <primary sortas="b-elfedit">elfedit</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="gprof">
         <term><command>gprof</command></term>
         <listitem>
@@ -219,6 +229,16 @@ make</userinput></screen>
           <para>Lists the symbols occurring in a given object file</para>
           <indexterm zone="ch-cross-tools-binutils nm">
             <primary sortas="b-nm">nm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="objcopy">
+        <term><command>objcopy</command></term>
+        <listitem>
+          <para>Copy the contents of one object file to another</para>
+          <indexterm zone="ch-cross-tools-binutils objcopy">
+            <primary sortas="b-objcopy">objcopy</primary>
           </indexterm>
         </listitem>
       </varlistentry>
