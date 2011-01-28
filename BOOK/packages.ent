@@ -28,10 +28,10 @@
 <!ENTITY e2fsprogs-md5 "05f70470aea2ef7efbb0845b2b116720">
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
-<!ENTITY gcc-version "4.5.1">
-<!ENTITY gcc-size "64,576 KB">
+<!ENTITY gcc-version "4.5.2">
+<!ENTITY gcc-size "64,775 KB">
 <!ENTITY gcc-url "ftp://gcc.gnu.org/pub/gcc/releases/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
-<!ENTITY gcc-md5 "48231a8e33ed6e058a341c53b819de1a">
+<!ENTITY gcc-md5 "d6559145853fbaaa0fd7556ed93bce9a">
 <!ENTITY gcc-home "http://gcc.gnu.org">
 
 <!ENTITY gmp-version "5.0.1">
