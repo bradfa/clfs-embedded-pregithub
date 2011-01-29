@@ -16,6 +16,10 @@
 <!ENTITY uclibc-configs-patch-md5 "4770c8abc23e10aae6cfbfca41624d4d">
 <!ENTITY uclibc-configs-patch-size "52 KB">
 
+<!ENTITY iana-etc-update-patch "iana-etc-&iana-etc-version;-update.patch">
+<!ENTITY iana-etc-update-patch-md5 "ab594a1ec88d2e05f7379d4e4e2cdbdf">
+<!ENTITY iana-etc-update-patch-size "864 KB">
+
 <!-- Beyond patches -->
 
 <!ENTITY iptables-fixes-patch "iptables-&iptables-version;-fixes-1.patch">

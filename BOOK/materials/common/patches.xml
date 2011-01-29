@@ -37,6 +37,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term>Iana-Etc Update Patch - <token>&iana-etc-update-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&iana-etc-update-patch;"/></para>
+        <para>MD5 sum: <literal>&iana-etc-update-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term>uClibc Configs Patch - <token>&uclibc-configs-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
