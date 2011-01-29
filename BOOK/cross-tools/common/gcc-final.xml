@@ -39,15 +39,16 @@
   --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
-  --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools</userinput></screen>
+  --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
+  --with-mpc=${CLFS}/cross-tools</userinput></screen>
 
     <variablelist os="af">
-      <title>The meaning of the new configure options:</title>
+      <title>The meaning of the configure options not used previously:</title>
 
       <varlistentry os="af1">
-        <term><parameter>--enable-languages=c</parameter></term>
+        <term><parameter>--enable-shared</parameter></term>
         <listitem>
-          <para>This option ensures that only the C compiler is built.</para>
+          <para>Enables the creation of the shared libraries.</para>
         </listitem>
       </varlistentry>
 
