@@ -40,9 +40,9 @@ cd ../gcc-build</userinput></screen>
   --build=${CLFS_HOST} --host=${CLFS_HOST} --target=${CLFS_TARGET} \
   --with-sysroot=${CLFS} --disable-nls  --disable-shared \
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
-  --without-headers --with-newlib --disable-decimal-float \
-  --disable-libgomp --disable-libmudflap --disable-libssp \
-  --disable-threads --enable-languages=c</userinput></screen>
+  --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
+  --disable-decimal-float --disable-libgomp --disable-libmudflap \
+  --disable-libssp --disable-threads --enable-languages=c</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -125,6 +125,16 @@ cd ../gcc-build</userinput></screen>
           <filename class="directory">lib</filename> and 
           <filename class="directory">include</filename> directories
           that contain GMP which was built earlier.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af10">
+        <term><parameter>--with-mpc=${CLFS}/cross-tools</parameter></term>
+        <listitem>
+          <para>Tells configure where to find the 
+          <filename class="directory">lib</filename> and 
+          <filename class="directory">include</filename> directories
+          that contain MPC which was built earlier.</para>
         </listitem>
       </varlistentry>
 
