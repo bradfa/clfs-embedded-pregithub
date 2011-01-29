@@ -28,10 +28,8 @@
     </important>
 
     <para>Several of the packages are patched before compilation, but only
-    when the patch is needed to circumvent a problem. A patch is often needed
-    in both this and the next chapters, but sometimes in only one or the other.
-    Therefore, do not be concerned if instructions for a downloaded patch seem
-    to be missing. Warning messages about <emphasis>offset</emphasis> or
+    when the patch is needed to circumvent a problem or supply a default 
+    configuration. Warning messages about <emphasis>offset</emphasis> or
     <emphasis>fuzz</emphasis> may also be encountered when applying a patch.
     Do not worry about these warnings, as the patch was still successfully
     applied.</para>
@@ -46,8 +44,7 @@
     <important>
       <para>After installing each package, both in this and the next chapters,
       delete its source and build directories, unless specifically instructed
-      otherwise. Deleting the sources prevents mis-configuration
-      when the same package is reinstalled later.</para>
+      otherwise.</para>
     </important>
 
   </sect2>
