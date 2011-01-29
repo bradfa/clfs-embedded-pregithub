@@ -25,26 +25,17 @@
   <sect2 role="installation">
     <title>Installation of Iana-Etc</title>
 
-    <para os="a">The <filename>protocol-numbers.dist</filename> and
-    <filename>port-numbers.dist</filename> files that come with Iana-Etc 
-    are outdated.  Also, IANA has moved their copy of protocol-numbers.
-    In order to ensure we use correct and up to date data, first modify the 
-    Makefile and then download the updates:</para>
+    <para os="a">The following command converts the raw data provided by IANA into
+    the correct formats for the <filename>/etc/protocols</filename> and
+    <filename>/etc/services</filename> data files:</para>
 
-<screen os="b"><userinput>sed -i '/file=/s@protocol-numbers@&amp;/&amp;.txt@' Makefile
-make get</userinput></screen>
+<screen os="b"><userinput>make</userinput></screen>
 
-    <para os="c">The following command then converts the raw data provided by 
-    IANA into the correct formats for the <filename>/etc/protocols</filename> 
-    and <filename>/etc/services</filename> data files:</para>
+    <para os="c">This package does not come with a test suite.</para>
 
-<screen os="d"><userinput>make</userinput></screen>
+    <para os="d">Install the package:</para>
 
-    <para os="e">This package does not come with a test suite.</para>
-
-    <para os="f">Install the package:</para>
-
-<screen os="g"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen os="e"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
 
   </sect2>
 
@@ -92,4 +83,3 @@ make get</userinput></screen>
   </sect2>
 
 </sect1>
-
