@@ -47,24 +47,148 @@ cd ../gcc-build</userinput></screen>
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
 
-      <varlistentry>
+      <varlistentry os="af1">
+        <term><parameter>--prefix=${CLFS}/cross-tools</parameter></term>
+        <listitem>
+          <para>This tells the configure script to prepare to install the
+          package in the <filename class="directory">${CLFS}/cross-tools</filename>
+          directory.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af2">
+        <term><parameter>--build=${CLFS_HOST}</parameter></term>
+        <listitem>
+          <para>This tells the configure script the triplet to use to build GCC.
+          It will use ${CLFS_HOST} as that's where it's being built.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af3">
+        <term><parameter>--host=${CLFS_HOST}</parameter></term>
+        <listitem>
+          <para>This tells the configure script the triplet of the machine GCC 
+          will be executed on when actually cross compiling.  It will use 
+          ${CLFS_HOST} as that's where GCC will execute when cross compiling
+          software later.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af4">
+        <term><parameter>--target=${CLFS_TARGET}</parameter></term>
+        <listitem>
+          <para>This tells the configure script the triplet of the machine GCC
+          will build executables for.  It will use ${CLFS_TARGET} so that software
+          compiled with this version of GCC can be executed on the embedded machine
+          target.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af5">
+        <term><parameter>--with-sysroot=${CLFS}</parameter></term>
+        <listitem>
+          <para>This tells configure that ${CLFS} is going to be the root
+          of our system. It will now use the specified sysroot, ${CLFS}, as
+          a prefix of the default search paths.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af6">
+        <term><parameter>--disable-nls</parameter></term>
+        <listitem>
+          <para>This disables internationalization as i18n is not needed for the
+          cross-compile tools.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af7">
         <term><parameter>--disable-shared</parameter></term>
         <listitem>
           <para>Disables the creation of the shared libraries.</para>
         </listitem>
       </varlistentry>
 
-      <varlistentry>
+      <varlistentry os="af8">
+        <term><parameter>--with-mpfr=${CLFS}/cross-tools</parameter></term>
+        <listitem>
+          <para>Tells configure where to find the 
+          <filename class="directory">lib</filename> and 
+          <filename class="directory">include</filename> directories
+          that contain MPFR which was built earlier.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af9">
+        <term><parameter>--with-gmp=${CLFS}/cross-tools</parameter></term>
+        <listitem>
+          <para>Tells configure where to find the 
+          <filename class="directory">lib</filename> and 
+          <filename class="directory">include</filename> directories
+          that contain GMP which was built earlier.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af11">
+        <term><parameter>--without-headers</parameter></term>
+        <listitem>
+          <para>Tells configure to not use any headers from any C libraries.
+          This is needed as we haven't yet built the C library and to prevent
+          influence from the host environment.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af12">
+        <term><parameter>--with-newlib</parameter></term>
+        <listitem>
+          <para>Tells configure to build libgcc without needing any C
+          libraries.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af13">
+        <term><parameter>--disable-decimal-float</parameter></term>
+        <listitem>
+          <para>Tells configure to disable IEEE 754-2008 decimal floating
+          point support.  Decimal floating point support isn't needed yet.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af14">
+        <term><parameter>--disable-libgomp</parameter></term>
+        <listitem>
+          <para>Tells configure to not build the GOMP run-time libraries.
+          GOMP is the GNU implementation of OpenMP, a API for shared-memory
+          parallel programming.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af15">
+        <term><parameter>--disable-libmudflap</parameter></term>
+        <listitem>
+          <para>Tells configure to not build libmudflap.  Mudflap is a 
+          library that can be used to help check for proper pointer usage.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af16">
+        <term><parameter>--disable-libssp</parameter></term>
+        <listitem>
+          <para>Tells configure not to build run-time libraries for stack
+          smashing detection.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af17">
         <term><parameter>--disable-threads</parameter></term>
         <listitem>
           <para>This will prevent GCC from looking for the multi-thread
           include files, since they haven't been created for this architecture
           yet. GCC will be able to find the multi-thread information after
-          the Glibc headers are created.</para>
+          the glib headers are created.</para>
         </listitem>
       </varlistentry>
 
-      <varlistentry>
+      <varlistentry os="af18">
         <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
           <para>This option ensures that only the C compiler is built.</para>
