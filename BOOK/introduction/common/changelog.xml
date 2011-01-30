@@ -37,6 +37,30 @@
 -->
 
     <listitem>
+      <para>January 30, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added notes to ARM ABI variable list.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated MPFR download link.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated GCC to version 4.5.2.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated Binutils to version 2.21.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Added information to GCC's configure options.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated Iana-Etc to use more up-to-date data.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>Janurary 10, 2011</para>
       <itemizedlist>
         <listitem>
