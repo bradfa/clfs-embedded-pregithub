@@ -12,8 +12,8 @@
 <!ENTITY busybox-fixes-patch-md5 "64bee07ba3efbb512fb4f348e814bf31">
 <!ENTITY busybox-fixes-patch-size "4 KB">
 
-<!ENTITY iana-etc-update-patch "iana-etc-&iana-etc-version;-update.patch">
-<!ENTITY iana-etc-update-patch-md5 "ab594a1ec88d2e05f7379d4e4e2cdbdf">
+<!ENTITY iana-etc-update-patch "iana-etc-&iana-etc-version;-update-1.patch">
+<!ENTITY iana-etc-update-patch-md5 "9b4d102672fc8bf777bbb95d1007edda">
 <!ENTITY iana-etc-update-patch-size "864 KB">
 
 <!ENTITY uclibc-configs-patch "uClibc-&uclibc-version;-configs-2.patch">
