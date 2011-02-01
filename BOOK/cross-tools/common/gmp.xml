@@ -40,7 +40,7 @@
       5) will compile GMP without errors but in a subtly broken way.  To ensure
       GMP is compiled and functioning correctly, optionally run the test suite:</para>
 
-<screen os="d"><userinput>make check</userinput></screen>
+<screen><userinput>make check</userinput></screen>
     </note>
 
     <para os="f">Install the package:</para>
