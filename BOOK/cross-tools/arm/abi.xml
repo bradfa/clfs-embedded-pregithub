@@ -56,27 +56,27 @@
       <tbody>
         <row>
           <entry>apcs-gnu</entry>
-          <entry>-mabi=apcs-gnu</entry>
+          <entry>apcs-gnu</entry>
           <entry>Legacy ABI, arm4 and older</entry>
         </row>
         <row>
           <entry>atpcs</entry>
-          <entry>-mabi=atpcs</entry>
+          <entry>atpcs</entry>
           <entry>Thumb ABI</entry>
         </row>
         <row>
           <entry>aapcs</entry>
-          <entry>-mabi=aapcs</entry>
+          <entry>aapcs</entry>
           <entry>EABI w/ variable size enums</entry>
         </row>
         <row>
           <entry>aapcs-linux</entry>
-          <entry>-mabi=aapcs-linux</entry>
+          <entry>aapcs-linux</entry>
           <entry>EABI w/ standard Linux 32 bit (int) enums</entry>
         </row>
         <row>
           <entry>iwmmxt</entry>
-          <entry>-mabi=iwmmxt</entry>
+          <entry>iwmmxt</entry>
           <entry>Supports Intel XScale MMX extensions</entry>
         </row>
       </tbody>
