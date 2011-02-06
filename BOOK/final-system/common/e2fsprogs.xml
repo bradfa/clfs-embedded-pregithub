@@ -36,7 +36,7 @@ cd build</userinput></screen>
 
     <para os="c">Prepare E2fsprogs for compilation:</para>
 
-<screen os="d"><userinput>CC="${CC} ${BUILD} -Os" ../configure --prefix=/usr \
+<screen os="d"><userinput>CC="${CC} -Os" ../configure --prefix=/usr \
     --with-root-prefix="" --host=${CLFS_TARGET} --disable-tls \
     --disable-debugfs --disable-e2initrd-helper --disable-nls</userinput></screen>
 
