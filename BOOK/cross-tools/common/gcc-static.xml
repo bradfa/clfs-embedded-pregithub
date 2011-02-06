@@ -42,7 +42,8 @@ cd ../gcc-build</userinput></screen>
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
-  --disable-libssp --disable-threads --enable-languages=c</userinput></screen>
+  --disable-libssp --disable-threads --enable-languages=c \
+  --with-abi=${BUILD}</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -202,6 +203,13 @@ cd ../gcc-build</userinput></screen>
         <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
           <para>This option ensures that only the C compiler is built.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af19">
+        <term><parameter>--with-abi=${BUILD}</parameter></term>
+        <listitem>
+          <para>This option sets the ABI selected earlier.</para>
         </listitem>
       </varlistentry>
 
