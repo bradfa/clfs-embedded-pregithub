@@ -41,15 +41,15 @@
       <tbody>
         <row>
           <entry>32-Bit</entry>
-          <entry>-mabi=32</entry>
+          <entry>32</entry>
         </row>
         <row>
           <entry>N32</entry>
-          <entry>-mabi=n32</entry>
+          <entry>n32</entry>
         </row>
         <row>
           <entry>64-Bit</entry>
-          <entry>-mabi=64</entry>
+          <entry>64</entry>
         </row>
       </tbody>
 
