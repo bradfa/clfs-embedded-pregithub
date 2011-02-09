@@ -63,22 +63,34 @@ export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
           <entry>arm-unknown-linux-uclibc</entry>
         </row>
         <row>
-          <entry>Generic arm, version 5</entry>
+          <entry>Generic arm, version 4</entry>
           <entry>little</entry>
           <entry>OABI</entry>
-          <entry>armv5l-unknown-linux-uclibc</entry>
+          <entry>armv4-unknown-linux-uclibc</entry>
+        </row>
+        <row>
+          <entry>Generic arm, version 5</entry>
+          <entry>little</entry>
+          <entry>EABI</entry>
+          <entry>armv5l-unknown-linux-uclibcgnueabi</entry>
         </row>
         <row>
           <entry>Generic arm, version 5</entry>
           <entry>big</entry>
-          <entry>OABI</entry>
-          <entry>armv5b-unknown-linux-uclibc</entry>
+          <entry>EABI</entry>
+          <entry>armv5b-unknown-linux-uclibcgnueabi</entry>
         </row>
         <row>
           <entry>Generic arm</entry>
           <entry>little</entry>
           <entry>EABI</entry>
           <entry>arm-unknown-linux-uclibcgnueabi</entry>
+        </row>
+        <row>
+          <entry>Generic arm, version 7-a </entry>
+          <entry>little</entry>
+          <entry>EABI</entry>
+          <entry>armv7a-unknown-linux-uclibcgnueabi</entry>
         </row>
       </tbody>
 
