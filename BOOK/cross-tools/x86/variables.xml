@@ -14,13 +14,14 @@
 
   <para os="a">During the building of the cross-compile tools you will need to
   set a few variables that will be dependent on your particular needs.
-  You will need to set the target triplet for the target architecture. As well
-  as the CPUs type and endianess. If you do not know what triplet you want,
+  You will need to set the target triplet for the target architecture, the CPU
+  type, and CPU endianess. If you do not know what triplet or CPU type you want,
   you can use the table at the bottom of this page as a reference. Set
   the command using the method listed below:</para>
 
 <screen os="b"><userinput>export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
-export CLFS_TARGET=<replaceable>[target triplet]</replaceable></userinput></screen>
+export CLFS_TARGET=<replaceable>[target triplet]</replaceable>
+export CLFS_CPU=<replaceable>[cpu type]</replaceable></userinput></screen>
 
   <para os="c">Now we will set the architecture and endianess of the CPU based
   on the target triplet provided above:</para>
@@ -38,17 +39,21 @@ echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></scr
 
   <table os="i">
     <title>Processor Type and  Target Triplets</title>
-    <?dbfo table-width="4.5in" ?>
+    <?dbfo table-width="7.5in" ?>
 
     <tgroup cols="2">
 
       <colspec colnum="1" colwidth="2.5in"   colname="Processor"/>
       <colspec colnum="2" colwidth="2in" colname="Triplet"/>
+      <colspec colnum="3" colwidth="0.5in" colname="CPU Type"/>
+      <colspec colnum="4" colwidth="2.5in" colname="Note"/>
 
       <thead>
         <row>
           <entry>Processor</entry>
           <entry>Target Triplet</entry>
+          <entry>CPU Type</entry>
+          <entry>Note</entry>
         </row>
       </thead>
 
@@ -56,22 +61,32 @@ echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></scr
         <row>
           <entry>486 Compatibles</entry>
           <entry>i486-pc-linux-uclibc</entry>
+          <entry>i486</entry>
+          <entry>Intel's i486</entry>
         </row>
         <row>
           <entry>Pentium, K6, 586 Compatibles</entry>
           <entry>i586-pc-linux-uclibc</entry>
+          <entry>i586</entry>
+          <entry>Intel Pentium without MMX</entry>
         </row>
         <row>
           <entry>Pentium II, Pentium III, Pentium 4</entry>
           <entry>i686-pc-linux-uclibc</entry>
+          <entry>i686</entry>
+          <entry>PentiumPro instruction set</entry>
         </row>
         <row>
-          <entry>Athlon, Duron</entry>
+          <entry>Athlon</entry>
           <entry>i686-pc-linux-uclibc</entry>
+          <entry>athlon</entry>
+          <entry>AMD 32 bit Athlon</entry>
         </row>
         <row>
-          <entry>x86_64</entry>
+          <entry>Opteron</entry>
           <entry>x86_64-unknown-linux-uclibc</entry>
+          <entry>k8</entry>
+          <entry>AMD K8 processors with x86-64</entry>
         </row>
       </tbody>
 
