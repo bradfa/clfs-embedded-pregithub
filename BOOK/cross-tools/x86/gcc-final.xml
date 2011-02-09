@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-cross-tools-gcc-final" role="wrap">
+  <?dbhtml filename="gcc-final.html"?>
+
+  <title>GCC-&gcc-version; - Cross Compiler Final</title>
+
+  <indexterm zone="ch-cross-tools-gcc-final">
+    <primary sortas="a-GCC">GCC</primary>
+    <secondary>cross tools, final</secondary>
+  </indexterm>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@role='package'])"/>
+
+  <sect2 role="installation">
+    <title>Installation of GCC Cross Compiler</title>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-static.xml"
+    xpointer="xpointer(//*[@os='c'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-static.xml"
+    xpointer="xpointer(//*[@os='d'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-static.xml"
+    xpointer="xpointer(//*[@os='e'])"/>
+
+<screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
+  ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
+  --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
+  --with-sysroot=${CLFS} --disable-nls --enable-shared \
+  --enable-languages=c --enable-c99 --enable-long-long \
+  --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
+  --with-mpc=${CLFS}/cross-tools --with-arch=${CLFS_CPU}</userinput></screen>
+
+    <variablelist os="af">
+      <title>The meaning of the configure options not used previously:</title>
+
+      <varlistentry os="af1">
+        <term><parameter>--enable-shared</parameter></term>
+        <listitem>
+          <para>Enables the creation of the shared libraries.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af2">
+        <term><parameter>--enable-c99</parameter></term>
+        <listitem>
+          <para>Enable C99 support for C programs.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af3">
+        <term><parameter>--enable-long-long</parameter></term>
+        <listitem>
+          <para>Enables long long support in the compiler.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="gcc-static.xml"
+    xpointer="xpointer(//*[@os='ag'])"/>
+
+<screen os="ah"><userinput>make</userinput></screen>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-static.xml"
+    xpointer="xpointer(//*[@os='ai'])"/>
+
+<screen os="aj"><userinput>make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-gcc" role="content">
+    <title>Contents of GCC</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+      <segtitle>Installed libraries</segtitle>
+
+      <seglistitem>
+        <seg>cc (link to gcc), gcc, gccbug, and gcov</seg>
+        <seg>libgcc.a, libgcc_eh.a, libgcc_s.so, libmudflap.[a,so],
+        and libmudflapth.[a,so]</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="cc">
+        <term><command>cc</command></term>
+        <listitem>
+          <para>The C compiler</para>
+          <indexterm zone="ch-cross-tools-gcc-final cc">
+            <primary sortas="b-cc">cc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc">
+        <term><command>gcc</command></term>
+        <listitem>
+          <para>The C compiler</para>
+          <indexterm zone="ch-cross-tools-gcc-final gcc">
+            <primary sortas="b-gcc">gcc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gccbug">
+        <term><command>gccbug</command></term>
+        <listitem>
+          <para>A shell script used to help create useful bug reports</para>
+          <indexterm zone="ch-cross-tools-gcc-final gccbug">
+            <primary sortas="b-gccbug">gccbug</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcov">
+        <term><command>gcov</command></term>
+        <listitem>
+          <para>A coverage testing tool; it is used to analyze programs to
+          determine where optimizations will have the most effect</para>
+          <indexterm zone="ch-cross-tools-gcc-final gcov">
+            <primary sortas="b-gcov">gcov</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgcc">
+        <term><filename class="libraryfile">libgcc</filename></term>
+        <listitem>
+          <para>Contains run-time support for <command>gcc</command></para>
+          <indexterm zone="ch-cross-tools-gcc-final libgcc">
+            <primary sortas="c-libgcc*">libgcc*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmudflap">
+        <term><filename class="libraryfile">libmudflap</filename></term>
+        <listitem>
+          <para>The libmudflap libraries are used by GCC for instrumenting
+          pointer and array dereferencing operations.</para>
+          <indexterm zone="ch-cross-tools-gcc-final libmudflap">
+            <primary sortas="c-libmudflap*">libmudflap*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
