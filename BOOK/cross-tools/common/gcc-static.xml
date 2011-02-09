@@ -43,7 +43,7 @@ cd ../gcc-build</userinput></screen>
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
-  --with-abi=${BUILD}</userinput></screen>
+  --with-abi=${CLFS_ABI}</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -207,7 +207,7 @@ cd ../gcc-build</userinput></screen>
       </varlistentry>
 
       <varlistentry os="af19">
-        <term><parameter>--with-abi=${BUILD}</parameter></term>
+        <term><parameter>--with-abi=${CLFS_ABI}</parameter></term>
         <listitem>
           <para>This option sets the ABI selected earlier.</para>
         </listitem>

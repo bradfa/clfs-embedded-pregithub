@@ -34,7 +34,7 @@
       <thead>
         <row>
           <entry>ABI</entry>
-          <entry>BUILD=Value</entry>
+          <entry>CLFS_ABI=Value</entry>
         </row>
       </thead>
 
