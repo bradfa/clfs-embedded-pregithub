@@ -12,27 +12,30 @@
 
   <bridgehead renderas="sect4">Setting Host and Target</bridgehead>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='a'])"/>
+  <para os="a">During the building of the cross-compile tools you will need to
+  set a few variables that will be dependent on your particular needs.
+  You will need to set the target triplet for the target architecture and CPU
+  endianess. If you do not know what triplet or endianess you want,
+  you can use the table at the bottom of this page as a reference. Set
+  the command using the method listed below:</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='b'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
 <screen os="d"><userinput>export CLFS_ARCH=arm
 export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='g'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='h'])"/>
 
   <table os="i">

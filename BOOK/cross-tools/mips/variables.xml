@@ -12,16 +12,19 @@
 
   <bridgehead renderas="sect4">Setting Host and Target</bridgehead>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='a'])"/>
+  <para os="a">During the building of the cross-compile tools you will need to
+  set a few variables that will be dependent on your particular needs.
+  You will need to set the target triplet for the target architecture, the MIPS
+  level, and CPU endianess. If you do not know what triplet or level you want,
+  you can use the table at the bottom of this page as a reference. Set
+  the command using the method listed below:</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='b'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
 <screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/\(mips\)\(64\)\?\(el\)\?-.*/\1\3/')
@@ -35,7 +38,7 @@ we are only using 2. For more information, go to
 <screen os="m2"><userinput>export CLFS_MIPS_LEVEL="{mips level}"</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='g'])"/>
 
 <screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc

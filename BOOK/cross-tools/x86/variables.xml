@@ -35,7 +35,8 @@ export CLFS_ENDIAN=little</userinput></screen>
 <screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ENDIAN=\""${CLFS_CPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">
     <title>Processor Type and  Target Triplets</title>
