@@ -30,7 +30,7 @@
 
     <para os="a">Configure libnl:</para>
 
-<screen os="b"><userinput>CC="${CC} ${BUILD} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>
+<screen os="b"><userinput>CC="${CC} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>
 
     <para os="c">Compile the package:</para>
 

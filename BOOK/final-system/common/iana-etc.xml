@@ -25,17 +25,30 @@
   <sect2 role="installation">
     <title>Installation of Iana-Etc</title>
 
-    <para os="a">The following command converts the raw data provided by IANA into
+    <para os="a">Iana-Etc comes with outdated data and IANA has changed the
+    download location used to obtain up-to-date data.  Apply the following patch
+    to use more up to date data and to correct the download location:</para>
+
+<screen os="b"><userinput>patch -Np1 -i ../&iana-etc-update-patch;</userinput></screen>
+
+    <note os="c">
+      <para>If you have an internet connection and would like even more up-to-date
+      data to be used when building Iana-Etc, execute: 
+<screen><userinput>make get</userinput></screen>
+      </para>
+    </note>
+
+    <para os="d">The following command converts the raw data provided by IANA into
     the correct formats for the <filename>/etc/protocols</filename> and
     <filename>/etc/services</filename> data files:</para>
 
-<screen os="b"><userinput>make</userinput></screen>
+<screen os="e"><userinput>make</userinput></screen>
 
-    <para os="c">This package does not come with a test suite.</para>
+    <para os="f">This package does not come with a test suite.</para>
 
-    <para os="d">Install the package:</para>
+    <para os="g">Install the package:</para>
 
-<screen os="e"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen os="h"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
 
   </sect2>
 

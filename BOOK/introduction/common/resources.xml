@@ -23,16 +23,15 @@
   <sect2 id="ch-intro-maillists" xreflabel="Chapter 1 - Mailing Lists">
     <title>Mailing Lists</title>
 
-    <para>The <uri>linuxfromscratch.org</uri> server hosts a number of
+    <para>The <uri>cross-lfs.org</uri> server hosts a number of
     mailing lists used for the development of the CLFS project. These lists
     include the main development and support lists, among others. If the
     FAQ does not solve the problem you are having, the next step would be to
-    search the mailing lists at <ulink url="&lfs-root;search.html"/>.</para>
+    search the mailing lists at <ulink url="&clfs-wiki;wiki/lists"/>.</para>
 
     <para>For information on the different lists, how to subscribe, archive
     locations, and additional information, visit
-    <ulink url="&lfs-root;mail.html"/>. For mailing lists specifically
-    for CLFS, visit <ulink url="&clfs-wiki;wiki/lists"/>.</para>
+    <ulink url="&clfs-wiki;wiki/lists"/>.</para>
 
   </sect2>
 
@@ -54,8 +53,8 @@
     FAQ or the mailing list archives. You can find the IRC network at
     <uri>chat.freenode.net</uri>. The support channel for cross-lfs
     is named #cross-lfs. If you need to show people the output of your
-    problems, please use http://pastebin.cross-lfs.org and reference
-    the pastebin URL when asking your questions.</para>
+    problems, please use <ulink url="http://pastebin.cross-lfs.org"/> and 
+    reference the pastebin URL when asking your questions.</para>
 
   </sect2>
 
@@ -71,12 +70,12 @@
   <sect2 id="ch-intro-mirrors" xreflabel="Chapter 1 - Mirror sites">
     <title>Mirror Sites</title>
 
-    <para>The LFS project has a number of world-wide mirrors to make
+    <para>The LFS and CLFS projects have a number of world-wide mirrors to make
     accessing the website and downloading the required packages more
     convenient. Please visit the LFS website at <ulink
     url="&lfs-root;mirrors.html"/> for a list of current mirrors of
     the LFS website, or <ulink url="&clfs-wiki;wiki/mirrors"/> for
-    mirrors of CLFS.</para>
+    mirrors of the CLFS website.</para>
 
   </sect2>
 

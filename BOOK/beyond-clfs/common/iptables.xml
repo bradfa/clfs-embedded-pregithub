@@ -31,7 +31,7 @@
 
     <para os="a">Configure IPTables:</para>
 
-<screen os="b"><userinput>CC="${CC} ${BUILD} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET} \
+<screen os="b"><userinput>CC="${CC} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET} \
   --libexecdir=/lib/iptables --without-kernel -enable-libipq --enable-shared</userinput></screen>
 
     <para os="c">Compile the package:</para>

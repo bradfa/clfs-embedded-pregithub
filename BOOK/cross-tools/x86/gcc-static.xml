@@ -27,13 +27,17 @@
     <title>Installation of Cross GCC Compiler with Static libgcc
     and no Threads</title>
 
-    <para os="c">The GCC documentation recommends building GCC outside of the source
-    directory in a dedicated build directory:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>mkdir -v ../gcc-build
-cd ../gcc-build</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='d'])"/>
 
-    <para os="e">Prepare GCC for compilation:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='e'])"/>
 
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
   ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
@@ -43,7 +47,7 @@ cd ../gcc-build</userinput></screen>
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
-  --with-abi=${CLFS_ABI}</userinput></screen>
+  --with-arch=${CLFS_CPU}</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -207,21 +211,30 @@ cd ../gcc-build</userinput></screen>
       </varlistentry>
 
       <varlistentry os="af19">
-        <term><parameter>--with-abi=${CLFS_ABI}</parameter></term>
+        <term><parameter>--with-arch=${CLFS_CPU}</parameter></term>
         <listitem>
-          <para>This option sets the ABI selected earlier.</para>
+          <para>This option configures the cross compiler to only output
+          instructions for our previously selected CPU.</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para os="ag">Continue with compiling the package:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='ag'])"/>
 
-<screen os="ah"><userinput>make all-gcc all-target-libgcc</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='ah'])"/>
 
-    <para os="ai">Install the package:</para>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='ai'])"/>
 
-<screen os="aj"><userinput>make install-gcc install-target-libgcc</userinput></screen>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/gcc-static.xml"
+  xpointer="xpointer(//*[@os='aj'])"/>
 
   </sect2>
 

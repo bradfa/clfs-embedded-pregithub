@@ -12,42 +12,48 @@
 
   <bridgehead renderas="sect4">Setting Host and Target</bridgehead>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
-  xpointer="xpointer(//*[@os='a'])"/>
+  <para os="a">During the building of the cross-compile tools you will need to
+  set a few variables that will be dependent on your particular needs.
+  You will need to set the target triplet for the target architecture and CPU
+  endianess. If you do not know what triplet or endianess you want,
+  you can use the table at the bottom of this page as a reference. Set
+  the command using the method listed below:</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='b'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
 <screen os="d"><userinput>export CLFS_ARCH=arm
 export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='g'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/variables.xml"
+  href="../common/variables.xml"
   xpointer="xpointer(//*[@os='h'])"/>
 
   <table os="i">
-    <title>Processor Type and  Target Triplets</title>
-    <?dbfo table-width="5in" ?>
+    <title>Processor Type, ABI, and  Target Triplets</title>
+    <?dbfo table-width="7in" ?>
 
     <tgroup cols="2">
 
       <colspec colnum="1" colwidth="2.5in" colname="Processor"/>
-      <colspec colnum="2" colwidth="2.5in" colname="Triplet"/>
+      <colspec colnum="2" colwidth="1in" colname="Endian"/>
+      <colspec colnum="3" colwidth="1in" colname="ABI"/>
+      <colspec colnum="4" colwidth="2.5in" colname="Triplet"/>
 
       <thead>
         <row>
           <entry>Processor</entry>
-          <entry>Endianess</entry>
+          <entry>Endian</entry>
+          <entry>ABI</entry>
           <entry>Target Triplet</entry>
         </row>
       </thead>
@@ -56,17 +62,38 @@ export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
         <row>
           <entry>Generic arm</entry>
           <entry>little</entry>
+          <entry>OABI</entry>
           <entry>arm-unknown-linux-uclibc</entry>
+        </row>
+        <row>
+          <entry>Generic arm, version 4</entry>
+          <entry>little</entry>
+          <entry>OABI</entry>
+          <entry>armv4-unknown-linux-uclibc</entry>
         </row>
         <row>
           <entry>Generic arm, version 5</entry>
           <entry>little</entry>
-          <entry>armv5l-unknown-linux-uclibc</entry>
+          <entry>EABI</entry>
+          <entry>armv5l-unknown-linux-uclibcgnueabi</entry>
         </row>
         <row>
           <entry>Generic arm, version 5</entry>
           <entry>big</entry>
-          <entry>armv5b-unknown-linux-uclibc</entry>
+          <entry>EABI</entry>
+          <entry>armv5b-unknown-linux-uclibcgnueabi</entry>
+        </row>
+        <row>
+          <entry>Generic arm</entry>
+          <entry>little</entry>
+          <entry>EABI</entry>
+          <entry>arm-unknown-linux-uclibcgnueabi</entry>
+        </row>
+        <row>
+          <entry>Generic arm, version 7-a </entry>
+          <entry>little</entry>
+          <entry>EABI</entry>
+          <entry>armv7a-unknown-linux-uclibcgnueabi</entry>
         </row>
       </tbody>
 

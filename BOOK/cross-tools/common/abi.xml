@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-abi">
+  <?dbhtml filename="abi.html"?>
+
+  <title>ABI Variables</title>
+
+  <para os="a" >Setup for a Particular ABI:</para>
+
+<screen os="b"><userinput>export CLFS_ABI="<replaceable>[From Chart]</replaceable>"
+echo export CLFS_ABI=\""${CLFS_ABI}\"" &gt;&gt; ~/.bashrc</userinput></screen>
+
+  <para os="c">The following table gives the entires for the different ABI's 
+  that CLFS Embedded supports. Make sure you select one for your build, this
+  will ensure capatibilty of your build with your target architecture.</para>
+
+
+</sect1>
+

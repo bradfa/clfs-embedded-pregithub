@@ -33,6 +33,16 @@
 -->
 
     <listitem>
+      <para>February 10, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Removed ABI selection for x86, it isn't
+          needed and was misleading.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 05, 2006</para>
       <itemizedlist>
         <listitem>

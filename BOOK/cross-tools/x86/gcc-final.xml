@@ -16,22 +16,22 @@
   </indexterm>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="gcc-static.xml"
+  href="../common/gcc-static.xml"
   xpointer="xpointer(//*[@role='package'])"/>
 
   <sect2 role="installation">
     <title>Installation of GCC Cross Compiler</title>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
+    href="../common/gcc-static.xml"
     xpointer="xpointer(//*[@os='c'])"/>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
+    href="../common/gcc-static.xml"
     xpointer="xpointer(//*[@os='d'])"/>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
+    href="../common/gcc-static.xml"
     xpointer="xpointer(//*[@os='e'])"/>
 
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
@@ -40,7 +40,7 @@
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
-  --with-mpc=${CLFS}/cross-tools --with-abi=${CLFS_ABI}</userinput></screen>
+  --with-mpc=${CLFS}/cross-tools --with-arch=${CLFS_CPU}</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options not used previously:</title>
@@ -75,7 +75,7 @@
 <screen os="ah"><userinput>make</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="gcc-static.xml"
+    href="../common/gcc-static.xml"
     xpointer="xpointer(//*[@os='ai'])"/>
 
 <screen os="aj"><userinput>make install</userinput></screen>

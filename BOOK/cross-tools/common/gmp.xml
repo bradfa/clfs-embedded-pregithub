@@ -35,9 +35,17 @@
 
 <screen os="d"><userinput>make</userinput></screen>
 
-    <para os="e">Install the package:</para>
+    <note os="e">
+      <para>Some versions of GCC (notably 4.3.2 which ships with Debian
+      5) will compile GMP without errors but in a subtly broken way.  To ensure
+      GMP is compiled and functioning correctly, optionally run the test suite:</para>
 
-<screen os="f"><userinput>make install</userinput></screen>
+<screen><userinput>make check</userinput></screen>
+    </note>
+
+    <para os="f">Install the package:</para>
+
+<screen os="g"><userinput>make install</userinput></screen>
 
   </sect2>
 

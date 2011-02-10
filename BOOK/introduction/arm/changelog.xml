@@ -33,6 +33,25 @@
 -->
 
     <listitem>
+      <para>February 10, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Fixed builds for EABI (aapcs and aapcs-linux)
+          ABI choices by adding target triplets ending in uclibcgnueabi.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 30, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added notes to ARM ABI variable list.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 11, 2006</para>
       <itemizedlist>
         <listitem>

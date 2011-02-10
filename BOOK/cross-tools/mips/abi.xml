@@ -11,15 +11,15 @@
   <title>ABI Variables</title>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/abi.xml"
+  href="../common/abi.xml"
   xpointer="xpointer(//*[@os='a'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/abi.xml"
+  href="../common/abi.xml"
   xpointer="xpointer(//*[@os='b'])"/>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../x86/abi.xml"
+  href="../common/abi.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
   <table>
@@ -34,22 +34,22 @@
       <thead>
         <row>
           <entry>ABI</entry>
-          <entry>BUILD=Value</entry>
+          <entry>CLFS_ABI=Value</entry>
         </row>
       </thead>
 
       <tbody>
         <row>
           <entry>32-Bit</entry>
-          <entry>-mabi=32</entry>
+          <entry>32</entry>
         </row>
         <row>
           <entry>N32</entry>
-          <entry>-mabi=n32</entry>
+          <entry>n32</entry>
         </row>
         <row>
           <entry>64-Bit</entry>
-          <entry>-mabi=64</entry>
+          <entry>64</entry>
         </row>
       </tbody>
 

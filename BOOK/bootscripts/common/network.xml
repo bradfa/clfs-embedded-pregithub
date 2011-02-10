@@ -109,8 +109,7 @@ EOF</userinput></screen>
     <para>For DHCP to work properly a configuration script is needed.
     Create a sample udhcpc.conf:</para>
 
-<screen><userinput>mkdir ${CLFS}/etc/network.d &amp;&amp;
-cat &gt; ${CLFS}/etc/network.d/interface.eth0 &lt;&lt; "EOF"
+<screen><userinput>cat &gt; ${CLFS}/etc/udhcpc.conf &lt;&lt; "EOF"
 <literal>#!/bin/sh
 # udhcpc Interface Configuration
 # Based on http://lists.debian.org/debian-boot/2002/11/msg00500.html

@@ -37,6 +37,41 @@
 -->
 
     <listitem>
+      <para>February 10, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Changed GCC Static and Final to build GCC for
+          ${CLFS_ABI} for ARM and MIPS, ${CLFS_CPU} for x86.  This removes the
+          need for using the ${BUILD} variable when building packages.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated Resources section.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    
+    <listitem>
+      <para>January 30, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Updated MPFR download link.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated GCC to version 4.5.2.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated Binutils to version 2.21.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Added information to GCC's configure options.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated Iana-Etc to use more up-to-date data.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>Janurary 10, 2011</para>
       <itemizedlist>
         <listitem>
