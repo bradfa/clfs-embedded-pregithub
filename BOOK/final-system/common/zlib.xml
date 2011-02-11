@@ -32,7 +32,7 @@ sed -e 's/-O3/-Os/g' configure.orig > configure</userinput></screen>
 
     <para os="c">Prepare Zlib for compilation:</para>
 
-<screen os="d"><userinput>CC="${CC}" ./configure --prefix=/usr --shared</userinput></screen>
+<screen os="d"><userinput>./configure --prefix=/usr --shared</userinput></screen>
 
     <variablelist os="aa">
       <title>The meaning of the configure options:</title>
