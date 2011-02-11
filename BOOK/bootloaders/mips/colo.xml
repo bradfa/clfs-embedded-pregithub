@@ -37,8 +37,8 @@
 
     <para os="a">Compile the Colo package:</para>
 
-<screen os="b"><userinput>make CC="${CC}" CROSS_COMPILE="${CLFS_TARGET}-" binary
-make CC="${CC}" CROSS_COMPILE="${CLFS_TARGET}-" tooldirs</userinput></screen>
+<screen os="b"><userinput>make CROSS_COMPILE="${CLFS_TARGET}-" binary
+make CROSS_COMPILE="${CLFS_TARGET}-" tooldirs</userinput></screen>
 
     <para os="c">Install the package:</para>
 

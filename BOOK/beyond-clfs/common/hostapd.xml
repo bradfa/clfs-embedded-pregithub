@@ -52,7 +52,7 @@ EOF</literal></userinput></screen>
 
     <para os="c">Compile the package:</para>
 
-<screen os="d"><userinput>make CC=${CC} CFLAGS="-g -Os -Wall"</userinput></screen>
+<screen os="d"><userinput>make CFLAGS="-g -Os -Wall"</userinput></screen>
 
     <para os="e">Install the package:</para>
 
