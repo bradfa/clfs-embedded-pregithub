@@ -5,6 +5,8 @@
   %general-entities;
 ]>
 
+<!-- Common GCC-Static -->
+
 <sect1 id="ch-cross-tools-gcc-static" role="wrap">
   <?dbhtml filename="gcc-static.html"?>
 
