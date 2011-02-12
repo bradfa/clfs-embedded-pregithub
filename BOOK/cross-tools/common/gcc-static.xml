@@ -5,6 +5,8 @@
   %general-entities;
 ]>
 
+<!-- Common GCC-Static -->
+
 <sect1 id="ch-cross-tools-gcc-static" role="wrap">
   <?dbhtml filename="gcc-static.html"?>
 
@@ -24,7 +26,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Cross GCC Compiler with Static libgcc
+    <title os="a">Installation of Cross GCC Compiler with Static libgcc
     and no Threads</title>
 
     <para os="c">The GCC documentation recommends building GCC outside of the source
@@ -35,6 +37,8 @@ cd ../gcc-build</userinput></screen>
 
     <para os="e">Prepare GCC for compilation:</para>
 
+<!-- This is the common configure line for GCC-Static. -->
+<!-- It's not actually used by any arch but is here for reference. -->
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
   ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} --host=${CLFS_HOST} --target=${CLFS_TARGET} \
@@ -42,8 +46,7 @@ cd ../gcc-build</userinput></screen>
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
-  --disable-libssp --disable-threads --enable-languages=c \
-  --with-abi=${CLFS_ABI}</userinput></screen>
+  --disable-libssp --disable-threads --enable-languages=c</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -206,22 +209,15 @@ cd ../gcc-build</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry os="af19">
-        <term><parameter>--with-abi=${CLFS_ABI}</parameter></term>
-        <listitem>
-          <para>This option sets the ABI selected earlier.</para>
-        </listitem>
-      </varlistentry>
-
     </variablelist>
 
-    <para os="ag">Continue with compiling the package:</para>
+    <para os="ah">Continue with compiling the package:</para>
 
-<screen os="ah"><userinput>make all-gcc all-target-libgcc</userinput></screen>
+<screen os="ai"><userinput>make all-gcc all-target-libgcc</userinput></screen>
 
-    <para os="ai">Install the package:</para>
+    <para os="aj">Install the package:</para>
 
-<screen os="aj"><userinput>make install-gcc install-target-libgcc</userinput></screen>
+<screen os="ak"><userinput>make install-gcc install-target-libgcc</userinput></screen>
 
   </sect2>
 
