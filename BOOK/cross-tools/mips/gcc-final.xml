@@ -5,7 +5,7 @@
   %general-entities;
 ]>
 
-<!-- x86 GCC-Final -->
+<!-- MIPS GCC-Final -->
 
 <sect1 id="ch-cross-tools-gcc-final" role="wrap">
   <?dbhtml filename="gcc-final.html"?>
@@ -42,8 +42,7 @@
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
-  --with-mpc=${CLFS}/cross-tools --with-arch=${CLFS_CPU} \
-  --disable-multilib</userinput></screen>
+  --with-mpc=${CLFS}/cross-tools --with-abi=${CLFS_ABI}</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options not used previously:</title>

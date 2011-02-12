@@ -5,6 +5,8 @@
   %general-entities;
 ]>
 
+<!-- Common GCC-Final -->
+
 <sect1 id="ch-cross-tools-gcc-final" role="wrap">
   <?dbhtml filename="gcc-final.html"?>
 
@@ -15,32 +17,34 @@
     <secondary>cross tools, final</secondary>
   </indexterm>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  <xi:include role="package" xmlns:xi="http://www.w3.org/2003/XInclude"
   href="gcc-static.xml"
   xpointer="xpointer(//*[@role='package'])"/>
 
   <sect2 role="installation">
     <title>Installation of GCC Cross Compiler</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    <xi:include os="c" xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='c'])"/>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    <xi:include os="d" xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='d'])"/>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    <xi:include os="e" xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='e'])"/>
 
+<!-- This is the common configure line for GCC-Final -->
+<!-- It's not actually used by any arch but is here for reference. -->
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
   ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
-  --with-mpc=${CLFS}/cross-tools --with-abi=${CLFS_ABI}</userinput></screen>
+  --with-mpc=${CLFS}/cross-tools</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options not used previously:</title>
@@ -68,17 +72,17 @@
 
     </variablelist>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    <xi:include os="ah" xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='ah'])"/>
 
-<screen os="ah"><userinput>make</userinput></screen>
+<screen os="ai"><userinput>make</userinput></screen>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    <xi:include os="aj" xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='aj'])"/>
 
-<screen os="aj"><userinput>make install</userinput></screen>
+<screen os="ak"><userinput>make install</userinput></screen>
 
   </sect2>
 
