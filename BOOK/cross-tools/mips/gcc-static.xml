@@ -5,7 +5,7 @@
   %general-entities;
 ]>
 
-<!-- x86 GCC-Static -->
+<!-- MIPS GCC-Static -->
 
 <sect1 id="ch-cross-tools-gcc-static" role="wrap">
   <?dbhtml filename="gcc-static.html"?>
@@ -47,29 +47,20 @@
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
-  --with-arch=${CLFS_CPU} --disable-multilib</userinput></screen>
+  --with-abi=${CLFS_ABI}</userinput></screen>
 
 <!-- Common configure switches for all archs -->
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/gcc-static.xml"
   xpointer="xpointer(//*[@os='af'])"/>
 
-<!-- Specific configure switches for x86 -->
+<!-- Specific configure switches for MIPS -->
   <variablelist os="ag">
 
     <varlistentry os="ag1">
-      <term><parameter>--with-arch=${CLFS_CPU}</parameter></term>
+      <term><parameter>--with-abi=${CLFS_ABI}</parameter></term>
       <listitem>
-        <para>This option configures the cross compiler to only output
-        instructions for our previously selected CPU.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry os="ag2">
-      <term><parameter>--disable-multilib</parameter></term>
-      <listitem>
-        <para>This option specifies that multiple target libraries should
-        not be built.</para>
+        <para>This option sets the ABI selected earlier.</para>
       </listitem>
     </varlistentry>
 

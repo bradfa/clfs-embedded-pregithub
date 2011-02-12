@@ -70,13 +70,13 @@
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
-    xpointer="xpointer(//*[@os='ag'])"/>
+    xpointer="xpointer(//*[@os='ah'])"/>
 
 <screen os="ah"><userinput>make</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="gcc-static.xml"
-    xpointer="xpointer(//*[@os='ai'])"/>
+    xpointer="xpointer(//*[@os='aj'])"/>
 
 <screen os="aj"><userinput>make install</userinput></screen>
 
