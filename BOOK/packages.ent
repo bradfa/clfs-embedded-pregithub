@@ -19,7 +19,7 @@
 <!ENTITY clfs-bootscripts-version "1.0-pre5">
 <!ENTITY clfs-bootscripts-size "4 KB">
 <!ENTITY clfs-bootscripts-url "&packages-root;clfs-embedded-bootscripts-&clfs-bootscripts-version;.tar.bz2">
-<!ENTITY clfs-bootscripts-md5 "727fb1b0d8913a63fc96123300fc5c0c">
+<!ENTITY clfs-bootscripts-md5 "e20e3e285fb7fe3ff941e3e505f96023">
 <!ENTITY clfs-bootscripts-home " ">
 
 <!ENTITY e2fsprogs-version "1.41.14">
