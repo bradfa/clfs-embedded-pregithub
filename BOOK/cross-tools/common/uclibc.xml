@@ -5,6 +5,8 @@
   %general-entities;
 ]>
 
+<!-- Common uClibc -->
+
 <sect1 id="ch-cross-tools-uclibc" role="wrap">
   <?dbhtml filename="uclibc.html"?>
 
