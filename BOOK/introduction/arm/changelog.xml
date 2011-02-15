@@ -33,6 +33,15 @@
 -->
 
     <listitem>
+      <para>February 15, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added uClibc configs that support EABI.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 10, 2011</para>
       <itemizedlist>
         <listitem>
