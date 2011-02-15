@@ -43,7 +43,7 @@
    and use that as the base:</para>
 
 <screen os="e"><userinput>if [ "${CLFS_ABI}" == "aapcs" ] || [ "${CLFS_ABI}" == "aapcs-linux" ]; \
-then cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN}.EABI .config;
+then cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN}.EABI .config; \
 else cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config; fi</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
