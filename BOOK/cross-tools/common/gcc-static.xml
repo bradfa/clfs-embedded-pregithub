@@ -46,7 +46,8 @@ cd ../gcc-build</userinput></screen>
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
-  --disable-libssp --disable-threads --enable-languages=c</userinput></screen>
+  --disable-libssp --disable-threads --enable-languages=c \
+  --disable-multilib</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -208,6 +209,14 @@ cd ../gcc-build</userinput></screen>
           <para>This option ensures that only the C compiler is built.</para>
         </listitem>
       </varlistentry>
+
+    <varlistentry os="af19">
+      <term><parameter>--disable-multilib</parameter></term>
+      <listitem>
+        <para>This option specifies that multiple target libraries should
+        not be built.</para>
+      </listitem>
+    </varlistentry>
 
     </variablelist>
 

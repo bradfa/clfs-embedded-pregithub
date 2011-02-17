@@ -47,7 +47,7 @@
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
-  --with-abi=${CLFS_ABI}</userinput></screen>
+  --disable-multilib --with-abi=${CLFS_ABI}</userinput></screen>
 
 <!-- Common configure switches for all archs -->
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
