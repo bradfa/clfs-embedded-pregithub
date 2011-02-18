@@ -35,7 +35,7 @@ uClibc is built. There are currently 5 MIPS ISA Levels. To keep things simple
 we are only using 2. For more information, go to
 <ulink url="http://www.linux-mips.org/wiki/Instruction_Set_Architecture"/></para>
 
-<screen os="m2"><userinput>export CLFS_MIPS_LEVEL="{mips level}"</userinput></screen>
+<screen os="m2"><userinput>export CLFS_MIPS_LEVEL="<replaceable>[mips level]</replaceable>"</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
