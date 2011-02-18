@@ -44,12 +44,7 @@
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/uclibc.xml"
-    xpointer="xpointer(//*[@os='d'])"/>
-
-    <para os="f">The config is a basic working system, but there are some
-    options that are architecture specifc that need to be set. The following
-    command will only bring up items that need a value that we did not
-    specify in our Generic config file:</para>
+    xpointer="xpointer(//*[@os='f'])"/>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/uclibc.xml"
