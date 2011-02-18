@@ -24,32 +24,37 @@
 
   <table>
     <title>List of Build Variables</title>
-    <?dbfo table-width="3in" ?>
+    <?dbfo table-width="5.5in" ?>
 
     <tgroup cols="2">
 
       <colspec colnum="1" colwidth="1.5in" colname="ABI to Select"/>
-      <colspec colnum="2" colwidth="1.5in" colname="Variable Value"/>
+      <colspec colnum="2" colwidth="1.5in" colname="CLFS_ABI Value"/>
+      <colspec colnum="3" colwidth="2.5in" colname="Notes"/>
 
       <thead>
         <row>
           <entry>ABI</entry>
           <entry>CLFS_ABI=Value</entry>
+          <entry>Notes</entry>
         </row>
       </thead>
 
       <tbody>
         <row>
-          <entry>32-Bit</entry>
+          <entry>O32</entry>
           <entry>32</entry>
+          <entry>For 32 bit CPUs only</entry>
         </row>
         <row>
           <entry>N32</entry>
           <entry>n32</entry>
+          <entry>For 64 bit CPUs operating in 32 bit mode</entry>
         </row>
         <row>
-          <entry>64-Bit</entry>
+          <entry>N64</entry>
           <entry>64</entry>
+          <entry>For 64 bit CPUs operating in 64 bit mode</entry>
         </row>
       </tbody>
 
