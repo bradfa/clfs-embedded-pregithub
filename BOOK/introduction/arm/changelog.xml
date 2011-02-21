@@ -33,10 +33,10 @@
 -->
 
     <listitem>
-      <para>February 15, 2011</para>
+      <para>February 21, 2011</para>
       <itemizedlist>
         <listitem>
-          <para>[abradford] - Added uClibc configs that support EABI.</para>
+          <para>[abradford] - Enabled support of EABI in uClibc configurations.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -46,7 +46,7 @@
       <itemizedlist>
         <listitem>
           <para>[abradford] - Fixed builds for EABI (aapcs and aapcs-linux)
-          ABI choices by adding target triplets ending in uclibcgnueabi.</para>
+          ABI choices by adding target triplets ending in uclibceabi.</para>
         </listitem>
       </itemizedlist>
     </listitem>

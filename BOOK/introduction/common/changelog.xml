@@ -35,6 +35,14 @@
       </itemizedlist>
     </listitem>
 -->
+    <listitem>
+      <para>February 21, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added --disable-multilib to GCC builds.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
 
     <listitem>
       <para>February 10, 2011</para>

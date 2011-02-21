@@ -33,6 +33,16 @@
 -->
 
     <listitem>
+      <para>February 21, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added support in uClibc for MIPS level 3
+          and ABI choices of n32 and n64.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 11, 2006</para>
       <itemizedlist>
         <listitem>
