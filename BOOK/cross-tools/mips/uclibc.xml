@@ -36,11 +36,19 @@
     href="../common/uclibc.xml"
     xpointer="xpointer(//*[@os='c'])"/>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-    href="../common/uclibc.xml"
-    xpointer="xpointer(//*[@os='d'])"/>
+    <para os="d">For the MIPS architecture, there are many different combinations
+    of configurations that can be used when building uClibc based on the choices
+    made previously for: endianess, ABI, and MIPS level.  To ensure that the
+    proper configuration is used based on those choices, first copy the configuration
+    matching the endianess chosen, then update the ABI and MIPS level:</para>
 
-<screen os="e"><userinput>cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN}.${CLFS_ABI}.${CLFS_MIPS_LEVEL} .config</userinput></screen>
+<screen os="e"><userinput>cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config
+if [ "${CLFS_ABI}" == "n32" ]; \
+then sed -i s/CONFIG_MIPS_O32_ABI/CONFIG_MIPS_N32_ABI/g .config; \
+elif [ "${CLFS_ABI}" == "64" ]; \
+then sed -i s/CONFIG_MIPS_O32_ABI/CONFIG_MIPS_N64_ABI/g .config; fi; \
+if [ "${CLFS_MIPS_LEVEL}" == "3" ]; \
+then sed -i s/CONFIG_MIPS_ISA_1/CONFIG_MIPS_ISA_3/g .config; fi</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/uclibc.xml"
