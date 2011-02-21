@@ -39,12 +39,12 @@
 
    <para os="d">For the ARM architecture, there are two different configurations
    of uClibc that can be used: the EABI configuration and the OABI configuration.
-   We will copy the one that corresponds with the $CLFS_ABI choice made earlier
-   and use that as the base:</para>
+   We will first copy the OABI configuration and, if the EABI was selected, modify
+   it to use the EABI:</para>
 
-<screen os="e"><userinput>if [ "${CLFS_ABI}" == "aapcs" ] || [ "${CLFS_ABI}" == "aapcs-linux" ]; \
-then cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN}.EABI .config; \
-else cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config; fi</userinput></screen>
+<screen os="e"><userinput>cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config
+if [ "${CLFS_ABI}" == "aapcs" ] || [ "${CLFS_ABI}" == "aapcs-linux" ]; \
+then sed -i s/CONFIG_ARM_OABI/CONFIG_ARM_EABI/g .config; fi</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/uclibc.xml"
