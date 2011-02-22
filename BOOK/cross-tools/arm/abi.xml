@@ -57,7 +57,7 @@
         <row>
           <entry>apcs-gnu</entry>
           <entry>apcs-gnu</entry>
-          <entry>Legacy ABI, arm4 and older</entry>
+          <entry>OABI</entry>
         </row>
         <row>
           <entry>atpcs</entry>
