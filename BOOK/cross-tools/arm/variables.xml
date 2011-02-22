@@ -28,7 +28,7 @@
   xpointer="xpointer(//*[@os='c'])"/>
 
 <screen os="d"><userinput>export CLFS_ARCH=arm
-export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
+export CLFS_ENDIAN="<replaceable>[endianess]</replaceable>"</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
@@ -45,14 +45,14 @@ export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
     <tgroup cols="2">
 
       <colspec colnum="1" colwidth="2.5in" colname="Processor"/>
-      <colspec colnum="2" colwidth="1in" colname="Endian"/>
+      <colspec colnum="2" colwidth="1in" colname="Endianess"/>
       <colspec colnum="3" colwidth="1in" colname="ABI"/>
       <colspec colnum="4" colwidth="2.5in" colname="Triplet"/>
 
       <thead>
         <row>
           <entry>Processor</entry>
-          <entry>Endian</entry>
+          <entry>Endianess</entry>
           <entry>ABI</entry>
           <entry>Target Triplet</entry>
         </row>
