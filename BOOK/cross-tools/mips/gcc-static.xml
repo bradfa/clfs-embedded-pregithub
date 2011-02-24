@@ -47,7 +47,8 @@
   --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
-  --disable-multilib --with-abi=${CLFS_ABI}</userinput></screen>
+  --disable-multilib --with-abi=${CLFS_ABI} --with-arch=mips${CLFS_MIPS_LEVEL} \
+  --with-float=${CLFS_FLOAT} --with-endian=${CLFS_ENDIAN}</userinput></screen>
 
 <!-- Common configure switches for all archs -->
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
@@ -61,6 +62,30 @@
       <term><parameter>--with-abi=${CLFS_ABI}</parameter></term>
       <listitem>
         <para>This option sets the ABI selected earlier.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry os="ag2">
+      <term><parameter>--with-arch=mips${CLFS_MIPS_LEVEL}</parameter></term>
+      <listitem>
+        <para>This option sets the MIPS architecture ISA.  Generic options
+        that apply to this book are of the form "mips${CLFS_MIPS_LEVEL}".
+        For example, "mips1" or "mips3".  For a more expanded list of choices,
+        please see the GCC documentation at
+        <ulink url="http://gcc.gnu.org/onlinedocs/gcc/MIPS-Options.html" /></para>
+      </listitem>
+    </varlistentry>
+    <varlistentry os="ag3">
+      <term><parameter>--with-float=${CLFS_FLOAT}</parameter></term>
+      <listitem>
+        <para>This option sets the floating point mode selected earlier.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry os="ag4">
+      <term><parameter>--with-endian=${CLFS_ENDIAN}</parameter></term>
+      <listitem>
+        <para>This option sets the endianess of the CPU selected earlier.
+        GCC's configure scripts may not be able to determine the endianess
+        based only on the target triplet (as other architectures do).</para>
       </listitem>
     </varlistentry>
 
