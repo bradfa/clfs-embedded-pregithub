@@ -33,6 +33,16 @@
 -->
 
     <listitem>
+      <para>February 24, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added selection of MIPS arch, endian, and float.
+          These are now used when building GCC.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 21, 2011</para>
       <itemizedlist>
         <listitem>
