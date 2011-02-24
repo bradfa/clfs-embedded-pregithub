@@ -43,7 +43,9 @@
   --enable-languages=c --enable-c99 --enable-long-long \
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
   --with-mpc=${CLFS}/cross-tools --disable-multilib \
-  --with-abi=${CLFS_ABI}</userinput></screen>
+  --with-abi=${CLFS_ABI} --with-arch=${CLFS_ARM_ARCH} \
+  --with-mode=${CLFS_ARM_MODE} --with-float=${CLFS_FLOAT} \
+  --with-fpu=${CLFS_FPU}</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/gcc-final.xml"
