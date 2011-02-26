@@ -13,7 +13,7 @@
   <bridgehead renderas="sect4">Setting Host and Target</bridgehead>
 
 <screen os="b"><userinput>export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
-export CLFS_TARGET=<replaceable>[target triplet]</replaceable></userinput></screen>
+export CLFS_TARGET="<replaceable>[target triplet]</replaceable>"</userinput></screen>
 
   <para os="c">Now we will set the architecture and endianess of the CPU based
   on the target triplet provided above:</para>

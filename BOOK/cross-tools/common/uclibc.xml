@@ -5,6 +5,8 @@
   %general-entities;
 ]>
 
+<!-- Common uClibc -->
+
 <sect1 id="ch-cross-tools-uclibc" role="wrap">
   <?dbhtml filename="uclibc.html"?>
 
@@ -30,7 +32,7 @@
 
     <note os="a">
       <para>Below we are just telling uClibc to use its default configuration.
-      For those for more adventureous, you can use make menuconfig, and
+      For those for more adventurous, you can use make menuconfig, and
       do a more custom build for your uClibc installation.</para>
     </note>
 
@@ -47,7 +49,7 @@
     <para os="f">The config is a basic working system, but there are some
     options that are architecture specifc that need to be set. The following
     command will only bring up items that need a value that we did not
-    specify in our Generic config file:</para>
+    specify in our generic config file patch:</para>
 
 <screen os="g"><userinput>make oldconfig</userinput></screen>
 

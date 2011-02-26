@@ -33,11 +33,31 @@
 -->
 
     <listitem>
+      <para>February 24, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added selection of ARM: arch, mode, float and
+          fpu.  These are now used with --disable-multilib when building
+          GCC.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 21, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Enabled support of EABI in uClibc configurations.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 10, 2011</para>
       <itemizedlist>
         <listitem>
           <para>[abradford] - Fixed builds for EABI (aapcs and aapcs-linux)
-          ABI choices by adding target triplets ending in uclibcgnueabi.</para>
+          ABI choices by adding target triplets ending in uclibceabi.</para>
         </listitem>
       </itemizedlist>
     </listitem>

@@ -12,12 +12,15 @@
 
   <bridgehead renderas="sect4">Setting Host and Target</bridgehead>
 
-  <para os="a">During the building of the cross-compile tools you will need to
+  <para os="a">During the building of the cross-compile tools, you will need to
   set a few variables that will be dependent on your particular needs.
-  You will need to set the target triplet for the target architecture and CPU
-  endianess. If you do not know what triplet or endianess you want,
-  you can use the table at the bottom of this page as a reference. Set
-  the command using the method listed below:</para>
+  You will need to select the target triplet for the target architecture, the CPU
+  endianess, the CPU architecture, the CPU mode, the CPU floating point hardware
+  availability, and (if available) the type of floating point hardware. If you 
+  do not know what values can be chosen for each of these, you can use the 
+  tables at the bottom of this page as a reference.</para>
+
+  <para os="a1">First, set the host and target triplets:</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
@@ -28,31 +31,55 @@
   xpointer="xpointer(//*[@os='c'])"/>
 
 <screen os="d"><userinput>export CLFS_ARCH=arm
-export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
+export CLFS_ENDIAN="<replaceable>[endianess]</replaceable>"</userinput></screen>
+
+  <para os="e">Choose the ARM architecture (see table below) and mode of 
+  your CPU:</para>
+
+<screen os="f"><userinput>export CLFS_ARM_ARCH="<replaceable>[architecture]</replaceable>"
+export CLFS_ARM_MODE="<replaceable>[arm or thumb]</replaceable>"</userinput></screen>
+
+  <para os="f1">If your target CPU has hard floating point support (not all ARM
+  CPUs do), set the following CLFS_FLOAT variable to either "hard" or "softfp".
+  If your target CPU does not have hard floating point support, set the following
+  CLFS_FLOAT vairable to "soft".</para>
+
+<screen os="f2"><userinput>export CLFS_FLOAT="<replaceable>[hard, softfp, or soft]"</replaceable></userinput></screen>
+
+  <para os="f3">If you chose either "hard" or "softfp" for CLFS_FLOAT, you now
+  need to set which floating point hardware is actually included (see table below)
+  with your ARM CPU:</para>
+
+<screen os="f4"><userinput>export CLFS_FPU="<replaceable>[fpu version]</replaceable>"</userinput></screen>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
   xpointer="xpointer(//*[@os='g'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/variables.xml"
-  xpointer="xpointer(//*[@os='h'])"/>
+<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARM_ARCH=\""${CLFS_ARM_ARCH}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARM_MODE=\""${CLFS_ARM_MODE}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">
-    <title>Processor Type, ABI, and  Target Triplets</title>
+    <title>Example Processor Type, ABI, and  Target Triplets</title>
     <?dbfo table-width="7in" ?>
 
     <tgroup cols="2">
 
       <colspec colnum="1" colwidth="2.5in" colname="Processor"/>
-      <colspec colnum="2" colwidth="1in" colname="Endian"/>
+      <colspec colnum="2" colwidth="1in" colname="Endianess"/>
       <colspec colnum="3" colwidth="1in" colname="ABI"/>
       <colspec colnum="4" colwidth="2.5in" colname="Triplet"/>
 
       <thead>
         <row>
           <entry>Processor</entry>
-          <entry>Endian</entry>
+          <entry>Endianess</entry>
           <entry>ABI</entry>
           <entry>Target Triplet</entry>
         </row>
@@ -75,30 +102,123 @@ export CLFS_ENDIAN=<replaceable>[endianess]</replaceable></userinput></screen>
           <entry>Generic arm, version 5</entry>
           <entry>little</entry>
           <entry>EABI</entry>
-          <entry>armv5l-unknown-linux-uclibcgnueabi</entry>
+          <entry>armv5l-unknown-linux-uclibceabi</entry>
         </row>
         <row>
           <entry>Generic arm, version 5</entry>
           <entry>big</entry>
           <entry>EABI</entry>
-          <entry>armv5b-unknown-linux-uclibcgnueabi</entry>
+          <entry>armv5b-unknown-linux-uclibceabi</entry>
         </row>
         <row>
           <entry>Generic arm</entry>
           <entry>little</entry>
           <entry>EABI</entry>
-          <entry>arm-unknown-linux-uclibcgnueabi</entry>
+          <entry>arm-unknown-linux-uclibceabi</entry>
         </row>
         <row>
           <entry>Generic arm, version 7-a </entry>
           <entry>little</entry>
           <entry>EABI</entry>
-          <entry>armv7a-unknown-linux-uclibcgnueabi</entry>
+          <entry>armv7a-unknown-linux-uclibceabi</entry>
         </row>
       </tbody>
 
     </tgroup>
 
+  </table>
+
+  <table os="j">
+    <title>ARM Archiecture Choices</title>
+    <?dbfo table-width="4in" ?>
+
+    <tgroup cols="2">
+
+      <colspec colnum="1" colwidth="1in" colname="Arch Choice"/>
+      <colspec colnum="2" colwidth="1in" colname="Arch Choice"/>
+      <colspec colnum="3" colwidth="1in" colname="Arch Choice"/>
+      <colspec colnum="4" colwidth="1in" colname="Arch Choice"/>
+
+      <tbody>
+        <row>
+          <entry>armv2</entry>
+          <entry>armv2a</entry>
+          <entry>armv3</entry>
+          <entry>armv3m</entry>
+        </row>
+        <row>
+          <entry>armv4</entry>
+          <entry>armv4t</entry>
+          <entry>armv5</entry>
+          <entry>armv5t</entry>
+        </row>
+        <row>
+          <entry>armv5te</entry>
+          <entry>armv6</entry>
+          <entry>armv6j</entry>
+          <entry>armv6t2</entry>
+        </row>
+        <row>
+          <entry>armv6z</entry>
+          <entry>armv6zk</entry>
+          <entry>armv6-m</entry>
+          <entry>armv7</entry>
+        </row>
+        <row>
+          <entry>armv7-a</entry>
+          <entry>armv7-r</entry>
+          <entry>armv7-m</entry>
+          <entry>iwmmxt</entry>
+        </row>
+        <row>
+          <entry>iwmmxt2</entry>
+          <entry>ep9312</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table os="j">
+    <title>ARM Hard Floating Point Versions</title>
+    <?dbfo table-width="4in" ?>
+
+    <tgroup cols="2">
+
+      <colspec colnum="1" colwidth="1in" colname="FPU Choice"/>
+      <colspec colnum="2" colwidth="1in" colname="FPU Choice"/>
+      <colspec colnum="3" colwidth="1in" colname="FPU Choice"/>
+      <colspec colnum="4" colwidth="1in" colname="FPU Choice"/>
+
+      <tbody>
+        <row>
+          <entry>fpa</entry>
+          <entry>fpe2</entry>
+          <entry>fpe3</entry>
+          <entry>maverick</entry>
+        </row>
+        <row>
+          <entry>vfp</entry>
+          <entry>vfpv3</entry>
+          <entry>vfpv3-fp16</entry>
+          <entry>vfpv3-d16</entry>
+        </row>
+        <row>
+          <entry>vfpv3-d16-fp16</entry>
+          <entry>vfpv3xd</entry>
+          <entry>vfpv3xd-fp16</entry>
+          <entry>neon</entry>
+        </row>
+        <row>
+          <entry>neon-fp16</entry>
+          <entry>vfpv4</entry>
+          <entry>vfpv4-d16</entry>
+          <entry>fpv4-sp-d16</entry>
+        </row>
+        <row>
+          <entry>neon-vfpv4</entry>
+        </row>
+      </tbody>
+    </tgroup>
   </table>
 
 </sect1>

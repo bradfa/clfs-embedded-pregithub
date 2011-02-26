@@ -42,33 +42,13 @@
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
   --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
-  --with-mpc=${CLFS}/cross-tools --with-abi=${CLFS_ABI}</userinput></screen>
+  --with-mpc=${CLFS}/cross-tools --disable-multilib \
+  --with-abi=${CLFS_ABI} --with-arch=mips${CLFS_MIPS_LEVEL} \
+  --with-float=${CLFS_FLOAT} --with-endian=${CLFS_ENDIAN}</userinput></screen>
 
-    <variablelist os="af">
-      <title>The meaning of the configure options not used previously:</title>
-
-      <varlistentry os="af1">
-        <term><parameter>--enable-shared</parameter></term>
-        <listitem>
-          <para>Enables the creation of the shared libraries.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af2">
-        <term><parameter>--enable-c99</parameter></term>
-        <listitem>
-          <para>Enable C99 support for C programs.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af3">
-        <term><parameter>--enable-long-long</parameter></term>
-        <listitem>
-          <para>Enables long long support in the compiler.</para>
-        </listitem>
-      </varlistentry>
-
-    </variablelist>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-final.xml"
+    xpointer="xpointer(//*[@os='af'])"/>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/gcc-final.xml"

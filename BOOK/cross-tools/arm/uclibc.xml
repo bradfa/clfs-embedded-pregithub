@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<!-- ARM specific uClibc -->
+
+<sect1 id="ch-cross-tools-uclibc" role="wrap">
+  <?dbhtml filename="uclibc.html"?>
+
+  <title>uClibc-&uclibc-version;</title>
+
+  <indexterm zone="ch-cross-tools-uclibc">
+    <primary sortas="a-uClibc">uClibc</primary>
+    <secondary>cross tools</secondary>
+  </indexterm>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/uclibc.xml"
+  xpointer="xpointer(//*[@role='package'])"/>
+
+  <sect2 role="installation">
+    <title>Installation of uClibc</title>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='a'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='b'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='c'])"/>
+
+
+   <para os="d">For the ARM architecture, there are two different configurations
+   of uClibc that can be used: the EABI configuration and the OABI configuration.
+   We will first copy the OABI configuration and, if the EABI was selected, modify
+   it to use the EABI:</para>
+
+<screen os="e"><userinput>cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config
+if [ "${CLFS_ABI}" == "aapcs" ] || [ "${CLFS_ABI}" == "aapcs-linux" ]; \
+then sed -i s/CONFIG_ARM_OABI/CONFIG_ARM_EABI/g .config; fi</userinput></screen>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='f'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='g'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='h'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='i'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='l'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/uclibc.xml"
+    xpointer="xpointer(//*[@os='j'])"/>
+
+  </sect2>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/uclibc.xml"
+  xpointer="xpointer(//*[@role='content'])"/>
+
+</sect1>
