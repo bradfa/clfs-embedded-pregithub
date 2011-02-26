@@ -36,6 +36,11 @@
     href="gcc-static.xml"
     xpointer="xpointer(//*[@os='e'])"/>
 
+    <note os="f"><para>If you would like to build a C++ compiler in addition
+    to the C compiler, change the following --enable-languages=c option to be
+    --enable-languages=c,c++ instead.  A C++ compiler is not required in for
+    any of the software included in this book.</para></note>
+
 <!-- This is the common configure line for GCC-Final -->
 <!-- It's not actually used by any arch but is here for reference. -->
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \

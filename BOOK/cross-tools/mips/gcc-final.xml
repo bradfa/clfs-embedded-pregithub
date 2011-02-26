@@ -36,6 +36,10 @@
     href="../common/gcc-final.xml"
     xpointer="xpointer(//*[@os='e'])"/>
 
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-final.xml"
+    xpointer="xpointer(//*[@os='f'])"/>
+
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
   ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
