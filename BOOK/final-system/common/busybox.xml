@@ -42,7 +42,7 @@ cp -v clfs/config .config</userinput></screen>
 
     <note os="c">
       <para>Currently we are just telling Busybox to use a generic
-      configuration. For those for more adventureous, you can use
+      configuration. For those for more adventurous, you can use
       <command>make menuconfig</command>, and create a custom or modified
       configuration for your build.</para>
     </note>
