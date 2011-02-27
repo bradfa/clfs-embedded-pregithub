@@ -17,11 +17,12 @@
   <sect2 role="package">
     <title/>
 
-    <para>BusyBox combines tiny versions of many common UNIX utilities into a single small
-     executable. It provides replacements for most of the utilities you usually find in GNU
-     fileutils, shellutils, etc. The utilities in BusyBox generally have fewer options than
-     their full-featured GNU cousins; however, the options that are included provide the
-     expected functionality and behave very much like their GNU counterparts. BusyBox provides
+    <para>BusyBox combines tiny versions of many common UNIX utilities into a 
+    single small executable. It provides replacements for most of the utilities 
+    you usually find in GNU fileutils, shellutils, etc. The utilities in 
+    BusyBox generally have fewer options than their full-featured GNU cousins; 
+    however, the options that are included provide the expected functionality 
+    and behave very much like their GNU counterparts. BusyBox provides
      a fairly complete environment for any small or embedded system.</para>
 
   </sect2>
@@ -60,8 +61,8 @@ cp -v clfs/config .config</userinput></screen>
 <screen os="i"><userinput>make CROSS_COMPILE="${CLFS_TARGET}-" \
   CONFIG_PREFIX="${CLFS}" install</userinput></screen>
 
-    <para os="j">If your going to build your kernel with modules, you will need to make
-    sure <command>depmod.pl</command> is available:</para>
+    <para os="j">If your going to build your kernel with modules, you will need
+    to make sure <command>depmod.pl</command> is available:</para>
 
 <screen os="k"><userinput>cp examples/depmod.pl ${CLFS}/cross-tools/bin
 chmod 755 ${CLFS}/cross-tools/bin/depmod.pl</userinput></screen>
