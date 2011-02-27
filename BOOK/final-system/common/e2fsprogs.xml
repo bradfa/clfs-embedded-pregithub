@@ -114,9 +114,9 @@ cd build</userinput></screen>
 
       <seglistitem>
         <seg>badblocks, blkid, chattr, compile_et, dumpe2fs,
-    e2fsck, e2image, e2label, filefrag, findfs, fsck, fsck.ext2, fsck.ext3,
-    fsck.ext4, logsave, lsattr, mk_cmds, mke2fs, mkfs.ext2, mkfs.ext3, 
-    mkfs.ext4, mklost+found, resize2fs, tune2fs, and uuidgen.</seg>
+        e2fsck, e2image, e2label, filefrag, findfs, fsck, fsck.ext2, fsck.ext3,
+        fsck.ext4, logsave, lsattr, mk_cmds, mke2fs, mkfs.ext2, mkfs.ext3, 
+        mkfs.ext4, mklost+found, resize2fs, tune2fs, and uuidgen.</seg>
         <seg>libblkid.[a,so], libcom_err.[a,so], libe2p.[a,so],
         libext2fs.[a,so], libss.[a,so], and libuuid.[a,so]</seg>
       </seglistitem>
