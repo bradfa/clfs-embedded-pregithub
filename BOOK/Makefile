@@ -59,7 +59,8 @@ $(ARCHS_VD_XML): override arch = $(@:%-validate_dump-xml=%)
 $(ARCHS_VD_XML):
 	@echo "Validating $(arch) book..."
 	$(Q)mkdir -p $(VALIDATEDIR)
-	$(Q)xmllint --nonet --noent --xinclude --postvalid \
+	$(Q)xmllint --nonet --noent --xinclude \
+	  --relaxng $(TOP)/schema/docbook/4.5/rng/docbook.rng \
 	  -o $(VALIDATEDIR)/$(arch)-full.xml \
 	  $(PWD)/$(arch)-index.xml
 
@@ -148,8 +149,8 @@ validate: $(ARCHS_VALIDATE)
 $(ARCHS_VALIDATE): override arch =  $(@:%-validate=%)
 $(ARCHS_VALIDATE):
 	@echo "Validating $(arch)..."
-	$(Q)xmllint --xinclude --noout \
-	  --nonet --postvalid \
+	$(Q)xmllint --xinclude --noout --nonet \
+	  --relaxng $(TOP)/schema/docbook/4.5/rng/docbook.rng \
 	  $(PWD)/$(arch)-index.xml
 
 ARCHS_TROUBLE := $(ARCHS:%=%-trouble)
@@ -159,10 +160,12 @@ $(ARCHS_TROUBLE): override arch = $(@:%-trouble=%)
 $(ARCHS_TROUBLE):
 	@echo "Troubleshooting $(arch)..."
 	@mkdir -p $(TROUBLEDIR)
-	$(Q)xmllint --xinclude --nonet --postvalid \
+	$(Q)xmllint --xinclude --nonet \
+	  --relaxng $(TOP)/schema/docbook/4.5/rng/docbook.rng \
 	  -o $(TROUBLEDIR)/dump-$(arch) \
 	  $(PWD)/$(arch)-index.xml
-	$(Q)xmllint --xinclude --noout --nonet --valid \
+	$(Q)xmllint --xinclude --noout --nonet \
+	  --relaxng $(TOP)/schema/docbook/4.5/rng/docbook.rng \
 	  $(TROUBLEDIR)/dump-$(arch)
 	@echo "You can now look at $(TROUBLEDIR)/dump-$(arch) to see the errors"
 
