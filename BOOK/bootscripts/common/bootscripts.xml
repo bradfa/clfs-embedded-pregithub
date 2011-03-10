@@ -27,7 +27,7 @@
 
     <para>Install the package:</para>
 
-<screen><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen><userinput>make DESTDIR=${CLFS} install-bootscripts</userinput></screen>
 
   </sect2>
 
