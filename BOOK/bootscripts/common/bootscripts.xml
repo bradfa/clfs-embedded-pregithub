@@ -38,7 +38,7 @@
       <segtitle>Installed scripts</segtitle>
 
       <seglistitem>
-        <seg>functions, network, start, stop, and syslog.</seg>
+        <seg>bridge, functions, network, start, stop, and syslog.</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -46,6 +46,16 @@
       <bridgehead renderas="sect3">Short Descriptions</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="bridge-bootscripts">
+        <term><command>bridge</command></term>
+        <listitem>
+          <para>Sets up network bridging, if configured</para>
+          <indexterm zone="ch-scripts-bootscripts bridge-bootscripts">
+            <primary sortas="d-bridge">bridge</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
 
       <varlistentry id="functions-bootscripts">
         <term><command>functions</command></term>
@@ -69,12 +79,12 @@
         </listitem>
       </varlistentry>
 
-      <varlistentry id="sysklog-bootscripts">
-        <term><command>sysklog</command></term>
+      <varlistentry id="syslog-bootscripts">
+        <term><command>syslog</command></term>
         <listitem>
-          <para>Starts and stops the system and kernel log daemons</para>
-          <indexterm zone="ch-scripts-bootscripts sysklog-bootscripts">
-            <primary sortas="d-sysklog">sysklogd</primary>
+          <para>Starts and stops the system log daemons</para>
+          <indexterm zone="ch-scripts-bootscripts syslog-bootscripts">
+            <primary sortas="d-syslog">syslog</primary>
           </indexterm>
         </listitem>
       </varlistentry>
