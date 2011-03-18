@@ -70,6 +70,14 @@
     href="../common/gcc-final.xml"
     xpointer="xpointer(//*[@os='ak'])"/>
 
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-final.xml"
+    xpointer="xpointer(//*[@os='al'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="../common/gcc-final.xml"
+    xpointer="xpointer(//*[@os='am'])"/>
+
   </sect2>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
