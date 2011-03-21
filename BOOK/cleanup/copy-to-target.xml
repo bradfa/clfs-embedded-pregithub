@@ -5,10 +5,10 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-cleanup-create-tarball">
-  <?dbhtml filename="create-tarball.html"?>
+<sect1 id="ch-cleanup-copy-to-target">
+  <?dbhtml filename="copy-to-target.html"?>
 
-  <title>Create Tarball of Build</title>
+  <title>Copy to Target</title>
 
   <para>We just created a cleaned-up version of our build, now
   we can compress it so we can move it to our target.</para>
