@@ -10,16 +10,16 @@
 
   <title>Remove Unnecessary Files</title>
 
-  <para>Well we have this system finished, we can make it smaller by
-  removing files that are not necessary for our build. On this page
-  we remove the bloat from our build.</para>
+  <para>The system is almost finished.  It can be made smaller by removing
+  files that are not necessary.</para>
 
-  <para>Now let's create a backup of our build:</para>
+  <para>Create a copy of the file system in case changes need to be made
+  to it later:</para>
 
 <screen><userinput>install -dv ${CLFS}-final
 cp -arv ${CLFS}/* ${CLFS}-final/</userinput></screen>
 
-  <para>Let's remove the files we don't need anymore:</para>
+  <para>Remove files that aren't needed:</para>
 
 <screen><userinput>rm -rfv ${CLFS}-final/cross-tools
 rm -rfv ${CLFS}-final/usr/src/*
@@ -27,7 +27,7 @@ rm -rfv ${CLFS}-final/usr/include
 rm -rfv ${CLFS}-final/usr/man
 rm -rfv ${CLFS}-final/usr/share/man</userinput></screen>
 
-  <para>Let's remove the static libaries:</para>
+  <para>Remove the static libaries:</para>
 
 <screen><userinput>FILES="$(ls ${CLFS}-final/lib/*.a ${CLFS}-final/usr/lib/*.a)"
 for file in $FILES; do
