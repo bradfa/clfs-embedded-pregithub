@@ -11,17 +11,18 @@
   <title>Copy to Target</title>
 
   <para>We just created a cleaned-up version of our build, now
-  we can compress it so we can move it to our target.</para>
+  compress it so it can be archived and transferred to the target.</para>
 
-  <para>Let's Create A tarball of our build:</para>
+  <para>Create a tarball of the build:</para>
 
 <screen><userinput>install -dv ${CLFS}/build
 cd ${CLFS}-final
-tar jcfv ${CLFS}/build/clfs-embedded.tar.bz2 *
-</userinput></screen>
+tar jcfv ${CLFS}/build/clfs-embedded.tar.bz2 *</userinput></screen>
 
   <para>Now you can move your compressed tarball to your target
-  system. This is something that is going to be different on
-  every embedded device.</para>
+  system. This will be different on  every embedded device.</para>
+
+  <para>When uncompressing the tarball, make sure to pass tar the "-p"
+  switch to ensure permissions are preserved.</para>
 
 </sect1>
