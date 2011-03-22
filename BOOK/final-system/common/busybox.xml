@@ -61,7 +61,7 @@ cp -v clfs/config .config</userinput></screen>
 <screen os="i"><userinput>make CROSS_COMPILE="${CLFS_TARGET}-" \
   CONFIG_PREFIX="${CLFS}" install</userinput></screen>
 
-    <para os="j">If your going to build your kernel with modules, you will need
+    <para os="j">If you're going to build your kernel with modules, you will need
     to make sure <command>depmod.pl</command> is available:</para>
 
 <screen os="k"><userinput>cp examples/depmod.pl ${CLFS}/cross-tools/bin
