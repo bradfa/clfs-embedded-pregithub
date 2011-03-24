@@ -64,13 +64,11 @@ stderr -> fd/2
 stdin -> fd/0
 stdout -> fd/1
 
-# Remove these devices, if using a headless system
-# You will see an error mdev: Bad line 35
-vbi -> vbi0
-vcs -> vcs0
-vcsa -> vcsa0
-video -> video0
-# Stop Remove for headless system
+# Uncomment the following 4 lines to enable video output
+#vbi -> vbi0
+#vcs -> vcs0
+#vcsa -> vcsa0
+#video -> video0
 
 # Devices:
 # Syntax: %s %d:%d %s
