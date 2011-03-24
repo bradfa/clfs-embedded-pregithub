@@ -23,7 +23,7 @@
 
   <screen><userinput>echo "<replaceable>[clfs]</replaceable>" &gt; ${CLFS}/etc/HOSTNAME</userinput></screen>
 
-  <para><replaceable>[lfs]</replaceable> needs to be replaced with the
+  <para><replaceable>[clfs]</replaceable> needs to be replaced with the
   name given to the computer. Do not enter the Fully Qualified
   Domain Name (FQDN) here. That information will be put in the
   <filename>/etc/hosts</filename> file in the next section.</para>
