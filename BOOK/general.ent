@@ -29,6 +29,7 @@
 <!ENTITY hints-index "&lfs-root;hints/list.html">
 <!ENTITY livecd-root "&lfs-root;livecd/">
 <!ENTITY errata "&clfs-wiki;clfs-embedded/errata/&generic-version;/">
+<!ENTITY cblfs-wiki "http://cblfs.cross-lfs.org/">
 
 <!ENTITY gnu "http://ftp.gnu.org/gnu/">
 <!ENTITY gnu-software "http://www.gnu.org/software/">

@@ -61,6 +61,15 @@
     </listitem>
 
     <listitem>
+      <para>Community Driven Beyond Linux From Scratch</para>
+
+      <para>The Community Driven Beyond Linux From Scratch wiki provides
+      information, installation procedures, and other tips for a large variety
+      of software that can be installed on a CLFS system.  The CBLFS wiki is
+      located at <ulink url="&cblfs-wiki;"/>.</para>
+    </listitem>
+
+    <listitem>
       <para>Beyond Linux From Scratch</para>
 
       <para>The Beyond Linux From Scratch book covers installation
