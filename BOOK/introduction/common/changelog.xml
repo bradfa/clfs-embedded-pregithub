@@ -37,6 +37,44 @@
 -->
 
     <listitem>
+      <para>March 23, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Remove mknod commands as mdev takes care of creating
+          all required entries in /dev automatically.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Moved change ownership section to be as late in the
+          book as possible and only operate on a copy of the file system.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>March 18, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Copy libgcc library to target as it's needed by
+          at least e2fsprogs.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>March 7, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added optional information for building C++
+          compiler.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated bootscripts install target and package contents
+          to match current bootscripts.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 24, 2011</para>
       <itemizedlist>
         <listitem>
