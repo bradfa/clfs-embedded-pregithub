@@ -10,10 +10,10 @@
 <!ENTITY binutils-md5 "c84c5acc9d266f1a7044b51c85a823f5">
 <!ENTITY binutils-home "http://sourceware.org/binutils/">
 
-<!ENTITY busybox-version "1.17.3">
-<!ENTITY busybox-size "2,048 KB">
+<!ENTITY busybox-version "1.18.4">
+<!ENTITY busybox-size "2,081 KB">
 <!ENTITY busybox-url "http://busybox.net/downloads/busybox-&busybox-version;.tar.bz2">
-<!ENTITY busybox-md5 "a2ce1a951571da8c6e0eaf75b1acef60">
+<!ENTITY busybox-md5 "b03c5b46ced732679e525a920a1a62f5">
 <!ENTITY busybox-home "http://www.busybox.net">
 
 <!ENTITY clfs-bootscripts-version "1.0-pre5">

@@ -27,6 +27,7 @@
       </listitem>
     </varlistentry>
 
+<!--
     <varlistentry>
       <term>Busybox Fixes Patch - <token>&busybox-fixes-patch-size;</token>:</term>
       <listitem>
@@ -35,6 +36,7 @@
         <para>MD5 sum: <literal>&busybox-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
+-->
 
     <varlistentry>
       <term>Iana-Etc Update Patch - <token>&iana-etc-update-patch-size;</token>:</term>
