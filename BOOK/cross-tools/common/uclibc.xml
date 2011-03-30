@@ -32,7 +32,7 @@
 
     <note os="a">
       <para>Below we are just telling uClibc to use its default configuration.
-      For those for more adventurous, you can use make menuconfig, and
+      For those who are more adventurous, you can use make menuconfig and
       do a more custom build for your uClibc installation.</para>
     </note>
 
