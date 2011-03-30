@@ -44,7 +44,7 @@
 
 <screen os="e"><userinput>cp -v clfs/config.${CLFS_ARCH}.${CLFS_ENDIAN} .config
 if [ "${CLFS_ABI}" == "aapcs" ] || [ "${CLFS_ABI}" == "aapcs-linux" ]; \
-then sed -i s/CONFIG_ARM_OABI/CONFIG_ARM_EABI/g .config; fi</userinput></screen>
+  then sed -i s/CONFIG_ARM_OABI/CONFIG_ARM_EABI/g .config; fi</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
     href="../common/uclibc.xml"
