@@ -5,8 +5,8 @@
 <!-- Start of Common Patches -->
 
 <!ENTITY busybox-config-patch "busybox-&busybox-version;-config-1.patch">
-<!ENTITY busybox-config-patch-md5 "64bee07ba3efbb512fb4f348e814bf31">
-<!ENTITY busybox-config-patch-size "4 KB">
+<!ENTITY busybox-config-patch-md5 "bd06ac3799960df8c72f73bb4ad27e30">
+<!ENTITY busybox-config-patch-size "26 KB">
 
 <!--
 <!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
