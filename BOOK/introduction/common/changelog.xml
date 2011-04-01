@@ -37,6 +37,45 @@
 -->
 
     <listitem>
+      <para>March 31, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Updated BusyBox to version 1.18.4.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated GCC to version 4.6.0.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated MPC to version 0.9.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated zlib to version 1.2.5.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated Linux kernel to version 2.6.38.2.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Require Gawk 3.1 or greater because of Iana-Etc
+          requirements.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated "What Now?" section to include CBLFS link.
+          Thanks go to Adrian Grigo.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Link ${CLFS}/etc/init.d/rcS to
+          ${CLFS}/etc/rc.d/startup so that BusyBox's init can find the startup
+          scripts.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Updated mdev configuration such that video output
+          is disabled by default to ensure no errors if video is not
+          available.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>March 23, 2011</para>
       <itemizedlist>
         <listitem>
