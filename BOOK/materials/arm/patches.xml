@@ -10,19 +10,19 @@
 
   <title>Additional Patches for ARM</title>
 
-<!--
   <variablelist role="materials">
-    <varlistentry os="linux-mips-patch">
-      <term>Linux-MIPS Merge Patch - <token>&linux-mips-patch-size;</token>:</term>
+
+    <varlistentry os="gcc-uclibc-arm-softfloat-patch">
+      <term>GCC uClibc ARM Soft Floating Point Patch - <token>&gcc-uclibc-arm-softfloat-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
-        url="&patches-root;&linux-mips-patch;"/></para>
-        <para>MD5 sum: <literal>&linux-mips-patch-md5;</literal></para>
+        url="&patches-root;&gcc-uclibc-arm-softfloat-patch;"/></para>
+        <para>MD5 sum: <literal>&gcc-uclibc-arm-softfloat-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
   </variablelist>
--->
+
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/patches.xml"

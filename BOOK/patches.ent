@@ -32,6 +32,12 @@
 <!ENTITY libnl-fixes-patch-md5 "773b0d979f1592f757dd30d47ae179fa">
 <!ENTITY libnl-fixes-patch-size "3 KB">
 
+<!-- ARM Patches -->
+
+<!ENTITY gcc-uclibc-arm-softfloat-patch "gcc-&gcc-version;-uclibc-arm-softfloat-1.patch">
+<!ENTITY gcc-uclibc-arm-softfloat-patch-md5 "8a302850b814bbd75237eff65a23b9d1">
+<!ENTITY gcc-uclibc-arm-softfloat-patch-size "2 KB">
+
 <!-- MIPS Patches -->
 
 <!ENTITY linux-bcm43xx-patch "linux-&linux-version;-openwrt-bcm47xx-fixes-2.patch">
