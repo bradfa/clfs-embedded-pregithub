@@ -33,6 +33,16 @@
 -->
 
     <listitem>
+      <para>April 8, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Added patch for ARM uClibc soft floating point
+          fixes in order to build libgcc.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 24, 2011</para>
       <itemizedlist>
         <listitem>
