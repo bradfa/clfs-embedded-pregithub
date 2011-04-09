@@ -19,10 +19,10 @@
       <para>Ryan Oliver - Build Process Developer.</para>
     </listitem>
     <listitem>
-      <para>Jim Gifford - Lead Developer.</para>
+      <para>Joe Ciccone - Lead Developer.</para>
     </listitem>
     <listitem>
-      <para>Jeremy Utley - Release Manager 1.x Series.</para>
+      <para>Jim Gifford - Lead Developer.</para>
     </listitem>
   </itemizedlist>
 
@@ -30,34 +30,10 @@
 
   <itemizedlist>
     <listitem>
-      <para>Joe Ciccone - Alpha, MIPS, Sparc builds.</para>
-    </listitem>
-    <listitem>
-      <para>Nathan Coulson - Bootscripts.</para>
-    </listitem>
-    <listitem>
-      <para>Matt Darcy - x86, x86_64, and Sparc builds.</para>
-    </listitem>
-    <listitem>
-      <para>Manuel Canales Esparcia - Book XML.</para>
-    </listitem>
-    <listitem>
-      <para>Karen McGuiness - Proofreader.</para>
-    </listitem>
-    <listitem>
-      <para>Jeremy Huntwork - PowerPC, x86, Sparc builds.</para>
+      <para>Andrew Bradford - Embedded Developer.</para>
     </listitem>
     <listitem>
       <para>Justin Knierim - Website Architect.</para>
-    </listitem>
-    <listitem>
-      <para>Ken Moffat - PowerPC and x86_64 builds. Developer of Pure 64 Hint.</para>
-    </listitem>
-    <listitem>
-      <para>Alexander E. Patrakov - Udev/Hotplug Integration</para>
-    </listitem>
-    <listitem>
-      <para>Chris Staub - x86 builds. Leader of Quality Control.</para>
     </listitem>
     <listitem>
       <para>Maarten Lankhorst - MIPS/WRT embedded builds.</para>
@@ -67,44 +43,27 @@
     </listitem>
   </itemizedlist>
 
+<!--
   <para>Outside the Development Team</para>
- <itemizedlist>
+  <itemizedlist>
     <listitem>
-      <para>Jürg Billeter - Testing and assisting in the development of the Linux Headers Package</para>
-    </listitem>
-    <listitem>
-      <para>Richard Downing - Testing, typo, and content fixes.</para>
-    </listitem>
-    <listitem>
-      <para>Peter Ennis - Typo and content fixes.</para>
-    </listitem>
-    <listitem>
-      <para>Tony Morgan - Typo and content fixes.</para>
+      <para>Name - Contribution</para>
     </listitem>
   </itemizedlist>
+-->
+<!--
 
   <para>The CLFS team would also like to acknowledge contributions of people
   from <ulink url="clfs-dev@lists.cross-lfs.org"/> and associated mailing lists
   who have provided valuable technical and editorial corrections while testing
   the Cross-LFS book.</para>
 
- <itemizedlist>
+  <itemizedlist>
     <listitem>
-      <para>G. Moko - Text updates and Typos</para>
-    </listitem>
-    <listitem>
-      <para>Maxim Osipov - MIPS Testing.</para>
-    </listitem>
-    <listitem>
-      <para>Doug Ronne - Various x86_64 fixes.</para>
-    </listitem>
-    <listitem>
-      <para>William Zhou - Text updates and Typos</para>
-    </listitem>
-    <listitem>
-      <para>Theo Schneider - Testing of the Linux Headers Package</para>
+      <para>Name - Contribution</para>
     </listitem>
   </itemizedlist>
+-->
 
   <para>Thank you all for your support.</para>
 
