@@ -17,20 +17,21 @@
   <sect2 role="package">
     <title/>
 
-    <para>Hostapd is a daemon required for setting up a wireless access point, it supports
-    WEP, WPA and WPA2 encryption and can optionally use EAP for authentification, but since
-    this feature requires OpenSSL only basic WEP/WPA/WPA2 encryption will be compiled here.
-    </para>
+    <para>Hostapd is a daemon required for setting up a wireless access point, 
+    it supports WEP, WPA and WPA2 encryption and can optionally use EAP for 
+    authentification, but since this feature requires OpenSSL only basic 
+    WEP/WPA/WPA2 encryption will be compiled here.</para>
 
   </sect2>
 
   <sect2 role="installation">
     <title>Installation of hostapd</title>
 
-    <para os="a">By default only a very basic hostapd is made, but hostapd supports a lot of other options as well. Write a basic config file for hostap:</para>
+    <para os="a">By default only a very basic hostapd is made, but hostapd 
+    supports a lot of other options as well. Write a basic config file for 
+    hostapd:</para>
 
-<screen os="b"><userinput>
-cd hostapd; cat &gt; .config &lt;&lt; EOF
+<screen os="b"><userinput>cd hostapd; cat &gt; .config &lt;&lt; EOF
 <literal># Support for nl80211 driver
 CONFIG_DRIVER_NL80211=y
 # Use v2.0 of the netlink appi
@@ -62,8 +63,9 @@ EOF</literal></userinput></screen>
 
 <screen os="h"><userinput>make install-hostapd DESTDIR=${CLFS}</userinput></screen>
 
-    <para os="i">Create hostapd.conf, this example file will create a WPA2 encrypted
-    host access point with the name dummy and password foobar123 on channel 4:</para>
+    <para os="i">Create hostapd.conf, this example file will create a WPA2 
+    encrypted host access point with the name dummy and password foobar123 on 
+    channel 4:</para>
 
 <screen os="j"><userinput>cat &gt; ${CLFS} &lt;&lt; EOF
 <literal># Sample hostapd.conf
