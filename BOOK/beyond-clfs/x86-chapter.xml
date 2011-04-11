@@ -5,11 +5,11 @@
   %general-entities;
 ]>
 
-<chapter id="chapter-beyond-clfs" xreflabel="Beyond CLFS Embedded">
+<chapter id="chapter-beyond-clfs" xreflabel="Networking Software">
   <?dbhtml dir="beyond-clfs"?>
   <?dbhtml filename="chapter.html"?>
 
-  <title>Beyond CLFS Embedded</title>
+  <title>Networking Software</title>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/introduction.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/packages.xml"/>
