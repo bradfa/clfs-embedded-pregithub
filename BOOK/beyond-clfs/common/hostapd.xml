@@ -67,7 +67,7 @@ EOF</literal></userinput></screen>
     encrypted host access point with the name dummy and password foobar123 on 
     channel 4:</para>
 
-<screen os="j"><userinput>cat &gt; ${CLFS} &lt;&lt; EOF
+<screen os="j"><userinput>cat &gt; ${CLFS}/etc/hostapd.conf &lt;&lt; EOF
 <literal># Sample hostapd.conf
 # See hostapd/hostapd.conf in your hostap source tree for a more detailed version
 interface=wlan0
