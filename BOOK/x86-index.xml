@@ -56,16 +56,24 @@
   <part id="part5">
     <?dbhtml filename="part5.html"?>
 
-    <title>Beyond CLFS</title>
+    <title>Beyond CLFS Embedded</title>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs/x86-chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="cleanup/chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="the-end/chapter.xml"/>
 
   </part>
 
   <part id="part6">
     <?dbhtml filename="part6.html"?>
+
+    <title>Cleanup and Boot</title>
+
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="cleanup/chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="the-end/chapter.xml"/>
+
+  </part>
+
+  <part id="part7">
+    <?dbhtml filename="part7.html"?>
 
     <title>Appendices</title>
 
