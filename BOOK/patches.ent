@@ -34,9 +34,9 @@
 
 <!-- ARM Patches -->
 
-<!ENTITY gcc-uclibc-arm-softfloat-patch "gcc-&gcc-version;-uclibc-arm-softfloat-1.patch">
-<!ENTITY gcc-uclibc-arm-softfloat-patch-md5 "8a302850b814bbd75237eff65a23b9d1">
-<!ENTITY gcc-uclibc-arm-softfloat-patch-size "2 KB">
+<!ENTITY gcc-uclibc-arm-softfloat-patch "gcc-&gcc-version;-uclibc-arm-softfloat-2.patch">
+<!ENTITY gcc-uclibc-arm-softfloat-patch-md5 "365f3e9d4979fc31ef338907ee8f97dd">
+<!ENTITY gcc-uclibc-arm-softfloat-patch-size "3 KB">
 
 <!-- MIPS Patches -->
 
