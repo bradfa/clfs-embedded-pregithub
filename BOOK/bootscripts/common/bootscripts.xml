@@ -25,6 +25,14 @@
   <sect2 role="installation">
     <title>Installation of CLFS-Bootscripts</title>
 
+    <important>
+
+      <para>Unlike other chapters, after installing the bootscripts, do not 
+      delete the bootscripts source directory.  The bootscripts source directory
+      may be needed later.</para>
+
+    </important>
+
     <para>Install the package:</para>
 
 <screen><userinput>make DESTDIR=${CLFS} install-bootscripts</userinput></screen>
