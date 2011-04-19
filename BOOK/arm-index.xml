@@ -57,7 +57,7 @@
 
     <title>Beyond CLFS Embedded</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs/arm-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-networking/arm-chapter.xml"/>
 
   </part>
 

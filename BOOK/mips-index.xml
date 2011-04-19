@@ -57,7 +57,7 @@
 
     <title>Beyond CLFS Embedded</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-clfs/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-networking/mips-chapter.xml"/>
 
   </part>
 
