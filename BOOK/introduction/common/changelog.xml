@@ -37,6 +37,29 @@
 -->
 
     <listitem>
+      <para>April 19, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Created a Beyond section just for networking 
+          tools.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Created a Beyond section just for file system tools
+          and moved e2fsprogs into it.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>April 8, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[jciccone] - Cleaned up the acknowledgements page.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>March 31, 2011</para>
       <itemizedlist>
         <listitem>
