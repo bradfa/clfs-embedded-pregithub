@@ -8,13 +8,13 @@
 <sect1 id="ch-beyond-clfs3-patches">
   <?dbhtml filename="patches.html"?>
 
-  <title>Beyond CLFS Patches</title>
+  <title>Beyond CLFS Networking Patches</title>
 
   <para>In addition to the packages, several patches are also required.
   These patches correct any mistakes in the packages that should be
   fixed by the maintainer. The patches also make small modifications to
   make the packages easier to work with. The following patches will be
-  needed to build a CLFS system:</para>
+  needed in order to build the associated packages:</para>
 
   <variablelist role="beyond-clfs3">
 
