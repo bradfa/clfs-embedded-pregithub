@@ -22,12 +22,6 @@
 <!ENTITY clfs-bootscripts-md5 "e20e3e285fb7fe3ff941e3e505f96023">
 <!ENTITY clfs-bootscripts-home " ">
 
-<!ENTITY e2fsprogs-version "1.41.14">
-<!ENTITY e2fsprogs-size "4,407 KB">
-<!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
-<!ENTITY e2fsprogs-md5 "05f70470aea2ef7efbb0845b2b116720">
-<!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
-
 <!ENTITY gcc-version "4.6.0">
 <!ENTITY gcc-size "69,902 KB">
 <!ENTITY gcc-url "ftp://gcc.gnu.org/pub/gcc/releases/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
@@ -86,6 +80,12 @@
 <!ENTITY dropbear-url "http://matt.ucc.asn.au/dropbear/releases/dropbear-&dropbear-version;.tar.gz">
 <!ENTITY dropbear-md5 "a1fc7adf601bca53330a792a9c873439">
 <!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
+
+<!ENTITY e2fsprogs-version "1.41.14">
+<!ENTITY e2fsprogs-size "4,407 KB">
+<!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
+<!ENTITY e2fsprogs-md5 "05f70470aea2ef7efbb0845b2b116720">
+<!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
 <!ENTITY iptables-version "1.4.2">
 <!ENTITY iptables-size "428 KB">

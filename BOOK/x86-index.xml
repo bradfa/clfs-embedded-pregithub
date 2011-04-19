@@ -60,6 +60,7 @@
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-intro/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-networking/x86-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-filesys/x86-chapter.xml"/>
 
   </part>
 

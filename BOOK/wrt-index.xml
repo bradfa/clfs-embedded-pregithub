@@ -58,6 +58,7 @@
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-intro/wrt-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-networking/wrt-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-filesys/wrt-chapter.xml"/>
 
   </part>
 

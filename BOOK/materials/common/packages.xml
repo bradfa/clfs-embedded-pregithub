@@ -42,15 +42,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>E2fsprogs (&e2fsprogs-version;) - <token>&e2fsprogs-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&e2fsprogs-home;"/></para>
-        <para>Download: <ulink url="&e2fsprogs-url;"/></para>
-        <para>MD5 sum: <literal>&e2fsprogs-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>GCC (&gcc-version;) - <token>&gcc-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&gcc-home;"/></para>
