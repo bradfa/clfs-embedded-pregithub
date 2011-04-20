@@ -5,8 +5,8 @@
   %general-entities;
 ]>
 
-<chapter id="chapter-beyond-networking" xreflabel="Networking Software">
-  <?dbhtml dir="beyond-networking"?>
+<chapter id="chapter-beyond-net" xreflabel="Networking Software">
+  <?dbhtml dir="beyond-net"?>
   <?dbhtml filename="chapter.html"?>
 
   <title>Networking Software</title>
