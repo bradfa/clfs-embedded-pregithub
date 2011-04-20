@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-bclfs-libnl" role="wrap">
+<sect1 id="ch-beyond-net-libnl" role="wrap">
   <?dbhtml filename="libnl.html"?>
 
   <title>libnl-&libnl-version;</title>
 
-  <indexterm zone="ch-bclfs-libnl">
+  <indexterm zone="ch-beyond-net-libnl">
     <primary sortas="a-libnl">libnl</primary>
   </indexterm>
 

@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-bclfs-hostapd" role="wrap">
+<sect1 id="ch-beyond-net-hostapd" role="wrap">
   <?dbhtml filename="hostapd.html"?>
 
   <title>hostapd-&hostapd-version;</title>
 
-  <indexterm zone="ch-bclfs-hostapd">
+  <indexterm zone="ch-beyond-net-hostapd">
     <primary sortas="a-hostapd">hostapd</primary>
   </indexterm>
 

@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-bclfs-iptables" role="wrap">
+<sect1 id="ch-beyond-net-iptables" role="wrap">
   <?dbhtml filename="iptables.html"?>
 
   <title>IPTables-&iptables-version;</title>
 
-  <indexterm zone="ch-bclfs-iptables">
+  <indexterm zone="ch-beyond-net-iptables">
     <primary sortas="a-iptables">iptables</primary>
   </indexterm>
 

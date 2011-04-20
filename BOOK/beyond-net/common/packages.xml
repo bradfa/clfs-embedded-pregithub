@@ -5,14 +5,14 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-bclfs-packages-common">
+<sect1 id="ch-beyond-net-packages-common">
   <?dbhtml filename="packages.html"?>
 
   <title>Beyond CLFS Networking Packages</title>
 
   <para>Download or otherwise obtain the following packages:</para>
 
-  <variablelist role="bclfs">
+  <variablelist role="beyond-net">
 
     <varlistentry>
       <term>Dropbear (&dropbear-version;) - <token>&dropbear-size;</token>:</term>
