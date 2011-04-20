@@ -8,7 +8,7 @@
 <sect1 id="ch-finish-reboot">
   <?dbhtml filename="reboot.html"?>
 
-  <title>Rebooting the System</title>
+  <title>Booting the System</title>
 
   <para>The system you have created in this book is quite minimal, and most
   likely will not have the functionality you would need to be able to
