@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-system-zlib" role="wrap">
+<sect1 id="ch-beyond-lib-zlib" role="wrap">
   <?dbhtml filename="zlib.html"?>
 
   <title>Zlib-&zlib-version;</title>
 
-  <indexterm zone="ch-system-zlib">
+  <indexterm zone="ch-beyond-lib-zlib">
     <primary sortas="a-Zlib">Zlib</primary>
   </indexterm>
 
@@ -86,7 +86,7 @@ ln -svf ../../lib/libz.so.1 ${CLFS}/usr/lib/libz.so</userinput></screen>
         <listitem>
           <para>Contains compression and decompression
           functions used by some programs</para>
-          <indexterm zone="ch-system-zlib libz">
+          <indexterm zone="ch-beyond-lib-zlib libz">
             <primary sortas="c-libz">libz</primary>
           </indexterm>
         </listitem>

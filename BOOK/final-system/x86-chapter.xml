@@ -16,6 +16,5 @@
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/toolchain.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/busybox.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/iana-etc.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/zlib.xml"/>
 
 </chapter>
