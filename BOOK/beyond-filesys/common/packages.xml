@@ -5,14 +5,14 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-bclfs-filesys-packages-common">
+<sect1 id="ch-beyond-filesys-packages-common">
   <?dbhtml filename="packages.html"?>
 
   <title>Beyond CLFS File System Packages</title>
 
   <para>Download or otherwise obtain the following packages:</para>
 
-  <variablelist role="bclfs-filesys">
+  <variablelist role="beyond-filesys">
 
     <varlistentry>
       <term>E2fsprogs (&e2fsprogs-version;) - <token>&e2fsprogs-size;</token>:</term>
