@@ -59,6 +59,7 @@
     <title>Beyond CLFS Embedded</title>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-intro/x86-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-lib/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-net/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-filesys/x86-chapter.xml"/>
 
