@@ -67,12 +67,6 @@
 <!ENTITY uclibc-md5 "52fb8a494758630c8d3ddd7f1e0daafd">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
-<!ENTITY zlib-version "1.2.5">
-<!ENTITY zlib-size "532 KB">
-<!ENTITY zlib-url "&sourceforge;libpng/zlib-&zlib-version;.tar.gz">
-<!ENTITY zlib-md5 "c735eab2d659a96e5a594c9e8541ad63">
-<!ENTITY zlib-home "http://www.zlib.net">
-
 <!-- Beyond CLFS packages -->
 
 <!ENTITY dropbear-version "0.52">
@@ -104,6 +98,12 @@
 <!ENTITY hostapd-url "http://cross-lfs.org/~mlankhorst/hostap-git.tar.bz2">
 <!ENTITY hostapd-md5 "4fa27f467c10de67fda451396fb6f854">
 <!ENTITY hostapd-home "http://hostap.epitest.fi/">
+
+<!ENTITY zlib-version "1.2.5">
+<!ENTITY zlib-size "532 KB">
+<!ENTITY zlib-url "&sourceforge;libpng/zlib-&zlib-version;.tar.gz">
+<!ENTITY zlib-md5 "c735eab2d659a96e5a594c9e8541ad63">
+<!ENTITY zlib-home "http://www.zlib.net">
 
 <!-- WRT Specific packages -->
 
