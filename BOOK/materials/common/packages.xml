@@ -104,15 +104,6 @@
       </listitem>
     </varlistentry>
 
-    <varlistentry>
-      <term>Zlib (&zlib-version;) - <token>&zlib-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&zlib-home;"/></para>
-        <para>Download: <ulink url="&zlib-url;"/></para>
-        <para>MD5 sum: <literal>&zlib-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>
