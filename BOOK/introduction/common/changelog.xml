@@ -37,6 +37,16 @@
 -->
 
     <listitem>
+      <para>April 20, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Created a Beyond section just for extra libraries 
+          and moved zlib into it.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>April 19, 2011</para>
       <itemizedlist>
         <listitem>
