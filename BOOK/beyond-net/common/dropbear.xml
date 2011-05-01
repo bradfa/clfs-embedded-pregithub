@@ -64,7 +64,7 @@ ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
 
     <para os="j">Create the directory for the dropbear key files:</para>
 
-<screen os="k"><userinput>install -dv ${CLFS}/etc/ssh</userinput></screen>
+<screen os="k"><userinput>install -dv ${CLFS}/etc/dropbear</userinput></screen>
 
     <para os="l">Install the bootscripts from the clfs-bootscripts package:</para>
 
