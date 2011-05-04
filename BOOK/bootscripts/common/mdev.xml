@@ -33,76 +33,110 @@
 
 <screen os="b"><?dbfo keep-together="auto"?><userinput>cat &gt; ${CLFS}/etc/mdev.conf&lt;&lt; "EOF"
 <literal># /etc/mdev/conf
-# Symlinks:
-# Syntax: %s -> %s
-
-MAKEDEV -> ../sbin/MAKEDEV
-/proc/core -> kcore
-fd -> /proc/self/fd
-mcdx -> mcdx0
-radio -> radio0
-ram -> ram1
-sbpcd -> sbpcd0
-sr0 -> scd0
-sr1 -> scd1
-sr10 -> scd10
-sr11 -> scd11
-sr12 -> scd12
-sr13 -> scd13
-sr14 -> scd14
-sr15 -> scd15
-sr16 -> scd16
-sr2 -> scd2
-sr3 -> scd3
-sr4 -> scd4
-sr5 -> scd5
-sr6 -> scd6
-sr7 -> scd7
-sr8 -> scd8
-sr9 -> scd9
-stderr -> fd/2
-stdin -> fd/0
-stdout -> fd/1
-
-# Uncomment the following 4 lines to enable video output
-#vbi -> vbi0
-#vcs -> vcs0
-#vcsa -> vcsa0
-#video -> video0
 
 # Devices:
 # Syntax: %s %d:%d %s
 # devices user:group mode
 
-null 0:0 777
-zero 0:0 666
+# null does already exist; therefore ownership has to be changed with command
+null	root:root 0666	@chmod 666 $MDEV
+zero	root:root 0666
+grsec	root:root 0660
+full	root:root 0666
 
-urandom 0:0 444
+random	root:root 0666
+urandom	root:root 0444
+hwrandom root:root 0660
 
-console 0:5 0600
-fd0 0:11 0660
-hdc 0:6 0660
-kmem 0:9 000
-mem 0:9 0640
-port 0:9 0640
-ptmx 0:5 0660
-tun[0-9]* 0:0 0640 =net/
+# console does already exist; therefore ownership has to be changed with command
+#console	root:tty 0600	@chmod 600 $MDEV &amp;&amp; mkdir -p vc &amp;&amp; ln -sf ../$MDEV vc/0
+console root:tty 0600 @mkdir -pm 755 fd &amp;&amp; cd fd &amp;&amp; for x in 0 1 2 3 ; do ln -sf /proc/self/fd/$x $x; done
 
-sda* 0:6 0660
-sdb* 0:6 0660
-hda* 0:6 0660
-hdb* 0:6 0660
+fd0	root:floppy 0660
+kmem	root:root 0640
+mem	root:root 0640
+port	root:root 0640
+ptmx	root:tty 0666
 
-tty 0:5 0660
-tty0* 0:5 0660
-tty1* 0:5 0660
-tty2* 0:5 0660
-tty3* 0:5 0660
-tty4* 0:5 0660
-tty5* 0:5 0660
-tty6* 0:5 0660
+# ram.*
+ram([0-9]*)	root:disk 0660 >rd/%1
+loop([0-9]+)	root:disk 0660 >loop/%1
+sd[a-z].*	root:disk 0660 */lib/mdev/usbdisk_link
+hd[a-z][0-9]*	root:disk 0660 */lib/mdev/ide_links
+md[0-9]		root:disk 0660
 
-ttyS* 0:20 640</literal>
+tty		root:tty 0666
+tty[0-9]	root:root 0600
+tty[0-9][0-9]	root:tty 0660
+ttyS[0-9]*	root:tty 0660
+pty.*		root:tty 0660
+vcs[0-9]*	root:tty 0660
+vcsa[0-9]*	root:tty 0660
+
+ttyLTM[0-9]	root:dialout 0660 @ln -sf $MDEV modem
+ttySHSF[0-9]	root:dialout 0660 @ln -sf $MDEV modem
+slamr		root:dialout 0660 @ln -sf $MDEV slamr0
+slusb		root:dialout 0660 @ln -sf $MDEV slusb0
+fuse		root:root  0666
+
+# dri device
+card[0-9]	root:video 0660 =dri/
+
+# alsa sound devices and audio stuff
+pcm.*		root:audio 0660	=snd/
+control.*	root:audio 0660	=snd/
+midi.*		root:audio 0660	=snd/
+seq		root:audio 0660	=snd/
+timer		root:audio 0660	=snd/
+
+adsp		root:audio 0660 >sound/
+audio		root:audio 0660 >sound/
+dsp		root:audio 0660 >sound/
+mixer		root:audio 0660 >sound/
+sequencer.*	root:audio 0660 >sound/
+
+# misc stuff
+agpgart		root:root 0660  >misc/
+psaux		root:root 0660  >misc/
+rtc		root:root 0664  >misc/
+
+# input stuff
+event[0-9]+	root:root 0640 =input/
+mice		root:root 0640 =input/
+mouse[0-9]	root:root 0640 =input/
+ts[0-9]		root:root 0600 =input/
+
+# v4l stuff
+vbi[0-9]	root:video 0660 >v4l/
+video[0-9]	root:video 0660 >v4l/
+
+# dvb stuff
+dvb.*		root:video 0660 */lib/mdev/dvbdev
+
+# load drivers for usb devices
+usbdev[0-9].[0-9]	root:root 0660 */lib/mdev/usbdev
+usbdev[0-9].[0-9]_.*	root:root 0660
+
+# net devices
+tun[0-9]*	root:root 0600 =net/
+tap[0-9]*	root:root 0600 =net/
+
+# zaptel devices
+zap(.*)		root:dialout 0660 =zap/%1
+dahdi!(.*)	root:dialout 0660 =dahdi/%1
+
+# raid controllers
+cciss!(.*)	root:disk 0660 =cciss/%1
+ida!(.*)	root:disk 0660 =ida/%1
+rd!(.*)		root:disk 0660 =rd/%1
+
+sr[0-9]		root:cdrom 0660 @ln -sf $MDEV cdrom 
+
+# hpilo
+hpilo!(.*)	root:root 0660 =hpilo/%1
+
+# xen stuff
+xvd[a-z]	root:root 0660 */lib/mdev/xvd_links</literal>
 EOF</userinput></screen>
 
   </sect2>
