@@ -50,6 +50,14 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry>
+      <term>Wireless Tools (&wireless_tools-version;) - <token>&wireless_tools-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&wireless_tools-home;"/></para>
+        <para>Download: <ulink url="&wireless_tools-url;"/></para>
+        <para>MD5 sum: <literal>&wireless_tools-md5;</literal></para>
+      </listitem>
+    </varlistentry>
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>

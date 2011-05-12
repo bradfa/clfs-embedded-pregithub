@@ -101,6 +101,12 @@
 <!ENTITY hostapd-md5 "4fa27f467c10de67fda451396fb6f854">
 <!ENTITY hostapd-home "http://hostap.epitest.fi/">
 
+<!ENTITY wireless_tools-version "29">
+<!ENTITY wireless_tools-size "288 KB">
+<!ENTITY wireless_tools-url "http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.&wireless_tools-version;.tar.gz">
+<!ENTITY wireless_tools-md5 "e06c222e186f7cc013fd272d023710cb">
+<!ENTITY wireless_tools-home "http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html">
+
 <!-- Beyond CLFS file system packages -->
 
 <!ENTITY e2fsprogs-version "1.41.14">

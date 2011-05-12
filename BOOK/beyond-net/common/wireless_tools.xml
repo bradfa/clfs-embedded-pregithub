@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-beyond-net-wireless_tools" role="wrap">
+  <?dbhtml filename="wireless_tools.html"?>
+
+  <title>Wireless Tools-&wireless_tools-version;</title>
+
+  <indexterm zone="ch-beyond-net-wireless_tools">
+    <primary sortas="a-wireless_tools">wireless_tools</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Wireless Tools is the reference implementation of tools supporting the
+    ability to manipulate the Wireless Extensions API supported by most wireless
+    LAN networking drivers.</para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of Wireless Tools</title>
+
+    <para os="a">Wireless Tools' <filename>Makefile</filename> contains 
+    explicitly which <command>gcc</command>, <command>ar</command>, and
+    <command>ranlib</command> to use.  Make sure the 
+    <filename class="directory">${CLFS}/cross-tools</filename> versions of 
+    these programs are used instead of the host's:</para>
+
+<screen><userinput>sed -i s/gcc/\$\{CLFS\_TARGET\}\-gcc/g Makefile
+sed -i s/\ ar/\ \$\{CLFS\_TARGET\}\-ar/g Makefile
+sed -i s/ranlib/\$\{CLFS\_TARGET\}\-ranlib/g Makefile</userinput></screen>
+
+    <para os="b">Compile the package:</para>
+
+    <note><para>There are options that can be passed to <command>make</command>
+    and <command>make install</command> that will reduce the size and 
+    functionality of the Wireless Tools.  See the Wireless Tools
+    <filename>INSTALL</filename> file for more information.</para></note>
+
+<screen><userinput>make PREFIX=${CLFS}/usr</userinput></screen>
+
+    <para os="c">Install the package:</para>
+
+<screen><userinput>make install PREFIX=${CLFS}/usr</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-wireless_tools" role="content">
+    <title>Contents of Wireless Tools</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+      <segtitle>Installed libraries</segtitle>
+
+      <seglistitem>
+        <seg>iwconfig, iwevent, iwgetid, iwlist,iwpriv, and iwspy</seg>
+        <seg>libiw.so</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+</sect1>
