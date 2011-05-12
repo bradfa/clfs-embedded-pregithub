@@ -67,19 +67,21 @@
 <!ENTITY uclibc-md5 "52fb8a494758630c8d3ddd7f1e0daafd">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
-<!-- Beyond CLFS packages -->
+<!-- Beyond CLFS library packages -->
+
+<!ENTITY zlib-version "1.2.5">
+<!ENTITY zlib-size "532 KB">
+<!ENTITY zlib-url "&sourceforge;libpng/zlib-&zlib-version;.tar.gz">
+<!ENTITY zlib-md5 "c735eab2d659a96e5a594c9e8541ad63">
+<!ENTITY zlib-home "http://www.zlib.net">
+
+<!-- Beyond CLFS networking packages -->
 
 <!ENTITY dropbear-version "0.52">
 <!ENTITY dropbear-size "1,568 KB">
 <!ENTITY dropbear-url "http://matt.ucc.asn.au/dropbear/releases/dropbear-&dropbear-version;.tar.gz">
 <!ENTITY dropbear-md5 "a1fc7adf601bca53330a792a9c873439">
 <!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
-
-<!ENTITY e2fsprogs-version "1.41.14">
-<!ENTITY e2fsprogs-size "4,407 KB">
-<!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
-<!ENTITY e2fsprogs-md5 "05f70470aea2ef7efbb0845b2b116720">
-<!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
 <!ENTITY iptables-version "1.4.2">
 <!ENTITY iptables-size "428 KB">
@@ -99,11 +101,13 @@
 <!ENTITY hostapd-md5 "4fa27f467c10de67fda451396fb6f854">
 <!ENTITY hostapd-home "http://hostap.epitest.fi/">
 
-<!ENTITY zlib-version "1.2.5">
-<!ENTITY zlib-size "532 KB">
-<!ENTITY zlib-url "&sourceforge;libpng/zlib-&zlib-version;.tar.gz">
-<!ENTITY zlib-md5 "c735eab2d659a96e5a594c9e8541ad63">
-<!ENTITY zlib-home "http://www.zlib.net">
+<!-- Beyond CLFS file system packages -->
+
+<!ENTITY e2fsprogs-version "1.41.14">
+<!ENTITY e2fsprogs-size "4,407 KB">
+<!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
+<!ENTITY e2fsprogs-md5 "05f70470aea2ef7efbb0845b2b116720">
+<!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
 <!-- WRT Specific packages -->
 
