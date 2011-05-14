@@ -37,6 +37,30 @@
 -->
 
     <listitem>
+      <para>May 14, 2011</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Updated /etc/mdev.conf to Alpine Linux's example
+          to provide a better baseline example.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Reverted changes that removed the mknod'ing of
+          /dev/console and /dev/null.  These nodes may be needed on some systems
+          for proper booting.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Added Wireless Tools package to Beyond Networking
+          section.  Thanks to Ivan Castell Rovira for providing a set of
+          instructions for the installation of this package.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Fixed some Dropbear issues with symlinks and
+          directory naming.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>April 20, 2011</para>
       <itemizedlist>
         <listitem>
