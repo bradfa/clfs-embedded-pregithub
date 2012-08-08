@@ -35,6 +35,15 @@
       </itemizedlist>
     </listitem>
 -->
+    <listitem>
+      <para>August 08, 2012</para>
+      <itemizedlist>
+        <listitem>
+          <para>[William Harrington] - Update version check script to find the libc version with hosts that use paths other than /lib and /lib64, such as multiarch distro.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
 
     <listitem>
       <para>May 14, 2011</para>
