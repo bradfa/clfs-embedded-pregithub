@@ -66,9 +66,15 @@ ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
 
 <screen os="k"><userinput>install -dv ${CLFS}/etc/dropbear</userinput></screen>
 
-    <para os="l">Install the bootscripts from the clfs-bootscripts package:</para>
+  </sect2>
 
-<screen os="m"><userinput>make install-sshd DESTDIR=${CLFS}</userinput></screen>
+  <sect2 role="bootscripts">
+    <title>Installation of Dropbear Bootscripts</title>
+
+    <para os="l">From the clfs-bootscripts package, install the Dropbear
+            bootscripts:</para>
+
+<screen os="m"><userinput>make install-dropbear DESTDIR=${CLFS}</userinput></screen>
 
 
   </sect2>
