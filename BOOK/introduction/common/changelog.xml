@@ -36,10 +36,23 @@
     </listitem>
 -->
     <listitem>
+      <para>August 24, 2012</para>
+      <itemizedlist>
+        <listitem>
+          <para>[William Harrington] - Change Beyond Net hostapd page to include bootscript and configuration sections.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+
+    <listitem>
       <para>August 22, 2012</para>
       <itemizedlist>
         <listitem>
           <para>[William Harrington] - Change Beyond Net Dropbear page and edit the installation of bootscripts section.</para>
+        </listitem>
+        <listitem>
+           <para>[William Harrington] - Remove bash reference in hostreqs version script to use $SHELL variable.</para>
         </listitem>
       </itemizedlist>
     </listitem>

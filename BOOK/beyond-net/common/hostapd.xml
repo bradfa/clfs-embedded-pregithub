@@ -59,15 +59,25 @@ EOF</literal></userinput></screen>
 
 <screen os="f"><userinput>cp hostapd hostapd_cli ${CLFS}/usr/sbin</userinput></screen>
 
-    <para os="g">Install the bootscripts from the clfs-bootscripts package:</para>
+  </sect2>
 
-<screen os="h"><userinput>make install-hostapd DESTDIR=${CLFS}</userinput></screen>
+  <sect2 role="bootscripts">
+   <title>Installation of hostapd Bootscripts</title>
 
-    <para os="i">Create hostapd.conf, this example file will create a WPA2 
+    <para os="h">From the clfs-bootscripts package, install the hostapd bootscripts:</para>
+
+<screen os="i"><userinput>make install-hostapd DESTDIR=${CLFS}</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="configuration">
+   <title>Configure hostapd</title>
+
+    <para os="j">Create hostapd.conf, this example file will create a WPA2 
     encrypted host access point with the name dummy and password foobar123 on 
     channel 4:</para>
 
-<screen os="j"><userinput>cat &gt; ${CLFS}/etc/hostapd.conf &lt;&lt; EOF
+<screen os="k"><userinput>cat &gt; ${CLFS}/etc/hostapd.conf &lt;&lt; EOF
 <literal># Sample hostapd.conf
 # See hostapd/hostapd.conf in your hostap source tree for a more detailed version
 interface=wlan0
