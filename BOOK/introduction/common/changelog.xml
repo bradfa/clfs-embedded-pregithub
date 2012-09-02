@@ -36,6 +36,15 @@
     </listitem>
 -->
     <listitem>
+      <para>September 02, 2012</para>
+      <itemizedlist>
+        <listitem>
+          <para>[William Harrington] - Fix uClibc patch MD5 sum.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+   <listitem>
       <para>August 24, 2012</para>
       <itemizedlist>
         <listitem>
@@ -43,7 +52,6 @@
         </listitem>
       </itemizedlist>
     </listitem>
-
 
     <listitem>
       <para>August 22, 2012</para>
