@@ -38,7 +38,7 @@
   <para>The following device nodes need to be created for some systems to
   boot correctly:</para>
 
-<screen><userinput>mknod -m 0666 ${CLFS}/dev/null c 1 3
-mknod -m 0600 ${CLFS}/dev/console c 5 1</userinput></screen>
+<screen><userinput>mknod -m 0666 ${CLFS}-final/dev/null c 1 3
+mknod -m 0600 ${CLFS}-final/dev/console c 5 1</userinput></screen>
 
 </sect1>

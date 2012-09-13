@@ -114,7 +114,7 @@
     <command>depmod.pl</command> is avaiable from BusyBox, we need to create the
     module dependency list by issuing the following command:</para>
 
-<screen os="x"><userinput>${CLFS}/cross-tools/bin/depmod.pl -F ${CLFS}/boot/System.map \
+<screen os="x"><userinput>${CLFS}/cross-tools/bin/depmod.pl -F ${CLFS}/boot/System.map-&linux-version; \
     -b ${CLFS}/lib/modules/&linux-version;</userinput></screen>
 
     <para os="y">The kernel configuration file <filename>.config</filename>
