@@ -36,19 +36,6 @@
     </listitem>
 -->
     <listitem>
-      <para>September 13, 2012</para>
-      <itemizedlist>
-        <listitem>
-          <para>[ljump] - Fix System.map depmod command.</para>
-        </listitem>
-        <listitem>
-          <para>[ljump] - Fix console and null /dev node creation for final
-            system.</para>
-        </listitem>
-      </itemizedlist>
-    </listitem>
-
-    <listitem>
       <para>September 02, 2012</para>
       <itemizedlist>
         <listitem>
