@@ -33,6 +33,16 @@
 -->
 
     <listitem>
+      <para>September 18, 2012</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Provide recommendations for selection of ARM
+          ABI and build variables.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>April 8, 2011</para>
       <itemizedlist>
         <listitem>
