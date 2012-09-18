@@ -20,7 +20,15 @@
   do not know what values can be chosen for each of these, you can use the 
   tables at the bottom of this page as a reference.</para>
 
-  <para os="a1">First, set the host and target triplets:</para>
+  <para os="a1">Most ARM processors are little endian, it is a safe choice.
+  If your processor is an ARM9, good choices include: triplet of
+  armv5l-unknown-linux-uclibeabi, ARM arch of armv5t, float of softfp, and fpu
+  of either none or softvfp. ARM9 processors do not always have hardware
+  floating point abilities. If your processor is a Cortex-A8 or Cortex-A9, good
+  choices include: triplet of armv7a-unknown-linux-uclibceabi, ARM arch of
+  armv7-a, float of hard, and fpu of vfpv3-d16.</para>
+
+  <para os="a2">First, set the host and target triplets:</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
@@ -216,6 +224,8 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
         </row>
         <row>
           <entry>neon-vfpv4</entry>
+          <entry>softvfp</entry>
+          <entry>none</entry>
         </row>
       </tbody>
     </tgroup>
