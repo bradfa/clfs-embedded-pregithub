@@ -12,16 +12,17 @@
 
   <para os="a">On the ARM architecture, there are two major ABI types to choose
   from: EABI and OABI.  There is also a Thumb ABI and an Intel IWMMX specific
-  ABI.</para>
+  ABI but these are generally not recommended for most uses.</para>
 
   <para os="b">The EABI (Embedded ABI) is newer and supports additional
   features, faster software floating point operations, and Thumb interworking,
   but is only compatible with ARMv4t and newer cores.  The EABI has
   sub-ABIs of: aapcs-linux and aapcs.  aapcs-linux has standard Linux 4 byte
-  enums while aapcs has variable length enums.</para>
+  enums while aapcs has variable length enums.  aapcs-linux is recommended over
+  aapcs.</para>
 
   <para os="c">The OABI (old ABI) is called apcs-gnu and supports ARMv4 and 
-  older cores.</para>
+  older cores.  Generally the OABI is not used by modern ARM processors.</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/abi.xml"
@@ -55,9 +56,14 @@
 
       <tbody>
         <row>
+          <entry>aapcs-linux</entry>
+          <entry>aapcs-linux</entry>
+          <entry>Recommended for EABI. Standard Linux 32 bit (int) enums</entry>
+        </row>
+        <row>
           <entry>apcs-gnu</entry>
           <entry>apcs-gnu</entry>
-          <entry>OABI</entry>
+          <entry>Recommended for OABI</entry>
         </row>
         <row>
           <entry>atpcs</entry>
@@ -68,11 +74,6 @@
           <entry>aapcs</entry>
           <entry>aapcs</entry>
           <entry>EABI w/ variable size enums</entry>
-        </row>
-        <row>
-          <entry>aapcs-linux</entry>
-          <entry>aapcs-linux</entry>
-          <entry>EABI w/ standard Linux 32 bit (int) enums</entry>
         </row>
         <row>
           <entry>iwmmxt</entry>
