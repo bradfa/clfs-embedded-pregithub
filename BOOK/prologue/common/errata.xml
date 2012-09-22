@@ -12,11 +12,14 @@
 
   <para>The software used to create a CLFS system is constantly being
   updated and enhanced. Security warnings and bug fixes may become
-  available after the CLFS book has been released. To check whether the
+  available after the CLFS book has been released. Once a release of
+  the CLFS Embedded book is made, this page will provide a link to the
+  CLFS Embedded errata page.
+  <!--To check whether the
   package versions or instructions in this release of CLFS need any
   modifications to accommodate security vulnerabilities or other bug fixes,
   please visit <ulink url="&errata;"/> before proceeding with your build.
   You should note any changes shown and apply them to the relevant section
-  of the book as you progress with building the CLFS system.</para>
+  of the book as you progress with building the CLFS system.--></para>
 
 </sect1>
