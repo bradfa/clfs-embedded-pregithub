@@ -14,7 +14,7 @@
   prepared. We will create the partition itself, create a file system
   on it, and mount it.</para>
 
-  <para>In some circumstances based on the platform your building for this
-  step can be skipped.</para>
+  <para>In some circumstances, based on the platform you're building for,
+  this step can be skipped.</para>
 
 </sect1>
