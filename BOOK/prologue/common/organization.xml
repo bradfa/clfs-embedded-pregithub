@@ -24,7 +24,7 @@
     <title>Part II - Preparing for the Build</title>
 
     <para>Part II describes how to prepare for the building
-    process&mdash;making a partition and downloading the packages.</para>
+    process including downloading the packages.</para>
 
   </sect2>
 
@@ -32,31 +32,25 @@
     <title>Part III - Make the Cross-Compile Tools</title>
 
     <para>Part III shows you how to make a set of Cross-Compiler
-          tools. These tools can run on your host system but allow you to
-          build packages that will run on your target system.</para>
+    tools. These tools can run on your host system but allow you to
+    build packages that will run on your target system.</para>
 
   </sect2>
 
   <sect2>
-    <title>Part IV - Building the Basic Tools</title>
+    <title>Part IV - Building the CLFS System</title>
 
-    <para>Part IV explains how to build a tool chain designed
-          to operate on your target system. These are the tools
-          that will allow you to build a working system on your 
-          target computer.</para>
+    <para>Part IV shows you how to build the core CLFS system.  Compiling
+    and installing Buxybox and other required packages, making the system
+    bootable, setting up the bootscripts, and installing a bootloader.</para>
 
   </sect2>
 
   <sect2>
-    <title>Part V - Building the CLFS System</title>
+    <title>Part V - Beyond CLFS Embedded</title>
 
-    <para>Part V guides the reader through the building of the CLFS
-    system&mdash;compiling and installing all the packages one by one,
-    setting up the boot scripts, and installing the kernel. The resulting
-    Linux system is the foundation on which other software can be built to
-    expand the system as desired. At the end of this book, there is an
-    easy to use reference listing all of the programs, libraries, and
-    important files that have been installed.</para>
+    <para>Part V provides instructions on optional packages that can be
+    installed to enhance your CLFS system.</para>
 
   </sect2>
 
@@ -68,8 +62,7 @@
     terms used in the book; Appendix B gives acknowledgments to people
     who have helped work on the CLFS project and website; Appendix C and
     D have information about package dependencies and the the build
-    order. Some architectures may have additional appendices for
-    arch-specific issues.</para>
+    order; Appendix E provides the Open Publication License.</para>
 
   </sect2>
 
