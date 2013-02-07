@@ -26,7 +26,8 @@ rm -rfv ${CLFS}-final/usr/src/*
 rm -rfv ${CLFS}-final/usr/include
 rm -rfv ${CLFS}-final/usr/man
 rm -rfv ${CLFS}-final/usr/share/man
-rm -rfv ${CLFS}-final/build</userinput></screen>
+rm -rfv ${CLFS}-final/build
+rm -rfv ${CLFS}-final/sources</userinput></screen>
 
   <para>Remove the static libaries:</para>
 
