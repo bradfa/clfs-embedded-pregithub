@@ -16,11 +16,11 @@
 <!ENTITY busybox-md5 "d613f2e4b580305c1de8691f7b84285e">
 <!ENTITY busybox-home "http://www.busybox.net">
 
-<!ENTITY clfs-bootscripts-version "1.0-pre5">
-<!ENTITY clfs-bootscripts-size "4 KB">
-<!ENTITY clfs-bootscripts-url "&packages-root;clfs-embedded-bootscripts-&clfs-bootscripts-version;.tar.bz2">
-<!ENTITY clfs-bootscripts-md5 "e20e3e285fb7fe3ff941e3e505f96023">
-<!ENTITY clfs-bootscripts-home " ">
+<!ENTITY clfs-bootscripts-version "git master HEAD">
+<!ENTITY clfs-bootscripts-size "5 KB">
+<!ENTITY clfs-bootscripts-url "http://git.cross-lfs.org/?p=bootscripts-embedded.git;a=snapshot;h=HEAD;sf=tgz">
+<!ENTITY clfs-bootscripts-md5 "N/A">
+<!ENTITY clfs-bootscripts-home "http://git.cross-lfs.org/?p=bootscripts-embedded.git">
 
 <!ENTITY gcc-version "4.6.0">
 <!ENTITY gcc-size "69,902 KB">
