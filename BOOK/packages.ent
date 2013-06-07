@@ -4,11 +4,11 @@
 
 <!-- Note: For empty *-home entities use " " not "" -->
 
-<!ENTITY binutils-version "2.21">
-<!ENTITY binutils-size "18,304 KB">
+<!ENTITY binutils-version "2.23.2">
+<!ENTITY binutils-size "20937 KB">
 <!ENTITY binutils-url "&gnu;binutils/binutils-&binutils-version;.tar.bz2">
-<!ENTITY binutils-md5 "c84c5acc9d266f1a7044b51c85a823f5">
-<!ENTITY binutils-home "http://sourceware.org/binutils/">
+<!ENTITY binutils-md5 "4f8fa651e35ef262edc01d60fb45702e">
+<!ENTITY binutils-home "http://www.gnu.org/software/binutils/">
 
 <!ENTITY busybox-version "1.18.4">
 <!ENTITY busybox-size "2,081 KB">
