@@ -27,7 +27,6 @@
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="partitioning/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="materials/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-preps/chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="system-prep/x86-chapter.xml"/>
 
   </part>
 
