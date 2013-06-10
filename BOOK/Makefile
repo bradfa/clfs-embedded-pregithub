@@ -25,8 +25,8 @@ else
   Q = @
 endif
 
-.PHONY: clfs lfs
-clfs lfs: html
+.PHONY: clfs
+clfs: html
 
 .PHONY: tidy tidy-f tidy-d
 ifeq ($(shell which tidy >/dev/null 2>&1 && echo yes),yes)
@@ -200,7 +200,7 @@ help:
 	@echo "Output: $(RENDERDIR)"
 	@echo
 	@echo "HTML Targets"
-	@echo "  $(FG_GREEN)clfs lfs tidy html render titlepage $(FG_BLUE)$(ARCHS_HTML)$(FG_DEFAULT)"
+	@echo "  $(FG_GREEN)clfs tidy html render titlepage $(FG_BLUE)$(ARCHS_HTML)$(FG_DEFAULT)"
 	@echo
 	@echo "NoChunks Targets"
 	@echo "  $(FG_GREEN)nochunks tidy $(FG_BLUE)$(ARCHS_NOCHUNKS)$(FG_DEFAULT)"
