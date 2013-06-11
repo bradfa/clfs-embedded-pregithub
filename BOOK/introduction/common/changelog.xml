@@ -36,6 +36,25 @@
     </listitem>
 -->
     <listitem>
+      <para>June 11, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Many package updates.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Removal of some LFS specific information.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update host requirements to at least Debian
+            Squeeze.</para>
+        </listitem>
+        <listitem>
+          <para>[kterrell] - Removal of sources from final tarball.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>September 22, 2012</para>
       <itemizedlist>
         <listitem>
