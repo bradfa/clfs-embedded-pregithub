@@ -82,10 +82,10 @@
 <!ENTITY dropbear-md5 "8d3579bbbfcea48404a3219643076450">
 <!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
 
-<!ENTITY iptables-version "1.4.2">
-<!ENTITY iptables-size "428 KB">
+<!ENTITY iptables-version "1.4.19.1">
+<!ENTITY iptables-size "531 KB">
 <!ENTITY iptables-url "http://www.netfilter.org/projects/iptables/files/iptables-&iptables-version;.tar.bz2">
-<!ENTITY iptables-md5 "a138d1c2e74321e0e4e228a9fb301c9a">
+<!ENTITY iptables-md5 "be97ce9007fa42c867901b496c935a0a">
 <!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
 
 <!ENTITY libnl-version "git-gdc273a12d">
