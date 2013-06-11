@@ -45,7 +45,6 @@
     <title>Building the CLFS System</title>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-system/x86-chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="system-build/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootable/x86-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootscripts/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootloaders/x86-chapter.xml"/>
