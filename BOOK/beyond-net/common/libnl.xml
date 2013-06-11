@@ -24,10 +24,6 @@
   <sect2 role="installation">
     <title>Installation of libnl</title>
 
-   <para os="p1">Apply patch to fix a compile and build issue:</para>
-
-    <screen os="p2"><userinput>patch -Np1 -i ../&libnl-fixes-patch;</userinput></screen>
-
     <para os="a">Configure libnl:</para>
 
 <screen os="b"><userinput>CC="${CC} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>

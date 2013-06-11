@@ -28,10 +28,6 @@
 <!ENTITY iptables-fixes-patch-md5 "5a8bc894706019ea4f42e506633a49bf">
 <!ENTITY iptables-fixes-patch-size "5 KB">
 
-<!ENTITY libnl-fixes-patch "libnl-git-fixes-1.patch">
-<!ENTITY libnl-fixes-patch-md5 "773b0d979f1592f757dd30d47ae179fa">
-<!ENTITY libnl-fixes-patch-size "3 KB">
-
 <!-- ARM Patches -->
 
 <!ENTITY gcc-uclibc-arm-softfloat-patch "gcc-&gcc-version;-uclibc-arm-softfloat-2.patch">

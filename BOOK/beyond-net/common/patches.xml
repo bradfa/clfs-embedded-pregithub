@@ -26,14 +26,6 @@
       </listitem>
     </varlistentry>
 
-    <varlistentry>
-      <term>Libnl Fixes Patch - <token>&libnl-fixes-patch-size;</token>:</term> <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&libnl-fixes-patch;"/></para>
-        <para>MD5 sum: <literal>&libnl-fixes-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
   </variablelist>
 
   <para os="a">Total size of these patches: about <returnvalue/></para>
