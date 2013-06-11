@@ -27,17 +27,6 @@
   href="../common/gcc-static.xml"
   xpointer="xpointer(//*[@os='a'])"/>
 
-  <important>
-
-    <para>If you set ${CLFS_FLOAT} to "soft" or "softfp", you must apply the 
-    &gcc-uclibc-arm-softfloat-patch;.  Check what ${CLFS_FLOAT} is set to and
-    if needed, apply the patch:</para>
-
-<screen><userinput>echo ${CLFS_FLOAT}
-patch -Np1 -i ../&gcc-uclibc-arm-softfloat-patch;</userinput></screen>
-
-  </important>
-
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/gcc-static.xml"
   xpointer="xpointer(//*[@os='c'])"/>

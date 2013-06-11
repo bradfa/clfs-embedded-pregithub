@@ -26,10 +26,6 @@
 
 <!-- ARM Patches -->
 
-<!ENTITY gcc-uclibc-arm-softfloat-patch "gcc-&gcc-version;-uclibc-arm-softfloat-2.patch">
-<!ENTITY gcc-uclibc-arm-softfloat-patch-md5 "365f3e9d4979fc31ef338907ee8f97dd">
-<!ENTITY gcc-uclibc-arm-softfloat-patch-size "3 KB">
-
 <!-- MIPS Patches -->
 
 <!ENTITY linux-bcm43xx-patch "linux-&linux-version;-openwrt-bcm47xx-fixes-2.patch">
