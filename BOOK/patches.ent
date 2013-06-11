@@ -24,10 +24,6 @@
 
 <!-- Beyond patches -->
 
-<!ENTITY iptables-fixes-patch "iptables-&iptables-version;-fixes-1.patch">
-<!ENTITY iptables-fixes-patch-md5 "5a8bc894706019ea4f42e506633a49bf">
-<!ENTITY iptables-fixes-patch-size "5 KB">
-
 <!-- ARM Patches -->
 
 <!ENTITY gcc-uclibc-arm-softfloat-patch "gcc-&gcc-version;-uclibc-arm-softfloat-2.patch">

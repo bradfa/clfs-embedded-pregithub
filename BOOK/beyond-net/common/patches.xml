@@ -16,17 +16,9 @@
   make the packages easier to work with. The following patches will be
   needed in order to build the associated packages:</para>
 
-  <variablelist role="beyond-clfs3">
-
-    <varlistentry>
-      <term>IPTables Fixes Patch - <token>&iptables-fixes-patch-size;</token>:</term> <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&iptables-fixes-patch;"/></para>
-        <para>MD5 sum: <literal>&iptables-fixes-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-  </variablelist>
+<!--<variablelist role="beyond-clfs3">
+    </variablelist>
+-->
 
   <para os="a">Total size of these patches: about <returnvalue/></para>
 
