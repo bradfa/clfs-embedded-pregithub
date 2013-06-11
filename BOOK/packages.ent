@@ -94,10 +94,10 @@
 <!ENTITY libnl-md5 "6eda026344cffb21f334ec20cdb82d5a">
 <!ENTITY libnl-home "http://git.kernel.org/?p=libs/netlink/libnl.git">
 
-<!ENTITY hostapd-version "git-gcfaab58007">
-<!ENTITY hostapd-size "10744 KB">
-<!ENTITY hostapd-url "http://cross-lfs.org/~mlankhorst/hostap-git.tar.bz2">
-<!ENTITY hostapd-md5 "4fa27f467c10de67fda451396fb6f854">
+<!ENTITY hostapd-version "2.0">
+<!ENTITY hostapd-size "1343 KB">
+<!ENTITY hostapd-url "http://hostap.epitest.fi/releases/hostapd-&hostapd-version;.tar.gz">
+<!ENTITY hostapd-md5 "ba22e639bc57aa4035d2ea8ffa9bbbee">
 <!ENTITY hostapd-home "http://hostap.epitest.fi/">
 
 <!ENTITY wireless_tools-version "29">
