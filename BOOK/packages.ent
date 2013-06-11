@@ -88,11 +88,11 @@
 <!ENTITY iptables-md5 "be97ce9007fa42c867901b496c935a0a">
 <!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
 
-<!ENTITY libnl-version "git-gdc273a12d">
-<!ENTITY libnl-size "1217 KB">
-<!ENTITY libnl-url "http://cross-lfs.org/~mlankhorst/libnl-git.tar.bz2">
-<!ENTITY libnl-md5 "6eda026344cffb21f334ec20cdb82d5a">
-<!ENTITY libnl-home "http://git.kernel.org/?p=libs/netlink/libnl.git">
+<!ENTITY libnl-version "3.2.22">
+<!ENTITY libnl-size "713 KB">
+<!ENTITY libnl-url "http://http://www.carisma.slowglass.com/~tgr/libnl/files/libnl-&libnl-version;.tar.gz">
+<!ENTITY libnl-md5 "2e1c889494d274aca24ce5f6a748e66e">
+<!ENTITY libnl-home "http://www.carisma.slowglass.com/~tgr/libnl/">
 
 <!ENTITY hostapd-version "2.0">
 <!ENTITY hostapd-size "1343 KB">
