@@ -18,7 +18,6 @@
 <!ENTITY version-x86 "&version;-x86">
 <!ENTITY version-mips "&version;-mips">
 <!ENTITY version-arm "&version;-arm">
-<!ENTITY version-wrt "&version;-wrt">
 
 <!ENTITY lfs-root "http://www.linuxfromscratch.org/">
 <!ENTITY clfs-root "http://cross-lfs.org/">
