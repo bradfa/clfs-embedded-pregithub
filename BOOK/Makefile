@@ -17,7 +17,7 @@ DLLISTDIR	:= $(RENDERDIR)/download-list
 CHUNK_QUIET	:= 1
 ROOT_ID		:=
 
-ARCHS		:= x86 mips wrt arm
+ARCHS		:= x86 mips arm
 
 ifdef V
   Q =
