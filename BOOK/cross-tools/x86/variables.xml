@@ -42,7 +42,7 @@ echo export CLFS_CPU=\""${CLFS_CPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
     <title>Processor Type and  Target Triplets</title>
     <?dbfo table-width="7.5in" ?>
 
-    <tgroup cols="2">
+    <tgroup cols="4">
 
       <colspec colnum="1" colwidth="2.5in"   colname="Processor"/>
       <colspec colnum="2" colwidth="2in" colname="Triplet"/>

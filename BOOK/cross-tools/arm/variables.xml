@@ -77,7 +77,7 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
     <title>Example Processor Type, ABI, and  Target Triplets</title>
     <?dbfo table-width="7in" ?>
 
-    <tgroup cols="2">
+    <tgroup cols="4">
 
       <colspec colnum="1" colwidth="2.5in" colname="Processor"/>
       <colspec colnum="2" colwidth="1in" colname="Endianess"/>
@@ -140,7 +140,7 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
     <title>ARM Archiecture Choices</title>
     <?dbfo table-width="4in" ?>
 
-    <tgroup cols="2">
+    <tgroup cols="4">
 
       <colspec colnum="1" colwidth="1in" colname="Arch Choice"/>
       <colspec colnum="2" colwidth="1in" colname="Arch Choice"/>
@@ -190,7 +190,7 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
     <title>ARM Hard Floating Point Versions</title>
     <?dbfo table-width="4in" ?>
 
-    <tgroup cols="2">
+    <tgroup cols="4">
 
       <colspec colnum="1" colwidth="1in" colname="FPU Choice"/>
       <colspec colnum="2" colwidth="1in" colname="FPU Choice"/>

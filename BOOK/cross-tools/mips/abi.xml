@@ -26,7 +26,7 @@
     <title>List of Build Variables</title>
     <?dbfo table-width="5.5in" ?>
 
-    <tgroup cols="2">
+    <tgroup cols="3">
 
       <colspec colnum="1" colwidth="1.5in" colname="ABI to Select"/>
       <colspec colnum="2" colwidth="1.5in" colname="CLFS_ABI Value"/>
