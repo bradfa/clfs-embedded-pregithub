@@ -28,10 +28,6 @@
 
 <!-- MIPS Patches -->
 
-<!ENTITY linux-bcm43xx-patch "linux-&linux-version;-openwrt-bcm47xx-fixes-2.patch">
-<!ENTITY linux-bcm43xx-patch-md5 "e63459a60e7408d4b2583f184650d0b0">
-<!ENTITY linux-bcm43xx-patch-size "1025 KB">
-
 <!-- MIPS Bootloader Patches -->
 
 <!ENTITY colo-make-patch "colo-&colo-version;-make_fix-1.patch">
