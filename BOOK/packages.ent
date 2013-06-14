@@ -114,50 +114,6 @@
 <!ENTITY e2fsprogs-md5 "a1ec22ef003688dae9f76c74881b22b9">
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
 
-<!-- WRT Specific packages -->
-
-<!ENTITY mtdutils-version "1.2.0">
-<!ENTITY mtdutils-size "270 KB">
-<!ENTITY mtdutils-url "ftp://ftp.infradead.org/pub/mtd-utils/mtd-utils-&mtdutils-version;.tar.bz2">
-<!ENTITY mtdutils-md5 "ca41f1fbaa056e8b8d71e8d52c0b1bad">
-<!ENTITY mtdutils-home "http://www.linux-mtd.infradead.org/">
-
-<!ENTITY trx-version "svn">
-<!ENTITY trx-size "13 KB">
-<!ENTITY trx-url "&svn-clfs-software;trx/trx.c">
-<!ENTITY trx-md5 "cb0141dd59a90d34a72693139e31e49a">
-<!ENTITY trx-home "http://www.openwrt.org/">
-
-<!ENTITY addpattern-version "svn">
-<!ENTITY addpattern-size "5 KB">
-<!ENTITY addpattern-url "&svn-clfs-software;addpattern/addpattern.c">
-<!ENTITY addpattern-md5 "ff13bf18d640c3a2a75032a34bf5858b">
-<!ENTITY addpattern-home "http://www.openwrt.org/">
-
-<!ENTITY fwcutter-version "012">
-<!ENTITY fwcutter-size "14 KB">
-<!ENTITY fwcutter-url "http://bu3sch.de/b43/fwcutter/b43-fwcutter-&fwcutter-version;.tar.bz">
-<!ENTITY fwcutter-md5 "69eadf67b459f313a8d6b37aaabef96c">
-<!ENTITY fwcutter-home "http://bcm43xx.berlios.de/">
-
-<!ENTITY bcmfw-version "4.150.10.5">
-<!ENTITY bcmfw-size "3797 KB">
-<!ENTITY bcmfw-url "http://downloads.openwrt.org/sources/broadcom-wl-&bcmfw-version;.tar.bz2">
-<!ENTITY bcmfw-md5 "0c6ba9687114c6b598e8019e262d9a60">
-<!ENTITY bcmfw-home "http://linuxwireless.org/en/users/Drivers/bcm43xx">
-
-<!ENTITY linux-bcm47xx-config-version "&linux-version;">
-<!ENTITY linux-bcm47xx-config-size "5 KB">
-<!ENTITY linux-bcm47xx-config-url "&svn-clfs-config;linux-bcm47xx-&linux-bcm47xx-config-version;.config">
-<!ENTITY linux-bcm47xx-config-md5 "720eae8e462d56a4f1bc227eb2afe271">
-<!ENTITY linux-bcm47xx-config-home " ">
-
-<!ENTITY bcm47xx-utils-version "1.0">
-<!ENTITY bcm47xx-utils-size "43 KB">
-<!ENTITY bcm47xx-utils-url "http://cross-lfs.org/~mlankhorst/bcm47xx-utils-&bcm47xx-utils-version;.tar.bz2">
-<!ENTITY bcm47xx-utils-md5 "93bdd469c6cff2e18778d26d1185ca84">
-<!ENTITY bcm47xx-utils-home "http://openwrt.org">
-
 <!-- MIPS Bootloaders -->
 
 <!ENTITY colo-version "1.22">
