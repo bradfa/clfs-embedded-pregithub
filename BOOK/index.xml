@@ -11,6 +11,10 @@
 
   <authorgroup>
     <author>
+      <firstname>Andrew</firstname>
+      <surname>Bradford</surname>
+    </author>
+    <author>
       <firstname>Joe</firstname>
       <surname>Ciccone</surname>
     </author>
@@ -30,7 +34,7 @@
 
   <copyright id="copyright">
     <year>2005&ndash;&year;</year>
-    <holder>Joe Ciccone, Jim Gifford, Maarten Lankhorst, &amp; Ryan Oliver</holder>
+    <holder>Andrew Bradford, Joe Ciccone, Jim Gifford, Maarten Lankhorst, &amp; Ryan Oliver</holder>
   </copyright>
 
 </bookinfo>
