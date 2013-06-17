@@ -8,49 +8,21 @@
 <sect1 id="ch-partitioning-mounting">
   <?dbhtml filename="mounting.html"?>
 
-  <title>Mounting the New Partition</title>
+  <title>Creating a Build Directory</title>
 
-  <para>Now that a file system has been created, the partition needs to
-  be made accessible. In order to do this, the partition needs to be
-  mounted at a chosen mount point. For the purposes of this book, it is
-  assumed that the file system is mounted under <filename
-  class="directory">/mnt/clfs</filename>, but the directory choice is up
-  to you.</para>
+  <para> Create a directory for the CLFS build (the exact location is up to
+    you): </para>
 
-  <para>Choose a mount point and assign it to the <envar>CLFS</envar>
-  environment variable by running:</para>
+<screen><userinput>mkdir -p /mnt/clfs</userinput></screen>
+
+  <para>Assign it to the <envar>CLFS</envar> environment variable:</para>
 
 <screen><userinput>export CLFS=/mnt/clfs</userinput></screen>
 
-  <para>Next, create the mount point and mount the CLFS file system by
-  running:</para>
+  <para>Ensure that this new directory has permissions that are too restrictive
+    such that you can write to it as a non-root user.</para>
 
-<screen><userinput>mkdir -pv ${CLFS}
-mount -v /dev/<replaceable>[xxx]</replaceable> ${CLFS}</userinput></screen>
-
-  <para>Replace <replaceable>[xxx]</replaceable> with the designation of
-  the CLFS partition.</para>
-
-  <para>If using multiple partitions for CLFS (e.g., one for <filename
-  class="directory">/</filename> and another for <filename
-  class="directory">/usr</filename>), mount them using:</para>
-
-<screen><userinput>mkdir -pv ${CLFS}
-mount -v /dev/<replaceable>[xxx]</replaceable> ${CLFS}
-mkdir -v ${CLFS}/usr
-mount -v /dev/<replaceable>[yyy]</replaceable> ${CLFS}/usr</userinput></screen>
-
-  <para>Replace <replaceable>[xxx]</replaceable> and
-  <replaceable>[yyy]</replaceable> with the appropriate partition
-  names.</para>
-
-  <para>Ensure that this new partition is not mounted with permissions
-  that are too restrictive (such as the nosuid, nodev, or noatime options).
-  Run the <command>mount</command> command without any parameters to see
-  what options are set for the mounted CLFS partition. If
-  <option>nosuid</option>, <option>nodev</option>, and/or
-  <option>noatime</option> are set, the partition will need to be
-  remounted.</para>
+<screen><userinput>chmod 777 $CLFS</userinput></screen>
 
   <para>Now that there is an established place to work, it is time to
   download the packages.</para>
