@@ -20,7 +20,7 @@
 
 <!ENTITY uclibc-configs-patch "uClibc-&uclibc-version;-configs-1.patch">
 <!ENTITY uclibc-configs-patch-md5 "e06455fe909d2572f7926f48cd066785">
-<!ENTITY uclibc-configs-patch-size "52 KB">
+<!ENTITY uclibc-configs-patch-size "38 KB">
 
 <!-- Beyond patches -->
 
