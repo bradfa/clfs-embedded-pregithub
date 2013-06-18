@@ -36,6 +36,15 @@
     </listitem>
 -->
     <listitem>
+      <para>June 17, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Change partitioning to creating build dir.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 13, 2013</para>
       <itemizedlist>
         <listitem>
