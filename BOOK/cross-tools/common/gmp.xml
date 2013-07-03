@@ -29,7 +29,7 @@
     <para os="a">Prepare GMP for compilation:</para>
 
 <screen os="b"><userinput>CPPFLAGS=-fexceptions ./configure \
-    --prefix=${CLFS}/cross-tools</userinput></screen>
+    --build=${CLFS_HOST} --prefix=${CLFS}/cross-tools</userinput></screen>
 
     <para os="c">Compile the package:</para>
 
