@@ -5,7 +5,7 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-partitioning-creatingbuilddir">
+<sect1 id="ch-create-dir-creatingbuilddir">
   <?dbhtml filename="creatingbuilddir.html"?>
 
   <title>Creating a Build Directory</title>

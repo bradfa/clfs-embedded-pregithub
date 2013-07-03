@@ -6,7 +6,7 @@
 ]>
 
 <chapter id="chapter-creating-build-dir" xreflabel="Creating a Build Directory">
-  <?dbhtml dir="partitioning"?>
+  <?dbhtml dir="create-dir"?>
   <?dbhtml filename="chapter.html"?>
 
   <title>Creating a Build Directory</title>
