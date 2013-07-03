@@ -59,10 +59,9 @@
 
     <para>The appendices contain information that doesn't really fit anywhere
     else in the book. Appendix A contains definitions of acronyms and
-    terms used in the book; Appendix B gives acknowledgments to people
-    who have helped work on the CLFS project and website; Appendix C and
-    D have information about package dependencies and the the build
-    order; Appendix E provides the Open Publication License.</para>
+    terms used in the book; Appendix B and C have information about package
+    dependencies and the the build order; Appendix D provides the Open
+    Publication License.</para>
 
   </sect2>
 
