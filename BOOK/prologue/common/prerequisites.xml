@@ -39,12 +39,6 @@
       <quote>generic</quote> Unix software distributions under Linux.</para>
     </listitem>
     <listitem>
-      <para remap="verbatim">The Linux Users' Guide
-      <ulink url="http://www.linuxhq.com/guides/LUG/guide.html"/></para>
-
-      <para>This guide covers the usage of assorted Linux software.</para>
-    </listitem>
-    <listitem>
       <para remap="verbatim">The Essential Pre-Reading Hint
       <ulink url="&hints-root;essential_prereading.txt"/></para>
 
