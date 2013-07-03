@@ -58,7 +58,7 @@ EOF</userinput></screen>
 
   <variablelist os="b">
 
-    <title>Additional users you may want to add:</title>
+    <title>Additional optional users you may want to add:</title>
 
     <varlistentry>
       <term><literal>bin:x:1:1:bin:/bin:/bin/false</literal></term>
@@ -147,7 +147,7 @@ EOF</userinput></screen>
 
   <variablelist os="c">
 
-    <title>Additional groups you may want to add</title>
+    <title>Additional optional groups you may want to add</title>
 
     <varlistentry>
       <term><literal>adm:x:16:root,adm,daemon</literal></term>
