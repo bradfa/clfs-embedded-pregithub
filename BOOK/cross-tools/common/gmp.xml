@@ -36,9 +36,8 @@
 <screen os="d"><userinput>make</userinput></screen>
 
     <note os="e">
-      <para>Some versions of GCC (notably 4.3.2 which ships with Debian
-      5) will compile GMP without errors but in a subtly broken way.  To ensure
-      GMP is compiled and functioning correctly, optionally run the test suite:</para>
+      <para>To ensure GMP is compiled and functioning correctly, optionally run
+        the test suite:</para>
 
 <screen><userinput>make check</userinput></screen>
     </note>
