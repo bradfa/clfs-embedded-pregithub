@@ -17,11 +17,10 @@
   work environment, create a new user called <systemitem
   class="username">clfs</systemitem> as a member of a new group (also named
   <systemitem class="groupname">clfs</systemitem>) and use this user during
-  the installation process. As <systemitem class="username">root</systemitem>,
-  issue the following commands to add the new user:</para>
+  the installation process.</para>
 
-<screen><userinput>groupadd clfs
-useradd -s /bin/bash -g clfs -m -k /dev/null clfs</userinput></screen>
+<screen><userinput>sudo groupadd clfs
+sudo useradd -s /bin/bash -g clfs -m -k /dev/null clfs</userinput></screen>
 
   <variablelist>
     <title>The meaning of the command line options:</title>
@@ -75,13 +74,13 @@ useradd -s /bin/bash -g clfs -m -k /dev/null clfs</userinput></screen>
   to have a password), give <systemitem class="username">clfs</systemitem>
   a password:</para>
 
-<screen><userinput>passwd clfs</userinput></screen>
+<screen><userinput>sudo passwd clfs</userinput></screen>
 
   <para>Grant <systemitem class="username">clfs</systemitem> full access to
   <filename class="directory">${CLFS}</filename> by making <systemitem
   class="username">clfs</systemitem> the directory's owner:</para>
 
-<screen><userinput>chown -Rv clfs ${CLFS}</userinput></screen>
+<screen><userinput>sudo chown -Rv clfs ${CLFS}</userinput></screen>
 
   <para>Next, login as user <systemitem class="username">clfs</systemitem>.
   This can be done via a virtual console, through a display manager, or
