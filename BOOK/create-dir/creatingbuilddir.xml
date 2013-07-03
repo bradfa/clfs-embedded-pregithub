@@ -22,7 +22,7 @@
   <para>Ensure that this new directory has permissions that are too restrictive
     such that you can write to it as a non-root user.</para>
 
-<screen><userinput>chmod 777 $CLFS</userinput></screen>
+<screen><userinput>chmod 777 ${CLFS}</userinput></screen>
 
   <para>Now that there is an established place to work, it is time to
   download the packages.</para>
