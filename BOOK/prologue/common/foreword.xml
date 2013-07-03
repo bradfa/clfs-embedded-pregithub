@@ -36,7 +36,7 @@
   always followed, e.g., knowing your system inside and out by virtue
   of having built the system yourself.  Additionally, during a CLFS Embedded
   build, you will learn advanced techniques such as cross-build toolchains,
-  and how to create a smaller footprint system support architectures 
+  and how to create a smaller footprint system supporting architectures
   such as ARM and MIPS, in addition to x86.</para>
 
   <para>We hope you enjoy building your own CLFS Embedded system, and the benefits
