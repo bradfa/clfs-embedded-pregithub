@@ -77,6 +77,10 @@
     </listitem>
 
     <listitem>
+      <para><emphasis role="strong">Sudo-1.7.4p4</emphasis></para>
+    </listitem>
+
+    <listitem>
       <para><emphasis role="strong">Tar-1.23</emphasis></para>
     </listitem>
 
@@ -108,6 +112,7 @@ gzip --version | head -n1
 make --version | head -n1
 patch --version | head -n1
 sed --version | head -n1
+sudo -V | head -n1
 tar --version | head -n1
 makeinfo --version | head -n1</literal>
 
