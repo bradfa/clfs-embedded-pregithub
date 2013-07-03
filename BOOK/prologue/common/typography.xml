@@ -61,13 +61,7 @@ EOF</userinput></screen>
   <para>This format is used to refer to a specific manual page (hereinafter
   referred to simply as a <quote>man</quote> page). The number inside
   parentheses indicates a specific section inside of <command>man</command>.
-  For example, <command>passwd</command> has two man pages. Per CLFS
-  installation instructions, those two man pages will be located at
-  <filename>/usr/share/man/man1/passwd.1</filename> and
-  <filename>/usr/share/man/man5/passwd.5</filename>. Both man pages have
-  different information in them. When the book uses
-  <filename>passwd(5)</filename> it is specifically referring to
-  <filename>/usr/share/man/man5/passwd.5</filename>.
+  For example, <command>passwd</command> has two man pages.
   <command>man passwd</command> will print the first man page it finds
   that matches <quote>passwd</quote>, which will be
   <filename>/usr/share/man/man1/passwd.1</filename>. For this example,
