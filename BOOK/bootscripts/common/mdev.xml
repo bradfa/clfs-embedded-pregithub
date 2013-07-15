@@ -17,7 +17,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>Is a Busybox replacement of udev. With a different rule
+    <para>Is a BusyBox replacement of udev. With a different rule
     base.</para>
 
   </sect2>

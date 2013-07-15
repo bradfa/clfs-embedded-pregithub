@@ -8,10 +8,10 @@
 <sect1 id="ch-system-busybox" role="wrap">
   <?dbhtml filename="busybox.html"?>
 
-  <title>Busybox-&busybox-version;</title>
+  <title>BusyBox-&busybox-version;</title>
 
   <indexterm zone="ch-system-busybox">
-    <primary sortas="a-Busybox">Busybox</primary>
+    <primary sortas="a-BusyBox">BusyBox</primary>
   </indexterm>
 
   <sect2 role="package">
@@ -28,11 +28,11 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Busybox</title>
+    <title>Installation of BusyBox</title>
 
 <!-- Version 1.18.4 does not require any "fixes" patch, none exists, yet
     <para os="p1">The following patch contains a number of fixes to version
-    &busybox-version; by the Busybox developers:</para>
+    &busybox-version; by the BusyBox developers:</para>
 
 <screen os="p2"><userinput>patch -Np1 -i ../&busybox-fixes-patch;</userinput></screen>
 -->
@@ -41,13 +41,13 @@
 
 <screen os="b"><userinput>make distclean</userinput></screen>
 
-    <para os="c">The following patch contains a default configuration for busybox:</para>
+    <para os="c">The following patch contains a default configuration for BusyBox:</para>
 
 <screen os="d"><userinput>patch -Np1 -i ../&busybox-config-patch;
 cp -v clfs/config .config</userinput></screen>
 
     <note os="e">
-      <para>Currently we are just telling Busybox to use a generic
+      <para>Currently we are just telling BusyBox to use a generic
       configuration. For those for more adventurous, you can use
       <command>make menuconfig</command>, and create a custom or modified
       configuration for your build.</para>
@@ -76,7 +76,7 @@ chmod 755 ${CLFS}/cross-tools/bin/depmod.pl</userinput></screen>
   </sect2>
 
   <sect2 id="contents-busybox" role="content">
-    <title>Contents of Busybox</title>
+    <title>Contents of BusyBox</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

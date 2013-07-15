@@ -24,7 +24,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Busybox (&busybox-version;) - <token>&busybox-size;</token>:</term>
+      <term>BusyBox (&busybox-version;) - <token>&busybox-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&busybox-home;"/></para>
         <para>Download: <ulink url="&busybox-url;"/></para>

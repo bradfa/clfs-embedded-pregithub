@@ -19,7 +19,7 @@
   <variablelist role="materials">
 
     <varlistentry>
-      <term>Busybox Config Patch - <token>&busybox-config-patch-size;</token>:</term>
+      <term>BusyBox Config Patch - <token>&busybox-config-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&busybox-config-patch;"/></para>
@@ -29,7 +29,7 @@
 
 <!--
     <varlistentry>
-      <term>Busybox Fixes Patch - <token>&busybox-fixes-patch-size;</token>:</term>
+      <term>BusyBox Fixes Patch - <token>&busybox-fixes-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&busybox-fixes-patch;"/></para>
