@@ -27,7 +27,7 @@
   href="../common/variables.xml"
   xpointer="xpointer(//*[@os='c'])"/>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/\(mips\)\(64\)\?\(el\)\?-.*/\1\3/')
+<screen os="d"><userinput>export CLFS_ARCH=mips
 export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/mipsel/little/' -e 's/mips/big/')</userinput></screen>
 
   <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
