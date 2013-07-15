@@ -31,7 +31,7 @@
 export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/mipsel/little/' -e 's/mips/big/')</userinput></screen>
 
   <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
-  GCC and uClibc are built. There are currently 5 MIPS ISA Levels. To keep things 
+  GCC and C library are built. There are currently 5 MIPS ISA Levels. To keep things 
   simple we are only using two. For more information, see
   <ulink url="http://www.linux-mips.org/wiki/Instruction_Set_Architecture"/></para>
 
