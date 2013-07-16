@@ -43,7 +43,7 @@ cp -rv dest/include/* ${CLFS}/cross-tools/include</userinput></screen>
       <segtitle>Installed headers</segtitle>
 
       <seglistitem>
-        <seg>/usr/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</seg>
+        <seg>${CLFS}/cross-tools/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -53,8 +53,7 @@ cp -rv dest/include/* ${CLFS}/cross-tools/include</userinput></screen>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="linux-headers">
-        <term><filename
-        class="headerfile">/usr/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</filename></term>
+        <term><filename class="headerfile">${CLFS}/cross-tools/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</filename></term>
         <listitem>
           <para>The Linux API headers</para>
           <indexterm zone="ch-cross-tools-linux-headers linux-headers">
