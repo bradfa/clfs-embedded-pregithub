@@ -129,7 +129,7 @@ make</userinput></screen>
     <para os="l">Copy the <filename class="headerfile">libiberty.h</filename> file to
     <filename class="directory">${CLFS}/usr/include</filename> directory:</para>
 
-<screen os="m"><userinput>cp -v ../binutils-&binutils-version;/include/libiberty.h ${CLFS}/usr/include</userinput></screen>
+<screen os="m"><userinput>cp -v ../binutils-&binutils-version;/include/libiberty.h ${CLFS}/cross-tools/include</userinput></screen>
 
   </sect2>
 
