@@ -31,6 +31,12 @@
     linker and assembler to determine which of their own features to
     enable.</para>
 
+    <para os="ab">Fix a couple of syntax errors that prevent the documentation
+    from building with some versions of Texinfo:</para>
+
+<screen os="ac"><userinput>sed -i -e 's/@colophon/@@colophon/' \
+    -e 's/doc@cygnus.com/doc@@cygnus.com/' bfd/doc/bfd.texinfo</userinput></screen>
+
     <para os="b">The Binutils documentation recommends building Binutils outside of the
     source directory in a dedicated build directory:</para>
 
