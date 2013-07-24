@@ -60,10 +60,10 @@
 <!ENTITY mpfr-md5 "ee2c3ac63bf0c2359bf08fc3ee094c19">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
 
-<!ENTITY uclibc-version "0.9.33.2">
-<!ENTITY uclibc-size "2767 KB">
+<!ENTITY uclibc-version "0.9.31">
+<!ENTITY uclibc-size "2,244 KB">
 <!ENTITY uclibc-url "http://www.uclibc.org/downloads/uClibc-&uclibc-version;.tar.bz2">
-<!ENTITY uclibc-md5 "a338aaffc56f0f5040e6d9fa8a12eda1">
+<!ENTITY uclibc-md5 "52fb8a494758630c8d3ddd7f1e0daafd">
 <!ENTITY uclibc-home "http://uclibc.org/">
 
 <!-- Beyond CLFS library packages -->
