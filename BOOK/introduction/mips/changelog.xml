@@ -33,6 +33,15 @@
 -->
 
     <listitem>
+      <para>July 24, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Fix CLFS_ARCH for kernel build.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 24, 2011</para>
       <itemizedlist>
         <listitem>

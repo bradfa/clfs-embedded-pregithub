@@ -36,6 +36,18 @@
     </listitem>
 -->
     <listitem>
+      <para>July 24, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Fix binutils build issue with some Texinfo.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Install headers to cross-tools.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 17, 2013</para>
       <itemizedlist>
         <listitem>
