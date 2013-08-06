@@ -19,7 +19,8 @@
     <title/>
 
     <para>GMP is a library for arithmetic on arbitrary precision integers,
-    rational numbers, and floating-point numbers.</para>
+    rational numbers, and floating-point numbers.  It is required in order to
+    build GCC.</para>
 
   </sect2>
 
