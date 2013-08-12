@@ -32,7 +32,7 @@
 <screen os="c"><userinput>make mrproper
 make ARCH=${CLFS_ARCH} headers_check
 make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=dest headers_install
-cp -rv dest/include/* ${CLFS}/cross-tools/include</userinput></screen>
+cp -rv dest/include/* ${CLFS}/usr/include</userinput></screen>
 
   </sect2>
 
