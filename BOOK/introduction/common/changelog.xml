@@ -36,6 +36,21 @@
     </listitem>
 -->
     <listitem>
+      <para>August 12, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Don't copy libiberty.h from binutils.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Install linux headers directly without cp.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Revert install of headers to cross-tools.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 24, 2013</para>
       <itemizedlist>
         <listitem>
