@@ -30,7 +30,7 @@
     <para os="a">Prepare MPFR for compilation:</para>
 
 <screen os="b"><userinput>LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
-  ./configure --prefix=${CLFS}/cross-tools --enable-shared \
+  ./configure --prefix=${CLFS}/cross-tools \
   --with-gmp=${CLFS}/cross-tools</userinput></screen>
 
     <para os="c">Compile the package:</para>

@@ -47,7 +47,7 @@ cd ../binutils-build</userinput></screen>
 
 <screen os="e"><userinput>../binutils-&binutils-version;/configure --prefix=${CLFS}/cross-tools \
    --target=${CLFS_TARGET} --with-sysroot=${CLFS} --disable-nls \
-   --enable-shared --disable-multilib</userinput></screen>
+   --disable-multilib</userinput></screen>
 
     <variablelist os="f">
       <title>The meaning of the configure options:</title>
@@ -84,13 +84,6 @@ cd ../binutils-build</userinput></screen>
         <listitem>
           <para>This disables internationalization as i18n is not needed for the
           cross-compile tools.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="f6">
-        <term><parameter>--enable-shared</parameter></term>
-        <listitem>
-          <para>Enable the creation of the shared libraries.</para>
         </listitem>
       </varlistentry>
 
