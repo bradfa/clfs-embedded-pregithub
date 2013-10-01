@@ -40,16 +40,14 @@
     <title>List of Build Variables</title>
     <?dbfo table-width="3in" ?>
 
-    <tgroup cols="3">
+    <tgroup cols="2">
 
-      <colspec colnum="1" colwidth="1.5in" colname="ABI to Select"/>
-      <colspec colnum="2" colwidth="1.5in" colname="Variable Value"/>
-      <colspec colnum="3" colwidth="2in" colname="Note"/>
+      <colspec colnum="1" colwidth="1.5in" colname="ABI"/>
+      <colspec colnum="2" colwidth="2in" colname="Note"/>
 
       <thead>
         <row>
           <entry>ABI</entry>
-          <entry>CLFS_ABI=Value</entry>
           <entry>Note</entry>
         </row>
       </thead>
@@ -57,26 +55,21 @@
       <tbody>
         <row>
           <entry>aapcs-linux</entry>
-          <entry>aapcs-linux</entry>
           <entry>Recommended for EABI. Standard Linux 32 bit (int) enums</entry>
         </row>
         <row>
-          <entry>apcs-gnu</entry>
           <entry>apcs-gnu</entry>
           <entry>Recommended for OABI</entry>
         </row>
         <row>
           <entry>atpcs</entry>
-          <entry>atpcs</entry>
           <entry>Thumb ABI</entry>
         </row>
         <row>
           <entry>aapcs</entry>
-          <entry>aapcs</entry>
           <entry>EABI w/ variable size enums</entry>
         </row>
         <row>
-          <entry>iwmmxt</entry>
           <entry>iwmmxt</entry>
           <entry>Supports Intel XScale MMX extensions</entry>
         </row>
