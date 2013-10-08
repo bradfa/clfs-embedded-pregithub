@@ -33,6 +33,16 @@
 -->
 
     <listitem>
+      <para>October 8, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Remove ARM OABI and other ABIs that aren't EABI
+          using aapcs-linux.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>September 18, 2012</para>
       <itemizedlist>
         <listitem>
