@@ -10,74 +10,17 @@
 
   <title>ABI Variables</title>
 
-  <para os="a">On the ARM architecture, there are two major ABI types to choose
-  from: EABI and OABI.  There is also a Thumb ABI and an Intel IWMMX specific
-  ABI but these are generally not recommended for most uses.</para>
-
-  <para os="b">The EABI (Embedded ABI) is newer and supports additional
-  features, faster software floating point operations, and Thumb interworking,
-  but is only compatible with ARMv4t and newer cores.  The EABI has
-  sub-ABIs of: aapcs-linux and aapcs.  aapcs-linux has standard Linux 4 byte
-  enums while aapcs has variable length enums.  aapcs-linux is recommended over
-  aapcs.</para>
-
-  <para os="c">The OABI (old ABI) is called apcs-gnu and supports ARMv4 and 
-  older cores.  Generally the OABI is not used by modern ARM processors.</para>
+  <para os="b">The EABI (Embedded ABI) is the recommended ABI to use for ARM.
+  The EABI has sub-ABIs of: aapcs-linux and aapcs.  aapcs-linux has standard
+  Linux 4 byte enums and thus is recommended.  EABI supports armv4t and newer
+  processors.</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/abi.xml"
   xpointer="xpointer(//*[@os='a'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/abi.xml"
-  xpointer="xpointer(//*[@os='b'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/abi.xml"
-  xpointer="xpointer(//*[@os='c'])"/>
-
-  <table>
-    <title>List of Build Variables</title>
-    <?dbfo table-width="3in" ?>
-
-    <tgroup cols="2">
-
-      <colspec colnum="1" colwidth="1.5in" colname="ABI"/>
-      <colspec colnum="2" colwidth="2in" colname="Note"/>
-
-      <thead>
-        <row>
-          <entry>ABI</entry>
-          <entry>Note</entry>
-        </row>
-      </thead>
-
-      <tbody>
-        <row>
-          <entry>aapcs-linux</entry>
-          <entry>Recommended for EABI. Standard Linux 32 bit (int) enums</entry>
-        </row>
-        <row>
-          <entry>apcs-gnu</entry>
-          <entry>Recommended for OABI</entry>
-        </row>
-        <row>
-          <entry>atpcs</entry>
-          <entry>Thumb ABI</entry>
-        </row>
-        <row>
-          <entry>aapcs</entry>
-          <entry>EABI w/ variable size enums</entry>
-        </row>
-        <row>
-          <entry>iwmmxt</entry>
-          <entry>Supports Intel XScale MMX extensions</entry>
-        </row>
-      </tbody>
-
-    </tgroup>
-
-  </table>
+<screen os="b"><userinput>export CLFS_ABI="aapcs-linux"
+echo export CLFS_ABI=\""${CLFS_ABI}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
 </sect1>
 

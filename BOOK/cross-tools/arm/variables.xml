@@ -95,18 +95,6 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
       <tbody>
         <row>
-          <entry>Generic arm</entry>
-          <entry>little</entry>
-          <entry>OABI</entry>
-          <entry>arm-unknown-linux-uclibc</entry>
-        </row>
-        <row>
-          <entry>Generic arm, version 4</entry>
-          <entry>little</entry>
-          <entry>OABI</entry>
-          <entry>armv4-unknown-linux-uclibc</entry>
-        </row>
-        <row>
           <entry>Generic arm, version 5</entry>
           <entry>little</entry>
           <entry>EABI</entry>
