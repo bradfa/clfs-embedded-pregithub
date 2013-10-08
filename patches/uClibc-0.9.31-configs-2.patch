@@ -6,6 +6,8 @@ Upstream Status: None - CLFS Specific
 Description: Default configurations for CLFS builds of uClibc.
 Updated: 2011-02-15 by Andrew Bradford <bradfa@gmail.com>
          Removed hppa and alpha architectures as they aren't used in embedded.
+         2013-10-08 by Andrew Bradford <andrew@bradfordembedded.com>
+         Removed ARM OABI configs, EABI configs are new default.
 
 diff -Naur uClibc-0.9.31.orig/clfs/config.arm.big uClibc-0.9.31/clfs/config.arm.big
 --- uClibc-0.9.31.orig/clfs/config.arm.big	1969-12-31 19:00:00.000000000 -0500
@@ -47,7 +49,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.arm.big uClibc-0.9.31/clfs/config.arm.
 +#
 +TARGET_ARCH="arm"
 +FORCE_OPTIONS_FOR_ARCH=y
-+CONFIG_ARM_OABI=y
++CONFIG_ARM_EABI=y
 +# CONFIG_ARM_EABI is not set
 +CONFIG_GENERIC_ARM=y
 +# CONFIG_ARM610 is not set
@@ -303,7 +305,7 @@ diff -Naur uClibc-0.9.31.orig/clfs/config.arm.little uClibc-0.9.31/clfs/config.a
 +#
 +TARGET_ARCH="arm"
 +FORCE_OPTIONS_FOR_ARCH=y
-+CONFIG_ARM_OABI=y
++CONFIG_ARM_EABI=y
 +# CONFIG_ARM_EABI is not set
 +CONFIG_GENERIC_ARM=y
 +# CONFIG_ARM610 is not set
