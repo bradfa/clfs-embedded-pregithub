@@ -137,38 +137,26 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
       <tbody>
         <row>
-          <entry>armv2</entry>
-          <entry>armv2a</entry>
-          <entry>armv3</entry>
-          <entry>armv3m</entry>
-        </row>
-        <row>
-          <entry>armv4</entry>
           <entry>armv4t</entry>
           <entry>armv5</entry>
           <entry>armv5t</entry>
+          <entry>armv5te</entry>
         </row>
         <row>
-          <entry>armv5te</entry>
           <entry>armv6</entry>
           <entry>armv6j</entry>
           <entry>armv6t2</entry>
+          <entry>armv6z</entry>
         </row>
         <row>
-          <entry>armv6z</entry>
           <entry>armv6zk</entry>
           <entry>armv6-m</entry>
           <entry>armv7</entry>
+          <entry>armv7-a</entry>
         </row>
         <row>
-          <entry>armv7-a</entry>
           <entry>armv7-r</entry>
           <entry>armv7-m</entry>
-          <entry>iwmmxt</entry>
-        </row>
-        <row>
-          <entry>iwmmxt2</entry>
-          <entry>ep9312</entry>
         </row>
       </tbody>
     </tgroup>
