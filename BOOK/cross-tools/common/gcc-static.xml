@@ -29,6 +29,17 @@
     <title os="a">Installation of Cross GCC Compiler with Static libgcc
     and no Threads</title>
 
+    <para os="b">GCC requires the GMP, MPFR, and MPC packages to either be
+    present on the host or to be present in source form within the gcc source
+    tree.  Unpack these into the GCC directory after unpacking GCC:</para>
+
+<screen os="ba"><userinput>tar xf ../mpfr-&mpfr-version;.tar.bz2
+mv -v mpfr-&mpfr-version; mpfr
+tar xf ../gmp-&gmp-version;.tar.bz2
+mv -v gmp-&gmp-version; gmp
+tar xf ../mpc-&mpc-version;.tar.gz
+mv -v mpc-&mpc-version; mpc</userinput></screen>
+
     <para os="c">The GCC documentation recommends building GCC outside of the source
     directory in a dedicated build directory:</para>
 
@@ -43,8 +54,7 @@ cd ../gcc-build</userinput></screen>
   ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} --host=${CLFS_HOST} --target=${CLFS_TARGET} \
   --with-sysroot=${CLFS} --disable-nls  --disable-shared \
-  --with-mpfr=${CLFS}/cross-tools --with-gmp=${CLFS}/cross-tools \
-  --with-mpc=${CLFS}/cross-tools --without-headers --with-newlib \
+  --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
   --disable-multilib</userinput></screen>
@@ -110,36 +120,6 @@ cd ../gcc-build</userinput></screen>
         <term><parameter>--disable-shared</parameter></term>
         <listitem>
           <para>Disables the creation of the shared libraries.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af8">
-        <term><parameter>--with-mpfr=${CLFS}/cross-tools</parameter></term>
-        <listitem>
-          <para>Tells configure where to find the 
-          <filename class="directory">lib</filename> and 
-          <filename class="directory">include</filename> directories
-          that contain MPFR which was built earlier.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af9">
-        <term><parameter>--with-gmp=${CLFS}/cross-tools</parameter></term>
-        <listitem>
-          <para>Tells configure where to find the 
-          <filename class="directory">lib</filename> and 
-          <filename class="directory">include</filename> directories
-          that contain GMP which was built earlier.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry os="af10">
-        <term><parameter>--with-mpc=${CLFS}/cross-tools</parameter></term>
-        <listitem>
-          <para>Tells configure where to find the 
-          <filename class="directory">lib</filename> and 
-          <filename class="directory">include</filename> directories
-          that contain MPC which was built earlier.</para>
         </listitem>
       </varlistentry>
 
