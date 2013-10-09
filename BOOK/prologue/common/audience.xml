@@ -34,15 +34,10 @@
   <para>Another benefit of CLFS is the ability to create a very compact
   Linux system. When installing a regular distribution, one is often forced
   to include several programs which are probably never used. These programs
-  waste disk space or CPU cycles.  It is not difficult to build an CLFS
-  system of less than 100 megabytes (MB), which is substantially smaller
-  than the majority of existing installations.  Does this still sound like a
-  lot of space? A few of us have been working on creating a very small
-  embedded CLFS system. We successfully built a system that was specialized
-  to run the Apache web server with approximately 8MB of disk space used.
-  Further stripping could bring this down to 5 MB or less. Try that with a
-  regular distribution! This is only one of the many benefits of designing
-  your own Linux implementation.</para>
+  waste disk space or CPU cycles.  It is not difficult to build an CLFS Embedded
+  system of less than 10 megabytes (MB), which is substantially smaller
+  than the majority of existing installations.  Try that with a
+  regular distribution!</para>
 
   <para>We could compare Linux distributions to a hamburger purchased at
   a fast-food restaurant&mdash;you have no idea what might be in what you
@@ -76,7 +71,7 @@
   The Linux Documentation Project's (TLDP) website at <ulink
   url="http://www.tldp.org/HOWTO/From-PowerUp-To-Bash-Prompt-HOWTO.html"/>.
   The HOWTO builds a system which is similar to that of this book, but it
-  focuses strictly on creating a system capable of booting to a BASH prompt.
+  focuses strictly on creating a system capable of booting to a shell prompt.
   Consider your objective. If you wish to build a Linux system and learn
   along the way, this book is your best choice.</para>
 
