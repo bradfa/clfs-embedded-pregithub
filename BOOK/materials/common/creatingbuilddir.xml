@@ -24,6 +24,13 @@
 
 <screen><userinput>chmod 777 ${CLFS}</userinput></screen>
 
+  <para>Create a sysroot directory which will be used when building the cross
+    compiler and link its <filename class="directory">usr</filename> directory
+    to itself such that everything installs to the sysroot:</para>
+
+<screen><userinput>mkdir -p ${CLFS}/cross-tools/sysroot
+  ln -sfv . ${CLFS}/cross-tools/sysroot/usr</userinput></screen>
+
   <para>Downloaded packages and patches will need to be stored somewhere
   that is conveniently available throughout the entire build. A working
   directory is also required to unpack the sources and build them.
