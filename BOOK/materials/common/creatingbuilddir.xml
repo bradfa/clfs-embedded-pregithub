@@ -8,7 +8,7 @@
 <sect1 id="ch-materials-creatingbuilddir">
   <?dbhtml filename="creatingbuilddir.html"?>
 
-  <title>Creating a Build Directory</title>
+  <title>Creating Build and Sources Directories</title>
 
   <para> Create a directory for the CLFS build (the exact location is up to
     you): </para>
@@ -24,7 +24,15 @@
 
 <screen><userinput>chmod 777 ${CLFS}</userinput></screen>
 
-  <para>Now that there is an established place to work, it is time to
-  download the packages.</para>
+  <para>Downloaded packages and patches will need to be stored somewhere
+  that is conveniently available throughout the entire build. A working
+  directory is also required to unpack the sources and build them.
+  <filename class="directory">${CLFS}/sources</filename> can be used both
+  as the place to store the tarballs and patches and as a working
+  directory.</para>
+
+  <para>Create a directory to store the sources:</para>
+
+<screen><userinput>mkdir -v ${CLFS}/sources</userinput></screen>
 
 </sect1>

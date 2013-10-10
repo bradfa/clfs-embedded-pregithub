@@ -10,41 +10,19 @@
 
   <title>Introduction</title>
 
-  <para>This chapter includes a list of packages that need to be downloaded
-  for building a basic Linux system. The listed version numbers correspond
-  to versions of the software that are known to work, and this book is based
-  on their use. We highly recommend not using newer versions because the
-  build commands for one version may not work with a newer version. The
-  newest package versions may also have problems that require work-arounds.
-  These work-arounds will be developed and stabilized in the development
-  version of the book.</para>
+  <para>This chapter creates a directory where the cross compiler toolchain wil
+  be built and a directory where sources are kept.  It includes a list of
+  packages that need to be downloaded for building a basic Linux
+  system.</para>
+
+  <para>The listed version numbers correspond to versions of the software that
+  are known to work, and this book is based on their use. We highly recommend
+  not using newer or older versions because the build commands for one version may not
+  work with another version.</para>
 
   <para>Download locations may not always be accessible. If a download
   location has changed since this book was published, Google (<ulink
   url="http://www.google.com/"/>) provides a useful search engine for
   most packages.</para>
-
-  <para>Downloaded packages and patches will need to be stored somewhere
-  that is conveniently available throughout the entire build. A working
-  directory is also required to unpack the sources and build them.
-  <filename class="directory">${CLFS}/sources</filename> can be used both
-  as the place to store the tarballs and patches and as a working
-  directory. By using this directory, the required elements will be
-  located on the CLFS partition and will be available during all stages
-  of the building process.</para>
-
-  <para>To create this directory, execute, as user <systemitem
-  class="username">root</systemitem>, the following command before
-  starting the download session:</para>
-
-<screen><userinput>mkdir -v ${CLFS}/sources</userinput></screen>
-
-  <para>Make this directory writable and sticky. When a directory is
-  marked <quote>sticky</quote>, that means that even if multiple users have
-  write permission on that directory, any file within that directory can only be
-  deleted or modified by its owner. The following command will enable the
-  write and sticky modes:</para>
-
-<screen><userinput>chmod -v a+wt ${CLFS}/sources</userinput></screen>
 
 </sect1>
