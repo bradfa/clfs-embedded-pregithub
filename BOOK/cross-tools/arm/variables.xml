@@ -20,13 +20,14 @@
   do not know what values can be chosen for each of these, you can use the 
   tables at the bottom of this page as a reference.</para>
 
-  <para os="a1">Most ARM processors are little endian, it is a safe choice.
-  If your processor is an ARM9, good choices include: triplet of
-  armv5l-unknown-linux-uclibeabi, ARM arch of armv5t, float of softfp, and fpu
-  of either none or softvfp. ARM9 processors do not always have hardware
-  floating point abilities. If your processor is a Cortex-A8 or Cortex-A9, good
-  choices include: triplet of armv7a-unknown-linux-uclibceabi, ARM arch of
-  armv7-a, float of hard, and fpu of vfpv3-d16.</para>
+  <para os="a1">Most ARM processors are little endian, it is a safe choice.  If
+  your processor is an ARM9, good choices include: triplet of
+  armv5l-unknown-linux-uclibeabi, ARM arch of armv5t, and float of soft.  ARM9
+  processors do not usually have hardware floating point abilities. If your
+  processor is a Cortex-A series, which often have hardware floating point
+  capability, good choices include: triplet of
+  armv7a-unknown-linux-uclibceabi, ARM arch of armv7-a, float of hard, and fpu
+  of vfpv3-d16.</para>
 
   <para os="a2">First, set the host and target triplets:</para>
 
@@ -47,10 +48,12 @@ export CLFS_ENDIAN="<replaceable>[endianess]</replaceable>"</userinput></screen>
 <screen os="f"><userinput>export CLFS_ARM_ARCH="<replaceable>[architecture]</replaceable>"
 export CLFS_ARM_MODE="<replaceable>[arm or thumb]</replaceable>"</userinput></screen>
 
-  <para os="f1">If your target CPU has hard floating point support (not all ARM
-  CPUs do), set the following CLFS_FLOAT variable to either "hard" or "softfp".
-  If your target CPU does not have hard floating point support, set the following
-  CLFS_FLOAT vairable to "soft".</para>
+  <para os="f1">If your target CPU has hardware floating point support (not all
+  ARM CPUs do), then set the following CLFS_FLOAT variable to either "hard" or
+  "softfp".  Use "softfp" if you need to integrate binaries compiled with
+  "soft".  Use "hard" if you don't.  If your target CPU does not have hard
+  floating point support, set the following CLFS_FLOAT vairable to
+  "soft".</para>
 
 <screen os="f2"><userinput>export CLFS_FLOAT="<replaceable>[hard, softfp, or soft]"</replaceable></userinput></screen>
 
@@ -200,8 +203,6 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
         </row>
         <row>
           <entry>neon-vfpv4</entry>
-          <entry>softvfp</entry>
-          <entry>none</entry>
         </row>
       </tbody>
     </tgroup>
