@@ -48,8 +48,7 @@
     href="../common/gcc-final.xml"
     xpointer="xpointer(//*[@os='f'])"/>
 
-<screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
-  ../gcc-&gcc-version;/configure \
+<screen os="ae"><userinput>../gcc-&gcc-version;/configure \
   --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} \
   --target=${CLFS_TARGET} \

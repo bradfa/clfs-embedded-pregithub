@@ -54,8 +54,7 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
 
 <!-- This is the common configure line for GCC-Final -->
 <!-- It's not actually used by any arch but is here for reference. -->
-<screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
-  ../gcc-&gcc-version;/configure \
+<screen os="ae"><userinput>../gcc-&gcc-version;/configure \
   --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} \
   --target=${CLFS_TARGET} \
