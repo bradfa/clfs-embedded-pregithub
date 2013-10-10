@@ -24,7 +24,7 @@
 
     <title>Preparing for the Build</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="materials/arm-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="materials/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-preps/chapter.xml"/>
   </part>
 
