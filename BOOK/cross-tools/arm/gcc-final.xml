@@ -53,8 +53,7 @@
   --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
   --with-sysroot=${CLFS} --disable-nls --enable-shared \
   --enable-languages=c --enable-c99 --enable-long-long \
-  --disable-multilib \
-  --with-abi=${CLFS_ABI} --with-arch=${CLFS_ARM_ARCH} \
+  --disable-multilib --with-arch=${CLFS_ARM_ARCH} \
   --with-mode=${CLFS_ARM_MODE} --with-float=${CLFS_FLOAT} \
   --with-fpu=${CLFS_FPU}</userinput></screen>
 

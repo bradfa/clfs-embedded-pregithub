@@ -54,7 +54,7 @@
   --without-headers --with-newlib \
   --disable-decimal-float --disable-libgomp --disable-libmudflap \
   --disable-libssp --disable-threads --enable-languages=c \
-  --disable-multilib --with-abi=${CLFS_ABI} --with-arch=${CLFS_ARM_ARCH} \
+  --disable-multilib --with-arch=${CLFS_ARM_ARCH} \
   --with-mode=${CLFS_ARM_MODE} --with-float=${CLFS_FLOAT} \
   --with-fpu=${CLFS_FPU}</userinput></screen>
 
