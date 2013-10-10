@@ -45,8 +45,11 @@ cd ../binutils-build</userinput></screen>
 
     <para os="d">Prepare Binutils for compilation:</para>
 
-<screen os="e"><userinput>../binutils-&binutils-version;/configure --prefix=${CLFS}/cross-tools \
-   --target=${CLFS_TARGET} --with-sysroot=${CLFS} --disable-nls \
+<screen os="e"><userinput>../binutils-&binutils-version;/configure \
+   --prefix=${CLFS}/cross-tools \
+   --target=${CLFS_TARGET} \
+   --with-sysroot=${CLFS} \
+   --disable-nls \
    --disable-multilib</userinput></screen>
 
     <variablelist os="f">
