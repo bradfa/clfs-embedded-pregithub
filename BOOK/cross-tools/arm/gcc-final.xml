@@ -49,12 +49,21 @@
     xpointer="xpointer(//*[@os='f'])"/>
 
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
-  ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
-  --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
-  --with-sysroot=${CLFS} --disable-nls --enable-shared \
-  --enable-languages=c --enable-c99 --enable-long-long \
-  --disable-multilib --with-arch=${CLFS_ARM_ARCH} \
-  --with-mode=${CLFS_ARM_MODE} --with-float=${CLFS_FLOAT} \
+  ../gcc-&gcc-version;/configure \
+  --prefix=${CLFS}/cross-tools \
+  --build=${CLFS_HOST} \
+  --target=${CLFS_TARGET} \
+  --host=${CLFS_HOST} \
+  --with-sysroot=${CLFS} \
+  --disable-nls \
+  --enable-shared \
+  --enable-languages=c \
+  --enable-c99 \
+  --enable-long-long \
+  --disable-multilib \
+  --with-arch=${CLFS_ARM_ARCH} \
+  --with-mode=${CLFS_ARM_MODE} \
+  --with-float=${CLFS_FLOAT} \
   --with-fpu=${CLFS_FPU}</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"

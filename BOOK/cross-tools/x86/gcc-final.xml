@@ -49,10 +49,17 @@
     xpointer="xpointer(//*[@os='f'])"/>
 
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
-  ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
-  --build=${CLFS_HOST} --target=${CLFS_TARGET} --host=${CLFS_HOST} \
-  --with-sysroot=${CLFS} --disable-nls --enable-shared \
-  --enable-languages=c --enable-c99 --enable-long-long \
+  ../gcc-&gcc-version;/configure \
+  --prefix=${CLFS}/cross-tools \
+  --build=${CLFS_HOST} \
+  --target=${CLFS_TARGET} \
+  --host=${CLFS_HOST} \
+  --with-sysroot=${CLFS} \
+  --disable-nls \
+  --enable-shared \
+  --enable-languages=c \
+  --enable-c99 \
+  --enable-long-long \
   --disable-multilib \
   --with-arch=${CLFS_CPU}</userinput></screen>
 

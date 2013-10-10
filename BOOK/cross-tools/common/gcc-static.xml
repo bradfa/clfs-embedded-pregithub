@@ -51,12 +51,22 @@ cd ../gcc-build</userinput></screen>
 <!-- This is the common configure line for GCC-Static. -->
 <!-- It's not actually used by any arch but is here for reference. -->
 <screen os="ae"><userinput>AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/cross-tools/lib" \
-  ../gcc-&gcc-version;/configure --prefix=${CLFS}/cross-tools \
-  --build=${CLFS_HOST} --host=${CLFS_HOST} --target=${CLFS_TARGET} \
-  --with-sysroot=${CLFS} --disable-nls  --disable-shared \
-  --without-headers --with-newlib \
-  --disable-decimal-float --disable-libgomp --disable-libmudflap \
-  --disable-libssp --disable-threads --enable-languages=c \
+  ../gcc-&gcc-version;/configure \
+  --prefix=${CLFS}/cross-tools \
+  --build=${CLFS_HOST} \
+  --host=${CLFS_HOST} \
+  --target=${CLFS_TARGET} \
+  --with-sysroot=${CLFS} \
+  --disable-nls  \
+  --disable-shared \
+  --without-headers \
+  --with-newlib \
+  --disable-decimal-float \
+  --disable-libgomp \
+  --disable-libmudflap \
+  --disable-libssp \
+  --disable-threads \
+  --enable-languages=c \
   --disable-multilib</userinput></screen>
 
     <variablelist os="af">
