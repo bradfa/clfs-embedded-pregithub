@@ -43,11 +43,11 @@ sed -i s/ranlib/\$\{CLFS\_TARGET\}\-ranlib/g Makefile</userinput></screen>
     functionality of the Wireless Tools.  See the Wireless Tools
     <filename>INSTALL</filename> file for more information.</para></note>
 
-<screen><userinput>make PREFIX=${CLFS}/usr</userinput></screen>
+<screen><userinput>make PREFIX=${CLFS}/targetfs/usr</userinput></screen>
 
     <para os="c">Install the package:</para>
 
-<screen><userinput>make install PREFIX=${CLFS}/usr</userinput></screen>
+<screen><userinput>make install PREFIX=${CLFS}/targetfs/usr</userinput></screen>
 
   </sect2>
 

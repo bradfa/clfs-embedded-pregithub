@@ -57,7 +57,7 @@ EOF</literal></userinput></screen>
 
     <para os="e">Install the package:</para>
 
-<screen os="f"><userinput>cp hostapd hostapd_cli ${CLFS}/usr/sbin</userinput></screen>
+<screen os="f"><userinput>cp hostapd hostapd_cli ${CLFS}/targetfs/usr/sbin</userinput></screen>
 
   </sect2>
 
@@ -66,7 +66,7 @@ EOF</literal></userinput></screen>
 
     <para os="h">From the clfs-bootscripts package, install the hostapd bootscripts:</para>
 
-<screen os="i"><userinput>make install-hostapd DESTDIR=${CLFS}</userinput></screen>
+<screen os="i"><userinput>make install-hostapd DESTDIR=${CLFS}/targetfs</userinput></screen>
 
   </sect2>
 
@@ -77,7 +77,7 @@ EOF</literal></userinput></screen>
     encrypted host access point with the name dummy and password foobar123 on 
     channel 4:</para>
 
-<screen os="k"><userinput>cat &gt; ${CLFS}/etc/hostapd.conf &lt;&lt; EOF
+<screen os="k"><userinput>cat &gt; ${CLFS}/targetfs/etc/hostapd.conf &lt;&lt; EOF
 <literal># Sample hostapd.conf
 # See hostapd/hostapd.conf in your hostap source tree for a more detailed version
 interface=wlan0

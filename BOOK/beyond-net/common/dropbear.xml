@@ -55,16 +55,16 @@ sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h</userinput></s
     <para os="h">Install the package:</para>
 
 <screen os="i"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" \
-    install DESTDIR=${CLFS}
-ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/sbin/dropbear
-ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/dbclient
-ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearkey
-ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/dropbearconvert
-ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
+    install DESTDIR=${CLFS}/targetfs
+ln -svf /usr/bin/dropbearmulti ${CLFS}/targetfs/usr/sbin/dropbear
+ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/dbclient
+ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/dropbearkey
+ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/dropbearconvert
+ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/scp</userinput></screen>
 
     <para os="j">Create the directory for the dropbear key files:</para>
 
-<screen os="k"><userinput>install -dv ${CLFS}/etc/dropbear</userinput></screen>
+<screen os="k"><userinput>install -dv ${CLFS}/targetfs/etc/dropbear</userinput></screen>
 
   </sect2>
 
@@ -74,7 +74,7 @@ ln -svf /usr/bin/dropbearmulti ${CLFS}/usr/bin/scp</userinput></screen>
     <para os="l">From the clfs-bootscripts package, install the Dropbear
             bootscripts:</para>
 
-<screen os="m"><userinput>make install-dropbear DESTDIR=${CLFS}</userinput></screen>
+<screen os="m"><userinput>make install-dropbear DESTDIR=${CLFS}/targetfs</userinput></screen>
 
 
   </sect2>
