@@ -97,11 +97,11 @@ cd build</userinput></screen>
 
     <para os="h">Install the binaries, documentation, and shared libraries:</para>
 
-<screen os="i"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen os="i"><userinput>make DESTDIR=${CLFS}/targetfs install</userinput></screen>
 
     <para os="j">Install the static libraries and headers:</para>
 
-<screen os="k"><userinput>make DESTDIR=${CLFS} install-libs</userinput></screen>
+<screen os="k"><userinput>make DESTDIR=${CLFS}/targetfs install-libs</userinput></screen>
 
   </sect2>
 
