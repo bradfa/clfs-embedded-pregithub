@@ -32,7 +32,7 @@ sed -e 's/-O3/-Os/g' configure.orig > configure</userinput></screen>
 
     <para os="c">Prepare Zlib for compilation:</para>
 
-<screen os="d"><userinput>./configure --prefix=/usr --shared</userinput></screen>
+<screen os="d"><userinput>./configure --shared</userinput></screen>
 
     <variablelist os="aa">
       <title>The meaning of the configure options:</title>
@@ -52,16 +52,7 @@ sed -e 's/-O3/-Os/g' configure.orig > configure</userinput></screen>
 
     <para os="e">Install the package:</para>
 
-<screen os="f"><userinput>make prefix=${CLFS}/usr install</userinput></screen>
-
-    <para os="g">The previous command installed a <filename
-    class="extension">.so</filename> file in <filename
-    class="directory">/usr/lib</filename>. We will move it into
-    <filename class="directory">/lib</filename> and then relink it
-    to <filename class="directory">/usr/lib</filename>:</para>
-
-<screen os="h"><userinput>mv -v ${CLFS}/usr/lib/libz.so.* ${CLFS}/lib
-ln -svf ../../lib/libz.so.1 ${CLFS}/usr/lib/libz.so</userinput></screen>
+<screen os="f"><userinput>make prefix=${CLFS}/cross-tools/sysroot install</userinput></screen>
 
   </sect2>
 
