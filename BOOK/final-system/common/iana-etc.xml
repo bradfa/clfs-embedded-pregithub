@@ -48,7 +48,7 @@
 
     <para os="g">Install the package:</para>
 
-<screen os="h"><userinput>make DESTDIR=${CLFS} install</userinput></screen>
+<screen os="h"><userinput>make DESTDIR=${CLFS}/targetfs install</userinput></screen>
 
   </sect2>
 
