@@ -111,7 +111,7 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
       <segtitle>Installed libraries</segtitle>
 
       <seglistitem>
-        <seg>cc (link to gcc), gcc, gccbug, and gcov</seg>
+        <seg>gcc, and gcov</seg>
         <seg>libgcc.a, libgcc_eh.a, and libgcc_s.so</seg>
       </seglistitem>
     </segmentedlist>
@@ -121,32 +121,12 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
-      <varlistentry id="cc">
-        <term><command>cc</command></term>
-        <listitem>
-          <para>The C compiler</para>
-          <indexterm zone="ch-cross-tools-gcc-final cc">
-            <primary sortas="b-cc">cc</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
       <varlistentry id="gcc">
         <term><command>gcc</command></term>
         <listitem>
           <para>The C compiler</para>
           <indexterm zone="ch-cross-tools-gcc-final gcc">
             <primary sortas="b-gcc">gcc</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="gccbug">
-        <term><command>gccbug</command></term>
-        <listitem>
-          <para>A shell script used to help create useful bug reports</para>
-          <indexterm zone="ch-cross-tools-gcc-final gccbug">
-            <primary sortas="b-gccbug">gccbug</primary>
           </indexterm>
         </listitem>
       </varlistentry>
