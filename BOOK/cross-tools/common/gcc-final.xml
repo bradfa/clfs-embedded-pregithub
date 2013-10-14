@@ -24,6 +24,10 @@
   <sect2 role="installation">
     <title>Installation of GCC Cross Compiler</title>
 
+    <xi:include os="c" xmlns:xi="http://www.w3.org/2003/XInclude"
+    href="gcc-static.xml"
+    xpointer="xpointer(//*[@os='ab'])"/>
+
     <para os="b">GCC requires the GMP, MPFR, and MPC packages to either be
     present on the host or to be present in source form within the gcc source
     tree.  Unpack these into the GCC directory after unpacking GCC:</para>
