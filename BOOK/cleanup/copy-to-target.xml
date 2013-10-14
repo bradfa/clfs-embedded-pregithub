@@ -16,7 +16,7 @@
   <para>Create a tarball of the build:</para>
 
 <screen><userinput>install -dv ${CLFS}/build
-cd ${CLFS}-final
+cd ${CLFS}/targetfs
 tar jcfv ${CLFS}/build/clfs-embedded.tar.bz2 *</userinput></screen>
 
   <para>Now you can move your compressed tarball to your target
