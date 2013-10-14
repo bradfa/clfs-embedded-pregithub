@@ -42,7 +42,7 @@
 
     <title>Building the CLFS System</title>
 
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-system/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="final-system/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootable/mips-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootscripts/chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="bootloaders/mips-chapter.xml"/>
