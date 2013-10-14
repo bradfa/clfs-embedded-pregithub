@@ -64,6 +64,8 @@ cd ../gcc-build</userinput></screen>
   --disable-libgomp \
   --disable-libmudflap \
   --disable-libssp \
+  --disable-libatomic \
+  --disable-libquadmath \
   --disable-threads \
   --enable-languages=c \
   --disable-multilib</userinput></screen>
@@ -183,6 +185,20 @@ cd ../gcc-build</userinput></screen>
       </varlistentry>
 
       <varlistentry os="af17">
+        <term><parameter>--disable-libatomic</parameter></term>
+        <listitem>
+          <para>Tells configure not to build atomic operations.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af18">
+        <term><parameter>--disable-libquadmath</parameter></term>
+        <listitem>
+          <para>Tells configure not to build quad math operations.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af19">
         <term><parameter>--disable-threads</parameter></term>
         <listitem>
           <para>This will prevent GCC from looking for the multi-thread
@@ -192,14 +208,14 @@ cd ../gcc-build</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry os="af18">
+      <varlistentry os="af20">
         <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
           <para>This option ensures that only the C compiler is built.</para>
         </listitem>
       </varlistentry>
 
-    <varlistentry os="af19">
+    <varlistentry os="af21">
       <term><parameter>--disable-multilib</parameter></term>
       <listitem>
         <para>This option specifies that multiple target libraries should

@@ -61,6 +61,8 @@
   --disable-libgomp \
   --disable-libmudflap \
   --disable-libssp \
+  --disable-libatomic \
+  --disable-libquadmath \
   --disable-threads \
   --enable-languages=c \
   --disable-multilib \
