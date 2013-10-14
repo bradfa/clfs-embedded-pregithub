@@ -101,12 +101,6 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
 
 <screen os="ak"><userinput>make install</userinput></screen>
 
-    <para os="al">Some programs need <filename class="libraryfile">libgcc_s.so.1</filename>
-    to be included in the target file system.  Copy it to the 
-    <filename class="directory">${CLFS}/lib</filename> directory:</para>
-
-<screen os="am"><userinput>cp -v ${CLFS}/cross-tools/${CLFS_TARGET}/lib/libgcc_s.so.1 ${CLFS}/lib</userinput></screen>
- 
   </sect2>
 
   <sect2 id="contents-gcc" role="content">
