@@ -64,6 +64,7 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
   --enable-languages=c \
   --enable-c99 \
   --enable-long-long \
+  --disable-libmudflap \
   --with-mpfr=${CLFS}/cross-tools \
   --with-gmp=${CLFS}/cross-tools \
   --with-mpc=${CLFS}/cross-tools \
@@ -117,8 +118,7 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
 
       <seglistitem>
         <seg>cc (link to gcc), gcc, gccbug, and gcov</seg>
-        <seg>libgcc.a, libgcc_eh.a, libgcc_s.so, libmudflap.[a,so],
-        and libmudflapth.[a,so]</seg>
+        <seg>libgcc.a, libgcc_eh.a, and libgcc_s.so</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -174,17 +174,6 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
           <para>Contains run-time support for <command>gcc</command></para>
           <indexterm zone="ch-cross-tools-gcc-final libgcc">
             <primary sortas="c-libgcc*">libgcc*</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libmudflap">
-        <term><filename class="libraryfile">libmudflap</filename></term>
-        <listitem>
-          <para>The libmudflap libraries are used by GCC for instrumenting
-          pointer and array dereferencing operations.</para>
-          <indexterm zone="ch-cross-tools-gcc-final libmudflap">
-            <primary sortas="c-libmudflap*">libmudflap*</primary>
           </indexterm>
         </listitem>
       </varlistentry>

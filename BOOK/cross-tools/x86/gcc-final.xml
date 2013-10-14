@@ -58,6 +58,7 @@
   --enable-languages=c \
   --enable-c99 \
   --enable-long-long \
+  --disable-libmudflap \
   --disable-multilib \
   --with-arch=${CLFS_CPU}</userinput></screen>
 

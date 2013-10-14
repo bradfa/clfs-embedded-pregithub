@@ -58,6 +58,7 @@
   --enable-languages=c \
   --enable-c99 \
   --enable-long-long \
+  --disable-libmudflap \
   --disable-multilib \
   --with-arch=${CLFS_ARM_ARCH} \
   --with-mode=${CLFS_ARM_MODE} \

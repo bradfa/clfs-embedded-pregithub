@@ -58,6 +58,7 @@
   --enable-languages=c \
   --enable-c99 \
   --enable-long-long \
+  --disable-libmudflap \
   --disable-multilib \
   --with-abi=${CLFS_ABI} \
   --with-arch=mips${CLFS_MIPS_LEVEL} \
