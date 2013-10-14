@@ -61,7 +61,6 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
   --host=${CLFS_HOST} \
   --with-sysroot=${CLFS}/cross-tools/sysroot \
   --disable-nls \
-  --enable-shared \
   --enable-languages=c \
   --enable-c99 \
   --enable-long-long \
@@ -72,13 +71,6 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options not used previously:</title>
-
-      <varlistentry os="af1">
-        <term><parameter>--enable-shared</parameter></term>
-        <listitem>
-          <para>Enables the creation of the shared libraries.</para>
-        </listitem>
-      </varlistentry>
 
       <varlistentry os="af2">
         <term><parameter>--enable-c99</parameter></term>

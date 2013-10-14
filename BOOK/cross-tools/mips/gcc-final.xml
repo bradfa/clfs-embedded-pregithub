@@ -55,7 +55,6 @@
   --host=${CLFS_HOST} \
   --with-sysroot=${CLFS}/cross-tools/sysroot \
   --disable-nls \
-  --enable-shared \
   --enable-languages=c \
   --enable-c99 \
   --enable-long-long \
