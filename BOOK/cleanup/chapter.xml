@@ -11,6 +11,7 @@
 
   <title>Backup and Cleanup</title>
 
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="copylibs.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="chowning.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="copy-to-target.xml"/>
 
