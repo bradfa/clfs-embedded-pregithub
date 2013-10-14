@@ -75,22 +75,22 @@ echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc</userinput></scree
       <tbody>
         <row>
           <entry>MIPS 32 bits Little Endian</entry>
-          <entry>mipsel-unknown-linux-uclibc</entry>
+          <entry>mipsel-unknown-linux-musl</entry>
           <entry>1</entry>
         </row>
         <row>
           <entry>MIPS 32 bits Big Endian</entry>
-          <entry>mips-unknown-linux-uclibc</entry>
+          <entry>mips-unknown-linux-musl</entry>
           <entry>1</entry>
         </row>
         <row>
           <entry>MIPS 64 bits Little Endian</entry>
-          <entry>mips64el-unknown-linux-uclibc</entry>
+          <entry>mips64el-unknown-linux-musl</entry>
           <entry>3</entry>
         </row>
         <row>
           <entry>MIPS 64 bits Big Endian</entry>
-          <entry>mips64-unknown-linux-uclibc</entry>
+          <entry>mips64-unknown-linux-musl</entry>
           <entry>3</entry>
         </row>
       </tbody>

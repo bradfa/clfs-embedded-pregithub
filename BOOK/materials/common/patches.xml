@@ -47,15 +47,6 @@
       </listitem>
     </varlistentry>
 
-    <varlistentry>
-      <term>uClibc Configs Patch - <token>&uclibc-configs-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&uclibc-configs-patch;"/></para>
-        <para>MD5 sum: <literal>&uclibc-configs-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
   </variablelist>
 
   <para os="a">Total size of these patches: about <returnvalue/></para>
