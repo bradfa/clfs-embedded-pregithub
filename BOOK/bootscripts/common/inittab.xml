@@ -18,7 +18,7 @@
 
   <para os="a">Now we will create the inittab file for use with our system:</para>
 
-<screen os="b"><userinput>cat &gt; ${CLFS}/etc/inittab&lt;&lt; "EOF"
+<screen os="b"><userinput>cat &gt; ${CLFS}/targetfs/etc/inittab&lt;&lt; "EOF"
 <literal># /etc/inittab
 
 ::sysinit:/etc/rc.d/startup

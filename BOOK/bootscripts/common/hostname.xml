@@ -21,7 +21,7 @@
   <para>Create the <filename>HOSTNAME</filename> file
   and enter a hostname by running:</para>
 
-  <screen><userinput>echo "<replaceable>[clfs]</replaceable>" &gt; ${CLFS}/etc/HOSTNAME</userinput></screen>
+  <screen><userinput>echo "<replaceable>[clfs]</replaceable>" &gt; ${CLFS}/targetfs/etc/HOSTNAME</userinput></screen>
 
   <para><replaceable>[clfs]</replaceable> needs to be replaced with the
   name given to the computer. Do not enter the Fully Qualified

@@ -31,7 +31,7 @@
 
 <para os="a">Now we will create the mdev.conf file for use with our system:</para>
 
-<screen os="b"><?dbfo keep-together="auto"?><userinput>cat &gt; ${CLFS}/etc/mdev.conf&lt;&lt; "EOF"
+<screen os="b"><?dbfo keep-together="auto"?><userinput>cat &gt; ${CLFS}/targetfs/etc/mdev.conf&lt;&lt; "EOF"
 <literal># /etc/mdev/conf
 
 # Devices:

@@ -29,7 +29,7 @@
     <para>The following command creates the <filename>network.conf</filename>
     file for use by the entire system:</para>
 
-<screen><userinput>cat &gt; ${CLFS}/etc/network.conf &lt;&lt; "EOF"
+<screen><userinput>cat &gt; ${CLFS}/targetfs/etc/network.conf &lt;&lt; "EOF"
 <literal># /etc/network.conf
 # Global Networking Configuration
 # interface configuration is in /etc/network.d/
@@ -61,8 +61,8 @@ EOF</userinput></screen>
     <para>The following command creates a sample <filename>interface.eth0</filename>
     file for the <emphasis>eth0</emphasis> device:</para>
 
-<screen><userinput>mkdir ${CLFS}/etc/network.d &amp;&amp;
-cat &gt; ${CLFS}/etc/network.d/interface.eth0 &lt;&lt; "EOF"
+<screen><userinput>mkdir ${CLFS}/targetfs/etc/network.d &amp;&amp;
+cat &gt; ${CLFS}/targetfs/etc/network.d/interface.eth0 &lt;&lt; "EOF"
 <literal># Network Interface Configuration
 
 # network device name
@@ -100,7 +100,7 @@ EOF</userinput></screen>
   </sect2>
 
   <sect2 id="udhcpc.conf">
-    <title>Creating the ${CLFS}/etc/udhcpc.conf File</title>
+    <title>Creating the ${CLFS}/targetfs/etc/udhcpc.conf File</title>
 
     <indexterm zone="udhcpc.conf">
       <primary sortas="e-/etc/udhcpc.conf">/etc/udhcpc.conf</primary>
@@ -109,7 +109,7 @@ EOF</userinput></screen>
     <para>For DHCP to work properly a configuration script is needed.
     Create a sample udhcpc.conf:</para>
 
-<screen><userinput>cat &gt; ${CLFS}/etc/udhcpc.conf &lt;&lt; "EOF"
+  <screen><userinput>cat &gt; ${CLFS}/targetfs/etc/udhcpc.conf &lt;&lt; "EOF"
 <literal>#!/bin/sh
 # udhcpc Interface Configuration
 # Based on http://lists.debian.org/debian-boot/2002/11/msg00500.html
@@ -159,12 +159,12 @@ esac
 exit 0
 </literal>EOF
 
-chmod +x ${CLFS}/etc/udhcpc.conf</userinput></screen>
+chmod +x ${CLFS}/targetfs/etc/udhcpc.conf</userinput></screen>
 
   </sect2>
 
   <sect2 id="resolv.conf">
-    <title>Creating the ${CLFS}/etc/resolv.conf File</title>
+    <title>Creating the ${CLFS}/targetfs/etc/resolv.conf File</title>
 
     <indexterm zone="resolv.conf">
       <primary sortas="e-/etc/resolv.conf">/etc/resolv.conf</primary>
@@ -178,7 +178,7 @@ chmod +x ${CLFS}/etc/udhcpc.conf</userinput></screen>
     <filename>/etc/resolv.conf</filename>. Create the file by running the
     following:</para>
 
-<screen><userinput>cat &gt; ${CLFS}/etc/resolv.conf &lt;&lt; "EOF"
+<screen><userinput>cat &gt; ${CLFS}/targetfs/etc/resolv.conf &lt;&lt; "EOF"
 <literal># Begin /etc/resolv.conf
 
 domain <replaceable>[Your Domain Name]</replaceable>
