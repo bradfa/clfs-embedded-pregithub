@@ -42,7 +42,7 @@
     the correct formats for the <filename>/etc/protocols</filename> and
     <filename>/etc/services</filename> data files:</para>
 
-<screen os="e"><userinput>make</userinput></screen>
+<screen os="e"><userinput>make STRIP=yes</userinput></screen>
 
     <para os="f">This package does not come with a test suite.</para>
 
