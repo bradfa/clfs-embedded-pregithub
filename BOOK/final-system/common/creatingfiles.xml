@@ -38,7 +38,7 @@
   the file <filename>/etc/mtab</filename>.  With the way our embedded system is
   is designed, we will be using a symlink to <filename>/proc/mounts</filename>:</para>
 
-<screen><userinput>ln -svf ../proc/mounts ${CLFS}/etc/mtab</userinput></screen>
+<screen><userinput>ln -svf ../proc/mounts ${CLFS}/targetfs/etc/mtab</userinput></screen>
  
   <para>In order for user <systemitem class="username">root</systemitem> to be
   able to login and for the name <quote>root</quote> to be recognized, there
@@ -48,7 +48,7 @@
   <para>Create the <filename>/etc/passwd</filename> file by running the following
   command:</para>
 
-<screen><userinput>cat &gt; ${CLFS}/etc/passwd &lt;&lt; "EOF"
+<screen><userinput>cat &gt; ${CLFS}/targetfs/etc/passwd &lt;&lt; "EOF"
 <literal>root::0:0:root:/root:/bin/ash</literal>
 EOF</userinput></screen>
 
@@ -126,7 +126,7 @@ EOF</userinput></screen>
   <para>Create the <filename>/etc/group</filename> file by running the following
   command:</para>
 
-<screen><userinput>cat &gt; ${CLFS}/etc/group &lt;&lt; "EOF"
+<screen><userinput>cat &gt; ${CLFS}/targetfs/etc/group &lt;&lt; "EOF"
 <literal>root:x:0:
 bin:x:1:
 sys:x:2:
@@ -224,8 +224,8 @@ EOF</userinput></screen>
   do not already exist. Initialize the log files and give them
   proper permissions:</para>
 
-<screen><userinput>touch ${CLFS}/var/run/utmp ${CLFS}/var/log/{btmp,lastlog,wtmp}
-chmod -v 664 ${CLFS}/var/run/utmp ${CLFS}/var/log/lastlog</userinput></screen>
+<screen><userinput>touch ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/{btmp,lastlog,wtmp}
+chmod -v 664 ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/lastlog</userinput></screen>
 
   <para>The <filename>/var/run/utmp</filename> file records the users
   that are currently logged in. The <filename>/var/log/wtmp</filename>
