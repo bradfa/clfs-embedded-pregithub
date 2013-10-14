@@ -52,7 +52,7 @@
   --build=${CLFS_HOST} \
   --host=${CLFS_HOST} \
   --target=${CLFS_TARGET} \
-  --with-sysroot=${CLFS} \
+  --with-sysroot=${CLFS}/cross-tools/sysroot \
   --disable-nls  \
   --disable-shared \
   --without-headers \

@@ -59,7 +59,7 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
   --build=${CLFS_HOST} \
   --target=${CLFS_TARGET} \
   --host=${CLFS_HOST} \
-  --with-sysroot=${CLFS} \
+  --with-sysroot=${CLFS}/cross-tools/sysroot \
   --disable-nls \
   --enable-shared \
   --enable-languages=c \

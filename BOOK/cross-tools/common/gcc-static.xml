@@ -55,7 +55,7 @@ cd ../gcc-build</userinput></screen>
   --build=${CLFS_HOST} \
   --host=${CLFS_HOST} \
   --target=${CLFS_TARGET} \
-  --with-sysroot=${CLFS} \
+  --with-sysroot=${CLFS}/cross-tools/sysroot \
   --disable-nls  \
   --disable-shared \
   --without-headers \
@@ -109,11 +109,11 @@ cd ../gcc-build</userinput></screen>
       </varlistentry>
 
       <varlistentry os="af5">
-        <term><parameter>--with-sysroot=${CLFS}</parameter></term>
+        <term><parameter>--with-sysroot=${CLFS}/cross-tools/sysroot</parameter></term>
         <listitem>
-          <para>This tells configure that ${CLFS} is going to be the root
-          of our system. It will now use the specified sysroot, ${CLFS}, as
-          a prefix of the default search paths.</para>
+          <para>This tells configure that ${CLFS}/cross-tools/sysroot is going
+          to be the temporary root of our system. It will now use the specified
+          sysroot as a prefix of the default search paths.</para>
         </listitem>
       </varlistentry>
 
