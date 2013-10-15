@@ -21,7 +21,7 @@
     <title/>
 
     <para>The GCC package contains the GNU compiler collection, which includes
-    the C and C++ compilers.</para>
+    the C compiler.</para>
 
   </sect2>
 
