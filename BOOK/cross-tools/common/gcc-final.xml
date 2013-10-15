@@ -72,7 +72,9 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
   --with-mpfr=${CLFS}/cross-tools \
   --with-gmp=${CLFS}/cross-tools \
   --with-mpc=${CLFS}/cross-tools \
-  --disable-multilib</userinput></screen>
+  --disable-multilib \
+  --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
+  --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options not used previously:</title>

@@ -68,6 +68,8 @@
   --enable-long-long \
   --disable-libmudflap \
   --disable-multilib \
+  --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
+  --with-mpfr-lib=$(pwd)/mpfr/src/.libs \
   --with-arch=${CLFS_CPU}</userinput></screen>
 
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"

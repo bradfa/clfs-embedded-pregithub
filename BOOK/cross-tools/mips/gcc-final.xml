@@ -68,6 +68,8 @@
   --enable-long-long \
   --disable-libmudflap \
   --disable-multilib \
+  --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
+  --with-mpfr-lib=$(pwd)/mpfr/src/.libs \
   --with-abi=${CLFS_ABI} \
   --with-arch=mips${CLFS_MIPS_LEVEL} \
   --with-float=${CLFS_FLOAT} \

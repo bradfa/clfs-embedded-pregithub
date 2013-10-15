@@ -72,7 +72,9 @@ cd ../gcc-build</userinput></screen>
   --disable-libquadmath \
   --disable-threads \
   --enable-languages=c \
-  --disable-multilib</userinput></screen>
+  --disable-multilib \
+  --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
+  --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 
     <variablelist os="af">
       <title>The meaning of the configure options:</title>
@@ -219,13 +221,29 @@ cd ../gcc-build</userinput></screen>
         </listitem>
       </varlistentry>
 
-    <varlistentry os="af21">
-      <term><parameter>--disable-multilib</parameter></term>
-      <listitem>
-        <para>This option specifies that multiple target libraries should
-        not be built.</para>
-      </listitem>
-    </varlistentry>
+      <varlistentry os="af21">
+        <term><parameter>--disable-multilib</parameter></term>
+        <listitem>
+          <para>This option specifies that multiple target libraries should
+          not be built.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af22">
+        <term><parameter>--with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src</parameter></term>
+        <listitem>
+          <para>Tells configure how to find the mpfr headers.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry os="af23">
+        <term><parameter>--with-mpfr-lib=$(pwd)/mpfr/src/.libs</parameter></term>
+        <listitem>
+          <para>Tells configure to use the mpfr libraries built within the GCC
+            build directory.  This happens automatically but is needed to
+            prevent GCC from searching the host's normal library paths.</para>
+        </listitem>
+      </varlistentry>
 
     </variablelist>
 
