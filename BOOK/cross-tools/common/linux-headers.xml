@@ -31,7 +31,7 @@
 
 <screen os="c"><userinput>make mrproper
 make ARCH=${CLFS_ARCH} headers_check
-make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=${CLFS}/cross-tools/sysroot headers_install</userinput></screen>
+make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=${CLFS}/cross-tools/${CLFS_TARGET} headers_install</userinput></screen>
 
   </sect2>
 
@@ -42,7 +42,7 @@ make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=${CLFS}/cross-tools/sysroot headers_inst
       <segtitle>Installed headers</segtitle>
 
       <seglistitem>
-        <seg>${CLFS}/cross-tools/sysroot/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</seg>
+        <seg>${CLFS}/cross-tools/${CLFS_TARGET}/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -52,12 +52,12 @@ make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=${CLFS}/cross-tools/sysroot headers_inst
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="linux-headers">
-        <term><filename class="headerfile">${CLFS}/cross-tools/sysroot/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</filename></term>
+        <term><filename class="headerfile">${CLFS}/cross-tools/${CLFS_TARGET}/include/{asm,asm-generic,drm,linux,mtd,rdma,scsi,sound,video,xen}/*.h</filename></term>
         <listitem>
           <para>The Linux API headers</para>
           <indexterm zone="ch-cross-tools-linux-headers linux-headers">
             <primary
-            sortas="e-${CLFS}/cross-tools/sysroot/include/{asm,linux}/*.h">/usr/include/{asm,linux}/*.h</primary>
+            sortas="e-${CLFS}/cross-tools/${CLFS_TARGET}/include/{asm,linux}/*.h">/usr/include/{asm,linux}/*.h</primary>
           </indexterm>
         </listitem>
       </varlistentry>

@@ -46,7 +46,7 @@ cd ../binutils-build</userinput></screen>
 <screen os="e"><userinput>../binutils-&binutils-version;/configure \
    --prefix=${CLFS}/cross-tools \
    --target=${CLFS_TARGET} \
-   --with-sysroot=${CLFS}/cross-tools/sysroot \
+   --with-sysroot=${CLFS}/cross-tools/${CLFS_TARGET} \
    --disable-nls \
    --disable-multilib</userinput></screen>
 
@@ -72,7 +72,7 @@ cd ../binutils-build</userinput></screen>
       </varlistentry>
 
       <varlistentry os="f4">
-        <term><parameter>--with-sysroot=${CLFS}/cross-tools/sysroot</parameter></term>
+        <term><parameter>--with-sysroot=${CLFS}/cross-tools/${CLFS_TARGET}</parameter></term>
         <listitem>
           <para>This tells configure that ${CLFS} is going to be the root
           of our system. It will now use the specified sysroot, ${CLFS}, as

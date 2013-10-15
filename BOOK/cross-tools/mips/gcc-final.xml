@@ -61,7 +61,7 @@
   --build=${CLFS_HOST} \
   --target=${CLFS_TARGET} \
   --host=${CLFS_HOST} \
-  --with-sysroot=${CLFS}/cross-tools/sysroot \
+  --with-sysroot=${CLFS}/cross-tools/${CLFS_TARGET} \
   --disable-nls \
   --enable-languages=c \
   --enable-c99 \

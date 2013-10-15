@@ -60,7 +60,7 @@
   --build=${CLFS_HOST} \
   --host=${CLFS_HOST} \
   --target=${CLFS_TARGET} \
-  --with-sysroot=${CLFS}/cross-tools/sysroot \
+  --with-sysroot=${CLFS}/cross-tools/${CLFS_TARGET} \
   --disable-nls  \
   --disable-shared \
   --without-headers \

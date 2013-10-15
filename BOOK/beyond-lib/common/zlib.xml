@@ -52,7 +52,7 @@ sed -e 's/-O3/-Os/g' configure.orig > configure</userinput></screen>
 
     <para os="e">Install the package:</para>
 
-<screen os="f"><userinput>make prefix=${CLFS}/cross-tools/sysroot install</userinput></screen>
+<screen os="f"><userinput>make prefix=${CLFS}/cross-tools/${CLFS_TARGET} install</userinput></screen>
 
   </sect2>
 

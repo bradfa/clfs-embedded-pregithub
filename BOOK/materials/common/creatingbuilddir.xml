@@ -28,8 +28,8 @@
     compiler and link its <filename class="directory">usr</filename> directory
     to itself such that everything installs to the sysroot:</para>
 
-<screen><userinput>mkdir -p ${CLFS}/cross-tools/sysroot
-  ln -sfv . ${CLFS}/cross-tools/sysroot/usr</userinput></screen>
+<screen><userinput>mkdir -p ${CLFS}/cross-tools/${CLFS_TARGET}
+  ln -sfv . ${CLFS}/cross-tools/${CLFS_TARGET}/usr</userinput></screen>
 
   <para>Downloaded packages and patches will need to be stored somewhere
   that is conveniently available throughout the entire build. A working
