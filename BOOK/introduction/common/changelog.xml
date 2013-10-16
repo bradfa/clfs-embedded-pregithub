@@ -36,6 +36,26 @@
     </listitem>
 -->
     <listitem>
+      <para>October 16, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Remove uClibc, use musl-libc.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Build cross compiler completely separate from
+            target file system.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Build GMP, MPFR, and MPC within GCC tree.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Linewrap many configure switches for easier
+            reading and editing.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>August 12, 2013</para>
       <itemizedlist>
         <listitem>

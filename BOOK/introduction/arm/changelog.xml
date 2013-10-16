@@ -33,6 +33,18 @@
 -->
 
     <listitem>
+      <para>October 16, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Remove fpus that aren't valid.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Remove arm archs before armv4t.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>October 8, 2013</para>
       <itemizedlist>
         <listitem>
