@@ -28,14 +28,20 @@
   <sect2 role="installation">
     <title>Installation of musl-libc</title>
 
+    <para os="h">Configure the package:</para>
+
+<screen os="i"><userinput>CC=${CLFS_TARGET}-gcc ./configure \
+  --prefix=${CLFS}/cross-tools/${CLFS_TARGET} \
+  --target=${CLFS_TARGET} \
+  --enable-debug</userinput></screen>
+
     <para os="h">Compile the package:</para>
 
-<screen os="i"><userinput>CC=${CLFS_TARGET}-gcc make \
-  --enable-debug</userinput></screen>
+<screen os="i"><userinput>CC=${CLFS_TARGET}-gcc make</userinput></screen>
 
     <para os="l">Install the package:</para>
 
-<screen os="j"><userinput>make PREFIX=${CLFS} install</userinput></screen>
+<screen os="j"><userinput>make install</userinput></screen>
 
   </sect2>
 
