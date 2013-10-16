@@ -43,6 +43,14 @@
 
 <screen os="j"><userinput>make install</userinput></screen>
 
+    <para os="k">Make the proper symlinks for the dynamic loader such that
+      dynamically linked executables properly find the musl ld:</para>
+
+<screen os="m"><userinput>ln -s libc.so ${CLFS}/cross-tools/${CLFS_TARGET}/ld-musl-arm.so.1
+ln -s libc.so ${CLFS}/cross-tools/${CLFS_TARGET}/ld-musl-armhf.so.1
+ln -s libc.so ${CLFS}/cross-tools/${CLFS_TARGET}/ld-musl-i386.so.1
+ln -s libc.so ${CLFS}/cross-tools/${CLFS_TARGET}/ld-musl-mips.so.1</userinput></screen>
+
   </sect2>
 
   <sect2 id="contents-musl-libc" role="content">
