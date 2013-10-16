@@ -48,6 +48,12 @@
 
 <screen os="g"><userinput>ARCH="${CLFS_ARCH}" make defconfig</userinput></screen>
 
+    <para os="fa">Disable building both ifplugd and inetd as they both have
+      issues building against musl-libc:</para>
+
+<screen os="fb"><userinput>sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
+sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config</userinput></screen>
+
     <para os="h">Compile the package:</para>
 
 <screen os="i"><userinput>ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_TARGET}-" make</userinput></screen>
