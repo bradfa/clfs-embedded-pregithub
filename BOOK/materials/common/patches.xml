@@ -28,11 +28,11 @@
     </varlistentry>
 
     <varlistentry>
-      <term>BusyBox Config Patch - <token>&busybox-config-patch-size;</token>:</term>
+      <term>BusyBox musl-libc Patch - <token>&busybox-musl-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
-        url="&patches-root;&busybox-config-patch;"/></para>
-        <para>MD5 sum: <literal>&busybox-config-patch-md5;</literal></para>
+        url="&patches-root;&busybox-musl-patch;"/></para>
+        <para>MD5 sum: <literal>&busybox-musl-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 

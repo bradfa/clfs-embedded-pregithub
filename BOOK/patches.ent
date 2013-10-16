@@ -8,9 +8,9 @@
 <!ENTITY binutils-musl-patch-md5 "dde64feb7f4cf821cbd887b53026fd67">
 <!ENTITY binutils-musl-patch-size "1 KB">
 
-<!ENTITY busybox-config-patch "busybox-&busybox-version;-config-1.patch">
-<!ENTITY busybox-config-patch-md5 "bd06ac3799960df8c72f73bb4ad27e30">
-<!ENTITY busybox-config-patch-size "26 KB">
+<!ENTITY busybox-musl-patch "busybox-&busybox-version;-musl-1.patch">
+<!ENTITY busybox-musl-patch-md5 "335622b0f2bf4e18e9d93fd48afe53da">
+<!ENTITY busybox-musl-patch-size "1 KB">
 
 <!--
 <!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
