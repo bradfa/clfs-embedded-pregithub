@@ -76,10 +76,10 @@
 
 <!-- Beyond CLFS networking packages -->
 
-<!ENTITY dropbear-version "2013.58">
-<!ENTITY dropbear-size "1543 KB">
+<!ENTITY dropbear-version "2013.60">
+<!ENTITY dropbear-size "1547 KB">
 <!ENTITY dropbear-url "http://matt.ucc.asn.au/dropbear/releases/dropbear-&dropbear-version;.tar.bz2">
-<!ENTITY dropbear-md5 "8d3579bbbfcea48404a3219643076450">
+<!ENTITY dropbear-md5 "fffa2fec0c887201bed3a3cc6df7fa35">
 <!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
 
 <!ENTITY iptables-version "1.4.19.1">
