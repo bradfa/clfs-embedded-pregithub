@@ -5,7 +5,7 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-intro-changelog" xreflabel="Master Changelog">
+<sect1 id="ch-preface-changelog" xreflabel="Master Changelog">
   <?dbhtml filename="changelog.html"?>
 
   <title>Master Changelog</title>
