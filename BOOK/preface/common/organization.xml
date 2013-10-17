@@ -55,13 +55,11 @@
   </sect2>
 
   <sect2>
-    <title>Appendices</title>
+    <title>Part VI - Cleanup and Boot</title>
 
-    <para>The appendices contain information that doesn't really fit anywhere
-    else in the book. Appendix A contains definitions of acronyms and
-    terms used in the book; Appendix B and C have information about package
-    dependencies and the the build order; Appendix D provides the Open
-    Publication License.</para>
+    <para>Part VI finishes up the system by making sure the target file system
+      is ready to be booted, copying it to the target, and finally booting the
+      system.</para>
 
   </sect2>
 
