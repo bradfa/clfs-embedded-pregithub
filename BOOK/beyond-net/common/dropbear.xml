@@ -27,22 +27,28 @@
   <sect2 role="installation">
     <title>Installation of Dropbear</title>
 
+    <para>Fix dropbear so it doesn't install man pages:</para>
+
+    <screen><userinput>sed -i 's/.*mandir.*//g' Makefile.in</userinput></screen>
+
     <para os="a">Configure dropbear:</para>
 
 <screen os="b"><userinput>CC="${CC} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>
 
-    <note os="e">
-      <para>We are just telling dropbear to use the default configuration.
-      For those for more adventureous, edit options.h to further configure dropbear.</para>
-    </note>
+    <note os="e"><para>We are just telling dropbear to use the default
+        configuration plus scp.  For those for more adventureous, edit options.h
+        to further configure dropbear.</para></note>
 
     <para os="f">Compile the package:</para>
 
-<screen os="g"><userinput>make MULTI=1</userinput></screen>
+<screen os="g"><userinput>make MULTI=1 \
+  PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"</userinput></screen>
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make MULTI=1 install DESTDIR=${CLFS}/targetfs</userinput></screen>
+<screen os="i"><userinput>make MULTI=1 \
+  PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" \
+  install DESTDIR=${CLFS}/targetfs</userinput></screen>
 
     <para os="j">Create the directory for the dropbear key files:</para>
 
