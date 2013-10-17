@@ -6,7 +6,7 @@
 ]>
 
 <preface id="preface">
-  <?dbhtml dir="prologue"?>
+  <?dbhtml dir="preface"?>
   <?dbhtml filename="preface.html"?>
 
   <title>Preface</title>

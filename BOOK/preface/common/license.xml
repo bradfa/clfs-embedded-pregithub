@@ -6,7 +6,7 @@
 ]>
 
 <sect1 id="license" xreflabel="Open Publication License">
-  <?dbhtml dir="prologue"?>
+  <?dbhtml dir="preface"?>
   <?dbhtml filename="license.html"?>
 
   <title>Open Publication License</title>
