@@ -71,14 +71,6 @@
 
   </part>
 
-  <part id="part7">
-    <?dbhtml filename="part7.html"?>
-
-    <title>Appendices</title>
-
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="appendices/license.xml"/>
-
-  </part>
   <index/>
 
 </book>

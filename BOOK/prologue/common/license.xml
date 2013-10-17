@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-  <!ENTITY % general-entities SYSTEM "../general.ent">
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 ]>
 
-<appendix id="license" xreflabel="Open Publication License">
-  <?dbhtml dir="appendices"?>
+<sect1 id="license" xreflabel="Open Publication License">
+  <?dbhtml dir="prologue"?>
   <?dbhtml filename="license.html"?>
 
   <title>Open Publication License</title>
@@ -186,4 +186,4 @@
   Publication Authors' List: Send E-mail to opal-request@opencontent.org
   with the word "unsubscribe" in the body.</para>
 
-</appendix>
+</sect1>
