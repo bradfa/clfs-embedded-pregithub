@@ -57,7 +57,7 @@
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-intro/mips-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-lib/mips-chapter.xml"/>
     <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-net/chapter.xml"/>
-    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-filesys/mips-chapter.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="beyond-filesys/chapter.xml"/>
 
   </part>
 
