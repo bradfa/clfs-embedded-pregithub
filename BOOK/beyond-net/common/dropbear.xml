@@ -17,31 +17,19 @@
   <sect2 role="package">
     <title/>
 
-    <para>Dropbear is a relatively small SSH 2 server and client. Dropbear has a small
+    <para>Dropbear is a relatively small SSH server and client. Dropbear has a small
      memory footprint suitable for memory-constrained environments, while still having
      the same features as OpenSSH. It does not depend on OpenSSL and it has a MIT
-     style license. Optionally it can even be made smaller.
-     </para>
+     style license.</para>
 
   </sect2>
 
   <sect2 role="installation">
     <title>Installation of Dropbear</title>
 
-    <para os="s1">Dropbear incorrectly calls ld instead of gcc for linking, so fix it:</para>
-
-    <screen os="s2"><userinput>cp Makefile.in{,.orig}
-sed -e s/@LD@/@CC@/ Makefile.in.orig > Makefile.in</userinput></screen>
-
     <para os="a">Configure dropbear:</para>
 
 <screen os="b"><userinput>CC="${CC} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>
-
-    <para os="c">Now we will utilize /dev/urandom instead of /dev/random. To allow
-    this to be utilized we use the following sed:</para>
-
-<screen os="d"><userinput>cp -v options.h options.h.backup
-sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h</userinput></screen>
 
     <note os="e">
       <para>We are just telling dropbear to use the default configuration.
@@ -50,17 +38,11 @@ sed -e "s@/dev/random@/dev/urandom@" options.h.backup > options.h</userinput></s
 
     <para os="f">Compile the package:</para>
 
-<screen os="g"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"</userinput></screen>
+<screen os="g"><userinput>make MULTI=1</userinput></screen>
 
     <para os="h">Install the package:</para>
 
-<screen os="i"><userinput>make MULTI=1 PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" \
-    install DESTDIR=${CLFS}/targetfs
-ln -svf /usr/bin/dropbearmulti ${CLFS}/targetfs/usr/sbin/dropbear
-ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/dbclient
-ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/dropbearkey
-ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/dropbearconvert
-ln -svf /usr/bin/dropbearmulti ${CLFS}LFS}/targetfs/usr/bin/scp</userinput></screen>
+<screen os="i"><userinput>make MULTI=1 install DESTDIR=${CLFS}/targetfs</userinput></screen>
 
     <para os="j">Create the directory for the dropbear key files:</para>
 
