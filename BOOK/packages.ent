@@ -88,18 +88,6 @@
 <!ENTITY iptables-md5 "be97ce9007fa42c867901b496c935a0a">
 <!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
 
-<!ENTITY libnl-version "3.2.22">
-<!ENTITY libnl-size "713 KB">
-<!ENTITY libnl-url "http://http://www.carisma.slowglass.com/~tgr/libnl/files/libnl-&libnl-version;.tar.gz">
-<!ENTITY libnl-md5 "2e1c889494d274aca24ce5f6a748e66e">
-<!ENTITY libnl-home "http://www.carisma.slowglass.com/~tgr/libnl/">
-
-<!ENTITY hostapd-version "2.0">
-<!ENTITY hostapd-size "1343 KB">
-<!ENTITY hostapd-url "http://hostap.epitest.fi/releases/hostapd-&hostapd-version;.tar.gz">
-<!ENTITY hostapd-md5 "ba22e639bc57aa4035d2ea8ffa9bbbee">
-<!ENTITY hostapd-home "http://hostap.epitest.fi/">
-
 <!ENTITY wireless_tools-version "29">
 <!ENTITY wireless_tools-size "288 KB">
 <!ENTITY wireless_tools-url "http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.&wireless_tools-version;.tar.gz">
