@@ -36,6 +36,30 @@
     </listitem>
 -->
     <listitem>
+      <para>October 17, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Update dropbear to 2013.60 and fix instructions.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Assorted docbook updates for common pages.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Reorganize things people don't need to read into
+            the preface and things that really should be read into the chapters.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Delete hostapd and lib-nl.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Delete dependencies information, most of it was
+            wrong or outdated and so long as you follow the book in order
+            there's no issues.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>October 16, 2013</para>
       <itemizedlist>
         <listitem>
