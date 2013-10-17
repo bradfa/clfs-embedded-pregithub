@@ -8,7 +8,7 @@
 <sect1 id="ch-cross-tools-binutils" role="wrap">
   <?dbhtml filename="binutils.html"?>
 
-  <title>Cross Binutils-&binutils-version;</title>
+  <title>Binutils-&binutils-version;</title>
 
   <indexterm zone="ch-cross-tools-binutils">
     <primary sortas="a-Binutils">Binutils</primary>

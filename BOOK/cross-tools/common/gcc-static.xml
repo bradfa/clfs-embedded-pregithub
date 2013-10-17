@@ -10,7 +10,7 @@
 <sect1 id="ch-cross-tools-gcc-static" role="wrap">
   <?dbhtml filename="gcc-static.html"?>
 
-  <title>Cross GCC-&gcc-version; - Static</title>
+  <title>GCC-&gcc-version; - Static</title>
 
   <indexterm zone="ch-cross-tools-gcc-static">
     <primary sortas="a-GCC">GCC</primary>
