@@ -31,8 +31,4 @@
   cause the program to stop working when that directory is
   removed.</para>
 
-  <para os="d">To keep track of which package installs particular files, a
-  package manager can be used. For a general overview of different styles of
-  package managers, please take a look at the next page.</para>
-
 </sect1>
