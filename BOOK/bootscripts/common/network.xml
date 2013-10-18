@@ -17,99 +17,31 @@
   <sect2>
     <title>Creating Network Interface Configuration Files</title>
 
-    <para>Which interfaces are brought up and down by the network script
-    depends on the files and directories in the <filename
-    class="directory">/etc/network.d</filename> hierarchy.
-    This directory should contain a file  for each interface to be
-    configured, such as <filename>interface.xyz</filename>, where
-    <quote>xyz</quote> is a network interface name. Inside this file we
-    would be defining the attributes to this interface, such as its IP
-    address(es), subnet masks, and so forth.</para>
+    <para>Which interfaces are brought up and down by the network utilities
+      depends on the files and directories in the
+      <filename class="directory">/etc/network</filename> directory.  The
+      <filename>interfaces</filename> file should contain a
+      description of the interfaces, as done by Debian, and each of the
+      directories contain scripts for actions to perform on each type of network
+      event.</para>
 
-    <para>The following command creates the <filename>network.conf</filename>
-    file for use by the entire system:</para>
+    <para>The following command creates the required directories and the
+      <filename>interfaces</filename> file, assuming DHCP will be used for
+      eth0:</para>
 
-<screen><userinput>cat &gt; ${CLFS}/targetfs/etc/network.conf &lt;&lt; "EOF"
-<literal># /etc/network.conf
-# Global Networking Configuration
-# interface configuration is in /etc/network.d/
+<screen><userinput>mkdir -pv ${CLFS}/targetfs/etc/network/if-{post-{up,down},pre-{up,down},up,down}.d
+mkdir -pv ${CLFS}/targetfs/usr/share/udhcpc
 
-# set to yes to enable networking
-NETWORKING=yes
-
-# set to yes to set default route to gateway
-USE_GATEWAY=no
-
-# set to gateway IP address
-GATEWAY=192.168.0.1
-
-# Interfaces to add to br0 bridge
-# Leave commented to not setup a network bridge
-# Substitute br0 for eth0 in the interface.eth0 sample below to bring up br0
-# instead
-# bcm47xx with vlans:
-#BRIDGE_INTERFACES="eth0.0 eth0.1 wlan0"
-# Other access point with a wired eth0 and a wireless wlan0 interface:
-#BRIDGE_INTERFACES="eth0 wlan0"
-</literal>
+cat &gt; ${CLFS}/targetfs/etc/network/interfaces &lt;&lt; "EOF"
+<literal>auto eth0
+iface eth0 inet dhcp</literal>
 EOF</userinput></screen>
 
-    <para>The <envar>GATEWAY</envar> variable should contain the default
-    gateway IP address, if one is present. If not, then comment out the
-    variable entirely.</para>
+    <para>For DHCP to work properly with udhcpc, the BusyBox dhcp client, a
+      configuration script is needed.  Create a simple script to assign the
+      provided DHCP address and update <filename>/etc/resolv.conf</filename>:</para>
 
-    <para>The following command creates a sample <filename>interface.eth0</filename>
-    file for the <emphasis>eth0</emphasis> device:</para>
-
-<screen><userinput>mkdir ${CLFS}/targetfs/etc/network.d &amp;&amp;
-cat &gt; ${CLFS}/targetfs/etc/network.d/interface.eth0 &lt;&lt; "EOF"
-<literal># Network Interface Configuration
-
-# network device name
-INTERFACE=eth0
-
-# set to yes to use DHCP instead of the settings below
-DHCP=no
-
-# IP address
-IPADDRESS=192.168.1.2
-
-# netmask
-NETMASK=255.255.255.0
-
-# broadcast address
-BROADCAST=192.168.1.255</literal>
-EOF</userinput></screen>
-
-    <para>The <envar>INTERFACE</envar> variable should contain the name of
-    the interface interface.</para>
-
-    <para>The <envar>DHCP</envar> variable if set to yes will allow you to
-    use dhcp. If set to no, you will need to configure the rest of the options.</para>
-
-    <para>The <envar>IPADDRESS</envar> variable should contain the default
-    IP address for this interface.</para>
-
-    <para>The <envar>NETMASK</envar> variable should contain the default
-    Subnet Mask for the IP address for this interface.</para>
-
-    <para>The <envar>BROADCAST</envar> variable should contain the default
-    Broadcast Address for the Subnet Mask of the IP Range being used on
-    this interface.</para>
-
-  </sect2>
-
-  <sect2 id="udhcpc.conf">
-    <title>Creating the ${CLFS}/targetfs/etc/udhcpc.conf File</title>
-
-    <indexterm zone="udhcpc.conf">
-      <primary sortas="e-/etc/udhcpc.conf">/etc/udhcpc.conf</primary>
-    </indexterm>
-
-    <para>For DHCP to work properly a configuration script is needed.
-    Create a sample udhcpc.conf:</para>
-
-  <screen><userinput>cat &gt; ${CLFS}/targetfs/etc/udhcpc.conf &lt;&lt; "EOF"
+<screen><userinput>cat &gt; ${CLFS}/targetfs/usr/share/udhcpc/default.script &lt;&lt; "EOF"
 <literal>#!/bin/sh
 # udhcpc Interface Configuration
 # Based on http://lists.debian.org/debian-boot/2002/11/msg00500.html
@@ -118,16 +50,11 @@ EOF</userinput></screen>
 [ -z "$1" ] &amp;&amp; echo "Error: should be called from udhcpc" &amp;&amp; exit 1
 
 RESOLV_CONF="/etc/resolv.conf"
-RESOLV_BAK="/etc/resolv.bak"
-
 [ -n "$broadcast" ] &amp;&amp; BROADCAST="broadcast $broadcast"
 [ -n "$subnet" ] &amp;&amp; NETMASK="netmask $subnet"
 
 case "$1" in
 	deconfig)
-		if [ -f "$RESOLV_BAK" ]; then
-			mv "$RESOLV_BAK" "$RESOLV_CONF"
-		fi
 		/sbin/ifconfig $interface 0.0.0.0
 		;;
 
@@ -144,10 +71,6 @@ case "$1" in
 			done
 		fi
 
-		if [ ! -f "$RESOLV_BAK" ] &amp;&amp; [ -f "$RESOLV_CONF" ]; then
-			mv "$RESOLV_CONF" "$RESOLV_BAK"
-		fi
-
 		echo -n &gt; $RESOLV_CONF
 		[ -n "$domain" ] &amp;&amp; echo search $domain &gt;&gt; $RESOLV_CONF
 		for i in $dns ; do
@@ -159,41 +82,7 @@ esac
 exit 0
 </literal>EOF
 
-chmod +x ${CLFS}/targetfs/etc/udhcpc.conf</userinput></screen>
-
-  </sect2>
-
-  <sect2 id="resolv.conf">
-    <title>Creating the ${CLFS}/targetfs/etc/resolv.conf File</title>
-
-    <indexterm zone="resolv.conf">
-      <primary sortas="e-/etc/resolv.conf">/etc/resolv.conf</primary>
-    </indexterm>
-
-    <para>If the system is going to be connected to the Internet, it will
-    need some means of Domain Name Service (DNS) name resolution to
-    resolve Internet domain names to IP addresses, and vice versa. This is
-    best achieved by placing the IP address of the DNS server, available
-    from the ISP or network administrator, into
-    <filename>/etc/resolv.conf</filename>. Create the file by running the
-    following:</para>
-
-<screen><userinput>cat &gt; ${CLFS}/targetfs/etc/resolv.conf &lt;&lt; "EOF"
-<literal># Begin /etc/resolv.conf
-
-domain <replaceable>[Your Domain Name]</replaceable>
-nameserver <replaceable>[IP address of your primary nameserver]</replaceable>
-nameserver <replaceable>[IP address of your secondary nameserver]</replaceable>
-
-# End /etc/resolv.conf</literal>
-EOF</userinput></screen>
-
-    <para>Replace <replaceable>[IP address of the nameserver]</replaceable>
-    with the IP address of the DNS most appropriate for the setup. There will
-    often be more than one entry (requirements demand secondary servers for
-    fallback capability). If you only need or want one DNS server, remove the
-    second <emphasis>nameserver</emphasis> line from the file. The IP address
-    may also be a router on the local network.</para>
+chmod +x ${CLFS}/targetfs/usr/share/udhcpc/default.script</userinput></screen>
 
   </sect2>
 
