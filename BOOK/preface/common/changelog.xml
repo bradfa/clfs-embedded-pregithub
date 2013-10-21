@@ -36,6 +36,22 @@
     </listitem>
 -->
     <listitem>
+      <para>October 21, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Cleanup the kernel build.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Move bootloaders into bootable section, just give
+            recommendations no exact steps.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Create top level README and LICENSE.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>October 18, 2013</para>
       <itemizedlist>
         <listitem>
