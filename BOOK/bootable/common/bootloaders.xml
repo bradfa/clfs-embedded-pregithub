@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bootable-bootloaders">
+  <?dbhtml filename="bootloaders.html"?>
+
+  <title>Bootloaders</title>
+
+  <para>There are many different bootloaders.  Creating detailed instructions on
+    how to use even the more popular ones is difficult as each architecture and
+    board often has different levels of support or configuration options within
+    each bootloader.  Often, development kits will ship with a bootloader
+    already configured, if your board comes with a bootloader pre-configured,
+    it's best to start using that and then venture on to building the bootloader
+    yourself later.</para>
+
+<para>A few of the popular bootloaders include:</para>
+
+<variablelist>
+
+  <varlistentry>
+    <term>Barebox</term>
+    <listitem><para><ulink url="http://barebox.org/" /></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>CoLo</term>
+    <listitem><para><ulink url="http://www.colonel-panic.org/cobalt-mips/" /></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>GNU GRUB</term>
+    <listitem><para><ulink url="https://www.gnu.org/software/grub/" /></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>Syslinux</term>
+    <listitem><para><ulink url="http://www.syslinux.org/wiki/index.php/The_Syslinux_Project" /></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>u-boot</term>
+    <listitem><para><ulink url="http://www.denx.de/wiki/U-Boot" /></para></listitem>
+  </varlistentry>
+
+</variablelist>
+
+</sect1>
