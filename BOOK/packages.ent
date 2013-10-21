@@ -101,11 +101,3 @@
 <!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
 <!ENTITY e2fsprogs-md5 "a1ec22ef003688dae9f76c74881b22b9">
 <!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
-
-<!-- MIPS Bootloaders -->
-
-<!ENTITY colo-version "1.22">
-<!ENTITY colo-size "251 KB">
-<!ENTITY colo-url "http://www.colonel-panic.org/cobalt-mips/colo/colo-&colo-version;.tar.gz">
-<!ENTITY colo-md5 "52c16ad31f3b88f710f0fdb5abed0457">
-<!ENTITY colo-home "http://www.colonel-panic.org/cobalt-mips">
