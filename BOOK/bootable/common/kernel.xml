@@ -36,107 +36,60 @@
     kernel compilation. Do not rely on the source tree being clean after
     un-tarring.</para>
 
-    <para os="e">Configure the kernel via a menu-driven interface.
-    Please note that the udev bootscript requires "rtc" and "tmpfs" to be
-    enabled and built into the kernel, not as modules. BLFS has
-    some information regarding particular kernel configuration requirements of
-    packages outside of CLFS at <ulink
-    url="&blfs-root;view/svn/longindex.html#kernel-config-index"/>:</para>
+    <para os="e">Configure the kernel via a menu-driven interface.  Be sure to
+      enable DEVTMPFS so that <filename class="directory">/dev</filename> will
+      be populated automatically.</para>
 
-    <note os="f"><para>Since we are building for an embedded system we need to make sure
-    our key components are built into the kernel and not as modules. Our key
-    components are console/video, disk, and network. With out these built in our
-    system will not function properly. If your concerned about disk space, your kernel
-    should be without modules.</para></note>
+    <note os="f"><para>Since you are building for an embedded system make sure
+        all key components are built into the kernel and not as modules. The key
+        components are console/video, disk, and network. With out these built
+        in, the system will not function properly. It is recommended to
+        configure the kernel without modules in order to conserve disk space
+        and to simplify.</para></note>
 
 <screen os="g"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
-    <para os="h">Alternatively, <command>make oldconfig</command> may be more
-    appropriate in some situations. See the <filename>README</filename>
-    file for more information.</para>
+<para os="h">Alternatively, the <command>make oldconfig</command> or
+  <command>make <replaceable>${CLFS_TARGET}</replaceable>_defconfig</command>
+    may be more appropriate in some situations. See the
+    <filename>README</filename> file for more information.</para>
 
     <para os="i">If desired, skip kernel configuration by copying the kernel
-    config file, <filename>.config</filename>, from the host system
+    config file, <filename>.config</filename>, from an example system
     (assuming it is available) to the root directory of the unpacked kernel
-    sources. However, we do not recommend this option. It is often better
-    to explore all the configuration menus and create the kernel configuration
-    from scratch.</para>
+    sources.</para>
 
-    <para os="j">Compile the kernel image and modules:</para>
+  <note><para>If you are using the u-boot bootloader, creating a
+      <filename>uImage</filename> type kernel is recommended.  Install the
+      u-boot tools (not documented here) and append "uImage" when compiling the
+      kernel.</para></note>
+ 
+  <para os="j">Compile the configured kernel image and modules:</para>
 
 <screen os="k"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}-</userinput></screen>
 
     <para os="l">If using kernel modules, an
-    <filename>/etc/modprobe.conf</filename> file may be needed.
-    Information pertaining to modules and kernel configuration is
-    located in the kernel documentation in the <filename
-    class="directory">Documentation</filename> directory of the kernel
-    sources tree. Also, <filename>modprobe.conf(5)</filename> may
-    be of interest.</para>
+      <filename>/etc/modprobe.conf</filename> file may be needed.  Information
+      pertaining to modules and kernel configuration is located in the kernel
+      documentation in the <filename class="directory">Documentation</filename>
+      directory of the kernel sources tree. Also,
+      <filename>modprobe.conf(5)</filename> may be of interest.</para>
 
-    <para os="m">Be very careful when reading other documentation relating to
-    kernel modules because it usually applies to 2.4.x kernels only. As
-    far as we know, kernel configuration issues specific to Hotplug and
-    Udev are not documented. The problem is that Udev will create a device
-    node only if Hotplug or a user-written script inserts the corresponding
-    module into the kernel, and not all modules are detectable by Hotplug.
-    Note that statements like the one below in the
-    <filename>/etc/modprobe.conf</filename> file do not work with Udev:</para>
-
-<screen os="n"><literal>alias char-major-XXX some-module</literal></screen>
-
-    <para os="o">Because of the complications with Udev and modules,
-    we strongly recommend starting with a completely non-modular kernel
-    configuration, especially if this is the first time using Udev.</para>
-
-    <para os="p">Install the modules, if the kernel configuration uses
-    them:</para>
+  <para os="p">If building modules, install the modules:</para>
 
 <screen os="q"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- \
-    INSTALL_MOD_PATH=${CLFS} modules_install</userinput></screen>
-
-    <para os="r">After kernel compilation is complete, additional steps are
-    required to complete the installation. Some files need to be copied to
-    the <filename class="directory">${CLFS}/boot</filename> directory.</para>
-
-    <para os="s">Issue the following command to install the kernel:</para>
-
-<screen os="t"><userinput>cp vmlinux ${CLFS}/boot/clfskernel-&linux-version;</userinput></screen>
-
-    <para os="u"><filename>System.map</filename> is a symbol file for the kernel.
-    It maps the function entry points of every function in the kernel API,
-    as well as the addresses of the kernel data structures for the running
-    kernel. Issue the following command to install the map file:</para>
-
-<screen os="v"><userinput>cp System.map ${CLFS}/boot/System.map-&linux-version;</userinput></screen>
-
-    <para os="w">If we compiled our kernel with modules and we made sure
-    <command>depmod.pl</command> is avaiable from BusyBox, we need to create the
-    module dependency list by issuing the following command:</para>
-
-<screen os="x"><userinput>${CLFS}/cross-tools/bin/depmod.pl -F ${CLFS}/boot/System.map-&linux-version; \
-    -b ${CLFS}/lib/modules/&linux-version;</userinput></screen>
+    INSTALL_MOD_PATH=${CLFS}/targetfs modules_install</userinput></screen>
 
     <para os="y">The kernel configuration file <filename>.config</filename>
     produced by the <command>make menuconfig</command> step above contains
     all the configuration selections for the kernel that was just compiled.
-    It is a good idea to keep this file for future reference:</para>
+    It is a good idea to keep this file for future reference.</para>
 
-<screen os="z"><userinput>cp .config ${CLFS}/boot/config-&linux-version;</userinput></screen>
-
-    <warning os="aa">
-      <para>Some kernel documentation recommends creating a symlink from
-      <filename class="symlink">/usr/src/linux</filename> pointing to the
-      kernel source directory. This is specific to kernels prior to the
-      2.6 series and <emphasis>must not</emphasis> be created on an CLFS
-      system as it can cause problems for packages you may wish to build
-      once your base CLFS system is complete.</para>
-
-    </warning>
-
-   <para os="ab">The bootloaders section contains more information on
-    how to configure the kernel for specifc bootloaders. Please refer
-    to this section for your specific needs.</para>
+  <para>The resulting kernel will be located within the <filename
+      class="directory">arch/${CLFS_ARCH}/boot</filename>.  There may be more
+    than one version of the same kernel, simply with different compression or
+    bootloader helpers added.  Follow your bootloader's instructions on how to
+    copy the kernel to the final system.</para>
 
   </sect2>
 
@@ -147,8 +100,7 @@
       <segtitle>Installed files</segtitle>
 
       <seglistitem>
-        <seg>config-[linux-version], clfskernel-[linux-version],
-        and System.map-[linux-version]</seg>
+        <seg>.config, Image files, and System.map</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -158,40 +110,25 @@
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="config">
-        <term><filename>config-[linux-version]</filename></term>
+        <term><filename>.config</filename></term>
         <listitem>
           <para>Contains all the configuration selections for the kernel</para>
-          <indexterm zone="ch-bootable-kernel config">
-            <primary sortas="e-/boot/config">/boot/config-[linux-version]</primary>
-          </indexterm>
         </listitem>
       </varlistentry>
 
-      <varlistentry id="clfskernel">
-        <term><filename>clfskernel-[linux-version]</filename></term>
+      <varlistentry id="kernel">
+        <term><filename>zImage, uImage, bzImage, vmlinux</filename></term>
         <listitem>
-          <para>The engine of the Linux system. When turning on the
-          computer, the kernel is the first part of the operating system
-          that gets loaded. It detects and initializes all components of
-          the computer's hardware, then makes these components available
-          as a tree of files to the software and turns a single CPU into
-          a multitasking machine capable of running scores of programs
-          seemingly at the same time.</para>
-          <indexterm zone="ch-bootable-kernel clfskernel">
-            <primary sortas="b-clfskernel">clfskernel-[linux-version]</primary>
-          </indexterm>
+          <para>The compiled Linux kernel.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry id="System.map">
-        <term><filename>System.map-[linux-version]</filename></term>
+        <term><filename>System.map</filename></term>
         <listitem>
           <para>A list of addresses and symbols; it maps the entry points
           and addresses of all the functions and data structures in the
-          kernel</para>
-          <indexterm zone="ch-bootable-kernel System.map">
-            <primary sortas="e-/boot/System.map">/boot/System.map-[linux-version]</primary>
-          </indexterm>
+          kernel.  Useful for debugging, sometimes.</para>
         </listitem>
       </varlistentry>
 
