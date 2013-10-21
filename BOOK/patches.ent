@@ -2,7 +2,7 @@
 
 <!ENTITY patches-root "http://patches.cross-lfs.org/embedded-dev/">
 
-<!-- Start of Common Patches -->
+<!-- Core Patches -->
 
 <!ENTITY binutils-musl-patch "binutils-&binutils-version;-musl-1.patch">
 <!ENTITY binutils-musl-patch-md5 "dde64feb7f4cf821cbd887b53026fd67">
@@ -11,12 +11,6 @@
 <!ENTITY busybox-musl-patch "busybox-&busybox-version;-musl-1.patch">
 <!ENTITY busybox-musl-patch-md5 "335622b0f2bf4e18e9d93fd48afe53da">
 <!ENTITY busybox-musl-patch-size "1 KB">
-
-<!--
-<!ENTITY busybox-fixes-patch "busybox-&busybox-version;-fixes-1.patch">
-<!ENTITY busybox-fixes-patch-md5 "64bee07ba3efbb512fb4f348e814bf31">
-<!ENTITY busybox-fixes-patch-size "4 KB">
--->
 
 <!ENTITY gcc-musl-patch "gcc-&gcc-version;-musl-1.patch">
 <!ENTITY gcc-musl-patch-md5 "5b43765740ca9865b8afe3cc945a3f5d">
@@ -27,7 +21,3 @@
 <!ENTITY iana-etc-update-patch-size "864 KB">
 
 <!-- Beyond patches -->
-
-<!-- ARM Patches -->
-
-<!-- MIPS Patches -->
