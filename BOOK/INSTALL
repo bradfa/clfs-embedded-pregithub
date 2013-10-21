@@ -28,3 +28,9 @@ lynx) and then install the following:
 
 * JDK
 * FOP and JAI
+
+To convert the Docbook XML source into rendered form:
+
+To XHTML: make
+To single file XHTML (nochunks): make nochunks
+To PDF: make pdf
