@@ -27,24 +27,19 @@
 
     <para os="a">Iana-Etc comes with outdated data and IANA has changed the
     download location used to obtain up-to-date data.  Apply the following patch
-    to use more up to date data and to correct the download location:</para>
+    to correct the download location:</para>
 
 <screen os="b"><userinput>patch -Np1 -i ../&iana-etc-update-patch;</userinput></screen>
 
-    <note os="c">
-      <para>If you have an internet connection and would like even more up-to-date
-      data to be used when building Iana-Etc, execute: 
+    <para>Update the data used to the current IANA lists: 
 <screen><userinput>make get</userinput></screen>
-      </para>
-    </note>
+    </para>
 
     <para os="d">The following command converts the raw data provided by IANA into
     the correct formats for the <filename>/etc/protocols</filename> and
     <filename>/etc/services</filename> data files:</para>
 
 <screen os="e"><userinput>make STRIP=yes</userinput></screen>
-
-    <para os="f">This package does not come with a test suite.</para>
 
     <para os="g">Install the package:</para>
 
