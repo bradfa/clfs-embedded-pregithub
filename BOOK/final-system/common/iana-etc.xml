@@ -8,16 +8,16 @@
 <sect1 id="ch-system-iana-etc" role="wrap">
   <?dbhtml filename="iana-etc.html"?>
 
-  <title>Iana-Etc-&iana-etc-version;</title>
+  <title>iana-etc-&iana-etc-version;</title>
 
   <indexterm zone="ch-system-iana-etc">
-    <primary sortas="a-Iana-Etc">Iana-Etc</primary>
+    <primary sortas="a-iana-etc">iana-etc</primary>
   </indexterm>
 
   <sect2 role="package">
     <title/>
 
-    <para>The Iana-Etc package provides data for network services and
+    <para>The iana-etc package provides data for network services and
     protocols.</para>
 
   </sect2>
@@ -25,7 +25,7 @@
   <sect2 role="installation">
     <title>Installation of Iana-Etc</title>
 
-    <para os="a">Iana-Etc comes with outdated data and IANA has changed the
+    <para os="a">iana-etc comes with outdated data and IANA has changed the
     download location used to obtain up-to-date data.  Apply the following patch
     to correct the download location:</para>
 
@@ -48,7 +48,7 @@
   </sect2>
 
   <sect2 id="contents-iana-etc" role="content">
-    <title>Contents of Iana-Etc</title>
+    <title>Contents of iana-etc</title>
 
     <segmentedlist>
       <segtitle>Installed files</segtitle>

@@ -60,7 +60,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Iana-Etc (&iana-etc-version;) - <token>&iana-etc-size;</token>:</term>
+      <term>iana-etc (&iana-etc-version;) - <token>&iana-etc-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&iana-etc-home;"/></para>
         <para>Download: <ulink url="&iana-etc-url;"/></para>
