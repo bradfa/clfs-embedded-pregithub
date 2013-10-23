@@ -32,8 +32,7 @@
 
 <screen os="i"><userinput>CC=${CLFS_TARGET}-gcc ./configure \
   --prefix=/ \
-  --target=${CLFS_TARGET} \
-  --enable-debug</userinput></screen>
+  --target=${CLFS_TARGET}</userinput></screen>
 
     <para os="h">Compile the package:</para>
 
