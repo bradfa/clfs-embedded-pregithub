@@ -80,10 +80,9 @@ export CLFS_CPU=<replaceable>[cpu type]</replaceable></userinput></screen>
 
   </table>
 
-  <para os="c">Now we will set the architecture of the CPU based
-  on the target triplet provided above:</para>
+  <para os="c">Now set the architecture of the CPU:</para>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH="x86"</userinput></screen>
 
   <para os="g">Now we will add this to <filename>~/.bashrc</filename>, just in
   case you have to exit and restart building later:</para>
