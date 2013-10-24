@@ -46,31 +46,31 @@ export CLFS_CPU=<replaceable>[cpu type]</replaceable></userinput></screen>
       <tbody>
         <row>
           <entry>486 Compatibles</entry>
-          <entry>i486-pc-linux-musl</entry>
+          <entry>i486-linux-musl</entry>
           <entry>i486</entry>
           <entry>Intel's i486</entry>
         </row>
         <row>
           <entry>Pentium, K6, 586 Compatibles</entry>
-          <entry>i586-pc-linux-musl</entry>
+          <entry>i586-linux-musl</entry>
           <entry>i586</entry>
           <entry>Intel Pentium without MMX</entry>
         </row>
         <row>
           <entry>Pentium II, Pentium III, Pentium 4</entry>
-          <entry>i686-pc-linux-musl</entry>
+          <entry>i686-linux-musl</entry>
           <entry>i686</entry>
           <entry>PentiumPro instruction set</entry>
         </row>
         <row>
           <entry>Athlon</entry>
-          <entry>i686-pc-linux-musl</entry>
+          <entry>i686-linux-musl</entry>
           <entry>athlon</entry>
           <entry>AMD 32 bit Athlon</entry>
         </row>
         <row>
           <entry>Opteron</entry>
-          <entry>x86_64-unknown-linux-musl</entry>
+          <entry>x86_64-linux-musl</entry>
           <entry>k8</entry>
           <entry>AMD K8 processors with x86-64</entry>
         </row>

@@ -21,11 +21,11 @@
   tables as a reference.</para>
 
   <para os="a1">If your processor is an ARM9, good choices include: triplet of
-  armv5l-unknown-linux-uclibeabi, ARM arch of armv5t, and float of soft.  ARM9
+  armv5l-linux-uclibeabi, ARM arch of armv5t, and float of soft.  ARM9
   processors do not usually have hardware floating point abilities. If your
   processor is a Cortex-A series, which often have hardware floating point
   capability, good choices include: triplet of
-  armv7a-unknown-linux-musleabi, ARM arch of armv7-a, float of hard, and fpu
+  armv7a-linux-musleabi, ARM arch of armv7-a, float of hard, and fpu
   of vfpv3-d16.</para>
 
   <para os="a2">First, set the host and target triplets:</para>
@@ -56,17 +56,17 @@
         <row>
           <entry>Generic arm, version 5</entry>
           <entry>EABI</entry>
-          <entry>armv5l-unknown-linux-musleabi</entry>
+          <entry>armv5l-linux-musleabi</entry>
         </row>
         <row>
           <entry>Generic arm</entry>
           <entry>EABI</entry>
-          <entry>arm-unknown-linux-musleabi</entry>
+          <entry>arm-linux-musleabi</entry>
         </row>
         <row>
           <entry>Generic arm, version 7-a </entry>
           <entry>EABI</entry>
-          <entry>armv7a-unknown-linux-musleabi</entry>
+          <entry>armv7a-linux-musleabi</entry>
         </row>
       </tbody>
 

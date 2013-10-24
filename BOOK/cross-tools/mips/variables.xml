@@ -44,22 +44,22 @@
       <tbody>
         <row>
           <entry>MIPS 32 bits Little Endian</entry>
-          <entry>mipsel-unknown-linux-musl</entry>
+          <entry>mipsel-linux-musl</entry>
           <entry>1</entry>
         </row>
         <row>
           <entry>MIPS 32 bits Big Endian</entry>
-          <entry>mips-unknown-linux-musl</entry>
+          <entry>mips-linux-musl</entry>
           <entry>1</entry>
         </row>
         <row>
           <entry>MIPS 64 bits Little Endian</entry>
-          <entry>mips64el-unknown-linux-musl</entry>
+          <entry>mips64el-linux-musl</entry>
           <entry>3</entry>
         </row>
         <row>
           <entry>MIPS 64 bits Big Endian</entry>
-          <entry>mips64-unknown-linux-musl</entry>
+          <entry>mips64-linux-musl</entry>
           <entry>3</entry>
         </row>
       </tbody>
