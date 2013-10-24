@@ -14,8 +14,8 @@
 
   <para os="a">During the building of the cross-compile tools you will need to
   set a few variables that will be dependent on your particular needs.
-  You will need to set the target triplet for the target architecture, the CPU
-  type, and CPU endianess. If you do not know what triplet or CPU type you want,
+  You will need to set the target triplet for the target architecture, and the
+  CPU type. If you do not know what triplet or CPU type you want,
   you can use the table at the bottom of this page as a reference. Set
   the command using the method listed below:</para>
 
@@ -23,11 +23,10 @@
 export CLFS_TARGET=<replaceable>[target triplet]</replaceable>
 export CLFS_CPU=<replaceable>[cpu type]</replaceable></userinput></screen>
 
-  <para os="c">Now we will set the architecture and endianess of the CPU based
+  <para os="c">Now we will set the architecture of the CPU based
   on the target triplet provided above:</para>
 
-<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')
-export CLFS_ENDIAN=little</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=$(echo ${CLFS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')</userinput></screen>
 
   <para os="g">Now we will add this to <filename>~/.bashrc</filename>, just in
   case you have to exit and restart building later:</para>
@@ -35,7 +34,6 @@ export CLFS_ENDIAN=little</userinput></screen>
 <screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_CPU=\""${CLFS_CPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">

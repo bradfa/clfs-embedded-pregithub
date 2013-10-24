@@ -14,14 +14,13 @@
 
   <para os="a">During the building of the cross-compile tools, you will need to
   set a few variables that will be dependent on your particular needs.
-  You will need to select the target triplet for the target architecture, the CPU
-  endianess, the CPU architecture, the CPU mode, the CPU floating point hardware
+  You will need to select the target triplet for the target architecture,
+  the CPU architecture, the CPU mode, the CPU floating point hardware
   availability, and (if available) the type of floating point hardware. If you 
   do not know what values can be chosen for each of these, you can use the 
   tables at the bottom of this page as a reference.</para>
 
-  <para os="a1">Most ARM processors are little endian, it is a safe choice.  If
-  your processor is an ARM9, good choices include: triplet of
+  <para os="a1">If your processor is an ARM9, good choices include: triplet of
   armv5l-unknown-linux-uclibeabi, ARM arch of armv5t, and float of soft.  ARM9
   processors do not usually have hardware floating point abilities. If your
   processor is a Cortex-A series, which often have hardware floating point
@@ -35,12 +34,10 @@
   href="../common/variables.xml"
   xpointer="xpointer(//*[@os='b'])"/>
 
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/variables.xml"
-  xpointer="xpointer(//*[@os='c'])"/>
+  <para os="c">Now we will set the architecture of the CPU based
+  on the target triplet provided above:</para>
 
-<screen os="d"><userinput>export CLFS_ARCH=arm
-export CLFS_ENDIAN="<replaceable>[endianess]</replaceable>"</userinput></screen>
+<screen os="d"><userinput>export CLFS_ARCH=arm</userinput></screen>
 
   <para os="e">Choose the ARM architecture (see table below) and mode of 
   your CPU:</para>
@@ -70,7 +67,6 @@ export CLFS_ARM_MODE="<replaceable>[arm or thumb]</replaceable>"</userinput></sc
 <screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARM_ARCH=\""${CLFS_ARM_ARCH}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_ARM_MODE=\""${CLFS_ARM_MODE}\"" &gt;&gt; ~/.bashrc
 echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc
@@ -80,17 +76,15 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
     <title>Example Processor Type, ABI, and  Target Triplets</title>
     <?dbfo table-width="7in" ?>
 
-    <tgroup cols="4">
+    <tgroup cols="3">
 
       <colspec colnum="1" colwidth="2.5in" colname="Processor"/>
-      <colspec colnum="2" colwidth="1in" colname="Endianess"/>
-      <colspec colnum="3" colwidth="1in" colname="ABI"/>
-      <colspec colnum="4" colwidth="2.5in" colname="Triplet"/>
+      <colspec colnum="2" colwidth="1in" colname="ABI"/>
+      <colspec colnum="3" colwidth="2.5in" colname="Triplet"/>
 
       <thead>
         <row>
           <entry>Processor</entry>
-          <entry>Endianess</entry>
           <entry>ABI</entry>
           <entry>Target Triplet</entry>
         </row>
@@ -99,25 +93,16 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
       <tbody>
         <row>
           <entry>Generic arm, version 5</entry>
-          <entry>little</entry>
           <entry>EABI</entry>
           <entry>armv5l-unknown-linux-musleabi</entry>
         </row>
         <row>
-          <entry>Generic arm, version 5</entry>
-          <entry>big</entry>
-          <entry>EABI</entry>
-          <entry>armv5b-unknown-linux-musleabi</entry>
-        </row>
-        <row>
           <entry>Generic arm</entry>
-          <entry>little</entry>
           <entry>EABI</entry>
           <entry>arm-unknown-linux-musleabi</entry>
         </row>
         <row>
           <entry>Generic arm, version 7-a </entry>
-          <entry>little</entry>
           <entry>EABI</entry>
           <entry>armv7a-unknown-linux-musleabi</entry>
         </row>
