@@ -88,12 +88,6 @@
 <!-- Specific configure switches for ARM -->
   <variablelist os="ag">
 
-    <varlistentry os="ag1">
-      <term><parameter>--with-abi=${CLFS_ABI}</parameter></term>
-      <listitem>
-        <para>This option sets the ABI selected earlier.</para>
-      </listitem>
-    </varlistentry>
     <varlistentry os="ag2">
       <term><parameter>--with-arch=${CLFS_ARM_ARCH}</parameter></term>
       <listitem>
