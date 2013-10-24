@@ -37,14 +37,6 @@
 
 <screen><userinput>make DESTDIR=${CLFS}/targetfs install-bootscripts</userinput></screen>
 
-    <para>The CLFS startup bootscript is <filename>/etc/rc.d/startup</filename>,
-    but BusyBox will look for <filename>/etc/init.d/rcS</filename> to use as its
-    startup script.  To ensure BusyBox finds the startup script, create the 
-    <filename>${CLFS}/targetfs/etc/init.d</filename> directory and a symlink:</para>
-
-<screen><userinput>install -dv ${CLFS}/targetfs/etc/init.d
-ln -sv ../rc.d/startup ${CLFS}/targetfs/etc/init.d/rcS</userinput></screen>
-
   </sect2>
 
   <sect2 id="contents-bootscripts" role="content">
