@@ -54,7 +54,7 @@ ln -sv ../rc.d/startup ${CLFS}/targetfs/etc/init.d/rcS</userinput></screen>
       <segtitle>Installed scripts</segtitle>
 
       <seglistitem>
-        <seg>bridge, functions, network, start, stop, and syslog.</seg>
+        <seg>functions, startup, shutdown, and syslog.</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -62,16 +62,6 @@ ln -sv ../rc.d/startup ${CLFS}/targetfs/etc/init.d/rcS</userinput></screen>
       <bridgehead renderas="sect3">Short Descriptions</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
-
-      <varlistentry id="bridge-bootscripts">
-        <term><command>bridge</command></term>
-        <listitem>
-          <para>Sets up network bridging, if configured</para>
-          <indexterm zone="ch-scripts-bootscripts bridge-bootscripts">
-            <primary sortas="d-bridge">bridge</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
 
       <varlistentry id="functions-bootscripts">
         <term><command>functions</command></term>
@@ -84,13 +74,22 @@ ln -sv ../rc.d/startup ${CLFS}/targetfs/etc/init.d/rcS</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry id="network-bootscripts">
-        <term><command>network</command></term>
+      <varlistentry id="startup-bootscripts">
+        <term><command>startup</command></term>
         <listitem>
-          <para>Sets up network interfaces, such as network cards, and sets up
-          the default gateway (where applicable)</para>
-          <indexterm zone="ch-scripts-bootscripts network-bootscripts">
-            <primary sortas="d-network">network</primary>
+          <para>Performs all startup script operations</para>
+          <indexterm zone="ch-scripts-bootscripts startup-bootscripts">
+            <primary sortas="d-startup">startup</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="shutdown-bootscripts">
+        <term><command>shutdown</command></term>
+        <listitem>
+          <para>Performs all shutdown operations</para>
+          <indexterm zone="ch-scripts-bootscripts shutdown-bootscripts">
+            <primary sortas="d-shutdown">shutdown</primary>
           </indexterm>
         </listitem>
       </varlistentry>
