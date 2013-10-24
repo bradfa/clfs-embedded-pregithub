@@ -21,104 +21,12 @@
   tables as a reference.</para>
 
   <para os="a1">If your processor is an ARM9, good choices include: triplet of
-  armv5l-linux-musleabi, ARM arch of armv5t, and float of soft.  ARM9
+  arm-linux-musleabi, ARM arch of armv5t, and float of soft.  ARM9
   processors do not usually have hardware floating point abilities. If your
   processor is a Cortex-A series, which often have hardware floating point
   capability, good choices include: triplet of
-  armv7a-linux-musleabi, ARM arch of armv7-a, float of hard, and fpu
+  arm-linux-musleabihf, ARM arch of armv7-a, float of hard, and fpu
   of vfpv3-d16.</para>
-
-  <para os="a2">First, set the host and target triplets:</para>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/variables.xml"
-  xpointer="xpointer(//*[@os='b'])"/>
-
-  <table os="i">
-    <title>Example Processor Type, ABI, and  Target Triplets</title>
-    <?dbfo table-width="7in" ?>
-
-    <tgroup cols="3">
-
-      <colspec colnum="1" colwidth="2.5in" colname="Processor"/>
-      <colspec colnum="2" colwidth="1in" colname="ABI"/>
-      <colspec colnum="3" colwidth="2.5in" colname="Triplet"/>
-
-      <thead>
-        <row>
-          <entry>Processor</entry>
-          <entry>ABI</entry>
-          <entry>Target Triplet</entry>
-        </row>
-      </thead>
-
-      <tbody>
-        <row>
-          <entry>Generic arm, version 5</entry>
-          <entry>EABI</entry>
-          <entry>armv5l-linux-musleabi</entry>
-        </row>
-        <row>
-          <entry>Generic arm</entry>
-          <entry>EABI</entry>
-          <entry>arm-linux-musleabi</entry>
-        </row>
-        <row>
-          <entry>Generic arm, version 7-a </entry>
-          <entry>EABI</entry>
-          <entry>armv7a-linux-musleabi</entry>
-        </row>
-      </tbody>
-
-    </tgroup>
-
-  </table>
-
-  <para os="c">Now set the architecture of the CPU:</para>
-
-<screen os="d"><userinput>export CLFS_ARCH=arm</userinput></screen>
-
-  <para os="e">Choose the ARM architecture (see table below):</para>
-
-<screen os="f"><userinput>export CLFS_ARM_ARCH="<replaceable>[architecture]</replaceable>"</userinput></screen>
-
-  <table os="j">
-    <title>ARM Archiecture Choices</title>
-    <?dbfo table-width="4in" ?>
-
-    <tgroup cols="4">
-
-      <colspec colnum="1" colwidth="1in" colname="Arch Choice"/>
-      <colspec colnum="2" colwidth="1in" colname="Arch Choice"/>
-      <colspec colnum="3" colwidth="1in" colname="Arch Choice"/>
-      <colspec colnum="4" colwidth="1in" colname="Arch Choice"/>
-
-      <tbody>
-        <row>
-          <entry>armv4t</entry>
-          <entry>armv5</entry>
-          <entry>armv5t</entry>
-          <entry>armv5te</entry>
-        </row>
-        <row>
-          <entry>armv6</entry>
-          <entry>armv6j</entry>
-          <entry>armv6t2</entry>
-          <entry>armv6z</entry>
-        </row>
-        <row>
-          <entry>armv6zk</entry>
-          <entry>armv6-m</entry>
-          <entry>armv7</entry>
-          <entry>armv7-a</entry>
-        </row>
-        <row>
-          <entry>armv7-r</entry>
-          <entry>armv7-m</entry>
-        </row>
-      </tbody>
-    </tgroup>
-  </table>
 
   <para os="f1">If your target CPU has hardware floating point support (not all
   ARM CPUs do), then set the following CLFS_FLOAT variable to either "hard" or
@@ -173,6 +81,89 @@
         </row>
         <row>
           <entry>neon-vfpv4</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <para os="a2">Then, set the host and target triplets:</para>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/variables.xml"
+  xpointer="xpointer(//*[@os='b'])"/>
+
+  <table os="i">
+    <title>Target Triplets</title>
+    <?dbfo table-width="7in" ?>
+
+    <tgroup cols="2">
+
+      <colspec colnum="1" colwidth="2.5in" colname="Float Type"/>
+      <colspec colnum="2" colwidth="2.5in" colname="Triplet"/>
+
+      <thead>
+        <row>
+          <entry>Float Type</entry>
+          <entry>Triplet</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry>soft</entry>
+          <entry>arm-linux-musleabi</entry>
+        </row>
+        <row>
+          <entry>hard or softfp</entry>
+          <entry>arm-linux-musleabihf</entry>
+        </row>
+      </tbody>
+
+    </tgroup>
+
+  </table>
+
+  <para os="c">Now set the architecture of the CPU:</para>
+
+<screen os="d"><userinput>export CLFS_ARCH=arm</userinput></screen>
+
+  <para os="e">Choose the ARM architecture (see table below):</para>
+
+<screen os="f"><userinput>export CLFS_ARM_ARCH="<replaceable>[architecture]</replaceable>"</userinput></screen>
+
+  <table os="j">
+    <title>ARM Archiecture Choices</title>
+    <?dbfo table-width="4in" ?>
+
+    <tgroup cols="4">
+
+      <colspec colnum="1" colwidth="1in" colname="Arch Choice"/>
+      <colspec colnum="2" colwidth="1in" colname="Arch Choice"/>
+      <colspec colnum="3" colwidth="1in" colname="Arch Choice"/>
+      <colspec colnum="4" colwidth="1in" colname="Arch Choice"/>
+
+      <tbody>
+        <row>
+          <entry>armv4t</entry>
+          <entry>armv5</entry>
+          <entry>armv5t</entry>
+          <entry>armv5te</entry>
+        </row>
+        <row>
+          <entry>armv6</entry>
+          <entry>armv6j</entry>
+          <entry>armv6t2</entry>
+          <entry>armv6z</entry>
+        </row>
+        <row>
+          <entry>armv6zk</entry>
+          <entry>armv6-m</entry>
+          <entry>armv7</entry>
+          <entry>armv7-a</entry>
+        </row>
+        <row>
+          <entry>armv7-r</entry>
+          <entry>armv7-m</entry>
         </row>
       </tbody>
     </tgroup>
