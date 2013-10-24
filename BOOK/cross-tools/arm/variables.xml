@@ -21,7 +21,7 @@
   tables as a reference.</para>
 
   <para os="a1">If your processor is an ARM9, good choices include: triplet of
-  armv5l-linux-uclibeabi, ARM arch of armv5t, and float of soft.  ARM9
+  armv5l-linux-musleabi, ARM arch of armv5t, and float of soft.  ARM9
   processors do not usually have hardware floating point abilities. If your
   processor is a Cortex-A series, which often have hardware floating point
   capability, good choices include: triplet of
