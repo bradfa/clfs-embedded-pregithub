@@ -77,7 +77,6 @@
   --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
   --with-mpfr-lib=$(pwd)/mpfr/src/.libs \
   --with-arch=${CLFS_ARM_ARCH} \
-  --with-mode=${CLFS_ARM_MODE} \
   --with-float=${CLFS_FLOAT} \
   --with-fpu=${CLFS_FPU}</userinput></screen>
 
@@ -99,12 +98,6 @@
       <term><parameter>--with-arch=${CLFS_ARM_ARCH}</parameter></term>
       <listitem>
         <para>This option sets the ARM architecture selected earlier.</para>
-      </listitem>
-    </varlistentry>
-    <varlistentry os="ag3">
-      <term><parameter>--with-mode=${CLFS_ARM_MODE}</parameter></term>
-      <listitem>
-        <para>This option sets the ARM mode (arm or thumb) selected earlier.</para>
       </listitem>
     </varlistentry>
     <varlistentry os="ag4">

@@ -71,7 +71,6 @@
   --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
   --with-mpfr-lib=$(pwd)/mpfr/src/.libs \
   --with-arch=${CLFS_ARM_ARCH} \
-  --with-mode=${CLFS_ARM_MODE} \
   --with-float=${CLFS_FLOAT} \
   --with-fpu=${CLFS_FPU}</userinput></screen>
 
