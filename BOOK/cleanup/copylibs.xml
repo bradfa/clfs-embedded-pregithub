@@ -14,7 +14,7 @@
     <filename>${CLFS}/cross-tools</filename>, the generated libraries need to be
     copied to the target:</para>
 
-<screen><userinput>cp -v ${CLFS}/cross-tools/${CLFS_TARGET}/lib/*.so* ${CLFS}/targetfs/lib/</userinput></screen>
+<screen><userinput>cp -vP ${CLFS}/cross-tools/${CLFS_TARGET}/lib/*.so* ${CLFS}/targetfs/lib/</userinput></screen>
 
   <para>Optionally, strip the libraries to reduce their size:</para>
 
