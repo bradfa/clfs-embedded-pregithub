@@ -16,43 +16,12 @@
   set a few variables that will be dependent on your particular needs.
   You will need to set the target triplet for the target architecture, the MIPS
   level, and CPU endianess. If you do not know what triplet or level you want,
-  you can use the table at the bottom of this page as a reference. Set
+  you can use the table as a reference. Set
   the command using the method listed below:</para>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
   xpointer="xpointer(//*[@os='b'])"/>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/variables.xml"
-  xpointer="xpointer(//*[@os='c'])"/>
-
-<screen os="d"><userinput>export CLFS_ARCH=mips
-export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/mipsel/little/' -e 's/mips/big/')</userinput></screen>
-
-  <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
-  GCC and C library are built. There are currently 5 MIPS ISA Levels. To keep things 
-  simple we are only using two. For more information, see
-  <ulink url="http://www.linux-mips.org/wiki/Instruction_Set_Architecture"/></para>
-
-<screen os="m2"><userinput>export CLFS_MIPS_LEVEL="<replaceable>[mips level]</replaceable>"</userinput></screen>
-
-  <para os="m3">We also need to select the floating point capability of the CPU.
-  If the CPU has built-in hardware for performing floating point calculations,
-  choose "hard", otherwise choose "soft":</para>
-
-<screen os="m4"><userinput>export CLFS_FLOAT="<replaceable>[hard or soft]</replaceable>"</userinput></screen>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/variables.xml"
-  xpointer="xpointer(//*[@os='g'])"/>
-
-<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">
     <title>Processor Type and  Target Triplets</title>
@@ -98,5 +67,36 @@ echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc</userinput></scree
     </tgroup>
 
   </table>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/variables.xml"
+  xpointer="xpointer(//*[@os='c'])"/>
+
+<screen os="d"><userinput>export CLFS_ARCH=mips
+export CLFS_ENDIAN=$(echo ${CLFS_ARCH} | sed -e 's/mipsel/little/' -e 's/mips/big/')</userinput></screen>
+
+  <para os="m1">Now you will need to set the MIPS LEVEL. This determines how your
+  GCC and C library are built. There are currently 5 MIPS ISA Levels. To keep things 
+  simple we are only using two. For more information, see
+  <ulink url="http://www.linux-mips.org/wiki/Instruction_Set_Architecture"/></para>
+
+<screen os="m2"><userinput>export CLFS_MIPS_LEVEL="<replaceable>[mips level]</replaceable>"</userinput></screen>
+
+  <para os="m3">We also need to select the floating point capability of the CPU.
+  If the CPU has built-in hardware for performing floating point calculations,
+  choose "hard", otherwise choose "soft":</para>
+
+<screen os="m4"><userinput>export CLFS_FLOAT="<replaceable>[hard or soft]</replaceable>"</userinput></screen>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/variables.xml"
+  xpointer="xpointer(//*[@os='g'])"/>
+
+<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ENDIAN=\""${CLFS_ENDIAN}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_MIPS_LEVEL=\""${CLFS_MIPS_LEVEL}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
 </sect1>

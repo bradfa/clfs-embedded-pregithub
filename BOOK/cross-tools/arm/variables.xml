@@ -18,7 +18,7 @@
   the CPU architecture, the CPU floating point hardware
   availability, and (if available) the type of floating point hardware. If you 
   do not know what values can be chosen for each of these, you can use the 
-  tables at the bottom of this page as a reference.</para>
+  tables as a reference.</para>
 
   <para os="a1">If your processor is an ARM9, good choices include: triplet of
   armv5l-unknown-linux-uclibeabi, ARM arch of armv5t, and float of soft.  ARM9
@@ -33,40 +33,6 @@
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
   href="../common/variables.xml"
   xpointer="xpointer(//*[@os='b'])"/>
-
-  <para os="c">Now set the architecture of the CPU:</para>
-
-<screen os="d"><userinput>export CLFS_ARCH=arm</userinput></screen>
-
-  <para os="e">Choose the ARM architecture (see table below):</para>
-
-<screen os="f"><userinput>export CLFS_ARM_ARCH="<replaceable>[architecture]</replaceable>"</userinput></screen>
-
-  <para os="f1">If your target CPU has hardware floating point support (not all
-  ARM CPUs do), then set the following CLFS_FLOAT variable to either "hard" or
-  "softfp".  Use "softfp" if you need to integrate binaries compiled with
-  "soft".  Use "hard" if you don't.  If your target CPU does not have hard
-  floating point support, set the following CLFS_FLOAT vairable to
-  "soft".</para>
-
-<screen os="f2"><userinput>export CLFS_FLOAT="<replaceable>[hard, softfp, or soft]"</replaceable></userinput></screen>
-
-  <para os="f3">If you chose either "hard" or "softfp" for CLFS_FLOAT, you now
-  need to set which floating point hardware is actually included (see table below)
-  with your ARM CPU:</para>
-
-<screen os="f4"><userinput>export CLFS_FPU="<replaceable>[fpu version]</replaceable>"</userinput></screen>
-
-  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="../common/variables.xml"
-  xpointer="xpointer(//*[@os='g'])"/>
-
-<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_ARM_ARCH=\""${CLFS_ARM_ARCH}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc
-echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   <table os="i">
     <title>Example Processor Type, ABI, and  Target Triplets</title>
@@ -108,6 +74,14 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
   </table>
 
+  <para os="c">Now set the architecture of the CPU:</para>
+
+<screen os="d"><userinput>export CLFS_ARCH=arm</userinput></screen>
+
+  <para os="e">Choose the ARM architecture (see table below):</para>
+
+<screen os="f"><userinput>export CLFS_ARM_ARCH="<replaceable>[architecture]</replaceable>"</userinput></screen>
+
   <table os="j">
     <title>ARM Archiecture Choices</title>
     <?dbfo table-width="4in" ?>
@@ -145,6 +119,21 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
       </tbody>
     </tgroup>
   </table>
+
+  <para os="f1">If your target CPU has hardware floating point support (not all
+  ARM CPUs do), then set the following CLFS_FLOAT variable to either "hard" or
+  "softfp".  Use "softfp" if you need to integrate binaries compiled with
+  "soft".  Use "hard" if you don't.  If your target CPU does not have hard
+  floating point support, set the following CLFS_FLOAT vairable to
+  "soft".</para>
+
+<screen os="f2"><userinput>export CLFS_FLOAT="<replaceable>[hard, softfp, or soft]"</replaceable></userinput></screen>
+
+  <para os="f3">If you chose either "hard" or "softfp" for CLFS_FLOAT, you now
+  need to set which floating point hardware is actually included (see table below)
+  with your ARM CPU:</para>
+
+<screen os="f4"><userinput>export CLFS_FPU="<replaceable>[fpu version]</replaceable>"</userinput></screen>
 
   <table os="j">
     <title>ARM Hard Floating Point Versions</title>
@@ -188,5 +177,16 @@ echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
       </tbody>
     </tgroup>
   </table>
+
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude"
+  href="../common/variables.xml"
+  xpointer="xpointer(//*[@os='g'])"/>
+
+<screen os="h"><userinput>echo export CLFS_HOST=\""${CLFS_HOST}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_TARGET=\""${CLFS_TARGET}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARCH=\""${CLFS_ARCH}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_ARM_ARCH=\""${CLFS_ARM_ARCH}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_FLOAT=\""${CLFS_FLOAT}\"" &gt;&gt; ~/.bashrc
+echo export CLFS_FPU=\""${CLFS_FPU}\"" &gt;&gt; ~/.bashrc</userinput></screen>
 
 </sect1>
