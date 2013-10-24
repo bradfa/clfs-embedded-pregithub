@@ -49,7 +49,7 @@
   <para>The process of building cross-compile tools first involves installing
   binutils into ${CLFS}/cross-tools, so that we have an asembler and a linker
   for our target architecture. GCC is then compiled statically and installed
-  into ${CLFS}/cross-tools, this cross-compiler is used to build glibc for the
+  into ${CLFS}/cross-tools, this cross-compiler is used to build the libc for the
   final-system. The GCC cross-compiler is then rebuilt dynamically - this final
   cross-compiler is what will be used to build the final-system.</para>
 
