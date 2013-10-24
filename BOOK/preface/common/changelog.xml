@@ -36,6 +36,27 @@
     </listitem>
 -->
     <listitem>
+      <para>October 24, 2013</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Shorten triplets.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Reorder variable tables for easier reading.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - ARM and x86 are assumed little endian.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Fix musl installation symlinking.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Fix iana-etc 'make get'.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>October 21, 2013</para>
       <itemizedlist>
         <listitem>
