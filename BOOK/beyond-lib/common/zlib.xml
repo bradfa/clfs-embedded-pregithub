@@ -25,14 +25,9 @@
   <sect2 role="installation">
     <title>Installation of Zlib</title>
 
-    <para os="a">Change the default optimization to Os</para>
+    <para os="c">Prepare Zlib for compilation and set to optimize for size:</para>
 
-<screen os="b"><userinput>cp configure{,.orig}
-sed -e 's/-O3/-Os/g' configure.orig > configure</userinput></screen>
-
-    <para os="c">Prepare Zlib for compilation:</para>
-
-<screen os="d"><userinput>./configure --shared</userinput></screen>
+<screen os="d"><userinput>CFLAGS="-Os" ./configure --shared</userinput></screen>
 
     <variablelist os="aa">
       <title>The meaning of the configure options:</title>
