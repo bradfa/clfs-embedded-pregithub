@@ -33,6 +33,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term>Netplug (&netplug-version;) - <token>&netplug-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&netplug-home;"/></para>
+        <para>Download: <ulink url="&netplug-url;"/></para>
+        <para>MD5 sum: <literal>&netplug-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term>Wireless Tools (&wireless_tools-version;) - <token>&wireless_tools-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&wireless_tools-home;"/></para>

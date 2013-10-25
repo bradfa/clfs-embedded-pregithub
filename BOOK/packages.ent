@@ -88,6 +88,12 @@
 <!ENTITY iptables-md5 "be97ce9007fa42c867901b496c935a0a">
 <!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
 
+<!ENTITY netplug-version "1.2.9.2">
+<!ENTITY netplug-size "21 KB">
+<!ENTITY netplug-url "http://www.red-bean.com/~bos/netplug/netplug-&netplug-version;.tar.bz2">
+<!ENTITY netplug-md5 "1d6db99536bdf875ce441f2c0e45ebf2">
+<!ENTITY netplug-home "http://www.red-bean.com/~bos/">
+
 <!ENTITY wireless_tools-version "29">
 <!ENTITY wireless_tools-size "288 KB">
 <!ENTITY wireless_tools-url "http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.&wireless_tools-version;.tar.gz">

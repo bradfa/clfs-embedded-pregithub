@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-beyond-net-netplug" role="wrap">
+  <?dbhtml filename="netplug.html"?>
+
+  <title>Netplug-&netplug-version;</title>
+
+  <indexterm zone="ch-beyond-net-netplug">
+    <primary sortas="a-Netplug">Netplug</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Netplug is a daemon that detects insertion and removal of network
+      cables and reacts to bring up or take down the network interface.</para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of Netplug</title>
+
+    <para>Patch netplug to fix issues:</para>
+
+    <screen><userinput>patch -Np1 -i ../&netplug-patch;</userinput></screen>
+
+    <para os="f">Compile the package:</para>
+
+<screen os="g"><userinput>make</userinput></screen>
+
+    <para os="h">Install the package:</para>
+
+<screen os="i"><userinput>make DESTDIR=${CLFS}/targetfs install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="bootscripts">
+    <title>Installation of Netplug Bootscripts</title>
+
+    <para os="l">From the clfs-bootscripts package, install the Netplug
+            bootscripts:</para>
+
+<screen os="m"><userinput>make install-netplug DESTDIR=${CLFS}/targetfs</userinput></screen>
+
+
+  </sect2>
+
+  <sect2 id="contents-netplug" role="content">
+    <title>Contents of Netplug</title>
+
+    <segmentedlist>
+      <segtitle>Installed programs</segtitle>
+
+      <seglistitem>
+        <seg>/sbin/netplugd</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+</sect1>

@@ -16,9 +16,18 @@
   make the packages easier to work with. The following patches will be
   needed in order to build the associated packages:</para>
 
-<!--<variablelist role="beyond-clfs3">
-    </variablelist>
--->
+  <variablelist role="patches">
+
+    <varlistentry>
+      <term>Netplug Patch - <token>&netplug-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink
+        url="&patches-root;&netplug-patch;"/></para>
+        <para>MD5 sum: <literal>&netplug-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
 
   <para os="a">Total size of these patches: about <returnvalue/></para>
 
