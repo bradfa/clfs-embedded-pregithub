@@ -10,19 +10,13 @@
 
   <title>Build CFLAGS</title>
 
-  <para><envar>CFLAGS</envar> and <envar>CXXFLAGS</envar> must not be
+  <para><envar>CFLAGS</envar> must not be
   set during the building of cross-tools.</para>
 
-  <para>To disable <envar>CFLAGS</envar> and <envar>CXXFLAGS</envar>
+  <para>To disable <envar>CFLAGS</envar>
   use the following commands:</para>
 
 <screen><userinput>unset CFLAGS
-unset CXXFLAGS</userinput></screen>
-
-  <para>Now add these to <filename>~/.bashrc</filename>, just in
-  case you have to exit and restart building later:</para>
-
-<screen><userinput>echo unset CFLAGS &gt;&gt; ~/.bashrc
-echo unset CXXFLAGS &gt;&gt; ~/.bashrc</userinput></screen>
+echo unset CFLAGS &gt;&gt; ~/.bashrc</userinput></screen>
 
 </sect1>
