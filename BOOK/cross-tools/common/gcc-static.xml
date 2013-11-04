@@ -21,7 +21,8 @@
     <title/>
 
     <para>The GCC package contains the GNU compiler collection, which includes
-    the C compiler.</para>
+    the C compiler.  This build of GCC is mainly done so that the C library
+    can be built next.</para>
 
   </sect2>
 

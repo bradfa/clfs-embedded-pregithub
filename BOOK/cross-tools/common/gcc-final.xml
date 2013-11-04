@@ -17,9 +17,14 @@
     <secondary>cross tools, final</secondary>
   </indexterm>
 
-  <xi:include role="package" xmlns:xi="http://www.w3.org/2003/XInclude"
-  href="gcc-static.xml"
-  xpointer="xpointer(//*[@role='package'])"/>
+  <sect2 role="package">
+    <title/>
+
+    <para>The GCC package contains the GNU compiler collection, which includes
+    the C compiler.  This second build of GCC will produce the final cross
+    compiler which will use the previously built C library.</para>
+
+  </sect2>
 
   <sect2 role="installation">
     <title>Installation of GCC Cross Compiler</title>
