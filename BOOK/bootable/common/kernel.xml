@@ -45,7 +45,7 @@
         components are console/video, disk, and network. With out these built
         in, the system will not function properly. It is recommended to
         configure the kernel without modules in order to conserve disk space
-        and to simplify.</para></note>
+        and to reduce the complexity of booting.</para></note>
 
 <screen os="g"><userinput>make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_TARGET}- menuconfig</userinput></screen>
 
