@@ -110,11 +110,11 @@
 
       <tbody>
         <row>
-          <entry>soft</entry>
+          <entry>soft or softfp</entry>
           <entry>arm-linux-musleabi</entry>
         </row>
         <row>
-          <entry>hard or softfp</entry>
+          <entry>hard</entry>
           <entry>arm-linux-musleabihf</entry>
         </row>
       </tbody>
