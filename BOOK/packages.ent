@@ -93,11 +93,3 @@
 <!ENTITY wireless_tools-url "http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.&wireless_tools-version;.tar.gz">
 <!ENTITY wireless_tools-md5 "e06c222e186f7cc013fd272d023710cb">
 <!ENTITY wireless_tools-home "http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html">
-
-<!-- Beyond CLFS file system packages -->
-
-<!ENTITY e2fsprogs-version "1.42.7">
-<!ENTITY e2fsprogs-size "5840 KB">
-<!ENTITY e2fsprogs-url "&sourceforge;e2fsprogs/e2fsprogs-&e2fsprogs-version;.tar.gz">
-<!ENTITY e2fsprogs-md5 "a1ec22ef003688dae9f76c74881b22b9">
-<!ENTITY e2fsprogs-home "http://e2fsprogs.sourceforge.net">
