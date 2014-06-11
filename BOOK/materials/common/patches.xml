@@ -19,15 +19,6 @@
   <variablelist role="materials">
 
     <varlistentry>
-      <term>Binutils musl Patch - <token>&binutils-musl-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&binutils-musl-patch;"/></para>
-        <para>MD5 sum: <literal>&binutils-musl-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>BusyBox musl Patch - <token>&busybox-musl-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink

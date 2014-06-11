@@ -4,10 +4,6 @@
 
 <!-- Core Patches -->
 
-<!ENTITY binutils-musl-patch "binutils-&binutils-version;-musl-1.patch">
-<!ENTITY binutils-musl-patch-md5 "dde64feb7f4cf821cbd887b53026fd67">
-<!ENTITY binutils-musl-patch-size "1 KB">
-
 <!ENTITY busybox-musl-patch "busybox-&busybox-version;-musl-1.patch">
 <!ENTITY busybox-musl-patch-md5 "335622b0f2bf4e18e9d93fd48afe53da">
 <!ENTITY busybox-musl-patch-size "1 KB">
