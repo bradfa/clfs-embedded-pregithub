@@ -4,10 +4,6 @@
 
 <!-- Core Patches -->
 
-<!ENTITY busybox-musl-patch "busybox-&busybox-version;-musl-1.patch">
-<!ENTITY busybox-musl-patch-md5 "335622b0f2bf4e18e9d93fd48afe53da">
-<!ENTITY busybox-musl-patch-size "1 KB">
-
 <!ENTITY gcc-musl-patch "gcc-&gcc-version;-musl-1.patch">
 <!ENTITY gcc-musl-patch-md5 "5b43765740ca9865b8afe3cc945a3f5d">
 <!ENTITY gcc-musl-patch-size "26 KB">

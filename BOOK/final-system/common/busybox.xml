@@ -34,10 +34,6 @@
 
 <screen os="b"><userinput>make distclean</userinput></screen>
 
-    <para os="c">The following patch is needed for musl:</para>
-
-<screen os="d"><userinput>patch -Np1 -i ../&busybox-musl-patch;</userinput></screen>
-
     <note os="e"> <para>We tell BusyBox to use the generic defconfig.  For those
         for more adventurous, you can use <command>make menuconfig</command>,
         and create a custom or modified configuration for your build.</para>
