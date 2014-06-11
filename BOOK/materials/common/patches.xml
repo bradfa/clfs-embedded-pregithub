@@ -19,7 +19,7 @@
   <variablelist role="materials">
 
     <varlistentry>
-      <term>Binutils musl-libc Patch - <token>&binutils-musl-patch-size;</token>:</term>
+      <term>Binutils musl Patch - <token>&binutils-musl-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&binutils-musl-patch;"/></para>
@@ -28,7 +28,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>BusyBox musl-libc Patch - <token>&busybox-musl-patch-size;</token>:</term>
+      <term>BusyBox musl Patch - <token>&busybox-musl-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&busybox-musl-patch;"/></para>
@@ -37,7 +37,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>GCC musl-libc Patch - <token>&gcc-musl-patch-size;</token>:</term>
+      <term>GCC musl Patch - <token>&gcc-musl-patch-size;</token>:</term>
       <listitem>
         <para>Download: <ulink
         url="&patches-root;&gcc-musl-patch;"/></para>

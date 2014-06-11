@@ -96,11 +96,11 @@
     </varlistentry>
 
     <varlistentry>
-      <term>musl-libc (&musl-libc-version;) - <token>&musl-libc-size;</token>:</term>
+      <term>musl (&musl-version;) - <token>&musl-size;</token>:</term>
       <listitem>
-        <para>Home page: <ulink url="&musl-libc-home;"/></para>
-        <para>Download: <ulink url="&musl-libc-url;"/></para>
-        <para>MD5 sum: <literal>&musl-libc-md5;</literal></para>
+        <para>Home page: <ulink url="&musl-home;"/></para>
+        <para>Download: <ulink url="&musl-url;"/></para>
+        <para>MD5 sum: <literal>&musl-md5;</literal></para>
       </listitem>
     </varlistentry>
 

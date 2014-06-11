@@ -34,7 +34,7 @@
 
 <screen os="b"><userinput>make distclean</userinput></screen>
 
-    <para os="c">The following patch is needed for musl-libc:</para>
+    <para os="c">The following patch is needed for musl:</para>
 
 <screen os="d"><userinput>patch -Np1 -i ../&busybox-musl-patch;</userinput></screen>
 
@@ -49,7 +49,7 @@
 <screen os="g"><userinput>ARCH="${CLFS_ARCH}" make defconfig</userinput></screen>
 
     <para os="fa">Disable building both ifplugd and inetd as they both have
-      issues building against musl-libc:</para>
+      issues building against musl:</para>
 
 <screen os="fb"><userinput>sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
 sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config</userinput></screen>

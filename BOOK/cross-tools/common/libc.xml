@@ -8,17 +8,17 @@
 <sect1 id="ch-cross-tools-libc" role="wrap">
   <?dbhtml filename="libc.html"?>
 
-  <title>musl-libc-&musl-libc-version;</title>
+  <title>musl-&musl-version;</title>
 
   <indexterm zone="ch-cross-tools-libc">
-    <primary sortas="a-libc">musl-libc</primary>
+    <primary sortas="a-libc">musl</primary>
     <secondary>cross tools</secondary>
   </indexterm>
 
   <sect2 role="package">
     <title/>
 
-    <para>The musl-libc package contains the main C library. This library provides
+    <para>The musl package contains the main C library. This library provides
     the basic routines for allocating memory, searching directories, opening and
     closing files, reading and writing files, string handling, pattern matching,
     arithmetic, and so on.</para>
@@ -26,7 +26,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of musl-libc</title>
+    <title>Installation of musl</title>
 
     <para os="h">Configure the package:</para>
 
@@ -44,15 +44,15 @@
 
   </sect2>
 
-  <sect2 id="contents-musl-libc" role="content">
-    <title>Contents of musl-libc</title>
+  <sect2 id="contents-musl" role="content">
+    <title>Contents of musl</title>
 
     <segmentedlist>
       <segtitle>Installed Programs</segtitle>
       <segtitle>Installed Libraries</segtitle>
       <segtitle>Installed Headers</segtitle>
       <seglistitem>
-        <seg>ld-musl-libc.so.0</seg>
+        <seg>ld-musl.so.0</seg>
         <seg> libc.so.0, libcrypt.so.0, libdl.so.0, libm.so.0, libpthread.so.0,
         librt.so.0</seg>
         <seg>To be written...</seg>
@@ -64,12 +64,12 @@
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
-      <varlistentry id="ld-musl-libc">
-        <term><command>ld-musl-libc</command></term>
+      <varlistentry id="ld-musl">
+        <term><command>ld-musl</command></term>
         <listitem>
-          <para>The musl-libc dynamic linker / loader</para>
-          <indexterm zone="ch-cross-tools-libc ld-musl-libc">
-            <primary sortas="b-ld-musl-libc">ld-musl-libc</primary>
+          <para>The musl dynamic linker / loader</para>
+          <indexterm zone="ch-cross-tools-libc ld-musl">
+            <primary sortas="b-ld-musl">ld-musl</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -97,7 +97,7 @@
       <varlistentry id="libdl">
         <term><filename class="libraryfile">libdl</filename></term>
         <listitem>
-          <para>The musl-libc dynamic linker / loader library</para>
+          <para>The musl dynamic linker / loader library</para>
           <indexterm zone="ch-cross-tools-libc libdl">
             <primary sortas="c-libdl">libdl</primary>
           </indexterm>
