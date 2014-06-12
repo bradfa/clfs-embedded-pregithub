@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-beyond-net-netplug" role="wrap">
+<sect1 id="ch-beyond-netplug" role="wrap">
   <?dbhtml filename="netplug.html"?>
 
   <title>Netplug-&netplug-version;</title>
 
-  <indexterm zone="ch-beyond-net-netplug">
+  <indexterm zone="ch-beyond-netplug">
     <primary sortas="a-Netplug">Netplug</primary>
   </indexterm>
 

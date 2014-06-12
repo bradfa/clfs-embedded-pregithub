@@ -5,10 +5,10 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-beyond-clfs3-patches">
+<sect1 id="ch-beyond-patches">
   <?dbhtml filename="patches.html"?>
 
-  <title>Beyond CLFS Networking Patches</title>
+  <title>Beyond CLFS Patches</title>
 
   <para>In addition to the packages, several patches are also required.
   These patches correct any mistakes in the packages that should be

@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-beyond-net-dropbear" role="wrap">
+<sect1 id="ch-beyond-dropbear" role="wrap">
   <?dbhtml filename="dropbear.html"?>
 
   <title>Dropbear-&dropbear-version;</title>
 
-  <indexterm zone="ch-beyond-net-dropbear">
+  <indexterm zone="ch-beyond-dropbear">
     <primary sortas="a-Dropbear">Dropbear</primary>
   </indexterm>
 

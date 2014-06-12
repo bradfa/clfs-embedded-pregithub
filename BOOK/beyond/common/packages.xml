@@ -5,14 +5,14 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-beyond-net-packages-common">
+<sect1 id="ch-beyond-packages">
   <?dbhtml filename="packages.html"?>
 
-  <title>Beyond CLFS Networking Packages</title>
+  <title>Beyond CLFS Packages</title>
 
   <para>Download or otherwise obtain the following packages:</para>
 
-  <variablelist role="beyond-net">
+  <variablelist role="beyond">
 
     <varlistentry>
       <term>Dropbear (&dropbear-version;) - <token>&dropbear-size;</token>:</term>
@@ -40,6 +40,16 @@
         <para>MD5 sum: <literal>&wireless_tools-md5;</literal></para>
       </listitem>
     </varlistentry>
+
+    <varlistentry>
+      <term>Zlib (&zlib-version;) - <token>&zlib-size;</token>:</term>
+      <listitem>
+        <para>Home page: <ulink url="&zlib-home;"/></para>
+        <para>Download: <ulink url="&zlib-url;"/></para>
+        <para>MD5 sum: <literal>&zlib-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
 
   <para os="a">Total size of these packages: about <returnvalue/></para>

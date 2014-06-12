@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-beyond-lib-zlib" role="wrap">
+<sect1 id="ch-beyond-zlib" role="wrap">
   <?dbhtml filename="zlib.html"?>
 
   <title>Zlib-&zlib-version;</title>
 
-  <indexterm zone="ch-beyond-lib-zlib">
+  <indexterm zone="ch-beyond-zlib">
     <primary sortas="a-Zlib">Zlib</primary>
   </indexterm>
 
@@ -72,7 +72,7 @@
         <listitem>
           <para>Contains compression and decompression
           functions used by some programs</para>
-          <indexterm zone="ch-beyond-lib-zlib libz">
+          <indexterm zone="ch-beyond-zlib libz">
             <primary sortas="c-libz">libz</primary>
           </indexterm>
         </listitem>

@@ -5,12 +5,12 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-beyond-net-wireless_tools" role="wrap">
+<sect1 id="ch-beyond-wireless_tools" role="wrap">
   <?dbhtml filename="wireless_tools.html"?>
 
   <title>Wireless Tools-&wireless_tools-version;</title>
 
-  <indexterm zone="ch-beyond-net-wireless_tools">
+  <indexterm zone="ch-beyond-wireless_tools">
     <primary sortas="a-wireless_tools">wireless_tools</primary>
   </indexterm>
 

@@ -5,12 +5,18 @@
   %general-entities;
 ]>
 
-<chapter id="chapter-beyond-introduction" xreflabel="Beyond Introduction">
-  <?dbhtml dir="beyond-introduction"?>
+<chapter id="chapter-beyond" xreflabel="Beyond">
+  <?dbhtml dir="beyond"?>
   <?dbhtml filename="chapter.html"?>
 
-  <title>Beyond Introduction</title>
+  <title>Beyond CLFS Embedded</title>
 
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/introduction.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/packages.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/patches.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/zlib.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/netplug.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/dropbear.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/wireless_tools.xml"/>
 
 </chapter>
