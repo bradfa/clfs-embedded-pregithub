@@ -11,10 +11,6 @@
   <title>Introduction</title>
 
   <para os="a">Now that we have our base system built, we may add some optional
-  additional functionality.</para>
-
-  <para os="b">In this section, we explain how to compile additional packages
-  for use with the system. We will also cover how to configure some of the
-  BusyBox Utilities.</para>
+  additional networking software.</para>
 
 </sect1>
