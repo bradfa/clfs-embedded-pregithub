@@ -82,12 +82,6 @@
 <!ENTITY dropbear-md5 "fffa2fec0c887201bed3a3cc6df7fa35">
 <!ENTITY dropbear-home "http://matt.ucc.asn.au/dropbear/dropbear.html">
 
-<!ENTITY iptables-version "1.4.19.1">
-<!ENTITY iptables-size "531 KB">
-<!ENTITY iptables-url "http://www.netfilter.org/projects/iptables/files/iptables-&iptables-version;.tar.bz2">
-<!ENTITY iptables-md5 "be97ce9007fa42c867901b496c935a0a">
-<!ENTITY iptables-home "http://www.netfilter.org/projects/iptables/">
-
 <!ENTITY netplug-version "1.2.9.2">
 <!ENTITY netplug-size "21 KB">
 <!ENTITY netplug-url "http://www.red-bean.com/~bos/netplug/netplug-&netplug-version;.tar.bz2">

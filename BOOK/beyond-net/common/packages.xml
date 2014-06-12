@@ -24,15 +24,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Iptables (&iptables-version;) - <token>&iptables-size;</token>:</term>
-      <listitem>
-        <para>Home page: <ulink url="&iptables-home;"/></para>
-        <para>Download: <ulink url="&iptables-url;"/></para>
-        <para>MD5 sum: <literal>&iptables-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Netplug (&netplug-version;) - <token>&netplug-size;</token>:</term>
       <listitem>
         <para>Home page: <ulink url="&netplug-home;"/></para>
