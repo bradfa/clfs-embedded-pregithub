@@ -10,19 +10,11 @@
 
   <title>The End</title>
 
-  <indexterm zone="ch-finish-theend">
-    <primary sortas="e-/etc/clfs-release">/etc/clfs-release</primary>
-  </indexterm>
-
   <para>Well done! The new CLFS system is installed! We wish you much
   success with your shiny new custom-built Linux system.</para>
 
-  <para>It may be a good idea to create an
-  <filename>/etc/clfs-release</filename> file. By having this file, it is
-  very easy for you (and for us if you need to ask for help at some
-  point) to find out which CLFS version is installed on the system.
-  Create this file by running:</para>
-
-<screen><userinput>echo CLFS-Embedded-&version; &gt; ${CLFS}/etc/clfs-release</userinput></screen>
+  <para>Assuming the boot loader was set up properly,
+  <emphasis>CLFS &version;</emphasis> will boot automatically when you power on
+  the target.</para>
 
 </sect1>
