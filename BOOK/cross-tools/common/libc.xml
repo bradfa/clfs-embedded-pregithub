@@ -31,6 +31,7 @@
     <para os="h">Configure the package:</para>
 
 <screen os="i"><userinput>CC=${CLFS_TARGET}-gcc ./configure \
+  CROSS_COMPILE=${CLFS_TARGET}- \
   --prefix=/ \
   --target=${CLFS_TARGET}</userinput></screen>
 
