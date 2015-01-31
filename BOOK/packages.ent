@@ -18,9 +18,9 @@
 
 <!ENTITY clfs-bootscripts-version "git master HEAD">
 <!ENTITY clfs-bootscripts-size "5 KB">
-<!ENTITY clfs-bootscripts-url "http://git.cross-lfs.org/?p=bootscripts-embedded.git;a=snapshot;h=HEAD;sf=tgz">
+<!ENTITY clfs-bootscripts-url "http://git.clfs.org/?p=bootscripts-embedded.git;a=snapshot;h=HEAD;sf=tgz">
 <!ENTITY clfs-bootscripts-md5 "N/A">
-<!ENTITY clfs-bootscripts-home "http://git.cross-lfs.org/?p=bootscripts-embedded.git">
+<!ENTITY clfs-bootscripts-home "http://git.clfs.org/?p=bootscripts-embedded.git">
 
 <!ENTITY gcc-version "4.7.3">
 <!ENTITY gcc-size "80961 KB">

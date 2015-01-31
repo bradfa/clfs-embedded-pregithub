@@ -14,15 +14,15 @@
 <!ENTITY version-arm "&version;-arm">
 
 <!ENTITY lfs-root "http://www.linuxfromscratch.org/">
-<!ENTITY clfs-root "http://cross-lfs.org/">
-<!ENTITY clfs-wiki "http://trac.cross-lfs.org/">
+<!ENTITY clfs-root "http://clfs.org/">
+<!ENTITY clfs-wiki "http://trac.clfs.org/">
 <!ENTITY blfs-root "&lfs-root;blfs/">
 <!ENTITY faq-root "&clfs-wiki;wiki/faq">
 <!ENTITY hints-root "&lfs-root;hints/downloads/files/">
 <!ENTITY hints-index "&lfs-root;hints/list.html">
 <!ENTITY livecd-root "&lfs-root;livecd/">
 <!ENTITY errata "&clfs-wiki;clfs-embedded/errata/&generic-version;/">
-<!ENTITY cblfs-wiki "http://cblfs.cross-lfs.org/">
+<!ENTITY cblfs-wiki "http://cblfs.clfs.org/">
 
 <!ENTITY gnu "http://ftp.gnu.org/gnu/">
 <!ENTITY gnu-software "http://www.gnu.org/software/">
