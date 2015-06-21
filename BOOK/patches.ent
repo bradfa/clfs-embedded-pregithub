@@ -9,7 +9,7 @@
 <!ENTITY gcc-musl-patch-size "26 KB">
 
 <!ENTITY iana-etc-update-patch "iana-etc-&iana-etc-version;-update-2.patch">
-<!ENTITY iana-etc-update-patch-md5 "b8e60c1322599c731734585d7af34945">
+<!ENTITY iana-etc-update-patch-md5 "8bf719b313053a482b1e878b75dfc07e">
 <!ENTITY iana-etc-update-patch-size "4 KB">
 
 <!-- Beyond patches -->
