@@ -11,4 +11,4 @@ For more information about CLFS, visit the [CLFS website][trac].
 To build the book, please see the BOOK/INSTALL.md file for requirements and
 exact steps.
 
-[trac]:http://trac.cross-lfs.org
+[trac]:http://trac.clfs.org
