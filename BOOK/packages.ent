@@ -47,10 +47,10 @@
 <!ENTITY linux-md5 "9a59fa5f60f47aab78aaa5f0691b24a2">
 <!ENTITY linux-home "http://www.kernel.org">
 
-<!ENTITY mpc-version "1.0.1">
-<!ENTITY mpc-size "609 KB">
+<!ENTITY mpc-version "1.0.3">
+<!ENTITY mpc-size "655 KB">
 <!ENTITY mpc-url "http://www.multiprecision.org/mpc/download/mpc-&mpc-version;.tar.gz">
-<!ENTITY mpc-md5 "b32a2e1a3daa392372fbd586d1ed3679">
+<!ENTITY mpc-md5 "d6a1d5f8ddea3abd2cc3e98f58352d26">
 <!ENTITY mpc-home "http://www.multiprecision.org/">
 
 <!ENTITY mpfr-version "3.1.2">
