@@ -30,10 +30,6 @@
     <title os="a">Installation of Cross GCC Compiler with Static libgcc
     and no Threads</title>
 
-  <para os="aa">In order to work with musl, GCC needs to be patched:</para>
-
-<screen os="ab"><userinput>patch -Np1 -i ../&gcc-musl-patch;</userinput></screen>
-
     <para os="b">GCC requires the GMP, MPFR, and MPC packages to either be
     present on the host or to be present in source form within the gcc source
     tree.  Unpack these into the GCC directory after unpacking GCC:</para>

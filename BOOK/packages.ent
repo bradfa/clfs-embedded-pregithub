@@ -22,10 +22,10 @@
 <!ENTITY clfs-bootscripts-md5 "N/A">
 <!ENTITY clfs-bootscripts-home "http://git.clfs.org/?p=bootscripts-embedded.git">
 
-<!ENTITY gcc-version "4.7.3">
-<!ENTITY gcc-size "80961 KB">
+<!ENTITY gcc-version "6.2.0">
+<!ENTITY gcc-size "97441 KB">
 <!ENTITY gcc-url "ftp://gcc.gnu.org/pub/gcc/releases/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
-<!ENTITY gcc-md5 "86f428a30379bdee0224e353ee2f999e">
+<!ENTITY gcc-md5 "9768625159663b300ae4de2f4745fcc4">
 <!ENTITY gcc-home "http://gcc.gnu.org">
 
 <!ENTITY gmp-version "6.1.1">

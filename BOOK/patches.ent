@@ -4,10 +4,6 @@
 
 <!-- Core Patches -->
 
-<!ENTITY gcc-musl-patch "gcc-&gcc-version;-musl-1.patch">
-<!ENTITY gcc-musl-patch-md5 "5b43765740ca9865b8afe3cc945a3f5d">
-<!ENTITY gcc-musl-patch-size "26 KB">
-
 <!ENTITY iana-etc-update-patch "iana-etc-&iana-etc-version;-update-2.patch">
 <!ENTITY iana-etc-update-patch-md5 "8bf719b313053a482b1e878b75dfc07e">
 <!ENTITY iana-etc-update-patch-size "4 KB">

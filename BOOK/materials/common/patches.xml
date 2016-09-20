@@ -18,15 +18,6 @@
 
   <variablelist role="materials">
 
-    <varlistentry>
-      <term>GCC musl Patch - <token>&gcc-musl-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink
-        url="&patches-root;&gcc-musl-patch;"/></para>
-        <para>MD5 sum: <literal>&gcc-musl-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
 <!--
     <varlistentry>
       <term>BusyBox Fixes Patch - <token>&busybox-fixes-patch-size;</token>:</term>
