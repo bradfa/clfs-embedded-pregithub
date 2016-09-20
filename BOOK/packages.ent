@@ -40,11 +40,11 @@
 <!ENTITY iana-etc-md5 "3ba3afb1d1b261383d247f46cb135ee8">
 <!ENTITY iana-etc-home "http://sethwklein.net/iana-etc">
 
-<!ENTITY linux-dl-version "3.x">
-<!ENTITY linux-version "3.0.80">
-<!ENTITY linux-size "75134 KB">
-<!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.bz2">
-<!ENTITY linux-md5 "bf912b05870cd04ca620594e2b264a3c">
+<!ENTITY linux-dl-version "4.x">
+<!ENTITY linux-version "4.4.21">
+<!ENTITY linux-size "85306 KB">
+<!ENTITY linux-url "&kernel;linux/kernel/v&linux-dl-version;/linux-&linux-version;.tar.xz">
+<!ENTITY linux-md5 "9a59fa5f60f47aab78aaa5f0691b24a2">
 <!ENTITY linux-home "http://www.kernel.org">
 
 <!ENTITY mpc-version "1.0.1">
