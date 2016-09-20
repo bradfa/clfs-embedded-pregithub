@@ -53,11 +53,10 @@
 <!ENTITY mpc-md5 "d6a1d5f8ddea3abd2cc3e98f58352d26">
 <!ENTITY mpc-home "http://www.multiprecision.org/">
 
-<!ENTITY mpfr-version "3.1.2">
-<!ENTITY mpfr-size "1196 KB">
-<!ENTITY mpfr-dlid "32210">
-<!ENTITY mpfr-url "http://gforge.inria.fr/frs/download.php/&mpfr-dlid;/mpfr-&mpfr-version;.tar.bz2">
-<!ENTITY mpfr-md5 "ee2c3ac63bf0c2359bf08fc3ee094c19">
+<!ENTITY mpfr-version "3.1.4">
+<!ENTITY mpfr-size "1250 KB">
+<!ENTITY mpfr-url "&gnu;mpfr/mpfr-&mpfr-version;.tar.bz2">
+<!ENTITY mpfr-md5 "b8a2f6b0e68bef46e53da2ac439e1cf4">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
 
 <!ENTITY musl-version "1.0.3">
