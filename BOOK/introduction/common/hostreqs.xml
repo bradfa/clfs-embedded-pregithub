@@ -65,6 +65,10 @@
     </listitem>
 
     <listitem>
+      <para><emphasis role="strong">M4-1.4.16</emphasis></para>
+    </listitem>
+
+    <listitem>
       <para><emphasis role="strong">Make-3.81</emphasis></para>
     </listitem>
 
@@ -109,6 +113,7 @@ ldd $(which ${SHELL}) | grep libc.so | cut -d ' ' -f 3 | ${SHELL} | head -n 1 \
 | cut -d ' ' -f 1-10
 grep --version | head -n1
 gzip --version | head -n1
+m4 --version | head -n1
 make --version | head -n1
 patch --version | head -n1
 sed --version | head -n1
