@@ -73,6 +73,10 @@
     </listitem>
 
     <listitem>
+      <para><emphasis role="strong">ncurses5</emphasis></para>
+    </listitem>
+
+    <listitem>
       <para><emphasis role="strong">Patch-2.6</emphasis></para>
     </listitem>
 
@@ -115,6 +119,7 @@ grep --version | head -n1
 gzip --version | head -n1
 m4 --version | head -n1
 make --version | head -n1
+echo "#include &lt;ncurses.h&gt;" | gcc -E - &gt; /dev/null
 patch --version | head -n1
 sed --version | head -n1
 sudo -V | head -n1
