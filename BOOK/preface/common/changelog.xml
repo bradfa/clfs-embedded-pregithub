@@ -36,6 +36,44 @@
     </listitem>
 -->
     <listitem>
+      <para>December 28, 2016</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Add apt-get line to INSTALL document.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update binutils to version 2.27.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update busybox to version 1.24.2.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update gmp to version 6.1.1.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update Linux to version 4.4.21.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update mpc to version 1.0.3.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update mpfr to version 3.1.2.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update musl to version 1.1.15.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update GCC to version 6.2 which removes the need
+            for patching GCC for compatibility with musl.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update host requirements and script for m4 and
+            ncurses5.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 13, 2014</para>
       <itemizedlist>
         <listitem>
