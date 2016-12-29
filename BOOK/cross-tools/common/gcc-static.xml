@@ -207,7 +207,7 @@ cd ../gcc-build</userinput></screen>
           <para>This will prevent GCC from looking for the multi-thread
           include files, since they haven't been created for this architecture
           yet. GCC will be able to find the multi-thread information after
-          the glib headers are created.</para>
+          the glibc headers are created.</para>
         </listitem>
       </varlistentry>
 
