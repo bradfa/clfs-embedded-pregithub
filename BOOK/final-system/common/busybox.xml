@@ -50,6 +50,18 @@
 <screen os="fb"><userinput>sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
 sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config</userinput></screen>
 
+    <para os="fc">Disable the use of utmp/wtmp as musl does not support
+	    them:</para>
+
+<screen os="fd"><userinput>sed -i 's/\(CONFIG_FEATURE_WTMP\)=y/# \1 is not set/' .config
+sed -i 's/\(CONFIG_FEATURE_UTMP\)=y/# \1 is not set/' .config</userinput></screen>
+
+    <para os="fe">Disable the use of ipsvd for both TCP and UDP as it has issues
+	    building against musl (similar to inetd's issues):</para>
+
+<screen os="ff"><userinput>sed -i 's/\(CONFIG_UDPSVD\)=y/# \1 is not set/' .config
+sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config</userinput></screen>
+
     <para os="h">Compile the package:</para>
 
 <screen os="i"><userinput>ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_TARGET}-" make</userinput></screen>
