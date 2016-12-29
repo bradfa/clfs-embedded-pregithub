@@ -16,7 +16,10 @@
 
   <para>Is the file that specifices how to boot and shutdown a system.</para>
 
-  <para os="a">Now we will create the inittab file for use with our system:</para>
+  <para os="a">Now we will create the inittab file for use with our system,
+	  please note that if you'd like a login prompt on a serial console to
+	  uncomment enabling of this and verify the serial port device name as
+	  many embedded boards have serial ports which are not named 'ttyS':</para>
 
 <screen os="b"><userinput>cat &gt; ${CLFS}/targetfs/etc/inittab&lt;&lt; "EOF"
 <literal># /etc/inittab
