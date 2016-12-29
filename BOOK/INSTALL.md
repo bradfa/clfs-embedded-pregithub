@@ -24,6 +24,12 @@ If you want to convert the Docbook XML to PDF, install the items listed above
 * JDK
 * FOP and JAI
 
+On a reasonably recent Debian or Ubuntu, this should suffice:
+
+```
+sudo apt install docbook-xml docbook-xsl fop libxml2-utils lynx make xsltproc tidy
+```
+
 To actually convert the Docbook XML source into rendered form, which will be
 located at ../render by default (override with BASEDIR=), execute:
 
