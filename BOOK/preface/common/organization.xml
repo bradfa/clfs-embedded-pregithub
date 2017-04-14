@@ -41,7 +41,7 @@
     <title>Part IV - Building the CLFS System</title>
 
     <para>Part IV shows you how to build the core CLFS system.  Compiling
-    and installing Buxybox and other required packages, making the system
+    and installing BusyBox and other required packages, making the system
     bootable, setting up the bootscripts, and installing a bootloader.</para>
 
   </sect2>
