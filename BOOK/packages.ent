@@ -59,10 +59,10 @@
 <!ENTITY mpfr-md5 "b8a2f6b0e68bef46e53da2ac439e1cf4">
 <!ENTITY mpfr-home "http://www.mpfr.org/">
 
-<!ENTITY musl-version "1.1.15">
-<!ENTITY musl-size "891 KB">
+<!ENTITY musl-version "1.1.16">
+<!ENTITY musl-size "906 KB">
 <!ENTITY musl-url "http://www.musl-libc.org/releases/musl-&musl-version;.tar.gz">
-<!ENTITY musl-md5 "9590a9d47ee64f220b3c12f7afb864ca">
+<!ENTITY musl-md5 "ac52ccaec6b06ab0f289d37e8436859b">
 <!ENTITY musl-home "http://musl-libc.org/">
 
 <!-- Beyond CLFS library packages -->
