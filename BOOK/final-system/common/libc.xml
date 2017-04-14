@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-final-system-libc" role="wrap">
+  <?dbhtml filename="libc.html"?>
+
+  <title>musl-&musl-version;</title>
+
+  <indexterm zone="ch-final-system-libc">
+    <primary sortas="a-libc">musl</primary>
+    <secondary>final system</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>The musl package contains the main C library. This library provides
+    the basic routines for allocating memory, searching directories, opening and
+    closing files, reading and writing files, string handling, pattern matching,
+    arithmetic, and so on.  We build it again here so that it can be installed
+    into our targetfs sysroot.</para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of musl</title>
+
+    <para os="h">Configure the package:</para>
+
+<screen os="i"><userinput>./configure \
+  CROSS_COMPILE=${CLFS_TARGET}- \
+  --prefix=/ \
+  --target=${CLFS_TARGET}</userinput></screen>
+
+    <para os="h">Compile the package:</para>
+
+<screen os="i"><userinput>make</userinput></screen>
+
+    <para os="l">Install the package:</para>
+
+<screen os="j"><userinput>DESTDIR=${CLFS}/targetfs make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Details on this package are located in
+      <xref linkend="contents-musl" role="."/></para>
+
+  </sect2>
+
+</sect1>

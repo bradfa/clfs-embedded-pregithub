@@ -14,6 +14,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/introduction.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/creatingdirs.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/creatingfiles.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/libc.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/busybox.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2003/XInclude" href="common/iana-etc.xml"/>
 
