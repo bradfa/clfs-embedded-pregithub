@@ -10,14 +10,17 @@
 
   <title>ToolChain Variables</title>
 
-  <para>Setup target-specific variables for the compiler
-  and linkers. This time we keep them:</para>
+  <para>Setup target-specific variables for the compiler, linker, and other
+    compile-time tools.  For the compiler and linker, use the target file system
+    directory as a sysroot rather than the sysroot we setup before for the
+    cross-tools. This time we write them to <filename>~/.bashrc</filename> so
+    that they persist even if the clfs user logs out:</para>
 
-<screen><userinput>echo <literal>export CC=\""${CLFS_TARGET}-gcc\""</literal> &gt;&gt; ~/.bashrc
-echo <literal>export CXX=\""${CLFS_TARGET}-g++\""</literal> &gt;&gt; ~/.bashrc
+<screen><userinput>echo <literal>export CC=\""${CLFS_TARGET}-gcc --sysroot=${CLFS}/targetfs\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export CXX=\""${CLFS_TARGET}-g++ --sysroot=${CLFS}/targetfs\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export AR=\""${CLFS_TARGET}-ar\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export AS=\""${CLFS_TARGET}-as\""</literal> &gt;&gt; ~/.bashrc
-echo <literal>export LD=\""${CLFS_TARGET}-ld\""</literal> &gt;&gt; ~/.bashrc
+echo <literal>export LD=\""${CLFS_TARGET}-ld --sysroot=${CLFS}/targetfs\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export RANLIB=\""${CLFS_TARGET}-ranlib\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export READELF=\""${CLFS_TARGET}-readelf\""</literal> &gt;&gt; ~/.bashrc
 echo <literal>export STRIP=\""${CLFS_TARGET}-strip\""</literal> &gt;&gt; ~/.bashrc
