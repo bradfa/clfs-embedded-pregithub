@@ -59,7 +59,7 @@ sed -i s/ranlib/\$\{CLFS\_TARGET\}\-ranlib/g Makefile</userinput></screen>
       <segtitle>Installed libraries</segtitle>
 
       <seglistitem>
-        <seg>iwconfig, iwevent, iwgetid, iwlist,iwpriv, and iwspy</seg>
+        <seg>iwconfig, iwevent, iwgetid, iwlist, iwpriv, and iwspy</seg>
         <seg>libiw.so</seg>
       </seglistitem>
     </segmentedlist>
