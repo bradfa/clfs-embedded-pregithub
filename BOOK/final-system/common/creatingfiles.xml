@@ -36,7 +36,7 @@
 
   <para>A proper Linux system maintains a list of the mounted file systems in
   the file <filename>/etc/mtab</filename>.  With the way our embedded system is
-  is designed, we will be using a symlink to <filename>/proc/mounts</filename>:</para>
+  designed, we will be using a symlink to <filename>/proc/mounts</filename>:</para>
 
 <screen><userinput>ln -svf ../proc/mounts ${CLFS}/targetfs/etc/mtab</userinput></screen>
  
