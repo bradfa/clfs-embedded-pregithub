@@ -17,7 +17,7 @@
 mkdir -pv ${CLFS}/targetfs/{mnt,opt,proc,sbin,srv,sys}
 mkdir -pv ${CLFS}/targetfs/var/{cache,lib,local,lock,log,opt,run,spool}
 install -dv -m 0750 ${CLFS}/targetfs/root
-install -dv -m 1777 ${CLFS}/targetfs/tmp
+install -dv -m 1777 ${CLFS}/targetfs/{var/,}tmp
 mkdir -pv ${CLFS}/targetfs/usr/{,local/}{bin,include,lib,sbin,share,src}</userinput></screen>
 
   <para>Directories are, by default, created with permission mode 755, but
