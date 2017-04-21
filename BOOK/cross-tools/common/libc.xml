@@ -30,14 +30,14 @@
 
     <para os="h">Configure the package:</para>
 
-<screen os="i"><userinput>CC=${CLFS_TARGET}-gcc ./configure \
+<screen os="i"><userinput>./configure \
   CROSS_COMPILE=${CLFS_TARGET}- \
   --prefix=/ \
   --target=${CLFS_TARGET}</userinput></screen>
 
     <para os="h">Compile the package:</para>
 
-<screen os="i"><userinput>CC=${CLFS_TARGET}-gcc make</userinput></screen>
+<screen os="i"><userinput>make</userinput></screen>
 
     <para os="l">Install the package:</para>
 
