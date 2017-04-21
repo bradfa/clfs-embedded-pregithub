@@ -10,8 +10,9 @@
 
   <title>Creating Build and Sources Directories</title>
 
-  <para> Create a directory for the CLFS build (the exact location is up to
-    you): </para>
+  <para> Create a directory for the CLFS build.  The exact location is up to you
+    but depending on the location you choose, you may need to do this as the
+    root user: </para>
 
 <screen><userinput>mkdir -p /mnt/clfs</userinput></screen>
 
@@ -20,7 +21,9 @@
 <screen><userinput>export CLFS=/mnt/clfs</userinput></screen>
 
   <para>Ensure that this new directory has permissions that are not too
-    restrictive such that you can write to it as a non-root user.</para>
+    restrictive such that you can write to it as a non-root user.  Depending on
+    the location of the <envar>CLFS</envar> directory, you may need to do this
+    as the root user:</para>
 
 <screen><userinput>chmod 777 ${CLFS}</userinput></screen>
 
