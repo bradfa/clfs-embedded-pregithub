@@ -8,7 +8,7 @@
 <sect1 id="ch-cross-tools-sysroot">
   <?dbhtml filename="sysroot.html"?>
 
-  <title>Create the Sysroot Directory</title>
+  <title>Create the Cross Tools Sysroot Directory</title>
 
   <para>Create a sysroot directory which will be used when building the cross
     compiler and link its <filename class="directory">usr</filename> directory
