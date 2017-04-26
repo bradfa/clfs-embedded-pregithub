@@ -42,7 +42,7 @@
     <para os="f">The following tells BusyBox to use the default
       configuration:</para>
 
-<screen os="g"><userinput>ARCH="${CLFS_ARCH}" make defconfig</userinput></screen>
+<screen os="g"><userinput>make ARCH="${CLFS_ARCH}" defconfig</userinput></screen>
 
     <para os="fa">Disable building both ifplugd and inetd as they both have
       issues building against musl:</para>
@@ -64,11 +64,11 @@ sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config</userinput></screen>
 
     <para os="h">Compile the package:</para>
 
-<screen os="i"><userinput>ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_TARGET}-" make</userinput></screen>
+<screen os="i"><userinput>make ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_TARGET}-"</userinput></screen>
 
     <para os="j">Install the package:</para>
 
-<screen os="k"><userinput>ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_TARGET}-" make  \
+<screen os="k"><userinput>make ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_TARGET}-"\
   CONFIG_PREFIX="${CLFS}/targetfs" install</userinput></screen>
 
     <para os="l">If you're going to build your kernel with modules, you will need
