@@ -72,10 +72,11 @@ sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config</userinput></screen>
   CONFIG_PREFIX="${CLFS}/targetfs" install</userinput></screen>
 
     <para os="l">If you're going to build your kernel with modules, you will need
-    to make sure <command>depmod.pl</command> is available:</para>
+    to make sure <command>depmod.pl</command> is available for your host to
+    execute:</para>
 
-<screen os="m"><userinput>cp examples/depmod.pl ${CLFS}/cross-tools/bin
-chmod 755 ${CLFS}/cross-tools/bin/depmod.pl</userinput></screen>
+<screen os="m"><userinput>cp -v examples/depmod.pl ${CLFS}/cross-tools/bin
+chmod -v 755 ${CLFS}/cross-tools/bin/depmod.pl</userinput></screen>
 
   </sect2>
 
