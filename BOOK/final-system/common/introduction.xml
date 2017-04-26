@@ -25,10 +25,13 @@
   be strictly followed to ensure that no program accidentally acquires a
   path referring to <filename class="directory">${CLFS}/cross-tools</filename>
   hard-wired into it. For the same reason, do not compile packages in
-  parallel. Compiling in parallel may save time (especially on dual-CPU
-  machines), but it could result in a program containing a hard-wired
+  parallel. Compiling more than one package at a time may save time,
+  but it could result in a program containing a hard-wired
   path to <filename class="directory">${CLFS}/cross-tools</filename>, which will
   cause the program to stop working when that directory is
   removed.</para>
+
+  <para os="c">Compiling any single package using make's parallel job execution
+    option, "-j" is OK if you want to speed up compiling any one package.</para>
 
 </sect1>
