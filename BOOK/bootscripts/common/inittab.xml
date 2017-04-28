@@ -33,8 +33,9 @@ tty4::respawn:/sbin/getty 38400 tty4
 tty5::respawn:/sbin/getty 38400 tty5
 tty6::respawn:/sbin/getty 38400 tty6
 
-# Put a getty on the serial line (for a terminal)
-# uncomment this line if your using a serial console
+# Put a getty on the serial line (for a terminal).  Uncomment this line if
+# you're using a serial console on ttyS0, or uncomment and adjust it if using a
+# serial console on a different serial port.
 #::respawn:/sbin/getty -L ttyS0 115200 vt100
 
 ::shutdown:/etc/rc.d/shutdown
