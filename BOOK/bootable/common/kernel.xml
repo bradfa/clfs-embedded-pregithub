@@ -42,7 +42,7 @@
 
     <note os="f"><para>Since you are building for an embedded system make sure
         all key components are built into the kernel and not as modules. The key
-        components are console/video, disk, and network. With out these built
+        components are console/video, disk, and network. Without these built
         in, the system will not function properly. It is recommended to
         configure the kernel without modules in order to conserve disk space
         and to reduce the complexity of booting.</para></note>
