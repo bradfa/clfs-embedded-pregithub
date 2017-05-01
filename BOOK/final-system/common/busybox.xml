@@ -35,7 +35,7 @@
 <screen os="b"><userinput>make distclean</userinput></screen>
 
     <note os="e"> <para>We tell BusyBox to use the generic defconfig.  For those
-        for more adventurous, you can use <command>make menuconfig</command>,
+        who are more adventurous, you can use <command>make menuconfig</command>,
         and create a custom or modified configuration for your build.</para>
     </note>
 
