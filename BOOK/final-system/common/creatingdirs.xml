@@ -39,7 +39,7 @@ mkdir -pv ${CLFS}/targetfs/usr/{,local/}{bin,include,lib,sbin,share,src}</userin
     <title>FHS Compliance Note</title>
 
     <para>The directory tree is based on the Filesystem Hierarchy Standard (FHS)
-    (available at <ulink url="http://www.pathname.com/fhs/"/>).</para>
+    (available at <ulink url="http://refspecs.linuxfoundation.org/fhs.shtml"/>).</para>
 
   </sect2>
 
