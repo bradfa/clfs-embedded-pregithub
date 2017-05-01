@@ -61,9 +61,8 @@ cd ../binutils-build</userinput></screen>
       <varlistentry os="f3">
         <term><parameter>--target=${CLFS_TARGET}</parameter></term>
         <listitem>
-          <para>When used with --host, this creates a cross-architecture
-          executable that creates files for ${CLFS_TARGET} but runs on
-          the host system.</para>
+          <para>This creates a cross-architecture executable that creates files
+            for ${CLFS_TARGET} but runs on the host system.</para>
         </listitem>
       </varlistentry>
 
