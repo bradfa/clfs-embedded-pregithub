@@ -62,8 +62,8 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
 <screen os="ae"><userinput>../gcc-&gcc-version;/configure \
   --prefix=${CLFS}/cross-tools \
   --build=${CLFS_HOST} \
-  --target=${CLFS_TARGET} \
   --host=${CLFS_HOST} \
+  --target=${CLFS_TARGET} \
   --with-sysroot=${CLFS}/cross-tools/${CLFS_TARGET} \
   --disable-nls \
   --enable-languages=c \
