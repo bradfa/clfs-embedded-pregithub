@@ -14,7 +14,7 @@
     <primary sortas="e-/etc/profile">/etc/profile</primary>
   </indexterm>
 
-  <para>Is the file that specifices how to your environment will function.</para>
+  <para>Is the file that specifices how your environment will function.</para>
 
   <para os="a">Now we will create the profile file for use with our system:</para>
 
