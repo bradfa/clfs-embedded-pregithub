@@ -19,7 +19,7 @@ $Date$
     <!-- Uncomment the next for debugging the raw FO code.
          Note that FOP will complaints about a lot of paragraph overflows
          due that verbatim output is also indented.
-         Remember to comment the "rm $(BASEDIR)/lfs-pdf.fo" in
+         Remember to comment the "rm $(RENDERDIR)/lfs-pdf.fo" in
          the Makefile. -->
   <!--<xsl:output  encoding="UTF-8" indent="yes" />-->
 

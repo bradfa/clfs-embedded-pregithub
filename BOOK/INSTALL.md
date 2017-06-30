@@ -31,7 +31,7 @@ sudo apt install docbook-xml docbook-xsl fop libxml2-utils lynx make xsltproc ti
 ```
 
 To actually convert the Docbook XML source into rendered form, which will be
-located at ../render by default (override with BASEDIR=), execute:
+located at ../render by default (override with RENDERDIR=), execute:
 
 * To XHTML: `make`
 * To single file XHTML (nochunks): `make nochunks`
