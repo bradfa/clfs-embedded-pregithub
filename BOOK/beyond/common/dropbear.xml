@@ -36,7 +36,7 @@
 <screen os="b"><userinput>CC="${CC} -Os" ./configure --prefix=/usr --host=${CLFS_TARGET}</userinput></screen>
 
     <note os="e"><para>We are just telling dropbear to use the default
-        configuration plus scp.  For those for more adventureous, edit options.h
+        configuration plus scp.  For those who are more adventurous, edit options.h
         to further configure dropbear.</para></note>
 
     <para os="f">Compile the package:</para>
