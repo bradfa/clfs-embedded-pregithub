@@ -17,7 +17,7 @@
   work environment, create a new user called <systemitem
   class="username">clfs</systemitem> as a member of a new group (also named
   <systemitem class="groupname">clfs</systemitem>) and use this user during
-  the installation process.</para>
+  the installation process.  You may need to do this as the root user:</para>
 
 <screen><userinput>sudo groupadd clfs
 sudo useradd -s /bin/bash -g clfs -m -k /dev/null clfs</userinput></screen>
@@ -72,13 +72,14 @@ sudo useradd -s /bin/bash -g clfs -m -k /dev/null clfs</userinput></screen>
   when logged in as <systemitem class="username">root</systemitem>, which
   does not require the <systemitem class="username">clfs</systemitem> user
   to have a password), give <systemitem class="username">clfs</systemitem>
-  a password:</para>
+  a password.  You may need to do this as the root user:</para>
 
 <screen><userinput>sudo passwd clfs</userinput></screen>
 
   <para>Grant <systemitem class="username">clfs</systemitem> full access to
   <filename class="directory">${CLFS}</filename> by making <systemitem
-  class="username">clfs</systemitem> the directory's owner:</para>
+  class="username">clfs</systemitem> the directory's owner.  You may need to do
+  this as the root user:</para>
 
 <screen><userinput>sudo chown -Rv clfs ${CLFS}</userinput></screen>
 
