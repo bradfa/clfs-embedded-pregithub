@@ -24,7 +24,7 @@
 
 <!ENTITY gcc-version "6.2.0">
 <!ENTITY gcc-size "97441 KB">
-<!ENTITY gcc-url "ftp://gcc.gnu.org/pub/gcc/releases/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
+<!ENTITY gcc-url "http://gcc.gnu.org/pub/gcc/releases/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
 <!ENTITY gcc-md5 "9768625159663b300ae4de2f4745fcc4">
 <!ENTITY gcc-home "http://gcc.gnu.org">
 
