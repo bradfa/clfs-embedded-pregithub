@@ -8,7 +8,7 @@
 <sect1 id="ch-final-system-creatingfiles">
   <?dbhtml filename="creatingfiles.html"?>
 
-  <title>Creating the passwd, group, and log Files</title>
+  <title>Creating the passwd, group, and lastlog Files</title>
 
   <indexterm zone="ch-final-system-creatingfiles">
     <primary sortas="e-/etc/passwd">/etc/passwd</primary>
@@ -19,19 +19,7 @@
   </indexterm>
 
   <indexterm zone="ch-final-system-creatingfiles">
-    <primary sortas="e-/var/run/utmp">/var/run/utmp</primary>
-  </indexterm>
-
-  <indexterm zone="ch-final-system-creatingfiles">
-    <primary sortas="e-/var/log/btmp">/var/log/btmp</primary>
-  </indexterm>
-
-  <indexterm zone="ch-final-system-creatingfiles">
     <primary sortas="e-/var/log/lastlog">/var/log/lastlog</primary>
-  </indexterm>
-
-  <indexterm zone="ch-final-system-creatingfiles">
-    <primary sortas="e-/var/log/wtmp">/var/log/wtmp</primary>
   </indexterm>
 
   <para>A proper Linux system maintains a list of the mounted file systems in
@@ -218,20 +206,13 @@ EOF</userinput></screen>
   rather use the group's name.</para>
 
   <para>The <command>login</command>, <command>agetty</command>, and
-  <command>init</command> programs (and others) use a number of log
-  files to record information such as who was logged into the system and
-  when. However, these programs will not write to the log files if they
-  do not already exist. Initialize the log files and give them
+  <command>init</command> programs (and others) use the lastlog
+  file to record information such as who was logged into the system and
+  when. However, these programs will not write to the lastlog file if it
+  does not already exist. Initialize the lastlog file and give it
   proper permissions:</para>
 
-<screen><userinput>touch ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/{btmp,lastlog,wtmp}
-chmod -v 664 ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/lastlog</userinput></screen>
-
-  <para>The <filename>/var/run/utmp</filename> file records the users
-  that are currently logged in. The <filename>/var/log/wtmp</filename>
-  file records all logins and logouts. The
-  <filename>/var/log/lastlog</filename> file records when
-  each user last logged in. The <filename>/var/log/btmp</filename> file
-  records the bad login attempts.</para>
+<screen><userinput>touch ${CLFS}/targetfs/var/log/lastlog
+chmod -v 664 ${CLFS}/targetfs/var/log/lastlog</userinput></screen>
 
 </sect1>
