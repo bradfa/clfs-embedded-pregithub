@@ -14,7 +14,7 @@
     but depending on the location you choose, you may need to do this as the
     root user: </para>
 
-<screen><userinput>mkdir -p /mnt/clfs</userinput></screen>
+<screen><userinput>sudo mkdir -p /mnt/clfs</userinput></screen>
 
   <para>Assign it to the <envar>CLFS</envar> environment variable:</para>
 
@@ -25,7 +25,7 @@
     the location of the <envar>CLFS</envar> directory, you may need to do this
     as the root user:</para>
 
-<screen><userinput>chmod 777 ${CLFS}</userinput></screen>
+<screen><userinput>sudo chmod 777 ${CLFS}</userinput></screen>
 
   <para>Downloaded packages and patches will need to be stored somewhere
   that is conveniently available throughout the entire build. A working
