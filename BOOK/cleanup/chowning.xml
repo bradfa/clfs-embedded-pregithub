@@ -29,10 +29,10 @@
 
 <screen><userinput>chown -Rv root:root ${CLFS}/targetfs</userinput></screen>
 
-  <para>The following files should not to belong to the
-  <systemitem class="groupname">root</systemitem> group, they should belong
+  <para>The following file should not to belong to the
+  <systemitem class="groupname">root</systemitem> group, it should belong
   to the <systemitem class="groupname">utmp</systemitem> group (group 13):</para>
 
-<screen><userinput>chgrp -v 13 ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/lastlog</userinput></screen>
+<screen><userinput>chgrp -v 13 ${CLFS}/targetfs/var/log/lastlog</userinput></screen>
 
 </sect1>
