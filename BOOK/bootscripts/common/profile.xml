@@ -18,7 +18,7 @@
 
   <para os="a">Now we will create the profile file for use with our system:</para>
 
-<screen os="b"><userinput>cat &gt; ${CLFS}/targetfs/etc/profile&lt;&lt; "EOF"
+<screen os="b"><userinput>cat &gt; ${CLFS}/targetfs/etc/profile &lt;&lt; "EOF"
 <literal># /etc/profile
 
 # Set the initial path
