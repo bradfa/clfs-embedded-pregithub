@@ -42,9 +42,9 @@
 
 <screen os="i"><userinput>make</userinput></screen>
 
-    <para os="l">Install the package:</para>
+    <para os="l">Install just the shared library:</para>
 
-<screen os="j"><userinput>DESTDIR=${CLFS}/targetfs make install</userinput></screen>
+<screen os="j"><userinput>DESTDIR=${CLFS}/targetfs make install-libs</userinput></screen>
 
   </sect2>
 
