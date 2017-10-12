@@ -22,6 +22,8 @@
      the same features as OpenSSH. It does not depend on OpenSSL and it has a MIT
      style license.</para>
 
+    <para>Dropbear depends on zlib.</para>
+
   </sect2>
 
   <sect2 role="installation">
