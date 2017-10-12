@@ -22,7 +22,8 @@
     the basic routines for allocating memory, searching directories, opening and
     closing files, reading and writing files, string handling, pattern matching,
     arithmetic, and so on.  We build it again here so that it can be installed
-    into our targetfs sysroot.</para>
+    into our targetfs sysroot but this time we only build the shared object
+    version.</para>
 
   </sect2>
 
@@ -34,6 +35,7 @@
 <screen os="i"><userinput>./configure \
   CROSS_COMPILE=${CLFS_TARGET}- \
   --prefix=/ \
+  --disable-static \
   --target=${CLFS_TARGET}</userinput></screen>
 
     <para os="h">Compile the package:</para>
