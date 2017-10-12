@@ -45,9 +45,15 @@
 
 <screen os="d"><userinput>make</userinput></screen>
 
-    <para os="e">Install the package:</para>
+    <para os="e">Install the package into the cross-tools:</para>
 
 <screen os="f"><userinput>make prefix=${CLFS}/cross-tools/${CLFS_TARGET} install</userinput></screen>
+
+    <para os="g">Copy only the shared library into the target file system and
+      ensure that its symlink is present so the runtime loader can find it:</para>
+
+    <screen os="h"><userinput>cp -v ${CLFS}/cross-tools/${CLFS_TARGET}/lib/libz.so.&zlib-version; ${CLFS}/targetfs/lib/
+ln -sv libz.so.&zlib-version; ${CLFS}/targetfs/lib/libz.so.1</userinput></screen>
 
   </sect2>
 
