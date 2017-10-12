@@ -36,6 +36,30 @@
     </listitem>
 -->
     <listitem>
+      <para>October 12, 2017</para>
+      <itemizedlist>
+        <listitem>
+          <para>[abradford] - Many small fixes submitted by "selk" on IRC and
+            "akhiezer" via email.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update Linux to v4.9.22.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Update musl to version 1.1.16.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Add new concept of "targetfs" directory parallel
+            to the cross-tools which allows easier retaining of cross-tools
+            across target builds.</para>
+        </listitem>
+        <listitem>
+          <para>[abradford] - Remove utmp, wtmp, and btmp creation.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 28, 2016</para>
       <itemizedlist>
         <listitem>
